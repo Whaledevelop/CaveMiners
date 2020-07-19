@@ -113,8 +113,8 @@ MonoBehaviour:
   - {fileID: 2192015189815932129}
   - {fileID: 2192015190684278187}
   m_Bounds:
-    m_Center: {x: 0.031543523, y: 0.034400344, z: 0}
-    m_Extent: {x: 0.37657267, y: 0.31931672, z: 0}
+    m_Center: {x: 0.031543404, y: 0.034400374, z: 0}
+    m_Extent: {x: 0.37657255, y: 0.31931672, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!114 &2192015189806234752
@@ -281,6 +281,7 @@ GameObject:
   - component: {fileID: 2192015190459939292}
   - component: {fileID: 2192015190459939267}
   - component: {fileID: 2192015190459939266}
+  - component: {fileID: 4767356596100988551}
   m_Layer: 0
   m_Name: CaveMiner
   m_TagString: Untagged
@@ -381,13 +382,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d7aba606b54daf49af830bbd6c72245, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
   blockingLayer:
     serializedVersion: 2
     m_Bits: 256
-  sprite: {fileID: 0}
-  flipTopDown: 0
-  flipLeftRight: 1
   blockingLayerOffset: 0.2
 --- !u!114 &2192015190459939266
 MonoBehaviour:
@@ -425,6 +422,22 @@ MonoBehaviour:
     toolCode: 3
     isToUseSpriteSwitch: 1
     spriteResolveLabel: WithShovel
+--- !u!114 &4767356596100988551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2192015190459939271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f61960b291aabd24eb02728812653ce3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 1
+  flipTopDown: 0
+  flipLeftRight: 1
+  movingObject: {fileID: 2192015190459939267}
 --- !u!1 &2192015190573973387
 GameObject:
   m_ObjectHideFlags: 0
