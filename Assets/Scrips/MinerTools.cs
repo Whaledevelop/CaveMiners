@@ -62,21 +62,10 @@ public class MinerTools : MonoBehaviour
 
     public List<ToolEquipData> toolsEquipData = new List<ToolEquipData>();
 
+    private bool bagMode;
+    private bool isDigging;
+    private bool isMining;
 
-
-    public Dictionary<ToolCode, PrefabInstantiateData> usedTools = new Dictionary<ToolCode, PrefabInstantiateData>();
-
-
-    void Start()
-    {
-        foreach(ToolEquipData toolInstanstiateData in toolsEquipData)
-        {
-            if (!usedTools.ContainsKey(toolInstanstiateData.toolCode))
-                usedTools.Add(toolInstanstiateData.toolCode, toolInstanstiateData);
-            else
-                Debug.Log("Повтор данных для инициализации инструмента " + toolInstanstiateData.toolCode);
-        }
-    }
 
     public void ChangeToolMode(ToolCode toolCode, bool newMode)
     {
@@ -126,10 +115,7 @@ public class MinerTools : MonoBehaviour
             spriteResolver.SetCategoryAndLabel("CaveMiner" + 5, spriteResolver.GetLabel());
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            ChangeDigingMode(!isDigging);
-        }
+
         if (Input.GetKeyDown(KeyCode.R))
         {
             ChangeMiningMode(!isMining);
@@ -141,20 +127,8 @@ public class MinerTools : MonoBehaviour
         }
     }
 
-    private bool bagMode;
-    private bool isDigging;
-    private void ChangeDigingMode(bool newMode)
-    {
-        if (isDigging != newMode)
-        {
-            isDigging = newMode;            
-            ChangeToolMode(ToolCode.Shovel, isDigging);
-            animator.SetBool("Diging", isDigging);
-        }
 
-    }
-
-    private bool isMining;
+    
     private void ChangeMiningMode(bool newMode)
     {
         if (isMining != newMode)

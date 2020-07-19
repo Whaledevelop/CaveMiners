@@ -14,6 +14,9 @@ public class InputController : MonoBehaviour
     private Animator animator;
     private Vector2 movement;
 
+    // Временно тут
+    public Rotator rotator;
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -30,9 +33,7 @@ public class InputController : MonoBehaviour
 
             if (flipLeftRight)
             {
-                // Поворачиваем, если повернут в обратную сторону от движения
-                if (movement.x != transform.localScale.x)
-                    transform.localScale = new Vector2(movement.x, transform.localScale.y);
+                rotator.Rotate(movement); // Поворачиваем, если повернут в обратную сторону от движения
             }
 
             animator.SetFloat("Speed", Math.Abs(movement.x));
@@ -43,9 +44,7 @@ public class InputController : MonoBehaviour
 
             if (flipTopDown)
             {
-                // Переворачиваем, если повернут в обратную сторону от движения
-                if (movement.y != -transform.localScale.y)
-                    transform.localScale = new Vector2(transform.localScale.x, -movement.y);
+                rotator.Rotate(movement); // Поворачиваем, если повернут в обратную сторону от движения
             }
             animator.SetFloat("Speed", Math.Abs(movement.y));
         }
