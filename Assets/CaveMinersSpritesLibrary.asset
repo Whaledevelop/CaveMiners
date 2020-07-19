@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bf7c34a0dc4e6348bea04faa70406ee, type: 3}
+  m_Name: CaveMinersSpritesLibrary
+  m_EditorClassIdentifier: 
+  m_Labels:
+  - m_Name: CaveMiner1
+    m_Hash: -1871174564
+    m_CategoryList:
+    - m_Name: Main
+      m_Hash: 521822810
+      m_Sprite: {fileID: 21300000, guid: e8cb6581fc437aa498f1b270bfa62eb1, type: 3}
+    - m_Name: WithBag
+      m_Hash: 2047555717
+      m_Sprite: {fileID: 21300000, guid: dd607c100a2073b418eed8c4c6db86ca, type: 3}
+    - m_Name: WithPick
+      m_Hash: 94707810
+      m_Sprite: {fileID: 21300000, guid: 478c858cb2e44f342ab607372e8a4c9a, type: 3}
+    - m_Name: WithShovel
+      m_Hash: -1808901981
+      m_Sprite: {fileID: 21300000, guid: e4b7c7e6bde7bcb499897c4d994b9564, type: 3}
+  - m_Name: CaveMiner2
+    m_Hash: 158430694
+    m_CategoryList:
+    - m_Name: Main
+      m_Hash: 521822810
+      m_Sprite: {fileID: 21300000, guid: 7cd923939e2effd408f504f05c944050, type: 3}
+    - m_Name: WithBag
+      m_Hash: 2047555717
+      m_Sprite: {fileID: 21300000, guid: fa6a626f24ef3744cbcc799c072eeb26, type: 3}
+    - m_Name: WithPick
+      m_Hash: 94707810
+      m_Sprite: {fileID: 21300000, guid: cee7146b601d10046af248e02cef697e, type: 3}
+    - m_Name: WithShovel
+      m_Hash: -1808901981
+      m_Sprite: {fileID: 21300000, guid: b481115b73c9697448970af1515dd73e, type: 3}
+  - m_Name: CaveMiner3
+    m_Hash: 2121680240
+    m_CategoryList:
+    - m_Name: Main
+      m_Hash: 521822810
+      m_Sprite: {fileID: 21300000, guid: 1a5b154287d8be74f8beb6ee55d9ee60, type: 3}
+    - m_Name: WithShovel
+      m_Hash: -1808901981
+      m_Sprite: {fileID: 21300000, guid: 253398f47a4aab0449f516077738d791, type: 3}
+  - m_Name: CaveMiner4
+    m_Hash: -535637805
+    m_CategoryList:
+    - m_Name: Main
+      m_Hash: 521822810
+      m_Sprite: {fileID: 21300000, guid: 3eed781e1df771a4891ba88691d94cf0, type: 3}
+    - m_Name: WithShovel
+      m_Hash: -1808901981
+      m_Sprite: {fileID: 21300000, guid: d6cdc1f872a52b54fb1da1421d0c7e6f, type: 3}
+  - m_Name: CaveMiner5
+    m_Hash: -1760174011
+    m_CategoryList:
+    - m_Name: Main
+      m_Hash: 521822810
+      m_Sprite: {fileID: 21300000, guid: d05fc7b4ca6c0f744b732f34ad7c5b95, type: 3}
+    - m_Name: WithShovel
+      m_Hash: -1808901981
+      m_Sprite: {fileID: 21300000, guid: 2fc9c38edbc878e459d71bf2fde30dd4, type: 3}
