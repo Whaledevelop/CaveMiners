@@ -8,6 +8,10 @@ public class CharacterState
 
     public MinerTools toolManager;
 
+    private ParamsObject requestResolveParams;
+
+    public string Name => stateData.stateName;
+
     public CharacterState(CharacterStateData stateData, Animator animator, MinerTools toolManager)
     {
         this.stateData = stateData;
@@ -15,24 +19,43 @@ public class CharacterState
         this.toolManager = toolManager;
     }
 
-    public void OnStart()
+    public virtual bool CheckIfStartAvailable(Vector2 position, Vector2 direction)
+    {
+        if (stateData.startRequest != null)
+        {
+            requestResolveParams = stateData.startRequest.MakeRequest(position, direction);
+            return requestResolveParams != null;
+        }
+        else
+            return true;
+    }
+
+    public virtual void OnStartNotAvailable(){}
+
+    public virtual void OnStart()
     {
         if (!string.IsNullOrEmpty(stateData.animatorTriggerStart))
             animator.SetTrigger(stateData.animatorTriggerStart);
-        else if (!string.IsNullOrEmpty(stateData.animatorTriggerEnd))
-            toolManager.ApplyTool(stateData.toolStringName);
 
-        if (stateData.StartEvent != null)
-            stateData.StartEvent.Raise();
+        toolManager.ApplyTool(stateData.toolCode);
+
+        if (stateData.startEvent != null)
+        {
+            if (stateData.areResolveParamsNeededInEvent)
+                stateData.startEvent.Raise(requestResolveParams);
+            else
+                stateData.startEvent.Raise();
+        }
+            
     }
-    public void OnEnd()
+    public virtual void OnEnd()
     {
         if (!string.IsNullOrEmpty(stateData.animatorTriggerEnd))
             animator.SetTrigger(stateData.animatorTriggerEnd);
-        else if (!string.IsNullOrEmpty(stateData.animatorTriggerEnd))
-            toolManager.HideTool(stateData.toolStringName);
 
-        if (stateData.EndEvent != null)
-            stateData.EndEvent.Raise();
+        toolManager.HideTool(stateData.toolCode);
+
+        if (stateData.endEvent != null)
+            stateData.endEvent.Raise();
     }
 }

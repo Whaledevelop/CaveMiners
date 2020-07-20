@@ -3,22 +3,18 @@
 [CreateAssetMenu(fileName = "Request", menuName = "ScriptableObjects/Request")]
 public class Request : ScriptableObject
 {
-    private RequestResolver resolver;
+    [HideInInspector]
+    public object[] LastRequestParams;
+
+    private RequestResolver resolver;    
 
     public void RegisterResolver(RequestResolver resolver)
     {
         this.resolver = resolver;
     }
 
-    public void MakeRequest(ObjectArrayDelegate onSuccess, ObjectArrayDelegate onFailure, params object[] requestParams)
+    public ParamsObject MakeRequest(params object[] requestParams)
     {
-        if (resolver.Resolve(requestParams, out object[] resolveParams))
-        {
-            onSuccess?.Invoke(resolveParams);
-        }
-        else
-        {
-            onFailure?.Invoke(resolveParams);
-        }
+        return resolver.Resolve(requestParams);
     }
 }

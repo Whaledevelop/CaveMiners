@@ -9,5 +9,5 @@ public abstract class RequestResolver : MonoBehaviour
         request.RegisterResolver(this);
     }
 
-    public abstract bool Resolve(object[] requestParams, out object[] resolveParams);
+    public abstract ParamsObject Resolve(object[] requestParams);
 }

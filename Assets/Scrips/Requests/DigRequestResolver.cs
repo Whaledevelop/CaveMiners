@@ -8,10 +8,10 @@ public class DigRequestResolver : RequestResolver
 
     [SerializeField] private Grid grid;
 
-    public override bool Resolve(object[] requestParams, out object[] resolveParams)
+    public override ParamsObject Resolve(object[] requestParams)
     {
-        Vector3 diggerPosition = (Vector3)requestParams[0];
-        Vector2Int digDirection = (Vector2Int)requestParams[1];
+        Vector2 diggerPosition = (Vector2)requestParams[0];
+        Vector2 digDirection = (Vector2)requestParams[1];
 
         if (digDirection.x != 0)
         {
@@ -26,13 +26,11 @@ public class DigRequestResolver : RequestResolver
                 TileBase digTile = digableTilemap.GetTile(digCellPositionInt);
                 if (digTile != null)
                 {
-                    resolveParams = new object[1] { digCellPositionInt };
-                    return true;
+                    return new ParamsObject(digCellPositionInt);
                 }
                     
             }
         }
-        resolveParams = null;
-        return false;
+        return null;
     }
 }

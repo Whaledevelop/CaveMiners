@@ -1,11 +1,13 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using UnityEditor;
+using UnityEngine;
 
 public class CharacterStateMachine : MonoBehaviour
 {
     public Animator characterAnimator;
 
     public MinerTools characterToolsManager;
+
+    public Rotator rotator;
 
     public CharacterStateData idleState;
 
@@ -24,12 +26,37 @@ public class CharacterStateMachine : MonoBehaviour
             {
                 SetState(idleState);
                 return;
-            }                
-            else
-                currentState.OnEnd();
+            }
         }
 
-        currentState = new CharacterState(stateData, characterAnimator, characterToolsManager);
-        currentState.OnStart();
+        CharacterState state = new CharacterState(stateData, characterAnimator, characterToolsManager);
+        if (state.CheckIfStartAvailable(transform.position, new Vector2(rotator.RightLeftMultiplier, 0)))
+        {
+            if (currentState != null)
+            {
+                currentState.OnEnd();
+            }
+            currentState = state;
+            currentState.OnStart();
+        }
+        else
+        {
+            state.OnStartNotAvailable();
+        }
     }
 }
+
+[CustomEditor(typeof(CharacterStateMachine))] [CanEditMultipleObjects]
+public class CharacterStateMachineEditor : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        base.OnInspectorGUI();
+        CharacterStateMachine stateMachine = (target as CharacterStateMachine);
+        if (stateMachine.currentState != null)
+        {
+            EditorGUILayout.TextField("Текущее состояние : ", stateMachine.currentState.Name);
+        }
+    }
+}
+

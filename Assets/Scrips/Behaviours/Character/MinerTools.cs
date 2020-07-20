@@ -83,62 +83,56 @@ public class MinerTools : MonoBehaviour
     }
 
     // Для UnityEvent, который не работает с enum в качестве статического параметра
-    public void HideTool(string toolCodeString)
+    public void HideTool(ToolCode toolCode)
     {
-        ToolCode toolCode = (ToolCode)System.Enum.Parse(typeof(ToolCode), toolCodeString, true);
-        if (toolCode != default)
-        {
+        if (toolCode != ToolCode.None)
             ChangeToolMode(toolCode, false);
-        }        
     }
-    public void ApplyTool(string toolCodeString)
+    public void ApplyTool(ToolCode toolCode)
     {
-        ToolCode toolCode = (ToolCode)System.Enum.Parse(typeof(ToolCode), toolCodeString, true);
-        if (toolCode != default)
+        foreach (ToolEquipData toolEquipData in toolsEquipData)
         {
-            foreach (ToolEquipData toolEquipData in toolsEquipData)
-            {
-                if (toolCode != toolEquipData.toolCode && !toolEquipData.isToUseSpriteSwitch)
-                    toolEquipData.Destroy();
-            }
-            ChangeToolMode(toolCode, true);
+            if (toolCode != toolEquipData.toolCode && !toolEquipData.isToUseSpriteSwitch)
+                toolEquipData.Destroy();
         }
+        if (toolCode != ToolCode.None)
+            ChangeToolMode(toolCode, true);
     }
 
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            spriteResolver.SetCategoryAndLabel("CaveMiner" + 1, spriteResolver.GetLabel());
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            spriteResolver.SetCategoryAndLabel("CaveMiner" + 2, spriteResolver.GetLabel());
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            spriteResolver.SetCategoryAndLabel("CaveMiner" + 3, spriteResolver.GetLabel());
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            spriteResolver.SetCategoryAndLabel("CaveMiner" + 4, spriteResolver.GetLabel());
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            spriteResolver.SetCategoryAndLabel("CaveMiner" + 5, spriteResolver.GetLabel());
-        }
+        //if (Input.GetKeyDown(KeyCode.Alpha1))
+        //{
+        //    spriteResolver.SetCategoryAndLabel("CaveMiner" + 1, spriteResolver.GetLabel());
+        //}
+        //if (Input.GetKeyDown(KeyCode.Alpha2))
+        //{
+        //    spriteResolver.SetCategoryAndLabel("CaveMiner" + 2, spriteResolver.GetLabel());
+        //}
+        //if (Input.GetKeyDown(KeyCode.Alpha3))
+        //{
+        //    spriteResolver.SetCategoryAndLabel("CaveMiner" + 3, spriteResolver.GetLabel());
+        //}
+        //if (Input.GetKeyDown(KeyCode.Alpha4))
+        //{
+        //    spriteResolver.SetCategoryAndLabel("CaveMiner" + 4, spriteResolver.GetLabel());
+        //}
+        //if (Input.GetKeyDown(KeyCode.Alpha5))
+        //{
+        //    spriteResolver.SetCategoryAndLabel("CaveMiner" + 5, spriteResolver.GetLabel());
+        //}
 
 
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            ChangeMiningMode(!isMining);
-        }
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            bagMode = !bagMode;
-            ChangeToolMode(ToolCode.Bag, bagMode);
-        }
+        //if (Input.GetKeyDown(KeyCode.R))
+        //{
+        //    ChangeMiningMode(!isMining);
+        //}
+        //if (Input.GetKeyDown(KeyCode.B))
+        //{
+        //    bagMode = !bagMode;
+        //    ChangeToolMode(ToolCode.Bag, bagMode);
+        //}
     }
 
 

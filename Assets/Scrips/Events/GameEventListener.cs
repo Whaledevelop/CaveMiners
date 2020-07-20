@@ -2,10 +2,14 @@
 using System.Collections;
 using UnityEngine.Events;
 
+[System.Serializable]
+public class UnityEventWithParams : UnityEvent<ParamsObject> { }
+
 public class GameEventListener : MonoBehaviour
 {
     public GameEvent Event;
-    public UnityEvent Response;
+    public UnityEvent ResponseWithNoParams;
+    public UnityEventWithParams ResponseWithParams;
 
     private void OnEnable()
     {
@@ -19,27 +23,14 @@ public class GameEventListener : MonoBehaviour
 
     public void OnEventRaised()
     {
-        Response.Invoke();
+        ResponseWithNoParams.Invoke();
+        ResponseWithParams.Invoke(null);
     }
-}
 
-public abstract class GameEventListener<T> : MonoBehaviour
-{
-    public abstract GameEvent<T> Event { get; }
-    public abstract UnityEvent<T> Response { get; }
-
-    private void OnEnable()
+    public void OnEventRaised(ParamsObject eventParams)
     {
-        Event.RegisterListener(this);
+        ResponseWithNoParams.Invoke();
+        ResponseWithParams.Invoke(eventParams);
     }
 
-    private void OnDisable()
-    {
-        Event.UnregisterListener(this);
-    }
-
-    public void OnEventRaised(T eventParam)
-    {
-        Response.Invoke(eventParam);
-    }
 }

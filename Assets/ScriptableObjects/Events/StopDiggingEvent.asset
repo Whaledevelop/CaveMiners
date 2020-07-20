@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebc551678d07e10439453a50afacb522, type: 3}
   m_Name: StopDiggingEvent
   m_EditorClassIdentifier: 
-  listeners: []
+  ParamsObject: {fileID: 11400000, guid: 32c4319a9149d624394e257803e86d9d, type: 2}
