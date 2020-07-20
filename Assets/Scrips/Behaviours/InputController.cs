@@ -17,6 +17,9 @@ public class InputController : MonoBehaviour
     // Временно тут
     public Rotator rotator;
 
+    public CharacterStateData digData;
+    public CharacterStateMachine characterStateMachine;
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -51,6 +54,11 @@ public class InputController : MonoBehaviour
         else
         {
             animator.SetFloat("Speed", 0);
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            characterStateMachine.SetState(digData);
         }
     }
 
