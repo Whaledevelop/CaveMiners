@@ -8,8 +8,8 @@ public class TunnelsController : MonoBehaviour
     [SerializeField] private Tile tunnelTile;
     [SerializeField] private Tilemap tilemap;
 
-    public void OnDig(TileData tileData)
+    public void OnDig(Vector2 digPosition)
     {
-        tilemap.SetTile(tileData.position, tunnelTile);
+        tilemap.SetTile(Vector3Int.FloorToInt(digPosition), tunnelTile);
     }
 }

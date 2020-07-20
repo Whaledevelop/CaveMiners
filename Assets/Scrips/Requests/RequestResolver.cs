@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 
-public abstract class RequestResolver<T> : MonoBehaviour
+public abstract class RequestResolver : MonoBehaviour
 {
-    public abstract Request<T> request { get; }
+    [SerializeField] private Request request;
 
     public virtual void Start()
     {
         request.RegisterResolver(this);
     }
 
-    public abstract T Resolve(object[] requestParams);
+    public abstract bool Resolve(object[] requestParams, out object[] resolveParams);
 }

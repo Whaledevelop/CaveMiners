@@ -7,8 +7,8 @@ public class DigableGroundController : MonoBehaviour
     [SerializeField] private Tilemap tilemap;
     [SerializeField] private Grid grid;
 
-    public void OnDig(TileData tileData)
+    public void OnDig(Vector2 digPosition)
     {
-        tilemap.SetTile(tileData.position, null);
+        tilemap.SetTile(Vector3Int.FloorToInt(digPosition), null);
     }
 }

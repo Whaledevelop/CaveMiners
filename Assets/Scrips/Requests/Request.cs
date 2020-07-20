@@ -1,16 +1,24 @@
 ﻿using UnityEngine;
 
-
-public class Request<T> : ScriptableObject
+[CreateAssetMenu(fileName = "Request", menuName = "ScriptableObjects/Request")]
+public class Request : ScriptableObject
 {
-    private RequestResolver<T> resolver;
-    public void RegisterResolver(RequestResolver<T> resolver)
+    private RequestResolver resolver;
+
+    public void RegisterResolver(RequestResolver resolver)
     {
         this.resolver = resolver;
     }
 
-    public T MakeRequest(params object[] requestParams)
+    public void MakeRequest(ObjectArrayDelegate onSuccess, ObjectArrayDelegate onFailure, params object[] requestParams)
     {
-        return resolver.Resolve(requestParams);
+        if (resolver.Resolve(requestParams, out object[] resolveParams))
+        {
+            onSuccess?.Invoke(resolveParams);
+        }
+        else
+        {
+            onFailure?.Invoke(resolveParams);
+        }
     }
 }

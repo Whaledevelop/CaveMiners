@@ -12,13 +12,28 @@ public enum Rotation
 
 public class Rotator : MonoBehaviour
 {
-    public Rotation TopDownRotation => transform.localScale.y > 0 ? Rotation.Down : Rotation.Top;
+    [SerializeField] private Rotation initialRightLeft = Rotation.Right;
+    [SerializeField] private Rotation initialTopDown = Rotation.Down;
 
-    public Rotation RightLeftRotation => transform.localScale.x > 0 ? Rotation.Right : Rotation.Left;
+    public Rotation TopDownRotation => transform.localScale.y > 0 ? initialTopDown : OppositeRotation(initialTopDown);
+    public Rotation RightLeftRotation => transform.localScale.x > 0 ? initialRightLeft : OppositeRotation(initialRightLeft);
 
     public int TopDownMultiplier => transform.localScale.y > 0 ? 1 : -1;
     public int RightLeftMultiplier => transform.localScale.x > 0 ? 1 : -1;
-    public Vector2Int Rotations => new Vector2Int(RightLeftMultiplier, TopDownMultiplier);
+    //public Vector2Int Rotations => new Vector2Int(RightLeftMultiplier, TopDownMultiplier);
+
+    public Rotation OppositeRotation(Rotation rotation)
+    {
+        switch(rotation)
+        {
+            case Rotation.Right: return Rotation.Left;
+            case Rotation.Left: return Rotation.Right;
+            case Rotation.Down: return Rotation.Top;
+            case Rotation.Top: return Rotation.Down;
+            default: return Rotation.None;
+        }
+
+    }
 
     public void Rotate(Vector2 direction)
     {

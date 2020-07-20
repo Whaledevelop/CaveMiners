@@ -63,34 +63,48 @@ public class MinerTools : MonoBehaviour
     public List<ToolEquipData> toolsEquipData = new List<ToolEquipData>();
 
     private bool bagMode;
-    private bool isDigging;
     private bool isMining;
 
 
-    public void ChangeToolMode(ToolCode toolCode, bool newMode)
+    public void ChangeToolMode(ToolCode toolCode, bool toolMode)
     {
         ToolEquipData toolData = toolsEquipData.Find(toolEquipData => toolEquipData.toolCode == toolCode);
         if (toolData != null)
         {
-            if (newMode)
-            {
-                foreach (ToolEquipData toolEquipData in toolsEquipData)
-                {
-                    if (toolCode != toolEquipData.toolCode && !toolEquipData.isToUseSpriteSwitch)
-                        toolEquipData.Destroy();
-                }
-            }
-
             if (toolData.isToUseSpriteSwitch)
             {
-                spriteResolver.SetCategoryAndLabel(spriteResolver.GetCategory(), newMode ? toolData.spriteResolveLabel : "Main");
+                spriteResolver.SetCategoryAndLabel(spriteResolver.GetCategory(), toolMode ? toolData.spriteResolveLabel : "Main");
             }
             else
             {
-                toolData.ChangeMode(newMode);
+                toolData.ChangeMode(toolMode);
             }
         }
     }
+
+    // Для UnityEvent, который не работает с enum в качестве статического параметра
+    public void HideTool(string toolCodeString)
+    {
+        ToolCode toolCode = (ToolCode)System.Enum.Parse(typeof(ToolCode), toolCodeString, true);
+        if (toolCode != default)
+        {
+            ChangeToolMode(toolCode, false);
+        }        
+    }
+    public void ApplyTool(string toolCodeString)
+    {
+        ToolCode toolCode = (ToolCode)System.Enum.Parse(typeof(ToolCode), toolCodeString, true);
+        if (toolCode != default)
+        {
+            foreach (ToolEquipData toolEquipData in toolsEquipData)
+            {
+                if (toolCode != toolEquipData.toolCode && !toolEquipData.isToUseSpriteSwitch)
+                    toolEquipData.Destroy();
+            }
+            ChangeToolMode(toolCode, true);
+        }
+    }
+
 
     public void Update()
     {

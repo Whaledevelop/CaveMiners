@@ -113,8 +113,8 @@ MonoBehaviour:
   - {fileID: 2192015189815932129}
   - {fileID: 2192015190684278187}
   m_Bounds:
-    m_Center: {x: 0.031543404, y: 0.034400374, z: 0}
-    m_Extent: {x: 0.37657255, y: 0.31931672, z: 0}
+    m_Center: {x: 0.031543523, y: 0.034400344, z: 0}
+    m_Extent: {x: 0.37657267, y: 0.31931672, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!114 &2192015189806234752
@@ -284,6 +284,8 @@ GameObject:
   - component: {fileID: 4767356596100988551}
   - component: {fileID: 3892738205965544048}
   - component: {fileID: 3631445518668666232}
+  - component: {fileID: 8580465098586888438}
+  - component: {fileID: 6873143543012054741}
   m_Layer: 0
   m_Name: CaveMiner
   m_TagString: Untagged
@@ -453,6 +455,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9f53248debed943abc2e7316efedf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialRightLeft: 2
+  initialTopDown: 4
 --- !u!114 &3631445518668666232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -465,11 +469,88 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e129d81607110940b8017deeafc18ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  digRequest: {fileID: 11400000, guid: 234cf3367dc43ff46b8c8f91df5494dd, type: 2}
-  digEvent: {fileID: 11400000, guid: 1778711153609524fb3183fe5827e14b, type: 2}
+  digRequest: {fileID: 11400000, guid: 4a33971eb0cb5b148810aa1b294c3b58, type: 2}
+  startDiggingEvent: {fileID: 11400000, guid: 88d3aa49b5118d946bb4c9279b909936, type: 2}
+  stopDiggingEvent: {fileID: 11400000, guid: 927c7b7e576dc3d48bcac6468a38575d, type: 2}
   minerTools: {fileID: 2192015190459939266}
   animator: {fileID: 2192015190459939264}
   rotator: {fileID: 3892738205965544048}
+--- !u!114 &8580465098586888438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2192015190459939271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 822a8e82c85585b45bae0a1134f008f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 88d3aa49b5118d946bb4c9279b909936, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2192015190459939264}
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: StartDigging
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2192015190459939266}
+        m_MethodName: ApplyTool
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Shovel
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6873143543012054741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2192015190459939271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24cb32d1c10d3e445804910fe88182ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 927c7b7e576dc3d48bcac6468a38575d, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2192015190459939264}
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: StopDigging
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2192015190459939266}
+        m_MethodName: HideTool
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Shovel
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2192015190573973387
 GameObject:
   m_ObjectHideFlags: 0
