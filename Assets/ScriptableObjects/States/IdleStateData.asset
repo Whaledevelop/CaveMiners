@@ -13,8 +13,12 @@ MonoBehaviour:
   m_Name: IdleStateData
   m_EditorClassIdentifier: 
   stateName: Idle
+  toolCode: 0
+  actionLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  actionPriority: 10
   animatorTriggerStart: 
   animatorTriggerEnd: 
-  toolCode: 0
-  StartEvent: {fileID: 0}
-  EndEvent: {fileID: 0}
+  startEvent: {fileID: 0}
+  endEvent: {fileID: 0}

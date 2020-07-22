@@ -113,8 +113,8 @@ MonoBehaviour:
   - {fileID: 2192015189815932129}
   - {fileID: 2192015190684278187}
   m_Bounds:
-    m_Center: {x: 0.031543404, y: 0.034400374, z: 0}
-    m_Extent: {x: 0.37657255, y: 0.31931672, z: 0}
+    m_Center: {x: 0.031543523, y: 0.034400344, z: 0}
+    m_Extent: {x: 0.37657267, y: 0.31931672, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!114 &2192015189806234752
@@ -281,12 +281,13 @@ GameObject:
   - component: {fileID: 8196734391870924247}
   - component: {fileID: 5037183334719214755}
   - component: {fileID: 3361557290797306871}
-  - component: {fileID: 1158691947947476965}
   - component: {fileID: 7282526008341427577}
   - component: {fileID: 779355436351876976}
-  m_Layer: 0
+  - component: {fileID: 6625705014852564415}
+  - component: {fileID: 3025087994489093101}
+  m_Layer: 10
   m_Name: CaveMiner
-  m_TagString: Untagged
+  m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -300,7 +301,7 @@ Transform:
   m_GameObject: {fileID: 2192015190459939271}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2192015189806234759}
   m_Father: {fileID: 0}
@@ -385,7 +386,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteResolver: {fileID: 2192015189806234752}
-  animator: {fileID: 2192015190459939264}
   toolsEquipData:
   - prefab: {fileID: 3978536512088312465, guid: fed21b5492143484080f7e6519a25b75,
       type: 3}
@@ -421,28 +421,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterAnimator: {fileID: 2192015190459939264}
-  characterToolsManager: {fileID: 5037183334719214755}
-  rotator: {fileID: 779355436351876976}
+  toolsManager: {fileID: 5037183334719214755}
+  skillsManager: {fileID: 6625705014852564415}
   idleState: {fileID: 11400000, guid: 35ea0df5732a1e747a76bb80919aa569, type: 2}
---- !u!114 &1158691947947476965
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2192015190459939271}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 524c97efb5ef2f6449a0deda6d79843a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 1
-  flipTopDown: 0
-  flipLeftRight: 1
-  movingObject: {fileID: 7282526008341427577}
-  rotator: {fileID: 779355436351876976}
-  digData: {fileID: 11400000, guid: 5ff86b95127b49343ad6cecb6cd87023, type: 2}
-  characterStateMachine: {fileID: 3361557290797306871}
 --- !u!114 &7282526008341427577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -455,10 +436,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 306d72b7ab6cc8f4595dc55292edfad6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blockingLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  blockingLayerOffset: 0.2
+  rb: {fileID: 2192015190459939293}
 --- !u!114 &779355436351876976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -473,6 +451,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialRightLeft: 2
   initialTopDown: 4
+--- !u!114 &6625705014852564415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2192015190459939271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ab84e0273f014e44af4080fe4629c6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3025087994489093101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2192015190459939271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff6cb49f2a54d5c479fbcb8bd1d8db9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cellLayoutRequest: {fileID: 11400000, guid: d0347d6928156784499583da8cc86807, type: 2}
+  checkIfCharacterOnCellRequest: {fileID: 11400000, guid: 03a7818d7a2ec284cbc37f87190cce7f,
+    type: 2}
+  idleState: {fileID: 11400000, guid: 35ea0df5732a1e747a76bb80919aa569, type: 2}
+  cellActionsStates:
+  - {fileID: 11400000, guid: 5ff86b95127b49343ad6cecb6cd87023, type: 2}
+  - {fileID: 11400000, guid: 5667e594b0489084f9f4dba82e840c76, type: 2}
+  set: {fileID: 11400000, guid: 0ea25a6fa32963245a118fa514e29572, type: 2}
+  initialData: {fileID: 11400000, guid: c07f08585e38d6d449aa4567e64300d7, type: 2}
 --- !u!1 &2192015190573973387
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateName: Digging
   toolCode: 3
+  actionLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  actionPriority: 5
   animatorTriggerStart: StartDigging
-  startRequest: {fileID: 11400000, guid: 4a33971eb0cb5b148810aa1b294c3b58, type: 2}
-  areResolveParamsNeededInEvent: 1
-  startEvent: {fileID: 11400000, guid: 352088654b0362849ac75c31adbe6c71, type: 2}
-  endEvent: {fileID: 11400000, guid: 927c7b7e576dc3d48bcac6468a38575d, type: 2}
   animatorTriggerEnd: StopDigging
+  startEvent: {fileID: 11400000, guid: 580590d30e646484d84537d9be48a66b, type: 2}
+  endEvent: {fileID: 0}
