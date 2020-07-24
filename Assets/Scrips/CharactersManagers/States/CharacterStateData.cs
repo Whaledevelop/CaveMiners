@@ -15,11 +15,11 @@ public class CharacterStateData : ScriptableObject
 
     public string animatorTriggerStart;
     public string animatorTriggerEnd;
-    public CellActionGameEvent startEvent;
-    public CellActionGameEvent endEvent;
+    public Vector2GameEvent startEvent;
+    public Vector2GameEvent endEvent;
 
 
-    public virtual void OnStart(Animator animator, CharacterToolsManager toolsManager, Vector2 characterPosition, Vector2 stateActionPosition)
+    public void OnStart(Animator animator, CharacterToolsManager toolsManager, Vector2 characterPosition, Vector2 stateActionPosition)
     {
         if (!string.IsNullOrEmpty(animatorTriggerStart))
             animator.SetTrigger(animatorTriggerStart);
@@ -27,7 +27,10 @@ public class CharacterStateData : ScriptableObject
         toolsManager.ApplyTool(toolCode);
 
         if (startEvent != null)
-            startEvent.Raise(characterPosition, stateActionPosition);
+        {
+            startEvent.Raise(stateActionPosition);
+        }
+            
     }
 
     #region Services

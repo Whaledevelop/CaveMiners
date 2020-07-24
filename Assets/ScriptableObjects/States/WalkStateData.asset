@@ -21,5 +21,5 @@ MonoBehaviour:
   gizmosColor: {r: 0.21791564, g: 0.7830189, b: 0.21993607, a: 1}
   animatorTriggerStart: StartWalking
   animatorTriggerEnd: StopWalking
-  startEvent: {fileID: 0}
+  startEvent: {fileID: 11400000, guid: 5462d5dbad0264a4a8aa5949a4098670, type: 2}
   endEvent: {fileID: 0}

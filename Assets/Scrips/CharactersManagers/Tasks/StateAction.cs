@@ -1,37 +1,40 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
-public class StateActionPoint
+
+[Serializable]
+public class StateAction
 {
     public CharacterStateData state;
     public Vector2 prevCellPosition;
     public Vector2 axisFromPrevCell;
 
-    public StateActionPoint prevPoint;
+    public StateAction prevPoint;
     public int nestLevel = 1;
 
     public List<int> positionInPath = new List<int>();
-    public List<StateActionPoint> nextActionsPoints = new List<StateActionPoint>();
+    public List<StateAction> nextActionsPoints = new List<StateAction>();
     public string Name => state.stateName;
     public int Priority => state.actionPriority;
     public Vector2 CellPosition => prevCellPosition + axisFromPrevCell;
    
     public Vector2 NextCellToCharacterPosition; // Для гизмо
 
-    public StateActionPoint(CharacterStateData state, Vector2 prevCellPosition, Vector2 axisFromPrevCell)
+    public StateAction(CharacterStateData state, Vector2 prevCellPosition, Vector2 axisFromPrevCell)
     {
         this.state = state;
         this.prevCellPosition = prevCellPosition;
         this.axisFromPrevCell = axisFromPrevCell;
     }   
 
-    public void GetPointWithAllPrevs(ref List<StateActionPoint> nextPoints)
+    public void GetPointWithAllPrevs(ref List<StateAction> nextPoints)
     {
         nextPoints.Add(this);
         if (prevPoint != null)
             prevPoint.GetPointWithAllPrevs(ref nextPoints);
     }
 
-    public void AddPathsToCertainPositionInTree(List<int> parentPositionInPath, List<StateActionPoint> paths)
+    public void AddPathsToCertainPositionInTree(List<int> parentPositionInPath, List<StateAction> paths)
     {
         if (positionInPath == parentPositionInPath) // Если это батя
         {
@@ -54,16 +57,16 @@ public class StateActionPoint
                 else
                     return; // Не так ветка
             }
-            foreach (StateActionPoint availablePath in nextActionsPoints)
+            foreach (StateAction availablePath in nextActionsPoints)
             {
                 availablePath.AddPathsToCertainPositionInTree(parentPositionInPath, paths);
             }
         }
     }
 
-    public List<StateActionPoint> GetAllStatesWithNestLevel(int nestLevel)
+    public List<StateAction> GetAllStatesWithNestLevel(int nestLevel)
     {
-        List<StateActionPoint> states = new List<StateActionPoint>();
+        List<StateAction> states = new List<StateAction>();
         if (this.nestLevel == nestLevel)
         {
             states.Add(this);

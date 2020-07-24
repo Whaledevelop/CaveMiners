@@ -285,6 +285,7 @@ GameObject:
   - component: {fileID: 779355436351876976}
   - component: {fileID: 6625705014852564415}
   - component: {fileID: 3025087994489093101}
+  - component: {fileID: 454605514}
   m_Layer: 10
   m_Name: CaveMiner
   m_TagString: Character
@@ -421,6 +422,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterAnimator: {fileID: 2192015190459939264}
+  set: {fileID: 11400000, guid: 4869f41dfd1e2ae459686fd8b7be844e, type: 2}
   toolsManager: {fileID: 5037183334719214755}
   skillsManager: {fileID: 6625705014852564415}
   idleState: {fileID: 11400000, guid: 35ea0df5732a1e747a76bb80919aa569, type: 2}
@@ -437,6 +439,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 2192015190459939293}
+  speed: 1
+  isMoving: 0
+  moveEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 4869f41dfd1e2ae459686fd8b7be844e, type: 2}
+        m_MethodName: OnStateActionEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &779355436351876976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -477,7 +495,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   set: {fileID: 11400000, guid: 0ea25a6fa32963245a118fa514e29572, type: 2}
   initialData: {fileID: 11400000, guid: c07f08585e38d6d449aa4567e64300d7, type: 2}
+  statesManager: {fileID: 3361557290797306871}
   taskPathfinder: {fileID: 11400000, guid: 4143bb7889e7aeb4a9d55cd598f2c6c6, type: 2}
+--- !u!114 &454605514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2192015190459939271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1aec84f7c30ea545b97a7d1c2b0efe3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vector2Event: {fileID: 11400000, guid: 5462d5dbad0264a4a8aa5949a4098670, type: 2}
+  vector2Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7282526008341427577}
+        m_MethodName: Move
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2192015190573973387
 GameObject:
   m_ObjectHideFlags: 0
