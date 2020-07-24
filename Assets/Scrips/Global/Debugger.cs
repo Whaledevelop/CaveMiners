@@ -34,7 +34,8 @@ public class Debugger
 
     public static void LogMethod(string methodName, params object[] methodParams)
     {
-        Debug.Log("[" + methodName + "] " + string.Join(", ", methodParams));
+        if (IsLogging)
+            Debug.Log("[" + methodName + "] " + string.Join(", ", methodParams));
     }
 
     public static void LogIEnumerable<T>(IEnumerable<T> enumerable, string prefix, bool isInline, string color = "yellow")

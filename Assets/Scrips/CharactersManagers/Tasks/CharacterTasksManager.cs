@@ -58,7 +58,7 @@ public class CharacterTasksManager : MonoBehaviour
             // единственный путь до персонажа
             List<int> pathToCharacter = FindPathTreeToCharacter(finalPath.NestLevel);
 
-            Debugger.LogIEnumerable(pathToCharacter, "path to character", true, "purple");
+            //Debugger.LogIEnumerable(pathToCharacter, "path to character", true, "purple");
             // Для гизмо
             gizmosPath.Clear();
             Vector2 nextPosition = transform.position;
@@ -74,14 +74,14 @@ public class CharacterTasksManager : MonoBehaviour
 
     private List<int> FindPathTreeToCharacter(int nestLevel)
     {
-        if (nestLevel <= 1)
+        if (nestLevel <= 5)
         {
             Debugger.Log("------START OF LEVEL " + nestLevel + "------", "red");
             // Получаем точки текущей итерации
             List<StateActionPoint> currentIterationPaths = finalPath.GetAllStatesWithNestLevel(nestLevel);
             
 
-            Debugger.LogIEnumerable(currentIterationPaths, "nest level : " + nestLevel, true, "blue");
+            //Debugger.LogIEnumerable(currentIterationPaths, "nest level : " + nestLevel, true, "blue");
             // Проверяем клетки следующей итерации
             List<int> positionToCharacter = CheckPathToCharacterAmongPaths(currentIterationPaths);
 
@@ -100,7 +100,8 @@ public class CharacterTasksManager : MonoBehaviour
         {                   
             (bool isCharacter, int pathsPriority, List<StateActionPoint> nextPaths) checkResult = CheckPathToCharacter(currentIterationPaths[i]);
 
-            Debugger.LogMethod("CheckPathToCharacterAmongPaths", i, checkResult.isCharacter, checkResult.pathsPriority, checkResult.nextPaths.Count);
+            //Debugger.LogMethod("CheckPathToCharacterAmongPaths", i, checkResult.isCharacter, checkResult.pathsPriority);
+            //Debugger.LogIEnumerable(checkResult.nextPaths, "checkResult.nextPaths", true);
 
             if (checkResult.isCharacter)
             {
@@ -135,6 +136,7 @@ public class CharacterTasksManager : MonoBehaviour
             {
                 if (higherPriorityPaths.ContainsKey(i))
                 {
+                    //Debugger.LogIEnumerable(higherPriorityPaths[i], "higherPriorityPaths for " + i + " iteration", true);
                     finalPath.AddPathsToCertainPositionInTree(currentIterationPaths[i].NestLevel + 1, i, higherPriorityPaths[i]);
                 }
             }
@@ -161,9 +163,10 @@ public class CharacterTasksManager : MonoBehaviour
         }
         else if (samePrioritePaths.Count > 0)
         {
+            //Debugger.LogIEnumerable(samePrioritePaths, "samePrioritePaths", true);
             return (false, path.Priority, samePrioritePaths);
         }
-        return default;
+        return (false, 0, new List<StateActionPoint>());
     }
 
     private void FindCellPaths(StateActionPoint prevPath, out StateActionPoint pathToCharacter, out List<StateActionPoint> morePrioritePaths, out List<StateActionPoint> samePrioritePaths)
@@ -190,9 +193,9 @@ public class CharacterTasksManager : MonoBehaviour
                     if (cellState != null)
                     {
                         if (cellState.actionPriority == prevPath.Priority)
-                            samePrioritePaths.Add(new StateActionPoint(cellState, prevPath.prevCellPosition, axis));
+                            samePrioritePaths.Add(new StateActionPoint(cellState, prevPath.CellPosition, axis));
                         else if (cellState.actionPriority > prevPath.Priority)
-                            morePrioritePaths.Add(new StateActionPoint(cellState, prevPath.prevCellPosition, axis));
+                            morePrioritePaths.Add(new StateActionPoint(cellState, prevPath.CellPosition, axis));
                     }
                 }
             }

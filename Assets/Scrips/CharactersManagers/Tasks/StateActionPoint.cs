@@ -52,7 +52,7 @@ public class StateActionPoint
 
     private void PrivateDebugger(string methodName, params object[] logStrings)
     {
-        Debugger.LogMethod(methodName + "(" + NestLevel, logStrings);
+        //Debugger.LogMethod(methodName + "(" + NestLevel, logStrings);
     }
 
     public StateActionPoint GetPointByPositionInTree(int nestLevel, int index)
@@ -100,6 +100,6 @@ public class StateActionPoint
 
     public override string ToString()
     {
-        return Name + " - " + CellPosition + " - " + Priority;
+        return Name + " - " + CellPosition;
     }
 }
