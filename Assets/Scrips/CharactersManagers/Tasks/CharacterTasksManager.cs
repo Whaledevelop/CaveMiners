@@ -26,6 +26,9 @@ public class CharacterTasksManager : MonoBehaviour
     [SerializeField] private CharacterTasksManagersSet set;
     [SerializeField] private CharacterInitialData initialData;
 
+    [Header("Максимальная глубина поиска")]
+    [SerializeField] private int pathFindMaxDepth;
+
     private Grid grid;
 
     Vector2Int[] axises = new Vector2Int[4] { new Vector2Int(1, 0), new Vector2Int(-1, 0), new Vector2Int(0, 1), new Vector2Int(0, -1) };
@@ -56,44 +59,57 @@ public class CharacterTasksManager : MonoBehaviour
 
             // FindPathTreeToCharacter внутри обновляет finalPath, добавляя все возможно пути, а возвращает
             // единственный путь до персонажа
-            List<int> pathToCharacter = FindPathTreeToCharacter(finalPath.NestLevel);
+            List<StateActionPoint> lastPointsToCharacter = FindPathToCharacter(finalPath.nestLevel);
 
-            //Debugger.LogIEnumerable(pathToCharacter, "path to character", true, "purple");
-            // Для гизмо
-            gizmosPath.Clear();
-            Vector2 nextPosition = transform.position;
-            for (int i = pathToCharacter.Count - 1; i > -1; i--)
+            //Debugger.LogIEnumerable(lastPointsToCharacter, "lastPointsToCharacter");
+            List<StateActionPoint> pathToCharacter = new List<StateActionPoint>();
+
+            if (lastPointsToCharacter != null && lastPointsToCharacter.Count > 0)
             {
-                StateActionPoint nestLevelPoint = finalPath.GetPointByPositionInTree(i, pathToCharacter[i]);
-                nestLevelPoint.NextCellToCharacterPosition = nextPosition;
-                gizmosPath.Add(nestLevelPoint);
-                nextPosition = nestLevelPoint.CellPosition;
+                lastPointsToCharacter[0].GetPointWithAllPrevs(ref pathToCharacter);
+                //Debugger.LogIEnumerable(pathToCharacter, "path to character", true, "purple");
+                // Для гизмо
+                gizmosPath.Clear();
+                Vector2 nextPosition = transform.position;
+                for (int i = 0; i < pathToCharacter.Count; i++)
+                {
+                    pathToCharacter[i].NextCellToCharacterPosition = nextPosition;
+                    gizmosPath.Add(pathToCharacter[i]);
+                    nextPosition = pathToCharacter[i].CellPosition;
+                }
             }
+            else
+            {
+                Debugger.Log("Путь не найден", "red");
+            }
+
         }
     }
 
-    private List<int> FindPathTreeToCharacter(int nestLevel)
+    private List<StateActionPoint> FindPathToCharacter(int nestLevel)
     {
-        if (nestLevel <= 5)
+        if (nestLevel <= pathFindMaxDepth )
         {
-            Debugger.Log("------START OF LEVEL " + nestLevel + "------", "red");
+            //Debugger.Log("------START OF LEVEL " + nestLevel + "------", "red");
             // Получаем точки текущей итерации
             List<StateActionPoint> currentIterationPaths = finalPath.GetAllStatesWithNestLevel(nestLevel);
             
 
             //Debugger.LogIEnumerable(currentIterationPaths, "nest level : " + nestLevel, true, "blue");
             // Проверяем клетки следующей итерации
-            List<int> positionToCharacter = CheckPathToCharacterAmongPaths(currentIterationPaths);
+            List<StateActionPoint> pointsToCharacter = CheckPathToCharacterAmongPaths(currentIterationPaths);
 
-            return (positionToCharacter != null && positionToCharacter.Count > 0) ? positionToCharacter : FindPathTreeToCharacter(nestLevel + 1);
+            //Debugger.LogIEnumerable(pointsToCharacter, "pointsToCharacter");
+
+            return (pointsToCharacter != null && pointsToCharacter.Count > 0) ? pointsToCharacter : FindPathToCharacter(nestLevel + 1);
         }
         else
-            return new List<int>() { };
+            return new List<StateActionPoint>() { };
 
     }
 
     // Должна проверять наличие персонажа на этой итерации и добавлять все проверки в finalPath
-    private List<int> CheckPathToCharacterAmongPaths(List<StateActionPoint> currentIterationPaths)
+    private List<StateActionPoint> CheckPathToCharacterAmongPaths(List<StateActionPoint> currentIterationPaths)
     {
         Dictionary<int, Dictionary<int, List<StateActionPoint>>> priorityPaths = new Dictionary<int, Dictionary<int, List<StateActionPoint>>>();
         for (int i = 0; i < currentIterationPaths.Count; i++)
@@ -105,8 +121,8 @@ public class CharacterTasksManager : MonoBehaviour
 
             if (checkResult.isCharacter)
             {
-                finalPath.AddPathsToCertainPositionInTree(currentIterationPaths[i].NestLevel + 1, i, checkResult.nextPaths);
-                return checkResult.nextPaths[0].positionInPath;
+                finalPath.AddPathsToCertainPositionInTree(currentIterationPaths[i].positionInPath, checkResult.nextPaths);
+                return checkResult.nextPaths;
             }
             else
             {
@@ -137,7 +153,7 @@ public class CharacterTasksManager : MonoBehaviour
                 if (higherPriorityPaths.ContainsKey(i))
                 {
                     //Debugger.LogIEnumerable(higherPriorityPaths[i], "higherPriorityPaths for " + i + " iteration", true);
-                    finalPath.AddPathsToCertainPositionInTree(currentIterationPaths[i].NestLevel + 1, i, higherPriorityPaths[i]);
+                    finalPath.AddPathsToCertainPositionInTree(currentIterationPaths[i].positionInPath, higherPriorityPaths[i]);
                 }
             }
         }

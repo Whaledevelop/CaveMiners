@@ -29,7 +29,7 @@ public class Debugger
 
     public static void LogIEnumerable<T>(IEnumerable<T> enumerable, string prefix = null, string color = "yellow")
     {
-        LogIEnumerable(enumerable, prefix, false, color);
+        LogIEnumerable(enumerable, prefix, true, color);
     }
 
     public static void LogMethod(string methodName, params object[] methodParams)
