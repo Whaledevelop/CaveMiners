@@ -22,4 +22,4 @@ MonoBehaviour:
   animatorTriggerStart: StartWalking
   animatorTriggerEnd: StopWalking
   startEvent: {fileID: 11400000, guid: 5462d5dbad0264a4a8aa5949a4098670, type: 2}
-  endEvent: {fileID: 0}
+  endEvent: {fileID: 11400000, guid: 1062573b1c4147e478ecfba174a1a025, type: 2}
