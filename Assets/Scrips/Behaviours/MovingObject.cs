@@ -22,6 +22,11 @@ public class MovingObject : MonoBehaviour
         StartCoroutine(WaitUntilEndPoint());
     }
 
+    public void Stop()
+    {
+        isMoving = false;
+    }
+
     public void FixedUpdate()
     {
         if (isMoving)

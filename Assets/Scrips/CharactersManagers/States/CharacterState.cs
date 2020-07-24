@@ -29,6 +29,7 @@ public class CharacterState
 
     public IEnumerator OnEnd()
     {
+        stateData.OnEnd(animator, toolManager);
         yield break;
     }
 }

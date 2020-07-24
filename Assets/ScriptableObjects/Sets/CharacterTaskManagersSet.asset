@@ -16,6 +16,4 @@ MonoBehaviour:
   characterLayer:
     serializedVersion: 2
     m_Bits: 1024
-  underCharacterLayer:
-    serializedVersion: 2
-    m_Bits: 512
+  cellCenterRequest: {fileID: 11400000, guid: 4f4717fae0107a44a8bbe59211ed67cb, type: 2}

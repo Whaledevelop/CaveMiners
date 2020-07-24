@@ -64,8 +64,8 @@ public class FromEndToStartByPriorityTaskPathfinder : TaskPathfinder
         lastPointsToCharacter.GetPointWithAllPrevs(ref pathToCharacter);
         // Для гизмо
         List<StateAction> gizmosPath = new List<StateAction>();
-        Vector2 nextPosition = startPosition;
-        for (int i = 0; i < pathToCharacter.Count; i++)
+        Vector2 nextPosition = pathToCharacter[0].CellPosition;
+        for (int i = 1; i < pathToCharacter.Count; i++)
         {
             pathToCharacter[i].NextCellToCharacterPosition = nextPosition;
             gizmosPath.Add(pathToCharacter[i]);

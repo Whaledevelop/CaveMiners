@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class CharacterTasksManagersSet : RuntimeSet<CharacterTasksManager> 
 {
     [SerializeField] private LayerMask characterLayer;
+    [SerializeField] private CellCenterRequest cellCenterRequest;
 
     [NonSerialized]
     private CharacterTasksManager activeCharacter;
@@ -16,6 +17,7 @@ public class CharacterTasksManagersSet : RuntimeSet<CharacterTasksManager>
         if (context.performed)
         {
             Vector2 clickPosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+            cellCenterRequest.MakeRequest(new ParamsObject(clickPosition), out clickPosition);
             RaycastHit2D characterHit = Physics2D.Raycast(clickPosition, Vector2.zero, 1, characterLayer);
             if (characterHit)
             {

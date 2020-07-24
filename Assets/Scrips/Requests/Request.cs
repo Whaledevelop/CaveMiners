@@ -30,6 +30,7 @@ public class Request<T> : ScriptableObject
         this.resolver = resolver;
     }
 
+
     public bool MakeRequest(ParamsObject requestParams, out T resolveParam)
     {
         return resolver.Resolve(requestParams, out resolveParam);
