@@ -18,6 +18,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   actionPriority: 8
+  gizmosColor: {r: 0.21791564, g: 0.7830189, b: 0.21993607, a: 1}
   animatorTriggerStart: StartWalking
   animatorTriggerEnd: StopWalking
   startEvent: {fileID: 0}

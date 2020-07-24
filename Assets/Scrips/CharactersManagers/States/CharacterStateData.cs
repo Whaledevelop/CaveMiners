@@ -11,6 +11,8 @@ public class CharacterStateData : ScriptableObject
 
     public int actionPriority;
 
+    public Color gizmosColor;
+
     public string animatorTriggerStart;
     public string animatorTriggerEnd;
     public CellActionGameEvent startEvent;

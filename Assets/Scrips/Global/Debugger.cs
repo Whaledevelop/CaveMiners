@@ -29,24 +29,44 @@ public class Debugger
 
     public static void LogIEnumerable<T>(IEnumerable<T> enumerable, string prefix = null, string color = "yellow")
     {
+        LogIEnumerable(enumerable, prefix, false, color);
+    }
+
+    public static void LogMethod(string methodName, params object[] methodParams)
+    {
+        Debug.Log("[" + methodName + "] " + string.Join(", ", methodParams));
+    }
+
+    public static void LogIEnumerable<T>(IEnumerable<T> enumerable, string prefix, bool isInline, string color = "yellow")
+    {
         if (IsLogging)
         {
             if (enumerable != null)
             {
                 prefix = (string.IsNullOrEmpty(prefix) ? enumerable.GetType().Name : prefix) + "(" + enumerable.Count() + ")";
-                if (enumerable.Count() == 0)
+                if (isInline)
                 {
-                    Debug.Log("<color=orange>" + prefix + " - пустой</color>");
+                    string endString = enumerable.Count() == 0 
+                        ? "<color=orange>" + prefix + " - пустой</color>" 
+                        : "<color=" + color + ">" + prefix + " : </color>";
+                    endString += string.Join(" ; ", enumerable);
+                    Debug.Log(endString);
                 }
                 else
                 {
-                    Debug.Log("<color=" + color + ">" + prefix + " :</color>");
-                    foreach (T elem in enumerable)
+                    if (enumerable.Count() == 0)
                     {
-                        Debug.Log(elem);
+                        Debug.Log("<color=orange>" + prefix + " - пустой</color>");
+                    }
+                    else
+                    {
+                        Debug.Log("<color=" + color + ">" + prefix + " : </color>");
+                        foreach (T elem in enumerable)
+                        {
+                            Debug.Log(elem);
+                        }
                     }
                 }
-
             }
             else
             {
