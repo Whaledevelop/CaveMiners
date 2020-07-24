@@ -59,24 +59,11 @@ public class CharacterTasksManager : MonoBehaviour
 
             // FindPathTreeToCharacter внутри обновляет finalPath, добавляя все возможно пути, а возвращает
             // единственный путь до персонажа
-            List<StateActionPoint> lastPointsToCharacter = FindPathToCharacter(finalPath.nestLevel);
-
-            //Debugger.LogIEnumerable(lastPointsToCharacter, "lastPointsToCharacter");
-            List<StateActionPoint> pathToCharacter = new List<StateActionPoint>();
+            List<StateActionPoint> lastPointsToCharacter = FindPathToCharacter(finalPath.nestLevel);            
 
             if (lastPointsToCharacter != null && lastPointsToCharacter.Count > 0)
             {
-                lastPointsToCharacter[0].GetPointWithAllPrevs(ref pathToCharacter);
-                //Debugger.LogIEnumerable(pathToCharacter, "path to character", true, "purple");
-                // Для гизмо
-                gizmosPath.Clear();
-                Vector2 nextPosition = transform.position;
-                for (int i = 0; i < pathToCharacter.Count; i++)
-                {
-                    pathToCharacter[i].NextCellToCharacterPosition = nextPosition;
-                    gizmosPath.Add(pathToCharacter[i]);
-                    nextPosition = pathToCharacter[i].CellPosition;
-                }
+                GenerateGizmosPath(lastPointsToCharacter);
             }
             else
             {
@@ -86,20 +73,30 @@ public class CharacterTasksManager : MonoBehaviour
         }
     }
 
+    private void GenerateGizmosPath(List<StateActionPoint> lastPointsToCharacter)
+    {
+        List<StateActionPoint> pathToCharacter = new List<StateActionPoint>();
+        lastPointsToCharacter[0].GetPointWithAllPrevs(ref pathToCharacter);
+        // Для гизмо
+        gizmosPath.Clear();
+        Vector2 nextPosition = transform.position;
+        for (int i = 0; i < pathToCharacter.Count; i++)
+        {
+            pathToCharacter[i].NextCellToCharacterPosition = nextPosition;
+            gizmosPath.Add(pathToCharacter[i]);
+            nextPosition = pathToCharacter[i].CellPosition;
+        }
+    }
+
     private List<StateActionPoint> FindPathToCharacter(int nestLevel)
     {
         if (nestLevel <= pathFindMaxDepth )
         {
-            //Debugger.Log("------START OF LEVEL " + nestLevel + "------", "red");
             // Получаем точки текущей итерации
             List<StateActionPoint> currentIterationPaths = finalPath.GetAllStatesWithNestLevel(nestLevel);
             
-
-            //Debugger.LogIEnumerable(currentIterationPaths, "nest level : " + nestLevel, true, "blue");
             // Проверяем клетки следующей итерации
             List<StateActionPoint> pointsToCharacter = CheckPathToCharacterAmongPaths(currentIterationPaths);
-
-            //Debugger.LogIEnumerable(pointsToCharacter, "pointsToCharacter");
 
             return (pointsToCharacter != null && pointsToCharacter.Count > 0) ? pointsToCharacter : FindPathToCharacter(nestLevel + 1);
         }
@@ -116,9 +113,6 @@ public class CharacterTasksManager : MonoBehaviour
         {                   
             (bool isCharacter, int pathsPriority, List<StateActionPoint> nextPaths) checkResult = CheckPathToCharacter(currentIterationPaths[i]);
 
-            //Debugger.LogMethod("CheckPathToCharacterAmongPaths", i, checkResult.isCharacter, checkResult.pathsPriority);
-            //Debugger.LogIEnumerable(checkResult.nextPaths, "checkResult.nextPaths", true);
-
             if (checkResult.isCharacter)
             {
                 finalPath.AddPathsToCertainPositionInTree(currentIterationPaths[i].positionInPath, checkResult.nextPaths);
@@ -132,10 +126,7 @@ public class CharacterTasksManager : MonoBehaviour
                 }
                 else
                 {
-                    priorityPaths.Add(checkResult.pathsPriority, new Dictionary<int, List<StateActionPoint>>()
-                    {
-                        {i, checkResult.nextPaths }
-                    });
+                    priorityPaths.Add(checkResult.pathsPriority, new Dictionary<int, List<StateActionPoint>>(){{i, checkResult.nextPaths }});
                 }
             }
         }
@@ -152,7 +143,6 @@ public class CharacterTasksManager : MonoBehaviour
             {
                 if (higherPriorityPaths.ContainsKey(i))
                 {
-                    //Debugger.LogIEnumerable(higherPriorityPaths[i], "higherPriorityPaths for " + i + " iteration", true);
                     finalPath.AddPathsToCertainPositionInTree(currentIterationPaths[i].positionInPath, higherPriorityPaths[i]);
                 }
             }
@@ -166,30 +156,10 @@ public class CharacterTasksManager : MonoBehaviour
     /// </summary>
     /// <param name="path"></param>
     /// <returns>bool - найден ли путь до персонажа, int - приоритет следующего состояния,  StateActionPoint - измененный path</returns>
-    private (bool, int, List<StateActionPoint>) CheckPathToCharacter(StateActionPoint path)
+    private (bool, int, List<StateActionPoint>) CheckPathToCharacter(StateActionPoint prevPath)
     {
-        FindCellPaths(path, out StateActionPoint pathToCharacter, out List<StateActionPoint> morePrioritePaths, out List<StateActionPoint> samePrioritePaths);
-        if (pathToCharacter != null)
-        {
-            return (true, pathToCharacter.Priority, new List<StateActionPoint>() { pathToCharacter });
-        }            
-        else if (morePrioritePaths.Count > 0)
-        {
-            return (false, morePrioritePaths[0].Priority, morePrioritePaths);
-        }
-        else if (samePrioritePaths.Count > 0)
-        {
-            //Debugger.LogIEnumerable(samePrioritePaths, "samePrioritePaths", true);
-            return (false, path.Priority, samePrioritePaths);
-        }
-        return (false, 0, new List<StateActionPoint>());
-    }
-
-    private void FindCellPaths(StateActionPoint prevPath, out StateActionPoint pathToCharacter, out List<StateActionPoint> morePrioritePaths, out List<StateActionPoint> samePrioritePaths)
-    {
-        pathToCharacter = null;
-        morePrioritePaths = new List<StateActionPoint>();
-        samePrioritePaths = new List<StateActionPoint>();
+        List<StateActionPoint> morePrioritePaths = new List<StateActionPoint>();
+        List<StateActionPoint> samePrioritePaths = new List<StateActionPoint>();
 
         foreach (Vector2Int axis in axises)
         {
@@ -200,8 +170,7 @@ public class CharacterTasksManager : MonoBehaviour
                 // На клетке находится персонаж, значит мы нашли путь
                 if (checkIfCharacterOnCellRequest.MakeRequest(actionPosition, (Vector2)transform.position))
                 {
-                    pathToCharacter = new StateActionPoint(prevPath.state, prevPath.CellPosition, axis);
-                    return;
+                    return (true, prevPath.Priority, new List<StateActionPoint>() { new StateActionPoint(prevPath.state, prevPath.CellPosition, axis) });
                 }
                 else if (cellLayoutRequest.MakeRequest(new ParamsObject(actionPosition), out LayerMask cellLayerMask))
                 {
@@ -216,6 +185,15 @@ public class CharacterTasksManager : MonoBehaviour
                 }
             }
         }
+        if (morePrioritePaths.Count > 0)
+        {
+            return (false, morePrioritePaths[0].Priority, morePrioritePaths);
+        }
+        else if (samePrioritePaths.Count > 0)
+        {
+            return (false, prevPath.Priority, samePrioritePaths);
+        }
+        return (false, 0, new List<StateActionPoint>());
     }
 
 
@@ -246,64 +224,4 @@ public class CharacterTasksManager : MonoBehaviour
             }
         }
     }
-
-
-    #region Первоначальный вариант FindPath
-    //private StateActionPoint FindPath(StateActionPoint path)
-    //{
-    //    //Debugger.Log(path.nestLevel + ", " + lengthToPlayer);
-    //    //if (lengthToPlayer == -1 || (lengthToPlayer != -1 && path.nestLevel <= lengthToPlayer))
-    //    //{
-    //    //}
-
-    //    if (FindCellHigherPrioritivePaths(path, out List<StateActionPoint> availablePaths))
-    //    {
-    //        path.AddPathsFromCell(availablePaths);
-    //        lengthToPlayer = path.nestLevel;
-    //        Debugger.Log(lengthToPlayer, "red");
-    //    }
-    //    else
-    //    {
-    //        path.AddPathsFromCell(availablePaths);
-    //        // TODO : Сейчас идет проверка ветки за ветки, а надо проверять слой за слоем. Т.е. провести итерацию,
-    //        // и только потом проверять новый слой, а не сначала все слои одной ветки, потом все слои другой и т.д.
-    //        for (int i = 0; i < path.availablePaths.Count; i++)
-    //        {
-
-    //            StateActionPoint innerPath = FindPath(path.availablePaths[i]);
-    //            path.availablePaths[i].AddPathFromCell(innerPath);
-    //        }
-    //    }
-
-    //    return path;
-    //}
-    #endregion
-
-    #region Варинт с карутиной
-    //private IEnumerator FindPath(StateActionPoint path, List<int> coordinatesInPathTree)
-    //{
-    //    //Debugger.Log(path.nestLevel + ", " + lengthToPlayer);
-    //    //if (lengthToPlayer == -1 || (lengthToPlayer != -1 && path.nestLevel <= lengthToPlayer))
-    //    //{
-    //    //}
-    //    yield return new WaitUntil(() => path.nestLevel <= coordinatesInPathTree.Count);
-    //    if (FindCellHigherPrioritivePaths(path, out List<StateActionPoint> availablePaths))
-    //    {
-    //        path.AddPathsFromCell(availablePaths);
-    //        lengthToPlayer = path.nestLevel;
-    //        Debugger.Log(lengthToPlayer, "red");
-    //    }
-    //    else
-    //    {
-    //        path.AddPathsFromCell(availablePaths);
-    //        // TODO : Сейчас идет проверка ветки за ветки, а надо проверять слой за слоем. Т.е. провести итерацию,
-    //        // и только потом проверять новый слой, а не сначала все слои одной ветки, потом все слои другой и т.д.
-    //        for (int i = 0; i < path.availablePaths.Count; i++)
-    //        {
-    //            //StartCoroutine(FindPath(path.availablePaths[i]));
-    //            //path.availablePaths[i].AddPathFromCell(innerPath);
-    //        }
-    //    }
-    //}
-    #endregion
 }

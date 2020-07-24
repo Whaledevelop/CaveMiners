@@ -9,21 +9,13 @@ public class StateActionPoint
     public StateActionPoint prevPoint;
     public int nestLevel = 1;
 
-
     public List<int> positionInPath = new List<int>();
     public List<StateActionPoint> nextActionsPoints = new List<StateActionPoint>();
     public string Name => state.stateName;
     public int Priority => state.actionPriority;
     public Vector2 CellPosition => prevCellPosition + axisFromPrevCell;
-
-    
-
-    #region Для гизмо
-
-    public Vector2 axisToCharacter;
-    public Vector2 NextCellToCharacterPosition;// => CellPosition + axisToCharacter;
-
-    #endregion
+   
+    public Vector2 NextCellToCharacterPosition; // Для гизмо
 
     public StateActionPoint(CharacterStateData state, Vector2 prevCellPosition, Vector2 axisFromPrevCell)
     {
@@ -35,16 +27,12 @@ public class StateActionPoint
     public void GetPointWithAllPrevs(ref List<StateActionPoint> nextPoints)
     {
         nextPoints.Add(this);
-        //Debugger.Log(prevPoint);
         if (prevPoint != null)
             prevPoint.GetPointWithAllPrevs(ref nextPoints);
     }
 
     public void AddPathsToCertainPositionInTree(List<int> parentPositionInPath, List<StateActionPoint> paths)
     {
-        //("AddPathsToCertainPositionInTree - start", nestLevel, indexInNestLevel, paths.Count);
-        //Debugger.LogIEnumerable(positionInPath);
-
         if (positionInPath == parentPositionInPath) // Если это батя
         {
             for (int i = 0; i < paths.Count; i++)
@@ -71,42 +59,11 @@ public class StateActionPoint
                 availablePath.AddPathsToCertainPositionInTree(parentPositionInPath, paths);
             }
         }
-        //PrivateDebugger("AddPathsToCertainPositionInTree - end", nextActionsPoints.Count);
     }
-
-    private void PrivateDebugger(string methodName, params object[] logStrings)
-    {
-        //Debugger.LogMethod(methodName + "(" + NestLevel, logStrings);
-    }
-
-    //public StateActionPoint GetPointByPositionInTree(int nestLevel, int index)
-    //{
-    //    PrivateDebugger("GetPointByPositionInTree", nestLevel, index, this);
-    //    if (NestLevel == nestLevel)
-    //    {
-    //        return this;
-    //    }
-    //    else if (NestLevel == nestLevel - 1) // Если это батя
-    //    {
-    //        return nextActionsPoints[index];
-    //    }
-    //    else if (NestLevel < nestLevel - 1) // Если это предок
-    //    {
-    //        foreach (StateActionPoint availablePath in nextActionsPoints)
-    //        {
-    //            StateActionPoint innerPath = availablePath.GetPointByPositionInTree(nestLevel, index);
-    //            if (innerPath != null)
-    //                return innerPath;
-    //        }
-    //    }
-    //    return null;
-    //}
 
     public List<StateActionPoint> GetAllStatesWithNestLevel(int nestLevel)
     {
         List<StateActionPoint> states = new List<StateActionPoint>();
-
-        PrivateDebugger("GetAllStatesWithNestLevel - start", nestLevel, states.Count);
         if (this.nestLevel == nestLevel)
         {
             states.Add(this);
@@ -118,7 +75,6 @@ public class StateActionPoint
                 states.AddRange(nextActionsPoints[i].GetAllStatesWithNestLevel(nestLevel));
             }
         }
-        PrivateDebugger("GetAllStatesWithNestLevel - end", nestLevel, states.Count);
         return states;
     }
 
