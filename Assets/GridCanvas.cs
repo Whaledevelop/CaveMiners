@@ -4,12 +4,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[Serializable]
-public struct Interval
+[Serializable] public struct IntervalWithStep
 {
     public float from;
     public float to;
     public float step;
+}
+
+[Serializable] public struct Interval
+{
+    public float from;
+    public float to;
 }
 
 
@@ -19,8 +24,8 @@ public class GridCanvas : MonoBehaviour
     [SerializeField] private Transform cellsParent;
     [SerializeField] private Text cellTextPrefab;
 
-    [SerializeField] private Interval cellsXInterval;
-    [SerializeField] private Interval cellsYInterval;
+    [SerializeField] private IntervalWithStep cellsXInterval;
+    [SerializeField] private IntervalWithStep cellsYInterval;
 
     public void Start()
     {

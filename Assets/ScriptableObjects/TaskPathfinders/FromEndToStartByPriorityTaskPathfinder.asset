@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 70bf502ea26339e49aebda2d841adbdf, type: 3}
   m_Name: FromEndToStartByPriorityTaskPathfinder
-  m_EditorClassIdentifier: Assembly-CSharp::FromEndToStartByPriorityTaskPathfinder
+  m_EditorClassIdentifier: 
   cellLayoutRequest: {fileID: 11400000, guid: d0347d6928156784499583da8cc86807, type: 2}
   checkIfCharacterOnCellRequest: {fileID: 11400000, guid: 03a7818d7a2ec284cbc37f87190cce7f,
     type: 2}

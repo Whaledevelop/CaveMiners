@@ -113,8 +113,8 @@ MonoBehaviour:
   - {fileID: 2192015189815932129}
   - {fileID: 2192015190684278187}
   m_Bounds:
-    m_Center: {x: 0.031543523, y: 0.034400344, z: 0}
-    m_Extent: {x: 0.37657267, y: 0.31931672, z: 0}
+    m_Center: {x: 0.031543285, y: 0.034400344, z: 0}
+    m_Extent: {x: 0.37657243, y: 0.31931672, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!114 &2192015189806234752
@@ -287,6 +287,7 @@ GameObject:
   - component: {fileID: 3025087994489093101}
   - component: {fileID: 454605514}
   - component: {fileID: 454605515}
+  - component: {fileID: 7097406752204435091}
   m_Layer: 10
   m_Name: CaveMiner
   m_TagString: Character
@@ -496,7 +497,8 @@ MonoBehaviour:
   set: {fileID: 11400000, guid: 0ea25a6fa32963245a118fa514e29572, type: 2}
   initialData: {fileID: 11400000, guid: c07f08585e38d6d449aa4567e64300d7, type: 2}
   statesManager: {fileID: 3361557290797306871}
-  taskPathfinder: {fileID: 0}
+  taskPathfinder: {fileID: 11400000, guid: 4143bb7889e7aeb4a9d55cd598f2c6c6, type: 2}
+  characterHighlighter: {fileID: 7097406752204435091}
 --- !u!114 &454605514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -551,6 +553,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &7097406752204435091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2192015190459939271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0f6027e3fcf3f94ca86adfc03e17790, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 2192015189806234758}
+  highlightMaterial: {fileID: 2100000, guid: 3e2bdfb30c53c4447bf128e50c9bd07c, type: 2}
 --- !u!1 &2192015190573973387
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,6 +9,7 @@ public class CharacterTasksManager : MonoBehaviour
     [SerializeField] private CharacterInitialData initialData;
     [SerializeField] private CharacterStatesManager statesManager;
     [SerializeField] private TaskPathfinder taskPathfinder;
+    [SerializeField] private Highlighter characterHighlighter;
 
     private CharacterTask activeTask;
 
@@ -38,10 +39,12 @@ public class CharacterTasksManager : MonoBehaviour
 
     public void OnBecomeNotActive() 
     {
+        characterHighlighter.SwapHighlightMode();
     }
      
     public void OnBecomeActive() 
     {
+        characterHighlighter.SwapHighlightMode();
     }
 
     public override string ToString() => initialData.name;
