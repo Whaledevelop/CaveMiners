@@ -3,7 +3,7 @@ using System;
 
 public class CharacterTask
 {
-    public List<StateAction> statesPoints = new List<StateAction>();
+    public List<CharacterTaskPoint> taskPoints = new List<CharacterTaskPoint>();
     public int currentStateIndex = -1;
     public bool isActive;
 
@@ -11,9 +11,9 @@ public class CharacterTask
 
     public Action OnEnd;
 
-    public CharacterTask(List<StateAction> statesPoints, CharacterStatesManager statesManager)
+    public CharacterTask(List<CharacterTaskPoint> taskPoints, CharacterStatesManager statesManager)
     {
-        this.statesPoints = statesPoints;
+        this.taskPoints = taskPoints;
         this.statesManager = statesManager;
     }
 
@@ -27,9 +27,10 @@ public class CharacterTask
     public void SetNextState()
     {
         currentStateIndex++;
-        if (currentStateIndex < statesPoints.Count)
+        if (currentStateIndex < taskPoints.Count)
         {
-            statesManager.SetState(statesPoints[currentStateIndex].state, statesPoints[currentStateIndex].CellPosition);
+            CharacterActionData actionData = new CharacterActionData(statesManager, taskPoints[currentStateIndex]);
+            statesManager.SetState(actionData);
         }
         else
         {

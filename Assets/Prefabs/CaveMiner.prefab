@@ -113,8 +113,8 @@ MonoBehaviour:
   - {fileID: 2192015189815932129}
   - {fileID: 2192015190684278187}
   m_Bounds:
-    m_Center: {x: 0.031543285, y: 0.034400344, z: 0}
-    m_Extent: {x: 0.37657243, y: 0.31931672, z: 0}
+    m_Center: {x: 0.031543195, y: 0.031648874, z: 0}
+    m_Extent: {x: 0.37657234, y: 0.31656522, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!114 &2192015189806234752
@@ -279,15 +279,13 @@ GameObject:
   - component: {fileID: 2192015190459939264}
   - component: {fileID: 2192015190459939293}
   - component: {fileID: 8196734391870924247}
+  - component: {fileID: 7097406752204435091}
+  - component: {fileID: 779355436351876976}
+  - component: {fileID: 7282526008341427577}
   - component: {fileID: 5037183334719214755}
   - component: {fileID: 3361557290797306871}
-  - component: {fileID: 7282526008341427577}
-  - component: {fileID: 779355436351876976}
   - component: {fileID: 6625705014852564415}
   - component: {fileID: 3025087994489093101}
-  - component: {fileID: 454605514}
-  - component: {fileID: 454605515}
-  - component: {fileID: 7097406752204435091}
   m_Layer: 10
   m_Name: CaveMiner
   m_TagString: Character
@@ -376,6 +374,62 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.45, y: 0.5}
   m_EdgeRadius: 0
+--- !u!114 &7097406752204435091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2192015190459939271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0f6027e3fcf3f94ca86adfc03e17790, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 2192015189806234758}
+  highlightMaterial: {fileID: 2100000, guid: 3e2bdfb30c53c4447bf128e50c9bd07c, type: 2}
+--- !u!114 &779355436351876976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2192015190459939271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b97ba53f4cc773498e0e06413b47d99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialRightLeft: 2
+  initialTopDown: 4
+--- !u!114 &7282526008341427577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2192015190459939271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306d72b7ab6cc8f4595dc55292edfad6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 2192015190459939293}
+  speed: 1
+  onMoveEnd:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 4869f41dfd1e2ae459686fd8b7be844e, type: 2}
+        m_MethodName: OnStateActionEvent
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &5037183334719214755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -428,48 +482,6 @@ MonoBehaviour:
   toolsManager: {fileID: 5037183334719214755}
   skillsManager: {fileID: 6625705014852564415}
   idleState: {fileID: 11400000, guid: 35ea0df5732a1e747a76bb80919aa569, type: 2}
---- !u!114 &7282526008341427577
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2192015190459939271}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 306d72b7ab6cc8f4595dc55292edfad6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 2192015190459939293}
-  speed: 1
-  moveEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11400000, guid: 4869f41dfd1e2ae459686fd8b7be844e, type: 2}
-        m_MethodName: OnStateActionEvent
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &779355436351876976
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2192015190459939271}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b97ba53f4cc773498e0e06413b47d99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  initialRightLeft: 2
-  initialTopDown: 4
 --- !u!114 &6625705014852564415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -499,74 +511,6 @@ MonoBehaviour:
   statesManager: {fileID: 3361557290797306871}
   taskPathfinder: {fileID: 11400000, guid: 4143bb7889e7aeb4a9d55cd598f2c6c6, type: 2}
   characterHighlighter: {fileID: 7097406752204435091}
---- !u!114 &454605514
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2192015190459939271}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1aec84f7c30ea545b97a7d1c2b0efe3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  vector2Event: {fileID: 11400000, guid: 5462d5dbad0264a4a8aa5949a4098670, type: 2}
-  vector2Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7282526008341427577}
-        m_MethodName: Move
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &454605515
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2192015190459939271}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6569e1bfe03d1c4b9d99f4943fa106a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 1062573b1c4147e478ecfba174a1a025, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7282526008341427577}
-        m_MethodName: Stop
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &7097406752204435091
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2192015190459939271}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0f6027e3fcf3f94ca86adfc03e17790, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sprite: {fileID: 2192015189806234758}
-  highlightMaterial: {fileID: 2100000, guid: 3e2bdfb30c53c4447bf128e50c9bd07c, type: 2}
 --- !u!1 &2192015190573973387
 GameObject:
   m_ObjectHideFlags: 0

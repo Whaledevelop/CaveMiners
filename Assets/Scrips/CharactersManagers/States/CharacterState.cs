@@ -3,33 +3,48 @@ using UnityEngine;
 
 public class CharacterState
 {
-    public CharacterStateData stateData;
+    public CharacterActionData actionData;
 
     private Animator animator;
 
-    private CharacterToolsManager toolManager;
+    private CharacterToolsManager toolsManager;
 
     private float stateSkill;
 
+    public CharacterStateData stateData => actionData.stateData;
     public string Name => stateData.stateName;
 
-    public CharacterState(CharacterStateData stateData, float stateSkill, Animator animator, CharacterToolsManager toolManager)
+    public CharacterState(CharacterActionData actionData, float stateSkill, Animator animator, CharacterToolsManager toolManager)
     {
-        this.stateData = stateData;
+        this.actionData = actionData;
         this.stateSkill = stateSkill;
         this.animator = animator;
-        this.toolManager = toolManager;
+        this.toolsManager = toolManager;
     }
 
-    public IEnumerator OnStart(Vector2 characterPosition, Vector2 stateActionPosition)
+    public void OnStart()
     {
-        stateData.OnStart(animator, toolManager, characterPosition, stateActionPosition);
-        yield break;                    
+        if (!string.IsNullOrEmpty(stateData.animatorTriggerStart))
+            animator.SetTrigger(stateData.animatorTriggerStart);
+
+        toolsManager.ApplyTool(stateData.toolCode);
+
+        if (stateData.startEvent != null)
+        {
+            stateData.startEvent.Raise(actionData);
+        }
     }
 
-    public IEnumerator OnEnd()
+    public void OnEnd()
     {
-        stateData.OnEnd(animator, toolManager);
-        yield break;
+        if (!string.IsNullOrEmpty(stateData.animatorTriggerEnd))
+            animator.SetTrigger(stateData.animatorTriggerEnd);
+
+        toolsManager.HideTool(stateData.toolCode);
+
+        if (stateData.endEvent != null)
+        {
+            stateData.endEvent.Raise(actionData);
+        }
     }
 }

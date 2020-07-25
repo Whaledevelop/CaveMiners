@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebc551678d07e10439453a50afacb522, type: 3}
-  m_Name: StopMovingEvent
-  m_EditorClassIdentifier: 
+  m_Script: {fileID: 0}
+  m_Name: StartMovementEvent
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterActionGameEvent

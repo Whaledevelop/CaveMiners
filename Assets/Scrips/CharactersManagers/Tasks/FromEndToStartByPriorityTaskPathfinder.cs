@@ -13,20 +13,20 @@ public class FromEndToStartByPriorityTaskPathfinder : TaskPathfinder
     [SerializeField] private int pathFindMaxDepth;
 
     private Vector2Int[] axises = new Vector2Int[4] { new Vector2Int(1, 0), new Vector2Int(-1, 0), new Vector2Int(0, 1), new Vector2Int(0, -1) };
-    private StateAction finalPath;
+    private CharacterTaskPoint finalPath;
 
-    public override List<StateAction> FindPath(Vector2 startPosition, GameObject taskObject, Vector2 taskPoint)
+    public override List<CharacterTaskPoint> FindPath(Vector2 startPosition, GameObject taskObject, Vector2 taskPoint)
     {
         // Начинаем с конца, чтобы двигаться от меньшего приоритета (земли) к большему (тоннели)
         CharacterStateData taskEndPointState = cellActionsStates.Find(state => state.CompareActionMaskWithLayer(taskObject.layer));
 
         if (taskEndPointState != null)
         {
-            finalPath = new StateAction(taskEndPointState, taskPoint, Vector2.zero);
+            finalPath = new CharacterTaskPoint(taskEndPointState, taskPoint, Vector2.zero);
 
             // FindPathTreeToCharacter внутри обновляет finalPath, добавляя все возможно пути, а возвращает
             // единственный путь до персонажа
-            List<StateAction> lastPointsToCharacter = FindPathToCharacter(finalPath.nestLevel, startPosition, ref finalPath);
+            List<CharacterTaskPoint> lastPointsToCharacter = FindPathToCharacter(finalPath.nestLevel, startPosition, ref finalPath);
 
             if (lastPointsToCharacter != null && lastPointsToCharacter.Count > 0)
             {
@@ -38,32 +38,32 @@ public class FromEndToStartByPriorityTaskPathfinder : TaskPathfinder
             }
 
         }
-        return new List<StateAction>();
+        return new List<CharacterTaskPoint>();
     }
 
-    public List<StateAction> FindPathToCharacter(int nestLevel, Vector2 position, ref StateAction finalPath)
+    public List<CharacterTaskPoint> FindPathToCharacter(int nestLevel, Vector2 position, ref CharacterTaskPoint finalPath)
     {
         if (nestLevel <= pathFindMaxDepth)
         {
             // Получаем точки текущей итерации
-            List<StateAction> currentIterationPaths = finalPath.GetAllStatesWithNestLevel(nestLevel);
+            List<CharacterTaskPoint> currentIterationPaths = finalPath.GetAllStatesWithNestLevel(nestLevel);
 
             // Проверяем клетки следующей итерации
-            List<StateAction> pointsToCharacter = CheckPathToCharacterAmongPaths(currentIterationPaths, position, ref finalPath);
+            List<CharacterTaskPoint> pointsToCharacter = CheckPathToCharacterAmongPaths(currentIterationPaths, position, ref finalPath);
 
             return (pointsToCharacter != null && pointsToCharacter.Count > 0) ? pointsToCharacter : FindPathToCharacter(nestLevel + 1, position, ref finalPath);
         }
         else
-            return new List<StateAction>() { };
+            return new List<CharacterTaskPoint>() { };
 
     }
 
-    public List<StateAction> GenerateGizmosPath(StateAction lastPointsToCharacter, Vector2 startPosition)
+    public List<CharacterTaskPoint> GenerateGizmosPath(CharacterTaskPoint lastPointsToCharacter, Vector2 startPosition)
     {
-        List<StateAction> pathToCharacter = new List<StateAction>();
+        List<CharacterTaskPoint> pathToCharacter = new List<CharacterTaskPoint>();
         lastPointsToCharacter.GetPointWithAllPrevs(ref pathToCharacter);
         // Для гизмо
-        List<StateAction> gizmosPath = new List<StateAction>();
+        List<CharacterTaskPoint> gizmosPath = new List<CharacterTaskPoint>();
         Vector2 nextPosition = pathToCharacter[0].CellPosition;
         for (int i = 1; i < pathToCharacter.Count; i++)
         {
@@ -75,12 +75,12 @@ public class FromEndToStartByPriorityTaskPathfinder : TaskPathfinder
     }
 
     // Должна проверять наличие персонажа на этой итерации и добавлять все проверки в finalPath
-    public List<StateAction> CheckPathToCharacterAmongPaths(List<StateAction> currentIterationPaths, Vector2 position, ref StateAction finalPath)
+    public List<CharacterTaskPoint> CheckPathToCharacterAmongPaths(List<CharacterTaskPoint> currentIterationPaths, Vector2 position, ref CharacterTaskPoint finalPath)
     {
-        Dictionary<int, Dictionary<int, List<StateAction>>> priorityPaths = new Dictionary<int, Dictionary<int, List<StateAction>>>();
+        Dictionary<int, Dictionary<int, List<CharacterTaskPoint>>> priorityPaths = new Dictionary<int, Dictionary<int, List<CharacterTaskPoint>>>();
         for (int i = 0; i < currentIterationPaths.Count; i++)
         {
-            (bool isCharacter, int pathsPriority, List<StateAction> nextPaths) checkResult = CheckPathToCharacter(currentIterationPaths[i], position);
+            (bool isCharacter, int pathsPriority, List<CharacterTaskPoint> nextPaths) checkResult = CheckPathToCharacter(currentIterationPaths[i], position);
 
             if (checkResult.isCharacter)
             {
@@ -95,14 +95,14 @@ public class FromEndToStartByPriorityTaskPathfinder : TaskPathfinder
                 }
                 else
                 {
-                    priorityPaths.Add(checkResult.pathsPriority, new Dictionary<int, List<StateAction>>() { { i, checkResult.nextPaths } });
+                    priorityPaths.Add(checkResult.pathsPriority, new Dictionary<int, List<CharacterTaskPoint>>() { { i, checkResult.nextPaths } });
                 }
             }
         }
         if (priorityPaths.Count > 0)
         {
             // Из priorityPaths забираем только один элемент с бОльшим приоритетом
-            Dictionary<int, List<StateAction>> higherPriorityPaths = priorityPaths.Aggregate((biggest, next) =>
+            Dictionary<int, List<CharacterTaskPoint>> higherPriorityPaths = priorityPaths.Aggregate((biggest, next) =>
             {
                 return next.Key > biggest.Key ? next : biggest;
             }).Value;
@@ -120,10 +120,10 @@ public class FromEndToStartByPriorityTaskPathfinder : TaskPathfinder
         return null;
     }
 
-    public (bool, int, List<StateAction>) CheckPathToCharacter(StateAction prevPath, Vector2 position)
+    public (bool, int, List<CharacterTaskPoint>) CheckPathToCharacter(CharacterTaskPoint prevPath, Vector2 position)
     {
-        List<StateAction> morePrioritePaths = new List<StateAction>();
-        List<StateAction> samePrioritePaths = new List<StateAction>();
+        List<CharacterTaskPoint> morePrioritePaths = new List<CharacterTaskPoint>();
+        List<CharacterTaskPoint> samePrioritePaths = new List<CharacterTaskPoint>();
 
         foreach (Vector2Int axis in axises)
         {
@@ -134,7 +134,7 @@ public class FromEndToStartByPriorityTaskPathfinder : TaskPathfinder
                 // На клетке находится персонаж, значит мы нашли путь
                 if (checkIfCharacterOnCellRequest.MakeRequest(actionPosition, position))
                 {
-                    return (true, prevPath.Priority, new List<StateAction>() { new StateAction(prevPath.state, prevPath.CellPosition, axis) });
+                    return (true, prevPath.Priority, new List<CharacterTaskPoint>() { new CharacterTaskPoint(prevPath.stateData, prevPath.CellPosition, axis) });
                 }
                 else if (cellLayoutRequest.MakeRequest(new ParamsObject(actionPosition), out LayerMask cellLayerMask))
                 {
@@ -142,9 +142,9 @@ public class FromEndToStartByPriorityTaskPathfinder : TaskPathfinder
                     if (cellState != null)
                     {
                         if (cellState.actionPriority == prevPath.Priority)
-                            samePrioritePaths.Add(new StateAction(cellState, prevPath.CellPosition, axis));
+                            samePrioritePaths.Add(new CharacterTaskPoint(cellState, prevPath.CellPosition, axis));
                         else if (cellState.actionPriority > prevPath.Priority)
-                            morePrioritePaths.Add(new StateAction(cellState, prevPath.CellPosition, axis));
+                            morePrioritePaths.Add(new CharacterTaskPoint(cellState, prevPath.CellPosition, axis));
                     }
                 }
             }
@@ -157,7 +157,7 @@ public class FromEndToStartByPriorityTaskPathfinder : TaskPathfinder
         {
             return (false, prevPath.Priority, samePrioritePaths);
         }
-        return (false, 0, new List<StateAction>());
+        return (false, 0, new List<CharacterTaskPoint>());
     }
 }
 

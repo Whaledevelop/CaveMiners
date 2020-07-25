@@ -3,9 +3,13 @@
 [CreateAssetMenu(fileName = "CharacterStateManagersSet", menuName = "Sets/CharacterStateManagersSet")]
 public class CharacterStatesManagersSet : RuntimeSet<CharacterStatesManager> 
 { 
-    public void OnStateActionEvent()
+    public void OnStateActionEvent(CharacterActionData actionData)
     {
-        // Полная фигня
-        Items[0].EndState();
+        CharacterStatesManager statesManager = Items.Find(item => item == actionData.stateManager);
+        Debugger.Log(statesManager);
+        if (statesManager != null)
+        {
+            statesManager.EndState();
+        }
     }
 }

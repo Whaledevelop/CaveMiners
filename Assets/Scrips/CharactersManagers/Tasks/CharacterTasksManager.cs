@@ -22,19 +22,14 @@ public class CharacterTasksManager : MonoBehaviour
     {
         set.Remove(this);
     }    
-
     
     public void ExecuteTask(GameObject taskObject, Vector2 taskPoint)
     {
         if (activeTask != null)
             activeTask.Cancel();
-        List<StateAction> taskStatesPoints = taskPathfinder.FindPath(transform.position, taskObject, taskPoint);
+        List<CharacterTaskPoint> taskStatesPoints = taskPathfinder.FindPath(transform.position, taskObject, taskPoint);
         activeTask = new CharacterTask(taskStatesPoints, statesManager);
         activeTask.Start();
-        //activeTask.OnEnd += () =>
-        //{
-        //    Debug.Log("Конец задачи");
-        //};
     }
 
     public void OnBecomeNotActive() 
@@ -53,9 +48,9 @@ public class CharacterTasksManager : MonoBehaviour
     {
         if (activeTask != null)
         {
-            foreach (StateAction point in activeTask.statesPoints)
+            foreach (CharacterTaskPoint point in activeTask.taskPoints)
             {
-                Gizmos.color = point.state.gizmosColor;
+                Gizmos.color = point.stateData.gizmosColor;
                 Gizmos.DrawSphere(point.CellPosition, 0.1f);
                 Gizmos.DrawLine(point.CellPosition, point.NextCellToCharacterPosition);
             }

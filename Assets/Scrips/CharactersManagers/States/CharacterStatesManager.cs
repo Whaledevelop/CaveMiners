@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEditor;
+using UnityEditorInternal;
 using UnityEngine;
 
 public class CharacterStatesManager : MonoBehaviour
@@ -14,13 +15,13 @@ public class CharacterStatesManager : MonoBehaviour
 
     [SerializeField] private CharacterStateData idleState;
 
-    [HideInInspector] public CharacterState currentState;
+    [HideInInspector] public CharacterState CurrentState;
 
     public Action onEndState;
 
     private void Start()
     {
-        SetState(idleState);
+        SetState(new CharacterActionData(this, idleState));
         set.Add(this);
     }
 
@@ -29,18 +30,22 @@ public class CharacterStatesManager : MonoBehaviour
         set.Remove(this);
     }
 
-    public void SetState(CharacterStateData stateData, Vector2 stateActionPosition = default)
+    public void SetState(CharacterActionData stateAction)
     {
-        currentState = new CharacterState(stateData, skillsManager.GetStateSkill(stateData), characterAnimator, toolsManager);
-        StartCoroutine(currentState.OnStart(transform.position, stateActionPosition));
+        if (CurrentState != null)
+            EndState();
+        CurrentState = new CharacterState(stateAction, skillsManager.GetStateSkill(stateAction.stateData), characterAnimator, toolsManager);
+        CurrentState.OnStart();
     }
 
     public void EndState()
-    {        
-        if (currentState != null)
-            currentState.OnEnd();
+    {
+        Debug.Log("EndState");
+        if (CurrentState != null)
+            CurrentState.OnEnd();
+        CurrentState = null;
         onEndState?.Invoke();
-        currentState = null;
+        
     }
 }
 
@@ -51,9 +56,9 @@ public class CharacterStateMachineEditor : Editor
     {
         base.OnInspectorGUI();
         CharacterStatesManager stateMachine = (target as CharacterStatesManager);
-        if (stateMachine.currentState != null)
+        if (stateMachine.CurrentState != null)
         {
-            EditorGUILayout.TextField("Текущее состояние : ", stateMachine.currentState.Name);
+            EditorGUILayout.TextField("Текущее состояние : ", stateMachine.CurrentState.Name);
         }
     }
 }
