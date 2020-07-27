@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class MoveHandler : CharacterActionHandler
+public class MoveHandler : CharacterActionGameEventListener
 {
     [SerializeField] private CharacterTasksManager taskManager;
 
@@ -11,15 +11,10 @@ public class MoveHandler : CharacterActionHandler
 
     [SerializeField] private float defaultSpeed;
 
-    [SerializeField] private CharacterActionUnityEvent onMoveEnd;
-
     [HideInInspector] public float speed;
 
     private Vector2 moveEndPoint;
     private bool isMoving;    
-
-    public override CharacterActionUnityEvent onActionEndEvent => onMoveEnd;
-
 
     public void FixedUpdate()
     {
@@ -34,10 +29,10 @@ public class MoveHandler : CharacterActionHandler
     {
         yield return new WaitUntil(() => Vector2.Distance(rb.position, moveEndPoint) < 0.1);
         isMoving = false;
-        onActionEndEvent.Invoke(actionData);       
+        actionData.taskManager.OnExecuteState();
     }
 
-    public override void OnAction(CharacterActionData actionData)
+    public override void OnEventRaised(CharacterActionData actionData)
     {        
         if (taskManager == actionData.taskManager)
         {
@@ -50,11 +45,6 @@ public class MoveHandler : CharacterActionHandler
             isMoving = true;
             StartCoroutine(WaitUntilEndPoint(actionData));
         }
-    }
-
-    public override void CancelAction()
-    {
-        isMoving = false;
     }
 }
 

@@ -42,6 +42,10 @@ public class CharacterTask
         bool isCurrentStateTheSame = prevStateData != null && prevStateData == CurrentStateData;
         if (activeState != null)
         {
+            if (activeState.isExecuting)
+            {
+                taskManager.StopAllCoroutines();
+            }
             activeState.End(isCurrentStateTheSame);
         }
         if (currentTaskPointIndex < taskPoints.Count)
@@ -49,7 +53,7 @@ public class CharacterTask
             CharacterActionData actionData = new CharacterActionData(taskManager, CurrentStateData, taskManager.transform.position, 
                 CurrentTaskPoint.CellPosition, -CurrentTaskPoint.AxisToNextCell, skillsManager.GetStateSkill(CurrentStateData));
             activeState = new CharacterState(actionData, animator, toolsManager, rotator);
-            activeState.Start(isCurrentStateTheSame);
+            taskManager.StartCoroutine(activeState.Start(isCurrentStateTheSame));
         }
         else
         {

@@ -11,6 +11,8 @@ public class CharacterState
     public CharacterStateData stateData => actionData.stateData;
     public string Name => stateData.stateName;
 
+    public bool isExecuting;
+
     public CharacterState(CharacterActionData actionData, Animator animator, CharacterToolsManager toolsManager, Rotator rotator)
     {
         this.actionData = actionData;
@@ -19,7 +21,7 @@ public class CharacterState
         this.rotator = rotator;
     }
 
-    public void Start(bool isPrevStateTheSame)
+    public IEnumerator Start(bool isPrevStateTheSame)
     {
         if (!isPrevStateTheSame)
         {
@@ -35,10 +37,23 @@ public class CharacterState
         {
             stateData.startEvent.Raise(actionData);
         }
+        if (stateData.iterationEvent != null)
+        {
+            isExecuting = true;
+            while (isExecuting)
+            {
+                yield return new WaitForSeconds(stateData.iterationsInterval);
+                stateData.iterationEvent.Raise(actionData);  
+            }            
+        }
+        else
+        {
+            yield break;
+        }
     }
 
     public void End(bool isNextStateTheSame)
-    {
+    {       
         if (!isNextStateTheSame)
         {
             if (!string.IsNullOrEmpty(stateData.animatorTriggerEnd))

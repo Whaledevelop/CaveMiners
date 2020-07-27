@@ -22,5 +22,5 @@ MonoBehaviour:
   rotationMode: 2
   animatorTriggerStart: StartDigging
   animatorTriggerEnd: StopDigging
-  startEvent: {fileID: 0}
-  endEvent: {fileID: 0}
+  startEvent: {fileID: 11400000, guid: 08fd22f2b7d5818479d9fd7aa31ec7ed, type: 2}
+  endEvent: {fileID: 11400000, guid: 825a2aa869dfa7d49ba3ac13497596f1, type: 2}

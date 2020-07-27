@@ -15,11 +15,16 @@ public class CharacterStateData : ScriptableObject
     public Color gizmosColor;
     public RotationMode rotationMode;
 
+    
+
     public string animatorTriggerStart;
     public string animatorTriggerEnd;
     public CharacterActionGameEvent startEvent;
     public CharacterActionGameEvent endEvent;
-    
+
+    public CharacterActionGameEvent iterationEvent;
+    public float iterationsInterval = 1;
+
     // Перенести отсюда
     public bool CompareActionMaskWithLayer(int layer)
     {

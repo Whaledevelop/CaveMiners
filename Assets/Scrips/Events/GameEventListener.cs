@@ -29,17 +29,17 @@ public abstract class GameEventListener<T> : MonoBehaviour
     public abstract GameEvent<T> Event { get; }
     public abstract UnityEvent<T> Response { get; }
 
-    private void OnEnable()
+    public virtual void OnEnable()
     {
         Event.RegisterListener(this);
     }
 
-    private void OnDisable()
+    public virtual void OnDisable()
     {
         Event.UnregisterListener(this);
     }
 
-    public void OnEventRaised(T eventParams)
+    public virtual void OnEventRaised(T eventParams)
     {
         Response.Invoke(eventParams);
     }
