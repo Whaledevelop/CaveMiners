@@ -4,7 +4,6 @@ using UnityEngine;
 public class CharacterState
 {
     public CharacterActionData actionData;
-    private float stateSkill;
     private CharacterToolsManager toolsManager;
     private Animator animator;
     private Rotator rotator;
@@ -12,10 +11,9 @@ public class CharacterState
     public CharacterStateData stateData => actionData.stateData;
     public string Name => stateData.stateName;
 
-    public CharacterState(CharacterActionData actionData, float stateSkill, Animator animator, CharacterToolsManager toolsManager, Rotator rotator)
+    public CharacterState(CharacterActionData actionData, Animator animator, CharacterToolsManager toolsManager, Rotator rotator)
     {
         this.actionData = actionData;
-        this.stateSkill = stateSkill;
         this.toolsManager = toolsManager;
         this.animator = animator;
         this.rotator = rotator;

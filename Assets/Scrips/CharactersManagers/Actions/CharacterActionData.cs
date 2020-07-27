@@ -8,13 +8,15 @@ public struct CharacterActionData
     public Vector2 startPosition;
     public Vector2 endPosition;
     public Vector2 actionDirection;
+    public float stateSkill;
 
-    public CharacterActionData(CharacterTasksManager taskManager, CharacterStateData stateData, Vector2 startPosition = default, Vector2 endPosition = default, Vector2 actionDirection = default)
+    public CharacterActionData(CharacterTasksManager taskManager, CharacterStateData stateData, Vector2 startPosition, Vector2 endPosition, Vector2 actionDirection, float stateSkill)
     {
         this.taskManager = taskManager;
         this.stateData = stateData;
         this.startPosition = startPosition;
         this.endPosition = endPosition;
         this.actionDirection = actionDirection;
+        this.stateSkill = stateSkill;
     }
 }

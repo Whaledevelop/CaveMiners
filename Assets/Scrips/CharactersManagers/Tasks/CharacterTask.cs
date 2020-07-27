@@ -46,8 +46,9 @@ public class CharacterTask
         }
         if (currentTaskPointIndex < taskPoints.Count)
         {
-            CharacterActionData actionData = new CharacterActionData(taskManager, CurrentStateData, taskManager.transform.position, CurrentTaskPoint.CellPosition, -CurrentTaskPoint.AxisToNextCell);
-            activeState = new CharacterState(actionData, skillsManager.GetStateSkill(CurrentStateData), animator, toolsManager, rotator);
+            CharacterActionData actionData = new CharacterActionData(taskManager, CurrentStateData, taskManager.transform.position, 
+                CurrentTaskPoint.CellPosition, -CurrentTaskPoint.AxisToNextCell, skillsManager.GetStateSkill(CurrentStateData));
+            activeState = new CharacterState(actionData, animator, toolsManager, rotator);
             activeState.Start(isCurrentStateTheSame);
         }
         else

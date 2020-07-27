@@ -14,4 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: "\u041A\u043E\u0440\u043D\u0435\u043B\u0438\u0443\u0441"
   description: "\u041C\u0430\u0442\u0451\u0440\u044B\u0439 \u0434\u043E\u0431\u044B\u0442\u0447\u0438\u043A"
-  initialDigSkill: 1
+  initialSkillsData:
+  - state: {fileID: 11400000, guid: 5667e594b0489084f9f4dba82e840c76, type: 2}
+    value: 2
+    learnability: 0
+  - state: {fileID: 11400000, guid: 5ff86b95127b49343ad6cecb6cd87023, type: 2}
+    value: 2
+    learnability: 0

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class MoveHandler : CharacterActionHandler
@@ -8,12 +9,14 @@ public class MoveHandler : CharacterActionHandler
 
     [SerializeField] private Rigidbody2D rb;
 
-    [SerializeField] private float speed;
+    [SerializeField] private float defaultSpeed;
 
     [SerializeField] private CharacterActionUnityEvent onMoveEnd;
 
+    [HideInInspector] public float speed;
+
     private Vector2 moveEndPoint;
-    private bool isMoving;
+    private bool isMoving;    
 
     public override CharacterActionUnityEvent onActionEndEvent => onMoveEnd;
 
@@ -43,14 +46,24 @@ public class MoveHandler : CharacterActionHandler
                 StopAllCoroutines();
             }
             moveEndPoint = actionData.endPosition;
+            speed = defaultSpeed * actionData.stateSkill;
             isMoving = true;
             StartCoroutine(WaitUntilEndPoint(actionData));
         }
-
     }
 
     public override void CancelAction()
     {
         isMoving = false;
+    }
+}
+
+[CustomEditor(typeof(MoveHandler)), CanEditMultipleObjects]
+public class MoveHandlerEditor : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        base.OnInspectorGUI();
+        EditorGUILayout.FloatField("CurrentSpeed", (target as MoveHandler).speed);
     }
 }
