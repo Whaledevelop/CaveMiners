@@ -8,6 +8,7 @@ public class CharacterTask
 
     private CharacterToolsManager toolsManager;
     private Animator animator;
+    private Rotator rotator;
     private CharacterSkillsManager skillsManager;
     private CharacterTasksManager taskManager;
 
@@ -17,13 +18,15 @@ public class CharacterTask
 
     private CharacterState activeState;
 
-    public CharacterTask(List<CharacterTaskPoint> taskPoints, CharacterTasksManager taskManager, CharacterToolsManager toolsManager, CharacterSkillsManager skillsManager, Animator animator)
+    public CharacterTask(List<CharacterTaskPoint> taskPoints, CharacterTasksManager taskManager, CharacterToolsManager toolsManager, 
+        CharacterSkillsManager skillsManager, Animator animator, Rotator rotator)
     {
         this.taskPoints = taskPoints;
         this.toolsManager = toolsManager;
         this.skillsManager = skillsManager;
         this.taskManager = taskManager;
         this.animator = animator;
+        this.rotator = rotator;
     }
 
 
@@ -43,8 +46,8 @@ public class CharacterTask
         }
         if (currentTaskPointIndex < taskPoints.Count)
         {
-            CharacterActionData actionData = new CharacterActionData(taskManager, CurrentStateData, taskManager.transform.position, CurrentTaskPoint.CellPosition);
-            activeState = new CharacterState(actionData, skillsManager.GetStateSkill(CurrentStateData), animator, toolsManager);
+            CharacterActionData actionData = new CharacterActionData(taskManager, CurrentStateData, taskManager.transform.position, CurrentTaskPoint.CellPosition, -CurrentTaskPoint.AxisToNextCell);
+            activeState = new CharacterState(actionData, skillsManager.GetStateSkill(CurrentStateData), animator, toolsManager, rotator);
             activeState.Start(isCurrentStateTheSame);
         }
         else

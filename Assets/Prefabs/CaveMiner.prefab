@@ -113,8 +113,8 @@ MonoBehaviour:
   - {fileID: 2192015189815932129}
   - {fileID: 2192015190684278187}
   m_Bounds:
-    m_Center: {x: 0.031543195, y: 0.031648874, z: 0}
-    m_Extent: {x: 0.37657234, y: 0.31656522, z: 0}
+    m_Center: {x: 0.031543285, y: 0.031648844, z: 0}
+    m_Extent: {x: 0.37657243, y: 0.31656522, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!114 &2192015189806234752
@@ -285,6 +285,7 @@ GameObject:
   - component: {fileID: 5037183334719214755}
   - component: {fileID: 6625705014852564415}
   - component: {fileID: 3025087994489093101}
+  - component: {fileID: 1265669350}
   m_Layer: 10
   m_Name: CaveMiner
   m_TagString: Character
@@ -399,8 +400,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b97ba53f4cc773498e0e06413b47d99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialRightLeft: 2
-  initialTopDown: 4
 --- !u!114 &7282526008341427577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -413,6 +412,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 306d72b7ab6cc8f4595dc55292edfad6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  taskManager: {fileID: 3025087994489093101}
   rb: {fileID: 2192015190459939293}
   speed: 1
   onMoveEnd:
@@ -495,7 +495,35 @@ MonoBehaviour:
   idleState: {fileID: 11400000, guid: 35ea0df5732a1e747a76bb80919aa569, type: 2}
   toolsManager: {fileID: 5037183334719214755}
   skillsManager: {fileID: 6625705014852564415}
+  rotator: {fileID: 779355436351876976}
   animator: {fileID: 2192015190459939264}
+--- !u!114 &1265669350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2192015190459939271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 133b6133de831664ba8140c53519fd5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionEvent: {fileID: 11400000, guid: 646656ccb772dc64c8cb98ee914695a5, type: 2}
+  actionResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7282526008341427577}
+        m_MethodName: OnAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2192015190573973387
 GameObject:
   m_ObjectHideFlags: 0

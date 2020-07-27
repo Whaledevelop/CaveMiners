@@ -7,16 +7,18 @@ public class CharacterState
     private float stateSkill;
     private CharacterToolsManager toolsManager;
     private Animator animator;
+    private Rotator rotator;
 
     public CharacterStateData stateData => actionData.stateData;
     public string Name => stateData.stateName;
 
-    public CharacterState(CharacterActionData actionData, float stateSkill, Animator animator, CharacterToolsManager toolsManager)
+    public CharacterState(CharacterActionData actionData, float stateSkill, Animator animator, CharacterToolsManager toolsManager, Rotator rotator)
     {
         this.actionData = actionData;
         this.stateSkill = stateSkill;
         this.toolsManager = toolsManager;
         this.animator = animator;
+        this.rotator = rotator;
     }
 
     public void Start(bool isPrevStateTheSame)
@@ -28,6 +30,8 @@ public class CharacterState
 
             toolsManager.ApplyTool(stateData.toolCode);
         }
+
+        rotator.Rotate(actionData.actionDirection, stateData.rotationMode);
 
         if (stateData.startEvent != null)
         {

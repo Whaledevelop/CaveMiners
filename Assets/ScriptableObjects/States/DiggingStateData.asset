@@ -19,7 +19,8 @@ MonoBehaviour:
     m_Bits: 256
   actionPriority: 5
   gizmosColor: {r: 0.5, g: 0.26972032, b: 0.12028301, a: 1}
+  rotationMode: 2
   animatorTriggerStart: StartDigging
   animatorTriggerEnd: StopDigging
-  startEvent: {fileID: 11400000, guid: 580590d30e646484d84537d9be48a66b, type: 2}
+  startEvent: {fileID: 0}
   endEvent: {fileID: 0}

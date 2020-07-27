@@ -19,6 +19,7 @@ MonoBehaviour:
     m_Bits: 512
   actionPriority: 8
   gizmosColor: {r: 0.21791564, g: 0.7830189, b: 0.21993607, a: 1}
+  rotationMode: 1
   animatorTriggerStart: StartWalking
   animatorTriggerEnd: StopWalking
   startEvent: {fileID: 11400000, guid: 646656ccb772dc64c8cb98ee914695a5, type: 2}

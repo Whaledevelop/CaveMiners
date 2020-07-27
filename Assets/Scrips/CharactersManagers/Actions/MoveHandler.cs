@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MoveHandler : CharacterActionHandler
-{    
+{
+    [SerializeField] private CharacterTasksManager taskManager;
+
     [SerializeField] private Rigidbody2D rb;
 
     [SerializeField] private float speed;
@@ -34,13 +36,17 @@ public class MoveHandler : CharacterActionHandler
 
     public override void OnAction(CharacterActionData actionData)
     {        
-        if (isMoving)
+        if (taskManager == actionData.taskManager)
         {
-            StopAllCoroutines();
+            if (isMoving)
+            {
+                StopAllCoroutines();
+            }
+            moveEndPoint = actionData.endPosition;
+            isMoving = true;
+            StartCoroutine(WaitUntilEndPoint(actionData));
         }
-        moveEndPoint = actionData.endPosition;
-        isMoving = true;
-        StartCoroutine(WaitUntilEndPoint(actionData));
+
     }
 
     public override void CancelAction()

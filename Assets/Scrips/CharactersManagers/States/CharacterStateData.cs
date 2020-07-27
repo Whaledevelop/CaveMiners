@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
 
+
 [CreateAssetMenu(fileName = "CharacterStateData", menuName = "ScriptableObjects/CharacterStateData")]
 public class CharacterStateData : ScriptableObject
 {
@@ -12,6 +13,7 @@ public class CharacterStateData : ScriptableObject
     public int actionPriority;
 
     public Color gizmosColor;
+    public RotationMode rotationMode;
 
     public string animatorTriggerStart;
     public string animatorTriggerEnd;

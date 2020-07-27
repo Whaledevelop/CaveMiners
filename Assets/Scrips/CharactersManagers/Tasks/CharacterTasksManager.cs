@@ -13,6 +13,7 @@ public class CharacterTasksManager : MonoBehaviour
 
     [SerializeField] private CharacterToolsManager toolsManager;
     [SerializeField] private CharacterSkillsManager skillsManager;
+    [SerializeField] private Rotator rotator;
     [SerializeField] private Animator animator;
 
     private CharacterTask activeTask;
@@ -32,7 +33,7 @@ public class CharacterTasksManager : MonoBehaviour
         if (activeTask != null)
             activeTask.Cancel();
         List<CharacterTaskPoint> taskStatesPoints = taskPathfinder.FindPath(transform.position, taskObject, taskPoint);
-        activeTask = new CharacterTask(taskStatesPoints, this, toolsManager, skillsManager, animator);
+        activeTask = new CharacterTask(taskStatesPoints, this, toolsManager, skillsManager, animator, rotator);
         activeTask.Start();
     }
 

@@ -19,6 +19,8 @@ public class CharacterTaskPoint
    
     public Vector2 NextCellToCharacterPosition; // Для гизмо
 
+    public Vector2 AxisToNextCell => NextCellToCharacterPosition - CellPosition;
+
     public CharacterTaskPoint(CharacterStateData stateData, Vector2 prevCellPosition, Vector2 axisFromPrevCell)
     {
         this.stateData = stateData;

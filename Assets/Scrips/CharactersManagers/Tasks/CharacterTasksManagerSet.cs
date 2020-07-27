@@ -42,7 +42,7 @@ public class CharacterTasksManagersSet : RuntimeSet<CharacterTasksManager>
 
     public void OnExecuteState(CharacterActionData actionData)
     {
-        CharacterTasksManager taskManager = Items.Find(item => actionData.taskManager);
+        CharacterTasksManager taskManager = Items.Find(item => actionData.taskManager == item);
         if (taskManager != null)
         {
             taskManager.OnExecuteState();
