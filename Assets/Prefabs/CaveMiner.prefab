@@ -283,7 +283,6 @@ GameObject:
   - component: {fileID: 779355436351876976}
   - component: {fileID: 7282526008341427577}
   - component: {fileID: 5037183334719214755}
-  - component: {fileID: 3361557290797306871}
   - component: {fileID: 6625705014852564415}
   - component: {fileID: 3025087994489093101}
   m_Layer: 10
@@ -419,8 +418,8 @@ MonoBehaviour:
   onMoveEnd:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: 4869f41dfd1e2ae459686fd8b7be844e, type: 2}
-        m_MethodName: OnStateActionEvent
+      - m_Target: {fileID: 11400000, guid: 0ea25a6fa32963245a118fa514e29572, type: 2}
+        m_MethodName: OnExecuteState
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -465,23 +464,6 @@ MonoBehaviour:
     toolCode: 3
     isToUseSpriteSwitch: 1
     spriteResolveLabel: WithShovel
---- !u!114 &3361557290797306871
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2192015190459939271}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a73bf8e62674e3949a756f17746ab985, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterAnimator: {fileID: 2192015190459939264}
-  set: {fileID: 11400000, guid: 4869f41dfd1e2ae459686fd8b7be844e, type: 2}
-  toolsManager: {fileID: 5037183334719214755}
-  skillsManager: {fileID: 6625705014852564415}
-  idleState: {fileID: 11400000, guid: 35ea0df5732a1e747a76bb80919aa569, type: 2}
 --- !u!114 &6625705014852564415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -508,9 +490,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   set: {fileID: 11400000, guid: 0ea25a6fa32963245a118fa514e29572, type: 2}
   initialData: {fileID: 11400000, guid: c07f08585e38d6d449aa4567e64300d7, type: 2}
-  statesManager: {fileID: 3361557290797306871}
   taskPathfinder: {fileID: 11400000, guid: 4143bb7889e7aeb4a9d55cd598f2c6c6, type: 2}
   characterHighlighter: {fileID: 7097406752204435091}
+  idleState: {fileID: 11400000, guid: 35ea0df5732a1e747a76bb80919aa569, type: 2}
+  toolsManager: {fileID: 5037183334719214755}
+  skillsManager: {fileID: 6625705014852564415}
+  animator: {fileID: 2192015190459939264}
 --- !u!1 &2192015190573973387
 GameObject:
   m_ObjectHideFlags: 0

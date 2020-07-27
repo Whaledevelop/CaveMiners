@@ -9,8 +9,7 @@ public class CharacterTasksManagersSet : RuntimeSet<CharacterTasksManager>
     [SerializeField] private LayerMask characterLayer;
     [SerializeField] private CellCenterRequest cellCenterRequest;
 
-    [NonSerialized]
-    private CharacterTasksManager activeCharacter;
+    [NonSerialized] private CharacterTasksManager activeCharacter;
 
     public void OnClickOnMap(InputAction.CallbackContext context)
     {
@@ -38,6 +37,15 @@ public class CharacterTasksManagersSet : RuntimeSet<CharacterTasksManager>
                         Debug.Log("No active character for ground task");
                 }
             }
+        }
+    }
+
+    public void OnExecuteState(CharacterActionData actionData)
+    {
+        CharacterTasksManager taskManager = Items.Find(item => actionData.taskManager);
+        if (taskManager != null)
+        {
+            taskManager.OnExecuteState();
         }
     }
 

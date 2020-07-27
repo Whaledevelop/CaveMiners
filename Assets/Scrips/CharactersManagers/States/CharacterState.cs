@@ -4,30 +4,30 @@ using UnityEngine;
 public class CharacterState
 {
     public CharacterActionData actionData;
-
-    private Animator animator;
-
-    private CharacterToolsManager toolsManager;
-
     private float stateSkill;
+    private CharacterToolsManager toolsManager;
+    private Animator animator;
 
     public CharacterStateData stateData => actionData.stateData;
     public string Name => stateData.stateName;
 
-    public CharacterState(CharacterActionData actionData, float stateSkill, Animator animator, CharacterToolsManager toolManager)
+    public CharacterState(CharacterActionData actionData, float stateSkill, Animator animator, CharacterToolsManager toolsManager)
     {
         this.actionData = actionData;
         this.stateSkill = stateSkill;
+        this.toolsManager = toolsManager;
         this.animator = animator;
-        this.toolsManager = toolManager;
     }
 
-    public void OnStart()
+    public void Start(bool isPrevStateTheSame)
     {
-        if (!string.IsNullOrEmpty(stateData.animatorTriggerStart))
-            animator.SetTrigger(stateData.animatorTriggerStart);
+        if (!isPrevStateTheSame)
+        {
+            if (!string.IsNullOrEmpty(stateData.animatorTriggerStart))
+                animator.SetTrigger(stateData.animatorTriggerStart);
 
-        toolsManager.ApplyTool(stateData.toolCode);
+            toolsManager.ApplyTool(stateData.toolCode);
+        }
 
         if (stateData.startEvent != null)
         {
@@ -35,13 +35,15 @@ public class CharacterState
         }
     }
 
-    public void OnEnd()
+    public void End(bool isNextStateTheSame)
     {
-        if (!string.IsNullOrEmpty(stateData.animatorTriggerEnd))
-            animator.SetTrigger(stateData.animatorTriggerEnd);
+        if (!isNextStateTheSame)
+        {
+            if (!string.IsNullOrEmpty(stateData.animatorTriggerEnd))
+                animator.SetTrigger(stateData.animatorTriggerEnd);
 
-        toolsManager.HideTool(stateData.toolCode);
-
+            toolsManager.HideTool(stateData.toolCode);
+        }
         if (stateData.endEvent != null)
         {
             stateData.endEvent.Raise(actionData);

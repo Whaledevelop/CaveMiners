@@ -3,24 +3,16 @@
 [System.Serializable]
 public struct CharacterActionData
 {
-    public CharacterStatesManager stateManager;
+    public CharacterTasksManager taskManager;
     public CharacterStateData stateData;
     public Vector2 startPosition;
     public Vector2 endPosition;
 
-    public CharacterActionData(CharacterStatesManager stateManager, CharacterStateData stateData, Vector2 startPosition = default, Vector2 endPosition = default)
+    public CharacterActionData(CharacterTasksManager taskManager, CharacterStateData stateData, Vector2 startPosition = default, Vector2 endPosition = default)
     {
-        this.stateManager = stateManager;
+        this.taskManager = taskManager;
         this.stateData = stateData;
         this.startPosition = startPosition;
         this.endPosition = endPosition;
-    }
-
-    public CharacterActionData(CharacterStatesManager stateManager, CharacterTaskPoint taskPoint)
-    {
-        this.stateManager = stateManager;
-        this.stateData = taskPoint.stateData;
-        this.startPosition = stateManager.transform.position;
-        this.endPosition = taskPoint.CellPosition;
     }
 }

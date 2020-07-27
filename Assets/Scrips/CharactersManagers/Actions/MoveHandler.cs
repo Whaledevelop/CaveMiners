@@ -28,8 +28,8 @@ public class MoveHandler : CharacterActionHandler
     public IEnumerator WaitUntilEndPoint(CharacterActionData actionData)
     {
         yield return new WaitUntil(() => Vector2.Distance(rb.position, moveEndPoint) < 0.1);
-        onActionEndEvent.Invoke(actionData);
         isMoving = false;
+        onActionEndEvent.Invoke(actionData);       
     }
 
     public override void OnAction(CharacterActionData actionData)

@@ -1,52 +1,65 @@
 ﻿using System.Collections.Generic;
 using System;
+using UnityEngine;
 
 public class CharacterTask
 {
     public List<CharacterTaskPoint> taskPoints = new List<CharacterTaskPoint>();
-    public int currentStateIndex = -1;
-    public bool isActive;
 
-    public CharacterStatesManager statesManager;
+    private CharacterToolsManager toolsManager;
+    private Animator animator;
+    private CharacterSkillsManager skillsManager;
+    private CharacterTasksManager taskManager;
 
-    public Action OnEnd;
+    private int currentTaskPointIndex = -1;
+    private CharacterTaskPoint CurrentTaskPoint => (currentTaskPointIndex < taskPoints.Count && currentTaskPointIndex >= 0 ) ? taskPoints[currentTaskPointIndex] : null;
+    private CharacterStateData CurrentStateData => CurrentTaskPoint != null ? CurrentTaskPoint.stateData : null;
 
-    public CharacterTask(List<CharacterTaskPoint> taskPoints, CharacterStatesManager statesManager)
+    private CharacterState activeState;
+
+    public CharacterTask(List<CharacterTaskPoint> taskPoints, CharacterTasksManager taskManager, CharacterToolsManager toolsManager, CharacterSkillsManager skillsManager, Animator animator)
     {
         this.taskPoints = taskPoints;
-        this.statesManager = statesManager;
+        this.toolsManager = toolsManager;
+        this.skillsManager = skillsManager;
+        this.taskManager = taskManager;
+        this.animator = animator;
     }
 
 
     public void Start()
     {
         SetNextState();
-        statesManager.onEndState += SetNextState;
     }
 
     public void SetNextState()
     {
-        currentStateIndex++;
-        if (currentStateIndex < taskPoints.Count)
+        CharacterStateData prevStateData = CurrentStateData;
+        currentTaskPointIndex++;
+        bool isCurrentStateTheSame = prevStateData != null && prevStateData == CurrentStateData;
+        if (activeState != null)
         {
-            CharacterActionData actionData = new CharacterActionData(statesManager, taskPoints[currentStateIndex]);
-            statesManager.SetState(actionData);
+            activeState.End(isCurrentStateTheSame);
+        }
+        if (currentTaskPointIndex < taskPoints.Count)
+        {
+            CharacterActionData actionData = new CharacterActionData(taskManager, CurrentStateData, taskManager.transform.position, CurrentTaskPoint.CellPosition);
+            activeState = new CharacterState(actionData, skillsManager.GetStateSkill(CurrentStateData), animator, toolsManager);
+            activeState.Start(isCurrentStateTheSame);
         }
         else
         {
             End();
         }
-
     }
 
     public void Cancel() 
     {
-        statesManager.EndState();
+        //statesManager.EndState();
     }
 
     public void End()
     {
-        statesManager.onEndState -= SetNextState;
-        OnEnd?.Invoke();
+        //OnEnd?.Invoke();
     }
 }
