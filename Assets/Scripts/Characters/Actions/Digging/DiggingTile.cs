@@ -6,22 +6,19 @@ using UnityEngine.Tilemaps;
 
 public class DiggingTile
 {
-    public Tilemap tilemap;
-    public List<TileData> tilesSet;
-    public Vector3Int cellIntPosition;
+    public TileCell groundTileCell;
+    public TileCell tunnelTileCell;
+
+    public List<TileDependOnHP> tilesSet;
     public List<CharacterActionData> activeActions;
     public float HP;
-
-    public TileBase activeTile;
-
     public Action onDigged;
 
-    public DiggingTile(List<TileData> tilesSet, TileBase activeTile, Tilemap tilemap, Vector3Int cellIntPosition, CharacterActionData firstActionData, int initialHP)
+    public DiggingTile(List<TileDependOnHP> tilesSet, TileCell groundTileCell, TileCell tunnelTileCell, CharacterActionData firstActionData, int initialHP)
     {
         this.tilesSet = tilesSet;
-        this.activeTile = activeTile;
-        this.tilemap = tilemap;
-        this.cellIntPosition = cellIntPosition;
+        this.groundTileCell = groundTileCell;
+        this.tunnelTileCell = tunnelTileCell;
         activeActions = new List<CharacterActionData>() { firstActionData };
         HP = initialHP;
     }
@@ -31,7 +28,8 @@ public class DiggingTile
         HP -= actionData.stateSkill;
         if (HP <= 0)
         {
-            tilemap.SetTile(cellIntPosition, null);
+            groundTileCell.SetTile(null);
+            tunnelTileCell.SetTile(tunnelTileCell.tile);
             foreach (CharacterActionData action in activeActions)
             {
                 action.taskManager.OnExecuteState();
@@ -40,11 +38,10 @@ public class DiggingTile
         }
         else
         {
-            TileData neededTile = tilesSet.LastOrDefault(tileData => tileData.HP >= HP);
-            if (neededTile != null && neededTile.tile != activeTile)
+            TileDependOnHP neededTile = tilesSet.LastOrDefault(tileData => tileData.HP >= HP);
+            if (neededTile != null && neededTile.tile != groundTileCell.tile)
             {
-                tilemap.SetTile(cellIntPosition, neededTile.tile);
-                activeTile = neededTile.tile;
+                groundTileCell.SetTile(neededTile.tile);
             }
         }
     }

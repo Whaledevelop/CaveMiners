@@ -10,9 +10,13 @@ public class DigHandler : MonoBehaviour, IIteractiveActionHandler
 {
     [SerializeField] private List<Tilemap> diggableTilemaps = new List<Tilemap>();
 
+    [SerializeField] private Tilemap tunnelsTilemap;
+
+    [SerializeField] private TileBase tunnelTile;
+
     [SerializeField] private Grid grid;
 
-    [SerializeField] private List<TileData> tilesSet = new List<TileData>();
+    [SerializeField] private List<TileDependOnHP> tilesSet = new List<TileDependOnHP>();
 
     [SerializeField] private int initialHP;
 
@@ -27,7 +31,10 @@ public class DigHandler : MonoBehaviour, IIteractiveActionHandler
             TileBase digTile = digableTilemap.GetTile(digCellPositionInt);
             if (digTile != null)
             {
-                DiggingTile diggingTile = new DiggingTile(tilesSet, digTile, digableTilemap, digCellPositionInt, actionData, initialHP);
+                TileCell groundTileData = new TileCell(digTile, digableTilemap, digCellPositionInt);
+                TileCell tunnelTileData = new TileCell(tunnelTile, tunnelsTilemap, digCellPositionInt);
+                DiggingTile diggingTile = new DiggingTile(tilesSet, groundTileData, tunnelTileData, actionData, initialHP);
+                diggingTile.onDigged += () => diggingTiles.Remove(diggingTile);
                 diggingTiles.Add(diggingTile);
                 break;
             }

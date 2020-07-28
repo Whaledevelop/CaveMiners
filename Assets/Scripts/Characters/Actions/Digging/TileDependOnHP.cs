@@ -1,7 +1,7 @@
 ﻿using UnityEngine.Tilemaps;
 
 [System.Serializable]
-public class TileData
+public class TileDependOnHP
 {
     public float HP;
     public TileBase tile;
