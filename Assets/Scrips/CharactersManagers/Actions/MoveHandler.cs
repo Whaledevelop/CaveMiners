@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class MoveHandler : CharacterActionGameEventListener
+public class MoveHandler : MonoBehaviour, IActionHandler
 {
     [SerializeField] private CharacterTasksManager taskManager;
 
@@ -32,7 +32,7 @@ public class MoveHandler : CharacterActionGameEventListener
         actionData.taskManager.OnExecuteState();
     }
 
-    public override void OnEventRaised(CharacterActionData actionData)
+    public void OnStartAction(CharacterActionData actionData)
     {        
         if (taskManager == actionData.taskManager)
         {

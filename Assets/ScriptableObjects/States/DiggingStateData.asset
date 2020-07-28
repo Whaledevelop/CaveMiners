@@ -24,3 +24,5 @@ MonoBehaviour:
   animatorTriggerEnd: StopDigging
   startEvent: {fileID: 11400000, guid: 08fd22f2b7d5818479d9fd7aa31ec7ed, type: 2}
   endEvent: {fileID: 11400000, guid: 825a2aa869dfa7d49ba3ac13497596f1, type: 2}
+  iterationEvent: {fileID: 11400000, guid: b4338e0b4018179488d4ca3efb919f7a, type: 2}
+  iterationsInterval: 1
