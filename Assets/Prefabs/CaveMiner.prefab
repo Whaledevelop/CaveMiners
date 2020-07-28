@@ -113,8 +113,8 @@ MonoBehaviour:
   - {fileID: 2192015189815932129}
   - {fileID: 2192015190684278187}
   m_Bounds:
-    m_Center: {x: 0.031543285, y: 0.031648844, z: 0}
-    m_Extent: {x: 0.37657243, y: 0.31656522, z: 0}
+    m_Center: {x: 0.031543195, y: 0.031648874, z: 0}
+    m_Extent: {x: 0.37657234, y: 0.31656522, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!114 &2192015189806234752
@@ -286,7 +286,7 @@ GameObject:
   - component: {fileID: 6625705014852564415}
   - component: {fileID: 3025087994489093101}
   - component: {fileID: 953592547}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: CaveMiner
   m_TagString: Character
   m_Icon: {fileID: 0}

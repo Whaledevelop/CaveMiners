@@ -16,7 +16,7 @@ MonoBehaviour:
   toolCode: 0
   actionLayerMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 1024
   actionPriority: 8
   gizmosColor: {r: 0.21791564, g: 0.7830189, b: 0.21993607, a: 1}
   rotationMode: 1
@@ -24,3 +24,5 @@ MonoBehaviour:
   animatorTriggerEnd: StopWalking
   startEvent: {fileID: 11400000, guid: 646656ccb772dc64c8cb98ee914695a5, type: 2}
   endEvent: {fileID: 11400000, guid: 2925245b05dfe9c4fa63c3fdbb312557, type: 2}
+  iterationEvent: {fileID: 0}
+  iterationsInterval: 1
