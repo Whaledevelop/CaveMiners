@@ -32,7 +32,7 @@ public class DiggingTile
             tunnelTileCell.SetTile(tunnelTileCell.tile);
             foreach (CharacterActionData action in activeActions)
             {
-                action.taskManager.OnExecuteState();
+                action.OnExecute();
             }
             onDigged?.Invoke();
         }

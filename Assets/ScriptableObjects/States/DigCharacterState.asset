@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f00f0a3bcfb08b94a93f6ffa374faa0b, type: 3}
-  m_Name: DiggingStateData
+  m_Script: {fileID: 11500000, guid: dd43364e7b5186e45a6b130a12d11cba, type: 3}
+  m_Name: DigCharacterState
   m_EditorClassIdentifier: 
   stateName: Digging
   toolCode: 3
@@ -18,7 +18,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   actionPriority: 5
-  gizmosColor: {r: 0.5, g: 0.26972032, b: 0.12028301, a: 1}
+  gizmosColor: {r: 0.5660378, g: 0.21290682, b: 0.18422927, a: 1}
   rotationMode: 2
   animatorTriggerStart: StartDigging
   animatorTriggerEnd: StopDigging
@@ -26,3 +26,4 @@ MonoBehaviour:
   endEvent: {fileID: 11400000, guid: 825a2aa869dfa7d49ba3ac13497596f1, type: 2}
   iterationEvent: {fileID: 11400000, guid: b4338e0b4018179488d4ca3efb919f7a, type: 2}
   iterationsInterval: 1
+  moveToPointState: {fileID: 11400000, guid: 5667e594b0489084f9f4dba82e840c76, type: 2}

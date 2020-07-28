@@ -13,6 +13,8 @@ public class CharacterState
 
     public bool isExecuting;
 
+    private bool isPrevStateTheSame;
+
     public CharacterState(CharacterActionData actionData, Animator animator, CharacterToolsManager toolsManager, Rotator rotator)
     {
         this.actionData = actionData;
@@ -21,49 +23,17 @@ public class CharacterState
         this.rotator = rotator;
     }
 
-    public IEnumerator Start(bool isPrevStateTheSame)
+    public IEnumerator Execute(bool isPrevStateTheSame)
     {
-        if (!isPrevStateTheSame)
-        {
-            if (!string.IsNullOrEmpty(stateData.animatorTriggerStart))
-                animator.SetTrigger(stateData.animatorTriggerStart);
-
-            toolsManager.ApplyTool(stateData.toolCode);
-        }
-
-        rotator.Rotate(actionData.actionDirection, stateData.rotationMode);
-
-        if (stateData.startEvent != null)
-        {
-            stateData.startEvent.Raise(actionData);
-        }
-        if (stateData.iterationEvent != null)
-        {
-            isExecuting = true;
-            while (isExecuting)
-            {
-                yield return new WaitForSeconds(stateData.iterationsInterval);
-                stateData.iterationEvent.Raise(actionData);  
-            }            
-        }
-        else
-        {
-            yield break;
-        }
+        this.isPrevStateTheSame = isPrevStateTheSame;
+        isExecuting = true;
+        yield return stateData.Execute(isPrevStateTheSame, actionData, animator, toolsManager, rotator);
+        isExecuting = false;
     }
 
-    public void End(bool isNextStateTheSame)
-    {       
-        if (!isNextStateTheSame)
-        {
-            if (!string.IsNullOrEmpty(stateData.animatorTriggerEnd))
-                animator.SetTrigger(stateData.animatorTriggerEnd);
-
-            toolsManager.HideTool(stateData.toolCode);
-        }
-        if (stateData.endEvent != null)
-        {
-            stateData.endEvent.Raise(actionData);
-        }
+    public IEnumerator End(bool isNextStateTheSame)
+    {
+        actionData.taskManager.StopCoroutine(Execute(isPrevStateTheSame));
+        yield return stateData.End(isNextStateTheSame, actionData, animator, toolsManager, rotator);
     }
 }

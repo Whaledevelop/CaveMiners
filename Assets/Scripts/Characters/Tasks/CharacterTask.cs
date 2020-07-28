@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System;
 using UnityEngine;
+using System.Collections;
 
 public class CharacterTask
 {
@@ -30,34 +31,32 @@ public class CharacterTask
     }
 
 
-    public void Start()
+    public IEnumerator Execute()
     {
-        SetNextState();
+        yield return ExecuteNextStateEnumerator();
     }
 
-    public void SetNextState()
+    public IEnumerator ExecuteNextStateEnumerator()
     {
         CharacterStateData prevStateData = CurrentStateData;
         currentTaskPointIndex++;
         bool isCurrentStateTheSame = prevStateData != null && prevStateData == CurrentStateData;
+
         if (activeState != null)
         {
-            if (activeState.isExecuting)
-            {
-                taskManager.StopAllCoroutines();
-            }
-            activeState.End(isCurrentStateTheSame);
+            yield return activeState.End(isCurrentStateTheSame);
         }
         if (currentTaskPointIndex < taskPoints.Count)
         {
-            CharacterActionData actionData = new CharacterActionData(taskManager, CurrentStateData, taskManager.transform.position, 
-                CurrentTaskPoint.CellPosition, -CurrentTaskPoint.AxisToNextCell, skillsManager.GetStateSkill(CurrentStateData));
+            CharacterActionData actionData = new CharacterActionData(taskManager, skillsManager, CurrentStateData, taskManager.transform.position, 
+                CurrentTaskPoint.CellPosition, -CurrentTaskPoint.AxisToNextCell, ExecuteNextStateEnumerator);
             activeState = new CharacterState(actionData, animator, toolsManager, rotator);
-            taskManager.StartCoroutine(activeState.Start(isCurrentStateTheSame));
+            yield return activeState.Execute(isCurrentStateTheSame);
         }
         else
         {
             End();
+            yield break;
         }
     }
 

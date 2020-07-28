@@ -29,7 +29,7 @@ public class MoveHandler : MonoBehaviour, IActionHandler
     {
         yield return new WaitUntil(() => Vector2.Distance(rb.position, moveEndPoint) < 0.1);
         isMoving = false;
-        actionData.taskManager.OnExecuteState();
+        actionData.OnExecute();
     }
 
     public void OnStartAction(CharacterActionData actionData)
