@@ -23,7 +23,7 @@ public class CharacterState
         this.rotator = rotator;
     }
 
-    public IEnumerator Execute(bool isPrevStateTheSame)
+    public IEnumerator Execute(bool isPrevStateTheSame = false)
     {
         this.isPrevStateTheSame = isPrevStateTheSame;
         isExecuting = true;
@@ -31,7 +31,7 @@ public class CharacterState
         isExecuting = false;
     }
 
-    public IEnumerator End(bool isNextStateTheSame)
+    public IEnumerator End(bool isNextStateTheSame = false)
     {
         actionData.taskManager.StopCoroutine(Execute(isPrevStateTheSame));
         yield return stateData.End(isNextStateTheSame, actionData, animator, toolsManager, rotator);

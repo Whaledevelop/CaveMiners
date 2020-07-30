@@ -16,7 +16,7 @@ public struct CharacterActionData
 
     public NoParamsVoidDelegate OnExecuteDelegate;
 
-    public CharacterActionData(CharacterTasksManager taskManager, CharacterSkillsManager skillsManager, CharacterStateData stateData, Vector2 startPosition, Vector2 endPosition, Vector2 actionDirection, NoParamsVoidDelegate OnExecuteDelegate)
+    public CharacterActionData(CharacterTasksManager taskManager, CharacterSkillsManager skillsManager, CharacterStateData stateData, Vector2 startPosition, Vector2 endPosition, Vector2 actionDirection, NoParamsVoidDelegate OnExecuteDelegate = null)
     {
         this.taskManager = taskManager;
         this.skillsManager = skillsManager;

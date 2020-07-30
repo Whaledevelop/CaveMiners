@@ -12,7 +12,10 @@ public class CharacterStateData : ScriptableObject
     public int actionPriority;
 
     public Color gizmosColor;
-    public RotationMode rotationMode;    
+    public RotationMode rotationMode;
+
+    [Header("Обновляется ли внешний вид при нескольких состояниях подряд")]
+    public bool isViewUpdatableIfSame;
 
     public string animatorTriggerStart;
     public string animatorTriggerEnd;
@@ -27,7 +30,7 @@ public class CharacterStateData : ScriptableObject
 
     public virtual IEnumerator Execute(bool isPrevStateTheSame, CharacterActionData actionData, Animator animator, CharacterToolsManager toolsManager, Rotator rotator)
     {
-        if (!isPrevStateTheSame)
+        if (isViewUpdatableIfSame || (!isViewUpdatableIfSame && !isPrevStateTheSame))
         {
             if (!string.IsNullOrEmpty(animatorTriggerStart))
                 animator.SetTrigger(animatorTriggerStart);
@@ -46,8 +49,7 @@ public class CharacterStateData : ScriptableObject
 
     public virtual IEnumerator End(bool isNextStateTheSame, CharacterActionData actionData, Animator animator, CharacterToolsManager toolsManager, Rotator rotator)
     {
-        Debug.Log("End movement");
-        if (!isNextStateTheSame)
+        if (isViewUpdatableIfSame || (!isViewUpdatableIfSame && !isNextStateTheSame))
         {
             if (!string.IsNullOrEmpty(animatorTriggerEnd))
                 animator.SetTrigger(animatorTriggerEnd);

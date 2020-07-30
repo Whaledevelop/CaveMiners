@@ -31,12 +31,7 @@ public class CharacterTask
     }
 
 
-    public IEnumerator Execute()
-    {
-        yield return ExecuteNextStateEnumerator();
-    }
-
-    public IEnumerator ExecuteNextStateEnumerator()
+    public IEnumerator ExecuteNextState()
     {
         CharacterStateData prevStateData = CurrentStateData;
         currentTaskPointIndex++;
@@ -49,7 +44,7 @@ public class CharacterTask
         if (currentTaskPointIndex < taskPoints.Count)
         {
             CharacterActionData actionData = new CharacterActionData(taskManager, skillsManager, CurrentStateData, taskManager.transform.position, 
-                CurrentTaskPoint.CellPosition, -CurrentTaskPoint.AxisToNextCell, ExecuteNextStateEnumerator);
+                CurrentTaskPoint.CellPosition, -CurrentTaskPoint.AxisToNextCell, ExecuteNextState);
             activeState = new CharacterState(actionData, animator, toolsManager, rotator);
             yield return activeState.Execute(isCurrentStateTheSame);
         }
@@ -60,13 +55,13 @@ public class CharacterTask
         }
     }
 
-    public void Cancel() 
+    public IEnumerator Cancel() 
     {
-        //statesManager.EndState();
+        yield return activeState.End();
     }
 
     public void End()
     {
-        //OnEnd?.Invoke();
+        
     }
 }

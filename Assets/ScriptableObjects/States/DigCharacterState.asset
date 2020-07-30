@@ -20,6 +20,7 @@ MonoBehaviour:
   actionPriority: 5
   gizmosColor: {r: 0.5660378, g: 0.21290682, b: 0.18422927, a: 1}
   rotationMode: 2
+  isViewUpdatableIfSame: 1
   animatorTriggerStart: StartDigging
   animatorTriggerEnd: StopDigging
   startEvent: {fileID: 11400000, guid: 08fd22f2b7d5818479d9fd7aa31ec7ed, type: 2}

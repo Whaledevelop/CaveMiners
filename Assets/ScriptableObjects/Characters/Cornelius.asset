@@ -16,7 +16,7 @@ MonoBehaviour:
   description: "\u041C\u0430\u0442\u0451\u0440\u044B\u0439 \u0434\u043E\u0431\u044B\u0442\u0447\u0438\u043A"
   initialSkillsData:
   - state: {fileID: 11400000, guid: 5667e594b0489084f9f4dba82e840c76, type: 2}
-    value: 2
+    value: 1
     learnability: 0
   - state: {fileID: 11400000, guid: da1f466d71b61af47a4ea46023313f53, type: 2}
     value: 2

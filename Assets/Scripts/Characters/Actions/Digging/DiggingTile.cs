@@ -30,11 +30,11 @@ public class DiggingTile
         {
             groundTileCell.SetTile(null);
             tunnelTileCell.SetTile(tunnelTileCell.tile);
+            onDigged?.Invoke();
             foreach (CharacterActionData action in activeActions)
             {
                 action.OnExecute();
             }
-            onDigged?.Invoke();
         }
         else
         {
@@ -44,5 +44,10 @@ public class DiggingTile
                 groundTileCell.SetTile(neededTile.tile);
             }
         }
+    }
+
+    public void RemoveActiveAction(CharacterActionData actionData)
+    {
+        activeActions.Remove(actionData);
     }
 }

@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using System.Collections;
+using System;
 
 [CreateAssetMenu(fileName = "DigCharacterState", menuName = "States/DigCharacterState")]
 public class DigCharacterState : IterativeStateData
 {
     [SerializeField] private CharacterStateData moveToPointState;
 
-    private bool isMovedToPoint;
+    [NonSerialized] private bool isMovedToPoint;
 
     public override IEnumerator End(bool isNextStateTheSame, CharacterActionData actionData, Animator animator, CharacterToolsManager toolsManager, Rotator rotator)
     {
@@ -26,10 +27,13 @@ public class DigCharacterState : IterativeStateData
     }
     
     public void OnMoveToPoint(CharacterActionData actionData, Animator animator, CharacterToolsManager toolsManager, Rotator rotator)
-    {
-        Debug.Log("On move to point");
-        isMovedToPoint = true;
+    {      
+        actionData.taskManager.StartCoroutine(OnMoveToPointEnumerator(actionData, animator, toolsManager, rotator));
+    }
 
-        actionData.taskManager.StartCoroutine(moveToPointState.End(false, actionData, animator, toolsManager, rotator));
+    public IEnumerator OnMoveToPointEnumerator(CharacterActionData actionData, Animator animator, CharacterToolsManager toolsManager, Rotator rotator)
+    {
+        yield return moveToPointState.End(false, actionData, animator, toolsManager, rotator);
+        isMovedToPoint = true;
     }
 }

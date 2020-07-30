@@ -30,11 +30,11 @@ public class CharacterTasksManager : MonoBehaviour
     
     public void ExecuteTask(GameObject taskObject, Vector2 taskPoint)
     {
-        if (activeTask != null)
-            activeTask.Cancel();
+    //    if (activeTask != null)
+    //        StartCoroutine(activeTask.Cancel());
         List<CharacterTaskPoint> taskStatesPoints = taskPathfinder.FindPath(transform.position, taskObject, taskPoint);
         activeTask = new CharacterTask(taskStatesPoints, this, toolsManager, skillsManager, animator, rotator);
-        StartCoroutine(activeTask.Execute());
+        StartCoroutine(activeTask.ExecuteNextState());
     }
 
     public void OnBecomeNotActive() 

@@ -49,14 +49,13 @@ public class DigHandler : MonoBehaviour, IIteractiveActionHandler
             digTile.Dig(actionData);
         }
     }
-}
 
-//[CustomEditor(typeof(MoveHandler)), CanEditMultipleObjects]
-//public class MoveHandlerEditor : Editor
-//{
-//    public override void OnInspectorGUI()
-//    {
-//        base.OnInspectorGUI();
-//        EditorGUILayout.FloatField("CurrentSpeed", (target as MoveHandler).speed);
-//    }
-//}
+    public void OnStopAction(CharacterActionData actionData)
+    {
+        DiggingTile digTile = diggingTiles.Find(tile => tile.activeActions.Contains(actionData));
+        if (digTile != null)
+        {
+            digTile.RemoveActiveAction(actionData);
+        }
+    }
+}
