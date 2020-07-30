@@ -32,7 +32,9 @@ public class CharacterTasksManagersSet : RuntimeSet<CharacterTasksManager>
                 if (anyColliderHit)
                 {
                     if (activeCharacter != null)
+                    {
                         activeCharacter.ExecuteTask(anyColliderHit.collider.gameObject.layer, clickPosition);
+                    }                        
                     else
                         Debug.Log("No active character for ground task");
                 }

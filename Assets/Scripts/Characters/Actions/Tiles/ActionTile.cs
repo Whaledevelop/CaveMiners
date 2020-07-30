@@ -25,7 +25,7 @@ public class ActionTile
 
     public void OnIteration(CharacterActionData actionData)
     {
-        Debug.Log("OnIteration " + HP);
+        //Debug.Log("OnIteration " + HP);
         HP -= actionData.stateSkill;
         if (HP <= 0)
         {
@@ -44,7 +44,8 @@ public class ActionTile
         OnWorkedOut?.Invoke();
         foreach (CharacterActionData action in activeActions)
         {
-            action.OnExecute();
+            //Debug.Log("Execute ");
+            action.OnExecute(EndExecutionCondition.Executed);
         }        
     }
 
@@ -55,10 +56,5 @@ public class ActionTile
         {
             initialTileCell.SetTile(neededTile.tile);
         }
-    }
-
-    public void RemoveActiveAction(CharacterActionData actionData)
-    {
-        activeActions.Remove(actionData);
     }
 }

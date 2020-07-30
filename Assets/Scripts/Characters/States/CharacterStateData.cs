@@ -22,12 +22,6 @@ public class CharacterStateData : ScriptableObject
     public CharacterActionGameEvent startEvent;
     public CharacterActionGameEvent endEvent;
 
-    // Перенести отсюда
-    public bool CompareActionMaskWithLayer(int layer)
-    {
-        return (int)Mathf.Log(actionLayerMask.value, 2) == layer;
-    }
-
     public virtual IEnumerator Execute(bool isPrevStateTheSame, CharacterActionData actionData, Animator animator, CharacterToolsManager toolsManager, Rotator rotator)
     {
         if (isViewUpdatableIfSame || (!isViewUpdatableIfSame && !isPrevStateTheSame))

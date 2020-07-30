@@ -33,6 +33,7 @@ public class CharacterTasksManager : MonoBehaviour
 
     [HideInInspector] public List<TaskStartData> nextTasks = new List<TaskStartData>();
     [HideInInspector] public List<TaskStartData> tasksHistory = new List<TaskStartData>();
+
     private CharacterTask activeTask;
 
     
@@ -55,15 +56,21 @@ public class CharacterTasksManager : MonoBehaviour
 
     public void ExecuteTask(int taskLayer, Vector2 taskPoint, NoParamsDelegate executeDelegate = null)
     {
-        //    if (activeTask != null)
-        //        StartCoroutine(activeTask.Cancel());
         cellCenterRequest.MakeRequest(new ParamsObject(taskPoint), out taskPoint);
         List<CharacterTaskPoint> taskStatesPoints = taskPathfinder.FindPath(transform.position, taskPoint, taskLayer);
-        activeTask = new CharacterTask(taskStatesPoints, this, toolsManager, skillsManager, animator, rotator);        
-        StartCoroutine(activeTask.ExecuteNextState());
-        tasksHistory.Add(new TaskStartData(taskLayer, taskPoint));
-        if (executeDelegate != null)
-            onEndTask += executeDelegate.Invoke;
+        if (taskStatesPoints.Count > 0)
+        {
+            activeTask = new CharacterTask(taskStatesPoints, this, toolsManager, skillsManager, animator, rotator);
+            StartCoroutine(activeTask.ExecuteNextState());
+            tasksHistory.Add(new TaskStartData(taskLayer, taskPoint));
+            if (executeDelegate != null)
+                onEndTask += () => executeDelegate.Invoke();
+        }
+        else
+        {
+            Debug.Log("Task with no states");
+        }
+
     }
 
     public void OnEndTask()
@@ -72,17 +79,9 @@ public class CharacterTasksManager : MonoBehaviour
         onEndTask = null;
         if (nextTasks.Count > 0)
         {
-            ExecuteTask(nextTasks[0]);
+            TaskStartData nextTask = nextTasks[0];
             nextTasks.RemoveAt(0);
-        }        
-    }
-
-    public void RepeatTaskFromHistory(int prevTaskIndexFromCurrent)
-    {
-        if (tasksHistory.Count > 0 && tasksHistory.Count - prevTaskIndexFromCurrent > 0)
-        {
-            TaskStartData taskFromHistoryStartData = tasksHistory[tasksHistory.Count - prevTaskIndexFromCurrent];
-            ExecuteTask(taskFromHistoryStartData);
+            ExecuteTask(nextTask);            
         }        
     }
 

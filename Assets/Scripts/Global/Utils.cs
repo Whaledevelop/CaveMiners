@@ -7,4 +7,6 @@ public class Utils
     {
         return new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f));
     }
+
+    public static int MaskToLayer(LayerMask layerMask) => (int)Mathf.Log(layerMask.value, 2);
 }

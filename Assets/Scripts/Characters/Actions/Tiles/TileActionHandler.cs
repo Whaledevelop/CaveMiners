@@ -26,32 +26,47 @@ public class TileActionHandler : MonoBehaviour, IIteractiveActionHandler
     {
         Vector3Int digCellPositionInt = grid.WorldToCell(Vector3Int.FloorToInt(actionData.endPosition));
 
-        TileBase digTile = initialTilemap.GetTile(digCellPositionInt);
-        if (digTile != null)
+        ActionTile activeTile = actionTiles.Find(tile => tile.initialTileCell.cellPosition == digCellPositionInt);
+
+        if (activeTile == null)
         {
-            TileCell groundTileData = new TileCell(digTile, initialTilemap, digCellPositionInt);
-            TileCell tunnelTileData = new TileCell(finalTile, finalTilemap, digCellPositionInt);
-            ActionTile diggingTile = new ActionTile(tilesSet, groundTileData, tunnelTileData, actionData, initialHP);
-            diggingTile.OnWorkedOut += () => actionTiles.Remove(diggingTile);
-            actionTiles.Add(diggingTile);
+            TileBase digTile = initialTilemap.GetTile(digCellPositionInt);
+            if (digTile != null)
+            {
+                TileCell groundTileData = new TileCell(digTile, initialTilemap, digCellPositionInt);
+                TileCell tunnelTileData = new TileCell(finalTile, finalTilemap, digCellPositionInt);
+                ActionTile diggingTile = new ActionTile(tilesSet, groundTileData, tunnelTileData, actionData, initialHP);
+                diggingTile.OnWorkedOut += () => actionTiles.Remove(diggingTile);
+                actionTiles.Add(diggingTile);
+            }
+        }
+        else
+        {
+            activeTile.activeActions.Add(actionData);
         }
     }
 
     public void OnIteration(CharacterActionData actionData)
     {
-        ActionTile digTile = actionTiles.Find(diggingTile => diggingTile.activeActions.Contains(actionData));
-        if (digTile != null)
+        ActionTile actionTile = actionTiles.Find(tile => tile.activeActions.Contains(actionData));
+        if (actionTile != null)
         {
-            digTile.OnIteration(actionData);
+            actionTile.OnIteration(actionData);
         }
     }
 
     public void OnStopAction(CharacterActionData actionData)
     {
-        ActionTile digTile = actionTiles.Find(tile => tile.activeActions.Contains(actionData));
-        if (digTile != null)
+        foreach(ActionTile actionTile in actionTiles)
         {
-            digTile.RemoveActiveAction(actionData);
+            int removeActionIndex = -1;
+            for(int i = 0; i < actionTile.activeActions.Count; i++)
+            {
+                if (actionTile.activeActions[i].taskManager == actionData.taskManager)
+                    removeActionIndex = i;
+            }
+            if (removeActionIndex != -1)
+                actionTile.activeActions.RemoveAt(removeActionIndex);
         }
     }
 

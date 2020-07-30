@@ -1,7 +1,14 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public delegate IEnumerator NoParamsVoidDelegate();
+public delegate IEnumerator NoParamsEnumeratorDelegate();
+
+public enum EndExecutionCondition
+{
+    None,
+    Executed,
+    IterationsCount
+}
 
 [System.Serializable]
 public struct CharacterActionData
@@ -14,9 +21,11 @@ public struct CharacterActionData
     public Vector2 actionDirection;
     public float stateSkill => skillsManager.GetStateSkill(stateData);
 
-    public NoParamsVoidDelegate OnExecuteDelegate;
+    public NoParamsEnumeratorDelegate OnExecuteDelegate;
 
-    public CharacterActionData(CharacterTasksManager taskManager, CharacterSkillsManager skillsManager, CharacterStateData stateData, Vector2 startPosition, Vector2 endPosition, Vector2 actionDirection, NoParamsVoidDelegate OnExecuteDelegate = null)
+    public EndExecutionCondition endExecutionCondition;
+
+    public CharacterActionData(CharacterTasksManager taskManager, CharacterSkillsManager skillsManager, CharacterStateData stateData, Vector2 startPosition, Vector2 endPosition, Vector2 actionDirection, NoParamsEnumeratorDelegate OnExecuteDelegate = null)
     {
         this.taskManager = taskManager;
         this.skillsManager = skillsManager;
@@ -25,15 +34,17 @@ public struct CharacterActionData
         this.endPosition = endPosition;
         this.actionDirection = actionDirection;
         this.OnExecuteDelegate = OnExecuteDelegate;
+        endExecutionCondition = EndExecutionCondition.None;
     }
 
-    public void OnExecute()
+    public void OnExecute(EndExecutionCondition endExecutionCondition)
     {
+        this.endExecutionCondition = endExecutionCondition;
         if (OnExecuteDelegate != null)
         {
             IEnumerator executeEnumerator = OnExecuteDelegate.Invoke();
             if (executeEnumerator != default)
                 taskManager.StartCoroutine(executeEnumerator);
-        }            
+        }        
     }
 }

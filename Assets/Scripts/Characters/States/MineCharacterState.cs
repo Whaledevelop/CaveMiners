@@ -19,14 +19,21 @@ public class MineCharacterState : IterativeStateData
     {
         yield return base.End(isNextStateTheSame, actionData, animator, toolsManager, rotator);
 
+        TaskStartData mineTask = actionData.taskManager.tasksHistory[actionData.taskManager.tasksHistory.Count - 1];
+        ToolCode prevToolCode = toolsManager.defaultTool;             
+
         toolsManager.defaultTool = nextTaskDefaultTool;
 
-        //basePositionRequest.MakeRequest(new ParamsObject(baseTile), out Vector2 basePosition);
+        basePositionRequest.MakeRequest(new ParamsObject(baseTile), out Vector2 basePosition);
 
-
-        actionData.taskManager.nextTasks.Add(new TaskStartData(baseLayer, new Vector2(-6.5f, -0.5f), () =>
+        actionData.taskManager.nextTasks.Add(new TaskStartData(Utils.MaskToLayer(baseLayer), basePosition, () =>
         {
-            actionData.taskManager.RepeatTaskFromHistory(2);
+            toolsManager.defaultTool = prevToolCode;
+            if (actionData.endExecutionCondition == EndExecutionCondition.IterationsCount)
+            {                
+                actionData.taskManager.ExecuteTask(mineTask);
+            }            
+
         }));
     }
 }

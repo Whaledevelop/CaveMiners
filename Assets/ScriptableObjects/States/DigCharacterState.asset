@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DigCharacterState
   m_EditorClassIdentifier: 
   stateName: Digging
-  toolCode: 3
+  toolCode: 4
   actionLayerMask:
     serializedVersion: 2
     m_Bits: 256
@@ -27,4 +27,6 @@ MonoBehaviour:
   endEvent: {fileID: 11400000, guid: 825a2aa869dfa7d49ba3ac13497596f1, type: 2}
   iterationEvent: {fileID: 11400000, guid: b4338e0b4018179488d4ca3efb919f7a, type: 2}
   iterationsInterval: 1
+  executionCondition: 1
+  maxIterationsCount: 0
   moveToPointState: {fileID: 11400000, guid: 5667e594b0489084f9f4dba82e840c76, type: 2}

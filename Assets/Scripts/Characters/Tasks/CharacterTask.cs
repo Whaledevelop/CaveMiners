@@ -19,6 +19,8 @@ public class CharacterTask
 
     private CharacterState activeState;
 
+    private bool isExecuted;
+
     public CharacterTask(List<CharacterTaskPoint> taskPoints, CharacterTasksManager taskManager, CharacterToolsManager toolsManager, 
         CharacterSkillsManager skillsManager, Animator animator, Rotator rotator)
     {
@@ -33,25 +35,29 @@ public class CharacterTask
 
     public IEnumerator ExecuteNextState()
     {
-        CharacterStateData prevStateData = CurrentStateData;
-        currentTaskPointIndex++;
-        bool isCurrentStateTheSame = prevStateData != null && prevStateData == CurrentStateData;
+        if (!isExecuted)
+        {
+            CharacterStateData prevStateData = CurrentStateData;
+            currentTaskPointIndex++;
+            bool isCurrentStateTheSame = prevStateData != null && prevStateData == CurrentStateData;
 
-        if (activeState != null)
-        {
-            yield return activeState.End(isCurrentStateTheSame);
-        }
-        if (currentTaskPointIndex < taskPoints.Count)
-        {
-            CharacterActionData actionData = new CharacterActionData(taskManager, skillsManager, CurrentStateData, taskManager.transform.position, 
-                CurrentTaskPoint.CellPosition, -CurrentTaskPoint.AxisToNextCell, ExecuteNextState);
-            activeState = new CharacterState(actionData, animator, toolsManager, rotator);
-            yield return activeState.Execute(isCurrentStateTheSame);
-        }
-        else
-        {
-            End();
-            yield break;
+            //Debug.Log("ExecuteNextState " + currentTaskPointIndex + ", " + taskPoints.Count + ", " + CurrentStateData);
+            if (activeState != null)
+            {
+                yield return activeState.End(isCurrentStateTheSame);
+            }
+            if (currentTaskPointIndex < taskPoints.Count)
+            {
+                CharacterActionData actionData = new CharacterActionData(taskManager, skillsManager, CurrentStateData, taskManager.transform.position,
+                    CurrentTaskPoint.CellPosition, -CurrentTaskPoint.AxisToNextCell, ExecuteNextState);
+                activeState = new CharacterState(actionData, animator, toolsManager, rotator);
+                yield return activeState.Execute(isCurrentStateTheSame);
+            }
+            else
+            {
+                End();
+                yield break;
+            }
         }
     }
 
@@ -62,6 +68,7 @@ public class CharacterTask
 
     public void End()
     {
+        isExecuted = true;
         taskManager.OnEndTask();
     }
 }

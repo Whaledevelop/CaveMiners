@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MineCharacterState
   m_EditorClassIdentifier: 
   stateName: Mining
-  toolCode: 2
+  toolCode: 3
   actionLayerMask:
     serializedVersion: 2
     m_Bits: 4096
@@ -24,11 +24,11 @@ MonoBehaviour:
   animatorTriggerStart: StartMining
   animatorTriggerEnd: StopMining
   startEvent: {fileID: 11400000, guid: b86a7511c0c6b37438783760bd5d508f, type: 2}
-  endEvent: {fileID: 11400000, guid: 882c0584ad7eddc4781284b663e30e7b, type: 2}
-  iterationEvent: {fileID: 11400000, guid: 3afe5e381e6136546baffc7a5d176ee6, type: 2}
+  endEvent: {fileID: 11400000, guid: 3afe5e381e6136546baffc7a5d176ee6, type: 2}
+  iterationEvent: {fileID: 11400000, guid: 882c0584ad7eddc4781284b663e30e7b, type: 2}
   iterationsInterval: 1
-  executionCondition: 1
-  maxIterationsCount: 10
+  executionCondition: 2
+  maxIterationsCount: 5
   basePositionRequest: {fileID: 11400000, guid: b138cfb8a836fca4bac1843b8a031df2,
     type: 2}
   baseTile: {fileID: 11400000, guid: 23bd632132609744dac88d161985ca37, type: 2}
