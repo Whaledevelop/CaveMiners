@@ -16,6 +16,7 @@ MonoBehaviour:
   checkIfCharacterOnCellRequest: {fileID: 11400000, guid: 03a7818d7a2ec284cbc37f87190cce7f,
     type: 2}
   cellActionsStates:
+  - {fileID: 11400000, guid: fb1fad21a769c9348bd18dde42fc5d03, type: 2}
   - {fileID: 11400000, guid: da1f466d71b61af47a4ea46023313f53, type: 2}
   - {fileID: 11400000, guid: 5667e594b0489084f9f4dba82e840c76, type: 2}
   pathFindMaxDepth: 15

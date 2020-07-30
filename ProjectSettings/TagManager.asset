@@ -15,10 +15,10 @@ TagManager:
   - 
   - 
   - DiggableGround
-  - UndiggableGround
+  - Undiggable
   - Tunnels
   - Character
-  - 
+  - Resources
   - 
   - 
   - 

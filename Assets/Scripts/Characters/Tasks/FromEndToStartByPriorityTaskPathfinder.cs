@@ -24,8 +24,7 @@ public class FromEndToStartByPriorityTaskPathfinder : TaskPathfinder
         {
             finalPath = new CharacterTaskPoint(taskEndPointState, taskPoint, Vector2.zero);
 
-            // FindPathTreeToCharacter внутри обновляет finalPath, добавляя все возможно пути, а возвращает
-            // единственный путь до персонажа
+            // FindPathTreeToCharacter внутри обновляет finalPath, добавляя все возможно пути, а возвращает eдинственный путь до персонажа
             List<CharacterTaskPoint> lastPointsToCharacter = FindPathToCharacter(finalPath.nestLevel, startPosition, ref finalPath);
 
             if (lastPointsToCharacter != null && lastPointsToCharacter.Count > 0)
@@ -47,7 +46,6 @@ public class FromEndToStartByPriorityTaskPathfinder : TaskPathfinder
         {
             // Получаем точки текущей итерации
             List<CharacterTaskPoint> currentIterationPaths = finalPath.GetAllStatesWithNestLevel(nestLevel);
-
             // Проверяем клетки следующей итерации
             List<CharacterTaskPoint> pointsToCharacter = CheckPathToCharacterAmongPaths(currentIterationPaths, position, ref finalPath);
 
@@ -102,10 +100,7 @@ public class FromEndToStartByPriorityTaskPathfinder : TaskPathfinder
         if (priorityPaths.Count > 0)
         {
             // Из priorityPaths забираем только один элемент с бОльшим приоритетом
-            Dictionary<int, List<CharacterTaskPoint>> higherPriorityPaths = priorityPaths.Aggregate((biggest, next) =>
-            {
-                return next.Key > biggest.Key ? next : biggest;
-            }).Value;
+            Dictionary<int, List<CharacterTaskPoint>> higherPriorityPaths = priorityPaths.Aggregate((biggest, next) => next.Key > biggest.Key ? next : biggest).Value;
 
 
             for (int i = 0; i < currentIterationPaths.Count; i++)
@@ -122,8 +117,7 @@ public class FromEndToStartByPriorityTaskPathfinder : TaskPathfinder
 
     public (bool, int, List<CharacterTaskPoint>) CheckPathToCharacter(CharacterTaskPoint prevPath, Vector2 position)
     {
-        List<CharacterTaskPoint> morePrioritePaths = new List<CharacterTaskPoint>();
-        List<CharacterTaskPoint> samePrioritePaths = new List<CharacterTaskPoint>();
+        Dictionary<int, List<CharacterTaskPoint>> pathsByPriority = new Dictionary<int, List<CharacterTaskPoint>>();
 
         foreach (Vector2Int axis in axises)
         {
@@ -141,23 +135,23 @@ public class FromEndToStartByPriorityTaskPathfinder : TaskPathfinder
                     CharacterStateData cellState = cellActionsStates.Find(state => state.CompareActionMaskWithLayer(cellLayerMask));
                     if (cellState != null)
                     {
-                        if (cellState.actionPriority == prevPath.Priority)
-                            samePrioritePaths.Add(new CharacterTaskPoint(cellState, prevPath.CellPosition, axis));
-                        else if (cellState.actionPriority > prevPath.Priority)
-                            morePrioritePaths.Add(new CharacterTaskPoint(cellState, prevPath.CellPosition, axis));
+                        if (pathsByPriority.ContainsKey(cellState.actionPriority))
+                        {
+                            pathsByPriority[cellState.actionPriority].Add(new CharacterTaskPoint(cellState, prevPath.CellPosition, axis));
+                        }
+                        else
+                        {
+                            pathsByPriority.Add(cellState.actionPriority, new List<CharacterTaskPoint>() { new CharacterTaskPoint(cellState, prevPath.CellPosition, axis) });
+                        }
                     }
                 }
             }
         }
+        List<CharacterTaskPoint> morePrioritePaths = pathsByPriority.Aggregate((biggest, next) => next.Key > biggest.Key ? next : biggest).Value;
         if (morePrioritePaths.Count > 0)
-        {
             return (false, morePrioritePaths[0].Priority, morePrioritePaths);
-        }
-        else if (samePrioritePaths.Count > 0)
-        {
-            return (false, prevPath.Priority, samePrioritePaths);
-        }
-        return (false, 0, new List<CharacterTaskPoint>());
+        else
+            return (false, 0, new List<CharacterTaskPoint>());
     }
 }
 
