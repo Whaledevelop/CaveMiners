@@ -32,7 +32,7 @@ public class MineCharacterState : IterativeStateData
             if (actionData.endExecutionCondition == EndExecutionCondition.IterationsCount)
             {                
                 actionData.taskManager.ExecuteTask(mineTask);
-            }            
+            }          
 
         }));
     }

@@ -50,9 +50,6 @@ public class CharacterState
             {
                 
                 actionData.OnExecute(EndExecutionCondition.IterationsCount);
-
-                //Debugger.Log("Execute by iterations " + actionData.endExecutionCondition, "blue");
-                //yield return End(false, actionData, animator, toolsManager, rotator);
             }
         }
         else
@@ -80,8 +77,8 @@ public class CharacterState
 
     public IEnumerator End(bool isNextStateTheSame = false)
     {
-        //Debugger.Log("End state " + actionData.endExecutionCondition, "red");
         actionData.taskManager.StopCoroutine(Execute(isPrevStateTheSame));
+
         yield return stateData.End(isNextStateTheSame, actionData, animator, toolsManager, rotator);
     }
 }

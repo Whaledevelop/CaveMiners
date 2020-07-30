@@ -36,7 +36,7 @@ public class GameEvent<T> : ScriptableObject
         listeners.Remove(listener);
     }
 
-    public void Raise(T raiseParams)
+    public virtual void Raise(T raiseParams)
     {
         foreach (GameEventListener<T> listener in listeners)
             listener.OnEventRaised(raiseParams);

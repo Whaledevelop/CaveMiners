@@ -8,5 +8,7 @@ public class CharacterInitialData : ScriptableObject
     public new string name;
     [Multiline] public string description;
 
+    public int salary;
+
     public List<CharacterStateSkillData> initialSkillsData;
 }
