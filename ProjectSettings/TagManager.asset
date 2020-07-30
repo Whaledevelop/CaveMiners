@@ -16,7 +16,7 @@ TagManager:
   - 
   - DiggableGround
   - Undiggable
-  - Tunnels
+  - Walkable
   - Character
   - Resources
   - 

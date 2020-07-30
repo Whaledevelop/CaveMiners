@@ -15,10 +15,10 @@ public class FromEndToStartByPriorityTaskPathfinder : TaskPathfinder
     private Vector2Int[] axises = new Vector2Int[4] { new Vector2Int(1, 0), new Vector2Int(-1, 0), new Vector2Int(0, 1), new Vector2Int(0, -1) };
     private CharacterTaskPoint finalPath;
 
-    public override List<CharacterTaskPoint> FindPath(Vector2 startPosition, GameObject taskObject, Vector2 taskPoint)
+    public override List<CharacterTaskPoint> FindPath(Vector2 startPosition, Vector2 taskPoint, int taskLayer)
     {
         // Начинаем с конца, чтобы двигаться от меньшего приоритета (земли) к большему (тоннели)
-        CharacterStateData taskEndPointState = cellActionsStates.Find(state => state.CompareActionMaskWithLayer(taskObject.layer));
+        CharacterStateData taskEndPointState = cellActionsStates.Find(state => state.CompareActionMaskWithLayer(taskLayer));
 
         if (taskEndPointState != null)
         {

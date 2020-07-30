@@ -113,8 +113,8 @@ MonoBehaviour:
   - {fileID: 2192015189815932129}
   - {fileID: 2192015190684278187}
   m_Bounds:
-    m_Center: {x: 0.031543195, y: 0.031648874, z: 0}
-    m_Extent: {x: 0.37657234, y: 0.31656522, z: 0}
+    m_Center: {x: 0.031543285, y: 0.031648844, z: 0}
+    m_Extent: {x: 0.37657243, y: 0.31656522, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!114 &2192015189806234752
@@ -428,6 +428,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b1ff5e3f374ee149ac2becedc2a1bf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultTool: 0
   spriteResolver: {fileID: 2192015189806234752}
   toolsEquipData:
   - prefab: {fileID: 3978536512088312465, guid: fed21b5492143484080f7e6519a25b75,
@@ -476,6 +477,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff6cb49f2a54d5c479fbcb8bd1d8db9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cellCenterRequest: {fileID: 11400000, guid: 03dc6e1a6c17e98478746032c7be2c09, type: 2}
   set: {fileID: 11400000, guid: 0ea25a6fa32963245a118fa514e29572, type: 2}
   initialData: {fileID: 11400000, guid: c07f08585e38d6d449aa4567e64300d7, type: 2}
   taskPathfinder: {fileID: 11400000, guid: 4143bb7889e7aeb4a9d55cd598f2c6c6, type: 2}

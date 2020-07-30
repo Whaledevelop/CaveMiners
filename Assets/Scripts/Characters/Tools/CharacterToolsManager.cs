@@ -18,6 +18,7 @@ public class ToolEquipData : PrefabInstantiateData
 public enum ToolCode
 { 
     None,
+    Default,
     Bag,
     Pick,
     Shovel
@@ -25,13 +26,19 @@ public enum ToolCode
 
 public class CharacterToolsManager : MonoBehaviour
 {
+    public ToolCode defaultTool;
     public SpriteResolver spriteResolver;
-
     public List<ToolEquipData> toolsEquipData = new List<ToolEquipData>();
 
+    public void SetDefaultTool(ToolCode toolCode)
+    {
+        defaultTool = toolCode;
+    }
 
     public void ChangeToolMode(ToolCode toolCode, bool toolMode)
     {
+        if (toolCode == ToolCode.Default)
+            toolCode =  defaultTool;
         ToolEquipData toolData = toolsEquipData.Find(toolEquipData => toolEquipData.toolCode == toolCode);
         if (toolData != null)
         {

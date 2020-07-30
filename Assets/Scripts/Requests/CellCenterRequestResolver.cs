@@ -4,12 +4,12 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-[CreateAssetMenu(fileName = "CellCenterRequest", menuName = "Requests/CellCenter")]
-public class CellCenterRequest : Request<Vector2> { }
+[CreateAssetMenu(fileName = "CellPositionRequest", menuName = "Requests/CellPositionRequest")]
+public class CellPositionRequest : Request<Vector2> { }
 
 public class CellCenterRequestResolver : RequestResolver<Vector2>
 {
-    [SerializeField] private CellCenterRequest request;
+    [SerializeField] private CellPositionRequest request;
     [SerializeField] private Grid grid;
 
     public override Request<Vector2> Request => request;

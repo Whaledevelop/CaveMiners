@@ -62,6 +62,6 @@ public class CharacterTask
 
     public void End()
     {
-        
+        taskManager.OnEndTask();
     }
 }

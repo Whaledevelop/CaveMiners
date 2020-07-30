@@ -46,6 +46,11 @@ public class MoveHandler : MonoBehaviour, IActionHandler
             StartCoroutine(WaitUntilEndPoint(actionData));
         }
     }
+
+    public void OnEndAction(CharacterActionData actionData)
+    {
+        //throw new System.NotImplementedException();
+    }
 }
 
 [CustomEditor(typeof(MoveHandler)), CanEditMultipleObjects]
