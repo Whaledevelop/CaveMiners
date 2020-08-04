@@ -5,8 +5,8 @@ public class PrefabInstantiateData
 {
     public GameObject prefab;
     public Transform parent;
-    [HideInInspector]
-    public GameObject instance;
+
+    private GameObject instance;
 
     public bool IsActive => instance != null && instance.activeSelf;
 

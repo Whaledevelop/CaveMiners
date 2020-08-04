@@ -10,5 +10,7 @@ public class CharacterInitialData : ScriptableObject
 
     public int salary;
 
+    public string spriteName;
+
     public List<CharacterStateSkillData> initialSkillsData;
 }

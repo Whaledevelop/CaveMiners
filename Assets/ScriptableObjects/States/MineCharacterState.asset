@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d655de2da699942429c77c93c8ac9c4c, type: 3}
   m_Name: MineCharacterState
   m_EditorClassIdentifier: 
-  stateName: Mining
+  stateName: "\u0414\u043E\u0431\u044B\u0447\u0430"
   toolCode: 3
   actionLayerMask:
     serializedVersion: 2

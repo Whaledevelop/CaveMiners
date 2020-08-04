@@ -52,8 +52,7 @@ public class CharacterToolsManager : MonoBehaviour
             }
         }
     }
-
-    // Для UnityEvent, который не работает с enum в качестве статического параметра
+    
     public void HideTool(ToolCode toolCode)
     {
         if (toolCode != ToolCode.None)

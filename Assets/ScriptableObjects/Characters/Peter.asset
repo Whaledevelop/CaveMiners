@@ -14,4 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: "\u041F\u0451\u0442\u0440"
   description: "\u0420\u044B\u0436\u0438\u0439 \u0438\u0437 \u0418\u0432\u0430\u043D\u0443\u0448\u0435\u043A"
-  initialDigSkill: 0
+  salary: 0
+  spriteName: CaveMiner2
+  initialSkillsData:
+  - state: {fileID: 11400000, guid: 5667e594b0489084f9f4dba82e840c76, type: 2}
+    value: 1
+    learnability: 0
+  - state: {fileID: 11400000, guid: da1f466d71b61af47a4ea46023313f53, type: 2}
+    value: 1
+    learnability: 0
+  - state: {fileID: 11400000, guid: fb1fad21a769c9348bd18dde42fc5d03, type: 2}
+    value: 1
+    learnability: 0

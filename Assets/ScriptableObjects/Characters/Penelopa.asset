@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c2f6ed489dad52d49a80cf0499ff00a9, type: 3}
-  m_Name: Cornelius
+  m_Name: Penelopa
   m_EditorClassIdentifier: 
-  name: "\u041A\u043E\u0440\u043D\u0435\u043B\u0438\u0443\u0441"
-  description: "\u041C\u0430\u0442\u0451\u0440\u044B\u0439 \u0434\u043E\u0431\u044B\u0442\u0447\u0438\u043A"
-  salary: 10
-  spriteName: CaveMiner1
+  name: "\u041F\u0435\u043D\u0435\u043B\u043E\u043F\u0430"
+  description: 
+  salary: 0
+  spriteName: CaveMiner3
   initialSkillsData:
   - state: {fileID: 11400000, guid: 5667e594b0489084f9f4dba82e840c76, type: 2}
     value: 1
     learnability: 0
   - state: {fileID: 11400000, guid: da1f466d71b61af47a4ea46023313f53, type: 2}
-    value: 2
+    value: 1
     learnability: 0
   - state: {fileID: 11400000, guid: fb1fad21a769c9348bd18dde42fc5d03, type: 2}
-    value: 15
+    value: 1
     learnability: 0
