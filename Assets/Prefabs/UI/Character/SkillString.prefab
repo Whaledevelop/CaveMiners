@@ -168,7 +168,7 @@ GameObject:
   - component: {fileID: 782486934823079993}
   - component: {fileID: 782486934823079992}
   - component: {fileID: 782486934823079995}
-  - component: {fileID: 111007549799492228}
+  - component: {fileID: 2178757850450394561}
   m_Layer: 5
   m_Name: SkillString
   m_TagString: Untagged
@@ -259,7 +259,7 @@ MonoBehaviour:
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
---- !u!114 &111007549799492228
+--- !u!114 &2178757850450394561
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -268,9 +268,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 782486934823079997}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6043c0c086f896b4e84ad7d5eac3a03f, type: 3}
+  m_Script: {fileID: 11500000, guid: 7e7ec7905a8b9564aa8c94a391b546b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  texts:
-  - {fileID: 782486934422167762}
-  - {fileID: 782486934810442913}
+  skillName: {fileID: 782486934422167762}
+  skillValue: {fileID: 782486934810442913}

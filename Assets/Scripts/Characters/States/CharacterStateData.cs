@@ -4,6 +4,13 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "CharacterStateData", menuName = "States/CharacterStateData")]
 public class CharacterStateData : ScriptableObject
 {
+    public enum StateStage
+    {
+        None,
+        Start,
+        End
+    }
+
     public string stateName;
  
     public ToolCode toolCode;
@@ -26,10 +33,7 @@ public class CharacterStateData : ScriptableObject
     {
         if (isViewUpdatableIfSame || (!isViewUpdatableIfSame && !isPrevStateTheSame))
         {
-            if (!string.IsNullOrEmpty(animatorTriggerStart))
-                animator.SetTrigger(animatorTriggerStart);
-
-            toolsManager.ApplyTool(toolCode);
+            UpdateView(StateStage.Start, animator, toolsManager);
         }
 
         rotator.Rotate(actionData.actionDirection, rotationMode);
@@ -45,15 +49,29 @@ public class CharacterStateData : ScriptableObject
     {
         if (isViewUpdatableIfSame || (!isViewUpdatableIfSame && !isNextStateTheSame))
         {
-            if (!string.IsNullOrEmpty(animatorTriggerEnd))
-                animator.SetTrigger(animatorTriggerEnd);
-
-            toolsManager.HideTool(toolCode);
+            UpdateView(StateStage.End, animator, toolsManager);
         }
         if (endEvent != null)
         {
             endEvent.Raise(actionData);
         }
         yield break;
+    }
+
+    public void UpdateView(StateStage stateStage, Animator animator, CharacterToolsManager toolsManager)
+    {
+        switch(stateStage)
+        {
+            case StateStage.Start:
+                if (!string.IsNullOrEmpty(animatorTriggerStart))
+                    animator.SetTrigger(animatorTriggerStart);
+                toolsManager.ApplyTool(toolCode);
+                break;
+            case StateStage.End:
+                if (!string.IsNullOrEmpty(animatorTriggerEnd))
+                    animator.SetTrigger(animatorTriggerEnd);
+                toolsManager.HideTool(toolCode);
+                break;
+        }
     }
 }

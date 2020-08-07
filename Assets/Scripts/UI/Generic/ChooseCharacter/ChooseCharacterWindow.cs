@@ -6,9 +6,13 @@ public class ChooseCharacterWindow : MonoBehaviour
 {
     [SerializeField] private CharacterInitialData[] charactersData;
 
-    [SerializeField] private CharacterUIItem itemPrefab;
+    [SerializeField] private CharacterUIItem characterItemPrefab;
 
-    [SerializeField] private Transform charactersParent;
+    [SerializeField] private RectTransform charactersParent;
+
+    
+
+    [SerializeField] private Transform characterPreviewParent;
 
     [SerializeField] private int maxActiveCharacters;
 
@@ -16,23 +20,29 @@ public class ChooseCharacterWindow : MonoBehaviour
 
     private List<CharacterUIItem> chosenItems = new List<CharacterUIItem>();
 
-    public void Init()
+    public void Start()
     {
-        foreach (CharacterInitialData characterData in charactersData)
+        for (int i = 0; i < charactersData.Length; i++)
         {
-            CharacterUIItem item = Instantiate(itemPrefab, charactersParent);
-            item.Init(characterData);
+            CharacterUIItem item = Instantiate(characterItemPrefab, charactersParent);
+            item.Init(charactersData[i], characterPreviewParent, i);
+            item.onClickCharacter += OnClickCharacterItem;
             instantiatedItems.Add(item);
         }
     }
 
-    public void OnChooseCharacter(CharacterInitialData character)
+    public void OnClickCharacterItem(CharacterInitialData character)
     {
         foreach(CharacterUIItem item in instantiatedItems)
         {
             if (item.character == character)
             {
-                if (!chosenItems.Exists(i => i.character == character))
+                if (chosenItems.Exists(i => i.character == character))
+                {
+                    item.ChangeChooseMode(false);
+                    chosenItems.Remove(item);
+                }
+                else
                 {
                     item.ChangeChooseMode(true);
                     chosenItems.Add(item);
@@ -47,14 +57,6 @@ public class ChooseCharacterWindow : MonoBehaviour
         }
     }
 
-    public void OnUnchooseCharacter(CharacterInitialData character)
-    {
-        if (GetItem(character, out CharacterUIItem item))
-        {
-            item.ChangeChooseMode(false);
-            chosenItems.Remove(item);
-        }            
-    }
 
     private bool GetItem(CharacterInitialData character, out CharacterUIItem item)
     {

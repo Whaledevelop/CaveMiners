@@ -113,8 +113,8 @@ MonoBehaviour:
   - {fileID: 2192015189815932129}
   - {fileID: 2192015190684278187}
   m_Bounds:
-    m_Center: {x: 0.031543285, y: 0.031648844, z: 0}
-    m_Extent: {x: 0.37657243, y: 0.31656522, z: 0}
+    m_Center: {x: 0.035164595, y: 0.0067946315, z: 0}
+    m_Extent: {x: 0.23023719, y: 0.25642556, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!114 &2192015189806234752
@@ -434,21 +434,18 @@ MonoBehaviour:
   - prefab: {fileID: 3978536512088312465, guid: fed21b5492143484080f7e6519a25b75,
       type: 3}
     parent: {fileID: 2192015190804166282}
-    instance: {fileID: 0}
     toolCode: 2
     isToUseSpriteSwitch: 0
     spriteResolveLabel: WithBag
   - prefab: {fileID: 3340418326975489417, guid: f9636b83abd3f914b8e6500a5c040bf1,
       type: 3}
     parent: {fileID: 2192015191208906906}
-    instance: {fileID: 0}
     toolCode: 3
     isToUseSpriteSwitch: 0
     spriteResolveLabel: WithPick
   - prefab: {fileID: 4750875145506631297, guid: 80ca75bc18c79ca439f561aa8002667b,
       type: 3}
     parent: {fileID: 2192015191208906906}
-    instance: {fileID: 0}
     toolCode: 4
     isToUseSpriteSwitch: 1
     spriteResolveLabel: WithShovel
