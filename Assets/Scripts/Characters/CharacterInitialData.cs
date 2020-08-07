@@ -2,6 +2,9 @@
 using UnityEditor;
 using System.Collections.Generic;
 
+[CreateAssetMenu(fileName = "CharacterInitialDataSet", menuName = "Sets/CharacterInitialDataSet")]
+public class CharacterInitialDataSet : RuntimeSet<CharacterInitialData>{ }
+
 [CreateAssetMenu(fileName = "CharacterInitialData", menuName = "ScriptableObjects/CharacterInitialData")]
 public class CharacterInitialData : ScriptableObject
 {

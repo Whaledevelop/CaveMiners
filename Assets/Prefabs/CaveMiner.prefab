@@ -113,8 +113,8 @@ MonoBehaviour:
   - {fileID: 2192015189815932129}
   - {fileID: 2192015190684278187}
   m_Bounds:
-    m_Center: {x: 0.035164595, y: 0.0067946315, z: 0}
-    m_Extent: {x: 0.23023719, y: 0.25642556, z: 0}
+    m_Center: {x: 0.031543285, y: 0.031648844, z: 0}
+    m_Extent: {x: 0.37657243, y: 0.31656522, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!114 &2192015189806234752
@@ -286,6 +286,9 @@ GameObject:
   - component: {fileID: 6625705014852564415}
   - component: {fileID: 3025087994489093101}
   - component: {fileID: 953592547}
+  - component: {fileID: 1452338194}
+  - component: {fileID: 1452338195}
+  - component: {fileID: 1452338196}
   m_Layer: 11
   m_Name: CaveMiner
   m_TagString: Character
@@ -503,6 +506,62 @@ MonoBehaviour:
       - m_Target: {fileID: 7282526008341427577}
         m_MethodName: OnStartAction
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1452338194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2192015190459939271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da930d7e0a47ac1409cacdefe8d4c414, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerTag: NextLevel
+  triggerEvent: {fileID: 11400000, guid: 8fc97a53d1975424897f71b55b592a68, type: 2}
+--- !u!114 &1452338195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2192015190459939271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad617930b55c51043b6bcd8d33de656e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  initialData: {fileID: 11400000, guid: c07f08585e38d6d449aa4567e64300d7, type: 2}
+  salaryInverval: 1
+  moneyVariable: {fileID: 11400000, guid: a95d1ccb3128b8247b785afc10148dce, type: 2}
+--- !u!114 &1452338196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2192015190459939271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6569e1bfe03d1c4b9d99f4943fa106a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 0a0abac8d7b79d44e9f467aae1a4b614, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1452338195}
+        m_MethodName: CancelInvoke
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

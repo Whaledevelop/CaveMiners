@@ -3,10 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class GameOverCaller : MonoBehaviour
+public class MainActor : MonoBehaviour
 {
     [SerializeField] private bool isGameEndable = true;
     [SerializeField] private GameEvent gameOverEvent;
+
+    [SerializeField] private CharacterInitialDataSet chosenCharacters;
+
+    public void Start()
+    {
+        
+    }
 
     public void OnChangeMoney(float money)
     {

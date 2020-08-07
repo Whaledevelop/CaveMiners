@@ -9,9 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: Money
-  m_EditorClassIdentifier: Assembly-CSharp::FloatVariable
-  description: 
-  defaultValue: 0
-  isMultisessional: 0
+  m_Script: {fileID: 11500000, guid: ebc551678d07e10439453a50afacb522, type: 3}
+  m_Name: StartPickingCharactersEvent
+  m_EditorClassIdentifier: 

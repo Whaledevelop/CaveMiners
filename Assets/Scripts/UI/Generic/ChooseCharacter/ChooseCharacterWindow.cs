@@ -8,17 +8,19 @@ public class ChooseCharacterWindow : MonoBehaviour
 
     [SerializeField] private CharacterUIItem characterItemPrefab;
 
-    [SerializeField] private RectTransform charactersParent;
-
-    
+    [SerializeField] private RectTransform charactersParent;    
 
     [SerializeField] private Transform characterPreviewParent;
 
     [SerializeField] private int maxActiveCharacters;
 
+    [SerializeField] private GameEvent onAllCharactersChosen;
+
+    [SerializeField] private GameEvent onTryingToChooseLessCharacters;
+
     private List<CharacterUIItem> instantiatedItems = new List<CharacterUIItem>();
 
-    private List<CharacterUIItem> chosenItems = new List<CharacterUIItem>();
+    [SerializeField] private CharacterInitialDataSet chosenCharacters;
 
     public void Start()
     {
@@ -37,19 +39,21 @@ public class ChooseCharacterWindow : MonoBehaviour
         {
             if (item.character == character)
             {
-                if (chosenItems.Exists(i => i.character == character))
+                if (chosenCharacters.Items.Exists(i => i == character))
                 {
                     item.ChangeChooseMode(false);
-                    chosenItems.Remove(item);
+                    chosenCharacters.Remove(item.character);
                 }
                 else
                 {
                     item.ChangeChooseMode(true);
-                    chosenItems.Add(item);
-                    if (chosenItems.Count > maxActiveCharacters)
+                    chosenCharacters.Add(item.character);
+                    if (chosenCharacters.Items.Count > maxActiveCharacters)
                     {
-                        chosenItems[0].ChangeChooseMode(false);
-                        chosenItems.RemoveAt(0);
+                        CharacterInitialData oldestChosenCharacter = chosenCharacters.Items[0];
+                        CharacterUIItem oldestChosenCharacterUI = instantiatedItems.Find(i => i.character == oldestChosenCharacter);
+                        oldestChosenCharacterUI.ChangeChooseMode(false);
+                        chosenCharacters.Remove(oldestChosenCharacter);
                         break;
                     }
                 }
@@ -57,11 +61,13 @@ public class ChooseCharacterWindow : MonoBehaviour
         }
     }
 
-
-    private bool GetItem(CharacterInitialData character, out CharacterUIItem item)
+    public void OnConfirmChosenCharacters()
     {
-        item = instantiatedItems.Find(i => i.character == character);
-        return item != null;
+        if (chosenCharacters.Items.Count == maxActiveCharacters)
+            onAllCharactersChosen.Raise();
+        else if (chosenCharacters.Items.Count < maxActiveCharacters)
+            onTryingToChooseLessCharacters.Raise();
     }
+
 }
 

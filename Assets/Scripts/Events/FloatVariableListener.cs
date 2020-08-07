@@ -25,6 +25,6 @@ public class FloatVariableListener : GameEventListener<float>
 
     private void Start()
     {
-        Response.Invoke(variable.Value);
+        //Response.Invoke(variable.Value);
     }
 }

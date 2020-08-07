@@ -517,21 +517,18 @@ MonoBehaviour:
   - prefab: {fileID: 3978536512088312465, guid: fed21b5492143484080f7e6519a25b75,
       type: 3}
     parent: {fileID: 350872696}
-    instance: {fileID: 0}
     toolCode: 2
     isToUseSpriteSwitch: 0
     spriteResolveLabel: WithBag
   - prefab: {fileID: 3340418326975489417, guid: f9636b83abd3f914b8e6500a5c040bf1,
       type: 3}
     parent: {fileID: 110390174}
-    instance: {fileID: 0}
     toolCode: 3
     isToUseSpriteSwitch: 0
     spriteResolveLabel: WithPick
   - prefab: {fileID: 4750875145506631297, guid: 80ca75bc18c79ca439f561aa8002667b,
       type: 3}
     parent: {fileID: 110390174}
-    instance: {fileID: 0}
     toolCode: 4
     isToUseSpriteSwitch: 1
     spriteResolveLabel: WithShovel
@@ -673,7 +670,6 @@ Transform:
   - {fileID: 1958750733}
   - {fileID: 1526808372}
   - {fileID: 1731106916}
-  - {fileID: 791809342}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1500,7 +1496,7 @@ GameObject:
   - component: {fileID: 783968278}
   - component: {fileID: 783968277}
   m_Layer: 5
-  m_Name: MonyPanel
+  m_Name: MoneyPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1563,79 +1559,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 783968275}
   m_CullTransparentMesh: 0
---- !u!1 &791809341
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 791809342}
-  - component: {fileID: 791809343}
-  - component: {fileID: 791809344}
-  m_Layer: 0
-  m_Name: EventListeners
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &791809342
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 791809341}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 338267711}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &791809343
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 791809341}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0163cabf0e073644a6e93d95686005e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isGameEndable: 0
-  gameOverEvent: {fileID: 11400000, guid: 0a0abac8d7b79d44e9f467aae1a4b614, type: 2}
---- !u!114 &791809344
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 791809341}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4a36788b11abaa47a73c637be9ff235, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  variable: {fileID: 11400000, guid: a95d1ccb3128b8247b785afc10148dce, type: 2}
-  actionResponse:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 791809343}
-        m_MethodName: OnChangeMoney
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &824963036
 GameObject:
   m_ObjectHideFlags: 0
@@ -4177,68 +4100,6 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
---- !u!1 &1452338193 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2192015190459939271, guid: 033090e830de5d646985a46dc89a470f,
-    type: 3}
-  m_PrefabInstance: {fileID: 371759715}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1452338194
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1452338193}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da930d7e0a47ac1409cacdefe8d4c414, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  triggerTag: NextLevel
-  triggerEvent: {fileID: 11400000, guid: 8fc97a53d1975424897f71b55b592a68, type: 2}
---- !u!114 &1452338195
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1452338193}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad617930b55c51043b6bcd8d33de656e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  initialData: {fileID: 11400000, guid: c07f08585e38d6d449aa4567e64300d7, type: 2}
-  salaryInverval: 1
-  moneyVariable: {fileID: 11400000, guid: a95d1ccb3128b8247b785afc10148dce, type: 2}
---- !u!114 &1452338196
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1452338193}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6569e1bfe03d1c4b9d99f4943fa106a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 0a0abac8d7b79d44e9f467aae1a4b614, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1452338195}
-        m_MethodName: CancelInvoke
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &1526808371
 GameObject:
   m_ObjectHideFlags: 0
@@ -4319,17 +4180,6 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 11400000, guid: a95d1ccb3128b8247b785afc10148dce, type: 2}
-        m_MethodName: Plus
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 10
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
@@ -4588,6 +4438,52 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &1777220457
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1777220459}
+  - component: {fileID: 1777220458}
+  m_Layer: 0
+  m_Name: MainActor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1777220458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1777220457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 987d37aa72104e843aad6d68eda0085f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGameEndable: 1
+  gameOverEvent: {fileID: 11400000, guid: 0a0abac8d7b79d44e9f467aae1a4b614, type: 2}
+  chosenCharacters: {fileID: 11400000, guid: f4de4dfe51799c942bccc04a17dd7eb6, type: 2}
+--- !u!4 &1777220459
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1777220457}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.38265312, z: 90}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1788025576
 GameObject:
   m_ObjectHideFlags: 0
@@ -5509,21 +5405,18 @@ MonoBehaviour:
   - prefab: {fileID: 3978536512088312465, guid: fed21b5492143484080f7e6519a25b75,
       type: 3}
     parent: {fileID: 7612389278082078982}
-    instance: {fileID: 0}
     toolCode: 2
     isToUseSpriteSwitch: 0
     spriteResolveLabel: WithBag
   - prefab: {fileID: 3340418326975489417, guid: f9636b83abd3f914b8e6500a5c040bf1,
       type: 3}
     parent: {fileID: 7612389277685726998}
-    instance: {fileID: 0}
     toolCode: 3
     isToUseSpriteSwitch: 0
     spriteResolveLabel: WithPick
   - prefab: {fileID: 4750875145506631297, guid: 80ca75bc18c79ca439f561aa8002667b,
       type: 3}
     parent: {fileID: 7612389277685726998}
-    instance: {fileID: 0}
     toolCode: 4
     isToUseSpriteSwitch: 1
     spriteResolveLabel: WithShovel
