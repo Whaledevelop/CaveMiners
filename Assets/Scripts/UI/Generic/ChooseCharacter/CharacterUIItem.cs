@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 
 public class CharacterUIItem : UIItem<CharacterInitialData, Transform, int>, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler
 {
@@ -10,7 +11,7 @@ public class CharacterUIItem : UIItem<CharacterInitialData, Transform, int>, IPo
 
     [SerializeField] private SkillStringUIItem skillsStringsPrefab;
 
-    [SerializeField] private RectTransform skillsParent;
+    [SerializeField] private RectTransform infoPanel;
 
     [SerializeField] private Image image;
 
@@ -26,6 +27,8 @@ public class CharacterUIItem : UIItem<CharacterInitialData, Transform, int>, IPo
 
     [SerializeField] private RawImage previewImage;
 
+    [SerializeField] private Text historyTextPrefab;
+
     [HideInInspector] public bool isChosen;    
 
     [HideInInspector] public CharacterInitialData character;
@@ -36,6 +39,10 @@ public class CharacterUIItem : UIItem<CharacterInitialData, Transform, int>, IPo
 
     public Action<CharacterInitialData> onClickCharacter;
 
+    private List<SkillStringUIItem> skillsStrings = new List<SkillStringUIItem>();
+
+    private Text historyText;
+
     public void Start()
     {
         defaultColor = image.color;
@@ -45,16 +52,8 @@ public class CharacterUIItem : UIItem<CharacterInitialData, Transform, int>, IPo
     {
         character = setupData;
         nameText.text = setupData.name;
-
         StartCoroutine(InitPreview(previewParent, index));
-        
-        foreach (CharacterStateSkillData skillData in setupData.initialSkillsData)
-        {
-            SkillStringUIItem skillString = Instantiate(skillsStringsPrefab, skillsParent);
-            skillString.Init(skillData);
-            skillString.onPointerEnter += (CharacterStateSkillData skillState) => characterPreview.StartPreviewState(skillState.state);
-            skillString.onPointerExit += (CharacterStateSkillData _) => characterPreview.StopPreviewState();
-        }
+        InitSkillsStrings(character.initialSkillsData);
     }
 
     private IEnumerator InitPreview(Transform previewParent, int index)
@@ -69,6 +68,44 @@ public class CharacterUIItem : UIItem<CharacterInitialData, Transform, int>, IPo
         yield return new WaitForEndOfFrame();
 
         previewImage.texture = characterPreview.GetPreviewTexture((int)previewImage.rectTransform.rect.width, (int)previewImage.rectTransform.rect.height);
+    }
+
+    private void InitSkillsStrings(List<CharacterStateSkillData> skillsData)
+    {
+        foreach (CharacterStateSkillData skillData in skillsData)
+        {
+            SkillStringUIItem skillString = Instantiate(skillsStringsPrefab, infoPanel);
+            skillString.Init(skillData);
+            skillString.onPointerEnter += (CharacterStateSkillData skillState) => characterPreview.StartPreviewState(skillState.state);
+            skillString.onPointerExit += (CharacterStateSkillData _) => characterPreview.StopPreviewState();
+            skillsStrings.Add(skillString);
+        }
+    }
+
+    private void HideSkillsStrings()
+    {
+        foreach(SkillStringUIItem skillString in skillsStrings)
+        {
+            Destroy(skillString.gameObject);
+        }
+        skillsStrings.Clear();
+    }
+
+    public void OnClickInfo()
+    {
+        Debugger.LogIEnumerable(skillsStrings);
+        if (skillsStrings.Count > 0)
+        {
+            HideSkillsStrings();
+            historyText = Instantiate(historyTextPrefab, infoPanel);
+            historyText.text = character.description;
+        }
+        else
+        {
+            if (historyText != null)
+                Destroy(historyText.gameObject);
+            InitSkillsStrings(character.initialSkillsData);
+        }
     }
 
     public void ChangeChooseMode(bool isChosen)
