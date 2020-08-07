@@ -30,6 +30,7 @@ public class CharacterPreview : UIItem<string>
     public RenderTexture GetPreviewTexture(int width, int height)
     {
         RenderTexture previewRenderTexture = new RenderTexture(width, height, 1);
+        previewCamera.gameObject.SetActive(true);
         previewCamera.targetTexture = previewRenderTexture;
         return previewRenderTexture;
     }
@@ -39,17 +40,21 @@ public class CharacterPreview : UIItem<string>
         spriteResolver.SetCategoryAndLabel(setupData, spriteResolver.GetLabel());
     }
 
-    public void PreviewState(CharacterStateSkillData stateSkill)
+    public void StartPreviewState(CharacterStateData newState)
     {
-        PreviewState(stateSkill.state);
-    }
-
-    public void PreviewState(CharacterStateData newState)
-    {
-        if (previewState != null)
-            previewState.UpdateView(CharacterStateData.StateStage.End, animator, toolsManager);
+        StopPreviewState();
 
         previewState = newState;
+        
         previewState.UpdateView(CharacterStateData.StateStage.Start, animator, toolsManager);
+    }
+
+    public void StopPreviewState()
+    {
+        if (previewState != null)
+        {            
+            previewState.UpdateView(CharacterStateData.StateStage.End, animator, toolsManager);
+            previewState = null;
+        }
     }
 }

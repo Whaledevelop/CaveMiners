@@ -52,8 +52,8 @@ public class CharacterUIItem : UIItem<CharacterInitialData, Transform, int>, IPo
         {
             SkillStringUIItem skillString = Instantiate(skillsStringsPrefab, skillsParent);
             skillString.Init(skillData);
-            skillString.onPointerEnter += characterPreview.PreviewState;
-            skillString.onPointerExit += (CharacterStateSkillData _) => characterPreview.PreviewState(idleState);
+            skillString.onPointerEnter += (CharacterStateSkillData skillState) => characterPreview.StartPreviewState(skillState.state);
+            skillString.onPointerExit += (CharacterStateSkillData _) => characterPreview.StopPreviewState();
         }
     }
 
@@ -67,7 +67,6 @@ public class CharacterUIItem : UIItem<CharacterInitialData, Transform, int>, IPo
 
         // ждем пока сработает расстановка элементов от layout group
         yield return new WaitForEndOfFrame();
-        Debug.Log(previewImage.rectTransform.rect);
 
         previewImage.texture = characterPreview.GetPreviewTexture((int)previewImage.rectTransform.rect.width, (int)previewImage.rectTransform.rect.height);
     }
@@ -83,7 +82,7 @@ public class CharacterUIItem : UIItem<CharacterInitialData, Transform, int>, IPo
         Color currentColor = image.color;
         currentColor.a = 1f;
         image.color = currentColor;
-        characterPreview.PreviewState(greetState);
+        characterPreview.StartPreviewState(greetState);
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -91,7 +90,7 @@ public class CharacterUIItem : UIItem<CharacterInitialData, Transform, int>, IPo
         Color currentColor = image.color;
         currentColor.a = isChosen ? 0.5f : defaultColor.a;
         image.color = currentColor;
-        characterPreview.PreviewState(idleState);
+        characterPreview.StopPreviewState();
     }
  
 

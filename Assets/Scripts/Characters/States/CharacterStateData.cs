@@ -63,15 +63,29 @@ public class CharacterStateData : ScriptableObject
         switch(stateStage)
         {
             case StateStage.Start:
-                if (!string.IsNullOrEmpty(animatorTriggerStart))
-                    animator.SetTrigger(animatorTriggerStart);
+                SetTrigger(animator, animatorTriggerStart);                  
                 toolsManager.ApplyTool(toolCode);
                 break;
             case StateStage.End:
-                if (!string.IsNullOrEmpty(animatorTriggerEnd))
-                    animator.SetTrigger(animatorTriggerEnd);
+                SetTrigger(animator, animatorTriggerEnd);
                 toolsManager.HideTool(toolCode);
                 break;
+        }
+    }
+
+    private void SetTrigger(Animator animator, string trigger)
+    {
+        // Иногда возникает ситуация, когда произходит вызов другой анимации, когда еще происходит вызов
+        // предыдущей, тогда триггер остается включенным, что приводит к тому, что следующая попытка вызвать ту же 
+        // анимацию не сработает. Поэтому снимаем все триггеры вручную
+        foreach (AnimatorControllerParameter parameter in animator.parameters)
+        {
+            if (parameter.type == AnimatorControllerParameterType.Trigger)
+                animator.ResetTrigger(parameter.name);
+        }
+        if (!string.IsNullOrEmpty(trigger))
+        {
+            animator.SetTrigger(trigger);
         }
     }
 }
