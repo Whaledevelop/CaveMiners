@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
-using Boo.Lang;
 using UnityEngine.Tilemaps;
 
 public class TilePositionRequestResolver : RequestResolver<Vector2>
