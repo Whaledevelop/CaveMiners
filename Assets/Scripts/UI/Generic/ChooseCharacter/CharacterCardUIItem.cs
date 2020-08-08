@@ -13,6 +13,8 @@ public class CharacterCardUIItem : CharacterUIItem, IPointerEnterHandler, IPoint
 
     [SerializeField] private CharacterStateData greetState;
 
+    [SerializeField] private CharacterDataGameEvent openCharacterInfoEvent;
+
     [HideInInspector] public bool isChosen;
 
     private Color defaultColor;
@@ -24,21 +26,9 @@ public class CharacterCardUIItem : CharacterUIItem, IPointerEnterHandler, IPoint
         defaultColor = image.color;
     }
 
-
     public void OnClickInfo()
     {
-        //if (skillsStrings.Count > 0)
-        //{
-        //    HideSkillsStrings();
-        //    //historyText = Instantiate(historyTextPrefab, infoPanel);
-        //    //historyText.text = character.description;
-        //}
-        //else
-        //{
-        //    //if (historyText != null)
-        //    //    Destroy(historyText.gameObject);
-        //    InitSkillsStrings(character.initialSkillsData);
-        //}
+        openCharacterInfoEvent.Raise(character);
     }
 
     public void ChangeChooseMode(bool isChosen)

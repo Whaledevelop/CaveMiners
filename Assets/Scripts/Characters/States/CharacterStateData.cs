@@ -12,6 +12,8 @@ public class CharacterStateData : ScriptableObject
     }
 
     public string stateName;
+
+    public string skillDescription;
  
     public ToolCode toolCode;
     public LayerMask actionLayerMask;

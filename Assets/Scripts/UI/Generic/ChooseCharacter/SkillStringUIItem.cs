@@ -11,7 +11,7 @@ public class SkillStringUIItem : UIItem<CharacterStateSkillData>, IPointerEnterH
     public Action<CharacterStateSkillData> onPointerEnter;
     public Action<CharacterStateSkillData> onPointerExit;
 
-    CharacterStateSkillData skillData;
+    private CharacterStateSkillData skillData;
 
     public override void Init(CharacterStateSkillData setupData)
     {

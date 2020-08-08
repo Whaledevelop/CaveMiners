@@ -18,7 +18,7 @@ public class CharacterUIItem : UIItem<CharacterInitialData>
 
     [HideInInspector] public CharacterInitialData character;
 
-    protected CharacterPreview characterPreview;
+    protected CharacterPreviewUIItem characterPreview;
 
     private List<SkillStringUIItem> skillsStrings = new List<SkillStringUIItem>();
 
@@ -33,11 +33,21 @@ public class CharacterUIItem : UIItem<CharacterInitialData>
 
     private IEnumerator InitPreview(string spriteName)
     {
-        characterPreview = previewUIItemSet.InstantiateItem(spriteName);
-        // ждем пока сработает расстановка элементов от layout group
-        yield return new WaitForEndOfFrame();
+        characterPreview = previewUIItemSet.Items.Find(item => item.SpriteName == spriteName);
+        if (characterPreview == null)
+        {
+            characterPreview = previewUIItemSet.InstantiateItem(spriteName);
+        }
 
-        previewImage.texture = characterPreview.GetPreviewTexture((int)previewImage.rectTransform.rect.width, (int)previewImage.rectTransform.rect.height);
+        if (characterPreview.PreviewRenderTexture == null)
+        {
+            // ждем пока сработает расстановка элементов от layout group
+            yield return new WaitForEndOfFrame();
+
+            characterPreview.GeneratePreviewTexture((int)previewImage.rectTransform.rect.width, (int)previewImage.rectTransform.rect.height);
+        }
+        previewImage.texture = characterPreview.PreviewRenderTexture;
+
     }
 
     protected void InitSkillsStrings(List<CharacterStateSkillData> skillsData)

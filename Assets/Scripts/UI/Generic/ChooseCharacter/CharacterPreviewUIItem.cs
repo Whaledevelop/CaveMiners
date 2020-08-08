@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.Experimental.U2D.Animation;
 
-public class CharacterPreview : UIItem<string>
+public class CharacterPreviewUIItem : UIItem<string>
 {
     [SerializeField] private GameObject characterPrefab;
 
@@ -14,6 +14,8 @@ public class CharacterPreview : UIItem<string>
     private SpriteRenderer spriteRenderer;
 
     private CharacterStateData previewState;
+
+    [HideInInspector] public RenderTexture PreviewRenderTexture;
 
     public Vector3 SpriteSize => spriteRenderer.size;
 
@@ -29,12 +31,11 @@ public class CharacterPreview : UIItem<string>
 
     }
 
-    public RenderTexture GetPreviewTexture(int width, int height)
+    public void GeneratePreviewTexture(int width, int height)
     {
-        RenderTexture previewRenderTexture = new RenderTexture(width, height, 1);
+        PreviewRenderTexture = new RenderTexture(width, height, 1);
         previewCamera.gameObject.SetActive(true);
-        previewCamera.targetTexture = previewRenderTexture;
-        return previewRenderTexture;
+        previewCamera.targetTexture = PreviewRenderTexture;
     }
 
     public override void Init(string setupData)

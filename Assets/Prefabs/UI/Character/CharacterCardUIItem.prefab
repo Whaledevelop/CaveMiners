@@ -274,12 +274,14 @@ MonoBehaviour:
     type: 3}
   infoPanel: {fileID: 5821790534688285506}
   previewImage: {fileID: 7086633385495843477}
-  previewUIItemSet: {fileID: 11400000, guid: 0513e18da7d39b245b424feb8443d62b, type: 2}
+  previewUIItemSet: {fileID: 11400000, guid: c86e07c7d53842e4382c8292f48bae58, type: 2}
   character: {fileID: 0}
   image: {fileID: 5821790533686164817}
   hoverColor: {r: 1, g: 1, b: 1, a: 1}
   chooseColor: {r: 0.1788003, g: 0.7735849, b: 0.21460845, a: 1}
   greetState: {fileID: 11400000, guid: 007637878753ccf47b5f3e88ef18d7bd, type: 2}
+  openCharacterInfoEvent: {fileID: 11400000, guid: c16066fc46fa388429f6a7b6fab79af9,
+    type: 2}
   isChosen: 0
 --- !u!1 &5821790533817944881
 GameObject:
@@ -478,7 +480,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5876673800521570659}
-        m_TargetAssemblyTypeName: 
+        m_TargetAssemblyTypeName: CharacterCardUIItem, Assembly-CSharp
         m_MethodName: OnClickInfo
         m_Mode: 1
         m_Arguments:
