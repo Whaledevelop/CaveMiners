@@ -17,6 +17,8 @@ public class CharacterPreview : UIItem<string>
 
     public Vector3 SpriteSize => spriteRenderer.size;
 
+    [HideInInspector] public string SpriteName;
+
     public void Awake()
     {
         GameObject character = Instantiate(characterPrefab, transform);
@@ -37,6 +39,7 @@ public class CharacterPreview : UIItem<string>
 
     public override void Init(string setupData)
     {
+        SpriteName = setupData;
         spriteResolver.SetCategoryAndLabel(setupData, spriteResolver.GetLabel());
     }
 

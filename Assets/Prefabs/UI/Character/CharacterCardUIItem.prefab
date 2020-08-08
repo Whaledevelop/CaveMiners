@@ -60,6 +60,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -131,6 +132,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -163,7 +165,7 @@ GameObject:
   - component: {fileID: 5821790533686164819}
   - component: {fileID: 5876673800521570659}
   m_Layer: 5
-  m_Name: CharacterUIItem
+  m_Name: CharacterCardUIItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -214,6 +216,7 @@ MonoBehaviour:
   m_Material: {fileID: 2100000, guid: cf81322d4ecc7594cbd5fd734ec5b85d, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 0.101960786}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -253,6 +256,7 @@ MonoBehaviour:
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!114 &5876673800521570659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,18 +273,14 @@ MonoBehaviour:
   skillsStringsPrefab: {fileID: 2178757850450394561, guid: 37dcbc4791db19245996ed834f084595,
     type: 3}
   infoPanel: {fileID: 5821790534688285506}
+  previewImage: {fileID: 7086633385495843477}
+  previewUIItemSet: {fileID: 11400000, guid: 0513e18da7d39b245b424feb8443d62b, type: 2}
+  character: {fileID: 0}
   image: {fileID: 5821790533686164817}
   hoverColor: {r: 1, g: 1, b: 1, a: 1}
   chooseColor: {r: 0.1788003, g: 0.7735849, b: 0.21460845, a: 1}
-  idleState: {fileID: 11400000, guid: 35ea0df5732a1e747a76bb80919aa569, type: 2}
   greetState: {fileID: 11400000, guid: 007637878753ccf47b5f3e88ef18d7bd, type: 2}
-  characterPreviewPrefab: {fileID: 6462825752717810531, guid: ede2a96a6467d454395f7f3dfeaa5b50,
-    type: 3}
-  previewImage: {fileID: 7086633385495843477}
-  historyTextPrefab: {fileID: 2872845447259136353, guid: e02883c0842b1864c89ba5e6366773e1,
-    type: 3}
   isChosen: 0
-  character: {fileID: 0}
 --- !u!1 &5821790533817944881
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,6 +343,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -418,6 +419,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -476,6 +478,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5876673800521570659}
+        m_TargetAssemblyTypeName: 
         m_MethodName: OnClickInfo
         m_Mode: 1
         m_Arguments:
@@ -547,6 +550,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -586,6 +590,7 @@ MonoBehaviour:
   m_ChildControlHeight: 1
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!1 &5821790534825034545
 GameObject:
   m_ObjectHideFlags: 0
@@ -647,6 +652,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

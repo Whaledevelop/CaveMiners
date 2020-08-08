@@ -18,4 +18,9 @@ public class RuntimeSet<T> : ScriptableObject
         if (Items.Contains(item))
             Items.Remove(item);
     }
+
+    public virtual void OnDisable()
+    {
+        Items.Clear();
+    }
 }

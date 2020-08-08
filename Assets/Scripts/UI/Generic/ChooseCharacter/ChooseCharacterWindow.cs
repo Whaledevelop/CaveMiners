@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -6,7 +7,7 @@ public class ChooseCharacterWindow : MonoBehaviour
 {
     [SerializeField] private CharacterInitialData[] charactersData;
 
-    [SerializeField] private CharacterUIItem characterItemPrefab;
+    [SerializeField] private CharacterCardUIItem characterItemPrefab;
 
     [SerializeField] private RectTransform charactersParent;    
 
@@ -18,7 +19,7 @@ public class ChooseCharacterWindow : MonoBehaviour
 
     [SerializeField] private GameEvent onTryingToChooseLessCharacters;
 
-    private List<CharacterUIItem> instantiatedItems = new List<CharacterUIItem>();
+    private List<CharacterCardUIItem> instantiatedItems = new List<CharacterCardUIItem>();
 
     [SerializeField] private CharacterInitialDataSet chosenCharacters;
 
@@ -26,8 +27,8 @@ public class ChooseCharacterWindow : MonoBehaviour
     {
         for (int i = 0; i < charactersData.Length; i++)
         {
-            CharacterUIItem item = Instantiate(characterItemPrefab, charactersParent);
-            item.Init(charactersData[i], characterPreviewParent, i);
+            CharacterCardUIItem item = Instantiate(characterItemPrefab, charactersParent);
+            item.Init(charactersData[i]);
             item.onClickCharacter += OnClickCharacterItem;
             instantiatedItems.Add(item);
         }
@@ -35,7 +36,7 @@ public class ChooseCharacterWindow : MonoBehaviour
 
     public void OnClickCharacterItem(CharacterInitialData character)
     {
-        foreach(CharacterUIItem item in instantiatedItems)
+        foreach(CharacterCardUIItem item in instantiatedItems)
         {
             if (item.character == character)
             {
@@ -51,7 +52,7 @@ public class ChooseCharacterWindow : MonoBehaviour
                     if (chosenCharacters.Items.Count > maxActiveCharacters)
                     {
                         CharacterInitialData oldestChosenCharacter = chosenCharacters.Items[0];
-                        CharacterUIItem oldestChosenCharacterUI = instantiatedItems.Find(i => i.character == oldestChosenCharacter);
+                        CharacterCardUIItem oldestChosenCharacterUI = instantiatedItems.Find(i => i.character == oldestChosenCharacter);
                         oldestChosenCharacterUI.ChangeChooseMode(false);
                         chosenCharacters.Remove(oldestChosenCharacter);
                         break;
