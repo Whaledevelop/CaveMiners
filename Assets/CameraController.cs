@@ -15,8 +15,7 @@ public class CameraController : MonoBehaviour
 
     [SerializeField] private Range zoomRange;
 
-    [SerializeField] private float cameraZOffset;
-
+    private float cameraZOffset;
     private CameraMode cameraMode;
     private Camera controlledCamera;
     private Vector3 mapObservationPosition;
@@ -30,6 +29,7 @@ public class CameraController : MonoBehaviour
         controlledCamera = GetComponent<Camera>();
         mapObservationPosition = transform.position;
         mapObservationZoom = controlledCamera.orthographicSize;
+        cameraZOffset = transform.position.z;
     }
 
     public void Update()
@@ -65,8 +65,6 @@ public class CameraController : MonoBehaviour
                 break;
         }
     }
-
-
 
     private void SetFollowCharacterPosition()
     {
