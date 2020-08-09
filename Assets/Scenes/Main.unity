@@ -542,7 +542,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -5.5, y: -0.5, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1941983587}
   m_Father: {fileID: 523958209}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -558,6 +559,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420033}
+  - component: {fileID: 519420030}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -573,6 +575,23 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
+--- !u!114 &519420030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78085ec7e48e6a34687d090624b0d401, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charactersSet: {fileID: 11400000, guid: f5bb27efcc81d904fbe42451a3bb30f5, type: 2}
+  zoomRange:
+    from: 1
+    to: 5
+  cameraZOffset: -10
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -600,7 +619,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.32
+  orthographic size: 5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -762,18 +781,10 @@ MonoBehaviour:
   actionResponse:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 539940332}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: OnChangeMoney
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      - {m_Target: {fileID: 539940332}, m_TargetAssemblyTypeName: , m_MethodName: OnChangeMoney, m_Mode: 0, m_Arguments: {m_ObjectArgument: {fileID: 0},
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, m_IntArgument: 0,
+          m_FloatArgument: 0, m_StringArgument: , m_BoolArgument: 0}, m_CallState: 2}
+    m_CallsDirty: 1
 --- !u!114 &539940330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -885,13 +896,13 @@ MonoBehaviour:
   cellsParent: {fileID: 848552876}
   cellTextPrefab: {fileID: 148374068149987963, guid: 9e36ebcc4463753419803fb456286c3c,
     type: 3}
-  cellsXInterval:
-    from: -8.5
-    to: 5.5
+  cellsXRange:
+    from: -10.5
+    to: 10.5
     step: 1
-  cellsYInterval:
-    from: -5.5
-    to: 5.5
+  cellsYRange:
+    from: -10.5
+    to: 10.5
     step: 1
 --- !u!114 &666357022
 MonoBehaviour:
@@ -1848,8 +1859,8 @@ MonoBehaviour:
     m_ActionName: Player/Look[/Mouse/delta]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: 0ea25a6fa32963245a118fa514e29572, type: 2}
-        m_TargetAssemblyTypeName: 
+      - m_Target: {fileID: 11400000, guid: f5bb27efcc81d904fbe42451a3bb30f5, type: 2}
+        m_TargetAssemblyTypeName: CharacterTasksManagersSet, Assembly-CSharp
         m_MethodName: OnClickOnMap
         m_Mode: 0
         m_Arguments:
@@ -1908,9 +1919,9 @@ MonoBehaviour:
     m_ActionName: Characters/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: Dig
+      - m_Target: {fileID: 519420030}
+        m_TargetAssemblyTypeName: CameraController, Assembly-CSharp
+        m_MethodName: OnSwitchCameraMode
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1922,54 +1933,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 41e134cd-4e7c-47b2-b388-bcd3fc7f4daa
     m_ActionName: Characters/Dig[/Keyboard/e]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: Walk
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: f4db994d-da3c-431b-86c3-3be0331cd86a
-    m_ActionName: Characters/New action
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: TakeBag
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: ab5ea649-a6ee-4cba-a03e-edcdf4aa283a
-    m_ActionName: Characters/New action
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: Mine
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 37dd65d1-7819-469a-9fb6-19f63d121e24
-    m_ActionName: Characters/New action1
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Characters
@@ -2017,6 +1980,75 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1001 &1373338238
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 460169523}
+    m_Modifications:
+    - target: {fileID: 2192015190459939265, guid: 033090e830de5d646985a46dc89a470f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2192015190459939265, guid: 033090e830de5d646985a46dc89a470f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2192015190459939265, guid: 033090e830de5d646985a46dc89a470f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2192015190459939265, guid: 033090e830de5d646985a46dc89a470f,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2192015190459939265, guid: 033090e830de5d646985a46dc89a470f,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2192015190459939265, guid: 033090e830de5d646985a46dc89a470f,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2192015190459939265, guid: 033090e830de5d646985a46dc89a470f,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2192015190459939265, guid: 033090e830de5d646985a46dc89a470f,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2192015190459939265, guid: 033090e830de5d646985a46dc89a470f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2192015190459939265, guid: 033090e830de5d646985a46dc89a470f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2192015190459939265, guid: 033090e830de5d646985a46dc89a470f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2192015190459939271, guid: 033090e830de5d646985a46dc89a470f,
+        type: 3}
+      propertyPath: m_Name
+      value: CaveMiner
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 033090e830de5d646985a46dc89a470f, type: 3}
 --- !u!1 &1374587400
 GameObject:
   m_ObjectHideFlags: 0
@@ -4231,6 +4263,12 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!4 &1941983587 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2192015190459939265, guid: 033090e830de5d646985a46dc89a470f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1373338238}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1958750732
 GameObject:
   m_ObjectHideFlags: 0

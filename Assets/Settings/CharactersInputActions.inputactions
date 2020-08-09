@@ -30,33 +30,9 @@
                     "interactions": ""
                 },
                 {
-                    "name": "ManualDig",
+                    "name": "Use",
                     "type": "Button",
                     "id": "41e134cd-4e7c-47b2-b388-bcd3fc7f4daa",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "ManualWalk",
-                    "type": "Button",
-                    "id": "f4db994d-da3c-431b-86c3-3be0331cd86a",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "ManualBag",
-                    "type": "Button",
-                    "id": "ab5ea649-a6ee-4cba-a03e-edcdf4aa283a",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "ManualMine",
-                    "type": "Button",
-                    "id": "37dd65d1-7819-469a-9fb6-19f63d121e24",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -235,7 +211,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "ManualDig",
+                    "action": "Use",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -291,39 +267,6 @@
                     "processors": "",
                     "groups": "XR",
                     "action": "Choose",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "4af103e5-3e6d-4f33-9c90-c352824fc59d",
-                    "path": "<Keyboard>/t",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "ManualWalk",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "fbf7544e-b988-4b60-9837-cc73ad972a10",
-                    "path": "<Keyboard>/b",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "ManualBag",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "27900132-4681-4d19-a1dd-5cdc302da5b8",
-                    "path": "<Keyboard>/r",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "ManualMine",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

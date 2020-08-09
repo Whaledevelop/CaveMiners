@@ -20,12 +20,6 @@ public class ScriptableVariable<T> : GameEvent<T>
         }
     }
 
-    public virtual void OnEnable()
-    {
-        if (!isMultisessional)
-            value = defaultValue;
-    }
-
     public virtual void OnDisable()
     {
         if (!isMultisessional)

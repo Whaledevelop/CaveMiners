@@ -50,6 +50,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -478,7 +479,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cellCenterRequest: {fileID: 11400000, guid: 03dc6e1a6c17e98478746032c7be2c09, type: 2}
-  set: {fileID: 11400000, guid: 0ea25a6fa32963245a118fa514e29572, type: 2}
+  set: {fileID: 11400000, guid: f5bb27efcc81d904fbe42451a3bb30f5, type: 2}
   initialData: {fileID: 11400000, guid: c07f08585e38d6d449aa4567e64300d7, type: 2}
   taskPathfinder: {fileID: 11400000, guid: 4143bb7889e7aeb4a9d55cd598f2c6c6, type: 2}
   characterHighlighter: {fileID: 7097406752204435091}
@@ -504,6 +505,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7282526008341427577}
+        m_TargetAssemblyTypeName: 
         m_MethodName: OnStartAction
         m_Mode: 0
         m_Arguments:
@@ -560,6 +562,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1452338195}
+        m_TargetAssemblyTypeName: 
         m_MethodName: CancelInvoke
         m_Mode: 1
         m_Arguments:

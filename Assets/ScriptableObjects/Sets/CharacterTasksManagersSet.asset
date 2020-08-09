@@ -9,11 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: CharacterTaskManagersSet
-  m_EditorClassIdentifier: Assembly-CSharp::CharacterTasksManagersSet
+  m_Script: {fileID: 11500000, guid: 8eeb622e4243f454e8dfc00ccad50183, type: 3}
+  m_Name: CharacterTasksManagersSet
+  m_EditorClassIdentifier: 
   Items: []
   characterLayer:
     serializedVersion: 2
     m_Bits: 2048
-  cellCenterRequest: {fileID: 11400000, guid: 4ed14febb6d1eb945a988ec9dd0588ba, type: 2}

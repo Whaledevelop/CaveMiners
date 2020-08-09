@@ -69,7 +69,7 @@ public class CharacterState
     public virtual IEnumerator Iterate(CharacterActionData actionData)
     {
         IterativeStateData iterativeState = stateData as IterativeStateData;
-        yield return new WaitForSeconds(iterativeState.iterationsInterval);
+        yield return new WaitForSeconds(iterativeState.iterationsRange);
         iterativeState.iterationEvent.Raise(actionData);
         if (iterativeState.executionCondition == EndExecutionCondition.IterationsCount)
             iterationsCounter++;

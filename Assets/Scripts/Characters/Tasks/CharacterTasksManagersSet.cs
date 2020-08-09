@@ -3,13 +3,15 @@ using UnityEngine;
 using UnityEngine.Diagnostics;
 using UnityEngine.InputSystem;
 
-[CreateAssetMenu(fileName = "CharacterTaskManagersSet", menuName = "Sets/CharacterTaskManagersSet")]
+[CreateAssetMenu(fileName = "CharacterTasksManagersSet", menuName = "Sets/CharacterTasksManagersSet")]
 public class CharacterTasksManagersSet : RuntimeSet<CharacterTasksManager> 
 {
     [SerializeField] private LayerMask characterLayer;
     
 
     [NonSerialized] private CharacterTasksManager activeCharacter;
+
+    public CharacterTasksManager ActiveCharacter => activeCharacter;
 
     public void OnClickOnMap(InputAction.CallbackContext context)
     {

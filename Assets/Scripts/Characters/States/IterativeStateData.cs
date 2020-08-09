@@ -6,7 +6,7 @@ using System;
 public class IterativeStateData : CharacterStateData
 {
     public CharacterActionGameEvent iterationEvent;
-    public float iterationsInterval = 1;
+    public float iterationsRange = 1;
 
     public EndExecutionCondition executionCondition;
 
