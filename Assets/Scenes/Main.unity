@@ -336,8 +336,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1958750733}
-  - {fileID: 1526808372}
-  - {fileID: 1731106916}
+  - {fileID: 989809581}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1617,6 +1616,119 @@ Transform:
   m_Father: {fileID: 523958209}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &989809580
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 989809581}
+  - component: {fileID: 989809582}
+  - component: {fileID: 989809583}
+  m_Layer: 0
+  m_Name: TilesActionsHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &989809581
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 989809580}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 338267711}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &989809582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 989809580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95e8d7ba02443664cb2cc4028d6c519f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tilesActions:
+  - actionState: {fileID: 11400000, guid: da1f466d71b61af47a4ea46023313f53, type: 2}
+    initialTilemap: {fileID: 1374587403}
+    destroyedTilemap: {fileID: 845816199}
+    tilesSet:
+    - HP: 20
+      tile: {fileID: 11400000, guid: 5a27139c42680684d8d027e3a20358ae, type: 2}
+    - HP: 10
+      tile: {fileID: 11400000, guid: 7cf8893d3fd5018459bb2d1fd4da8289, type: 2}
+    - HP: 0
+      tile: {fileID: 11400000, guid: 218cf6cd5b78d9d4ea117b7737c6f2ab, type: 2}
+    initialHP: 20
+    actionData:
+      taskManager: {fileID: 0}
+      skillsManager: {fileID: 0}
+      stateData: {fileID: 0}
+      startPosition: {x: 0, y: 0}
+      endPosition: {x: 0, y: 0}
+      actionDirection: {x: 0, y: 0}
+      endCellPosition: {x: 0, y: 0, z: 0}
+  - actionState: {fileID: 11400000, guid: fb1fad21a769c9348bd18dde42fc5d03, type: 2}
+    initialTilemap: {fileID: 824963039}
+    destroyedTilemap: {fileID: 845816199}
+    tilesSet:
+    - HP: 50
+      tile: {fileID: 11400000, guid: 20eba6dab8d117748922ddbd15012ab2, type: 2}
+    - HP: 25
+      tile: {fileID: 11400000, guid: fc2a335c77745ca4bbfc6d414555c215, type: 2}
+    - HP: 0
+      tile: {fileID: 11400000, guid: 218cf6cd5b78d9d4ea117b7737c6f2ab, type: 2}
+    initialHP: 50
+    actionData:
+      taskManager: {fileID: 0}
+      skillsManager: {fileID: 0}
+      stateData: {fileID: 0}
+      startPosition: {x: 0, y: 0}
+      endPosition: {x: 0, y: 0}
+      actionDirection: {x: 0, y: 0}
+      endCellPosition: {x: 0, y: 0, z: 0}
+  grid: {fileID: 523958208}
+  tileWorkedOutEvent: {fileID: 11400000, guid: 84376e576174b284e92c352b10639cfd, type: 2}
+--- !u!114 &989809583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 989809580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 133b6133de831664ba8140c53519fd5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionEvent: {fileID: 11400000, guid: c946e9b599750fe43b8e6ffedf73c66a, type: 2}
+  actionResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 989809582}
+        m_TargetAssemblyTypeName: TilesActionsHandler, Assembly-CSharp
+        m_MethodName: OnTileAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1075901501
 GameObject:
   m_ObjectHideFlags: 0
@@ -3581,277 +3693,43 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
---- !u!1 &1526808371
+--- !u!1 &1763629008 stripped
 GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 1763629008, guid: 033090e830de5d646985a46dc89a470f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1373338238}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1526808372}
-  - component: {fileID: 1526808376}
-  - component: {fileID: 1526808375}
-  - component: {fileID: 1526808374}
-  - component: {fileID: 1526808373}
-  m_Layer: 0
-  m_Name: Mining
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1526808372
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1526808371}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 338267711}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1526808373
+--- !u!114 &1763629010 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 1763629010, guid: 033090e830de5d646985a46dc89a470f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1373338238}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1526808371}
+  m_GameObject: {fileID: 1763629008}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 124c6af2d730d2a46beafc4cdef93edf, type: 3}
+  m_Script: {fileID: 11500000, guid: f17ce9e1b8d9a5044a1ba80fa9c69efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialTilemap: {fileID: 824963039}
-  finalTilemap: {fileID: 845816199}
-  finalTile: {fileID: 11400000, guid: 218cf6cd5b78d9d4ea117b7737c6f2ab, type: 2}
-  grid: {fileID: 523958208}
-  tilesSet:
-  - HP: 100
-    tile: {fileID: 11400000, guid: 20eba6dab8d117748922ddbd15012ab2, type: 2}
-  - HP: 50
-    tile: {fileID: 11400000, guid: fc2a335c77745ca4bbfc6d414555c215, type: 2}
-  initialHP: 100
---- !u!114 &1526808374
+--- !u!114 &1763629011
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1526808371}
+  m_GameObject: {fileID: 1763629008}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 133b6133de831664ba8140c53519fd5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionEvent: {fileID: 11400000, guid: 3afe5e381e6136546baffc7a5d176ee6, type: 2}
+  actionEvent: {fileID: 11400000, guid: 84376e576174b284e92c352b10639cfd, type: 2}
   actionResponse:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1526808373}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: OnStopAction
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &1526808375
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1526808371}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 133b6133de831664ba8140c53519fd5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  actionEvent: {fileID: 11400000, guid: 882c0584ad7eddc4781284b663e30e7b, type: 2}
-  actionResponse:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1526808373}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: OnIteration
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &1526808376
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1526808371}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 133b6133de831664ba8140c53519fd5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  actionEvent: {fileID: 11400000, guid: b86a7511c0c6b37438783760bd5d508f, type: 2}
-  actionResponse:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1526808373}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: OnStartAction
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!1 &1731106915
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1731106916}
-  - component: {fileID: 1731106920}
-  - component: {fileID: 1731106919}
-  - component: {fileID: 1731106918}
-  - component: {fileID: 1731106917}
-  m_Layer: 0
-  m_Name: Digging
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1731106916
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1731106915}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 338267711}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1731106917
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1731106915}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 124c6af2d730d2a46beafc4cdef93edf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  initialTilemap: {fileID: 1374587403}
-  finalTilemap: {fileID: 845816199}
-  finalTile: {fileID: 11400000, guid: 218cf6cd5b78d9d4ea117b7737c6f2ab, type: 2}
-  grid: {fileID: 523958208}
-  tilesSet:
-  - HP: 15
-    tile: {fileID: 11400000, guid: 5a27139c42680684d8d027e3a20358ae, type: 2}
-  - HP: 7
-    tile: {fileID: 11400000, guid: 1aa74b9e77d2a7848810849fccb38a99, type: 2}
-  initialHP: 15
---- !u!114 &1731106918
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1731106915}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 133b6133de831664ba8140c53519fd5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  actionEvent: {fileID: 11400000, guid: 825a2aa869dfa7d49ba3ac13497596f1, type: 2}
-  actionResponse:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1731106917}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: OnEndAction
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &1731106919
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1731106915}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 133b6133de831664ba8140c53519fd5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  actionEvent: {fileID: 11400000, guid: 08fd22f2b7d5818479d9fd7aa31ec7ed, type: 2}
-  actionResponse:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1731106917}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: OnStartAction
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &1731106920
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1731106915}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 133b6133de831664ba8140c53519fd5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  actionEvent: {fileID: 11400000, guid: b4338e0b4018179488d4ca3efb919f7a, type: 2}
-  actionResponse:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1731106917}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: OnIteration
+      - m_Target: {fileID: 1763629010}
+        m_TargetAssemblyTypeName: MineActionHandler, Assembly-CSharp
+        m_MethodName: OnTileWorkedOut
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

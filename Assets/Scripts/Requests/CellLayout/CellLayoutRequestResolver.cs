@@ -4,8 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-[CreateAssetMenu(fileName = "CellLayoutRequest", menuName = "Requests/CellLayoutRequest")]
-public class CellLayoutRequest : Request<LayerMask> { }
+
 
 public class CellLayoutRequestResolver : RequestResolver<LayerMask>
 {

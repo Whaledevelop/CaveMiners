@@ -26,13 +26,28 @@ public class CharacterState : ScriptableObject
         this.toolsManager = toolsManager;
     }
 
-    public virtual IEnumerator Start()
+    public virtual IEnumerator Execute()
+    {
+        yield return OnStart();
+
+        // Выполнение
+
+        yield return OnEnd();
+    }
+
+    public virtual IEnumerator OnStart()
     {
         UpdateView(StateStage.Start);
         yield break;
     }
 
-    public virtual IEnumerator End()
+    public virtual IEnumerator Cancel()
+    {
+        UpdateView(StateStage.End);
+        yield break;
+    }
+
+    public virtual IEnumerator OnEnd()
     {
         UpdateView(StateStage.End);
         yield break;
@@ -67,5 +82,10 @@ public class CharacterState : ScriptableObject
         {
             animator.SetTrigger(trigger);
         }
+    }
+
+    public override string ToString()
+    {
+        return stateName;
     }
 }

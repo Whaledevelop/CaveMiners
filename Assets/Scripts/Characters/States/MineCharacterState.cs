@@ -5,9 +5,11 @@ using System;
 using UnityEngine.Tilemaps;
 
 [CreateAssetMenu(fileName = "MineCharacterState", menuName = "States/MineCharacterState")]
-public class MineCharacterState : CharacterIterativeActionState
+public class MineCharacterState : CharacterActionState
 {
     [SerializeField] private CellPositionRequest basePositionRequest;
+
+    [SerializeField] private CellLayoutRequest cellLayoutRequest;
 
     [SerializeField] private TileBase baseTile;
 
@@ -15,25 +17,22 @@ public class MineCharacterState : CharacterIterativeActionState
 
     [SerializeField] private ToolCode nextTaskDefaultTool;
 
-    public override IEnumerator End()
+    public override IEnumerator OnEnd()
     {
-        yield return base.End();
+        yield return base.OnEnd();
 
-        TaskStartData mineTask = actionData.taskManager.tasksHistory[actionData.taskManager.tasksHistory.Count - 1];
         ToolCode prevToolCode = toolsManager.defaultTool;
 
         toolsManager.defaultTool = nextTaskDefaultTool;
 
         basePositionRequest.MakeRequest(new ParamsObject(baseTile), out Vector2 basePosition);
 
-        actionData.taskManager.nextTasks.Add(new TaskStartData(Utils.MaskToLayer(baseLayer), basePosition, () =>
-        {
-            toolsManager.defaultTool = prevToolCode;
-            if (actionData.endExecutionCondition == EndExecutionCondition.IterationsCount)
-            {
-                actionData.taskManager.ExecuteTask(mineTask);
-            }
+        yield return actionData.taskManager.ExecuteTaskEnumerator(Utils.MaskToLayer(baseLayer), basePosition);
 
-        }));
+        toolsManager.defaultTool = prevToolCode;
+
+        cellLayoutRequest.MakeRequest(new ParamsObject(actionData.endPosition), out LayerMask newTaskLayer);
+
+        actionData.taskManager.ExecuteTask(newTaskLayer, actionData.endPosition);
     }
 }

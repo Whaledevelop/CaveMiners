@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d655de2da699942429c77c93c8ac9c4c, type: 3}
-  m_Name: MinerState
+  m_Name: MineState
   m_EditorClassIdentifier: 
   stateName: "\u0414\u043E\u0431\u044B\u0447\u0430"
   toolCode: 3
@@ -24,14 +24,9 @@ MonoBehaviour:
   actionPriority: 3
   gizmosColor: {r: 0.8595777, g: 0.8679245, b: 0.12691349, a: 1}
   rotationMode: 2
-  startEvent: {fileID: 11400000, guid: b86a7511c0c6b37438783760bd5d508f, type: 2}
-  endEvent: {fileID: 11400000, guid: 3afe5e381e6136546baffc7a5d176ee6, type: 2}
-  iterationEvent: {fileID: 11400000, guid: 882c0584ad7eddc4781284b663e30e7b, type: 2}
-  iterationsRange: 1
-  executionCondition: 2
-  maxIterationsCount: 5
   basePositionRequest: {fileID: 11400000, guid: b138cfb8a836fca4bac1843b8a031df2,
     type: 2}
+  cellLayoutRequest: {fileID: 11400000, guid: d0347d6928156784499583da8cc86807, type: 2}
   baseTile: {fileID: 11400000, guid: 23bd632132609744dac88d161985ca37, type: 2}
   baseLayer:
     serializedVersion: 2

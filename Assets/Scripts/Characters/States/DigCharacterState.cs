@@ -4,33 +4,14 @@ using System.Collections;
 using System;
 
 [CreateAssetMenu(fileName = "DigCharacterState", menuName = "States/DigCharacterState")]
-public class DigCharacterState : CharacterIterativeActionState
+public class DigCharacterState : CharacterActionState
 {
-    [SerializeField] private CharacterActionState moveToPointState;
+    [SerializeField] private CharacterActionState moveState;
 
-    [NonSerialized] private bool isMovedToPoint;
-
-    [NonSerialized] private CharacterActionState instantiatedMoveToPointState;
-
-    public override IEnumerator End()
+    public override IEnumerator OnEnd()
     {
-        isMovedToPoint = false;
-        yield return base.End();
+        yield return base.OnEnd();
 
-        CharacterActionData moveToDiggedPointAction = new CharacterActionData(actionData.taskManager, actionData.skillsManager, moveToPointState,
-            actionData.taskManager.transform.position, actionData.endPosition, actionData.actionDirection, null);
-
-        moveToDiggedPointAction.OnExecuteDelegate = OnMoveToPointEnumerator;
-
-        instantiatedMoveToPointState = Instantiate(moveToPointState);
-        instantiatedMoveToPointState.InitInstance(animator, toolsManager, rotator, moveToDiggedPointAction);
-        yield return instantiatedMoveToPointState.Start();
-        yield return new WaitUntil(() => isMovedToPoint);
-    }
-
-    public IEnumerator OnMoveToPointEnumerator()
-    {
-        yield return instantiatedMoveToPointState.End();
-        isMovedToPoint = true;
+        yield return actionData.taskManager.ExecuteState(moveState, actionData.endPosition, actionData.actionDirection);
     }
 }

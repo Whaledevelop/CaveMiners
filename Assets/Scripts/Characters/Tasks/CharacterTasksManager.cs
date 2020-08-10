@@ -1,24 +1,18 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-public struct TaskStartData
+[Serializable]
+public struct StateCharacterActionHandler
 {
-    public int taskLayer;
-    public Vector2 taskPosition;
-    public NoParamsDelegate executeDelegate;
-    public TaskStartData(int taskLayer, Vector2 taskPosition, NoParamsDelegate executeDelegate = null)
-    {
-        this.taskLayer = taskLayer;
-        this.taskPosition = taskPosition;
-        this.executeDelegate = executeDelegate;
-    }
+    public CharacterActionState state;
+    public CharacterActionHandler actionHandler;
 }
 
 public class CharacterTasksManager : MonoBehaviour
 {
-
     [SerializeField] private CellPositionRequest cellCenterRequest;
     [SerializeField] private CharacterInitialData initialData;
     [SerializeField] private TaskPathfinder taskPathfinder;
@@ -30,63 +24,79 @@ public class CharacterTasksManager : MonoBehaviour
     [SerializeField] private Rotator rotator;
     [SerializeField] private Animator animator;
 
-    [HideInInspector] public List<TaskStartData> nextTasks = new List<TaskStartData>();
-    [HideInInspector] public List<TaskStartData> tasksHistory = new List<TaskStartData>();
+    [SerializeField] private CharacterActionHandler[] actionsHandlers;
 
-    private CharacterTask activeTask;
+    private Dictionary<CharacterTask, IEnumerator> activeTasks = new Dictionary<CharacterTask, IEnumerator>();
 
-    
-    public Action onEndTask;
 
-    public void ExecuteTask(TaskStartData taskStartData)
+    public void ExecuteTask(int taskLayer, Vector2 taskPoint)
     {
-        ExecuteTask(taskStartData.taskLayer, taskStartData.taskPosition, taskStartData.executeDelegate);
+        StartCoroutine(ExecuteMainTaskEnumerator(taskLayer, taskPoint));
     }
 
-    public void ExecuteTask(int taskLayer, Vector2 taskPoint, NoParamsDelegate executeDelegate = null)
+    public IEnumerator ExecuteMainTaskEnumerator(int taskLayer, Vector2 taskPoint)
+    {
+        yield return CancelPrevTasks();
+        yield return ExecuteTaskEnumerator(taskLayer, taskPoint);
+    }
+
+    public IEnumerator ExecuteTaskEnumerator(int taskLayer, Vector2 taskPoint)
     {
         cellCenterRequest.MakeRequest(new ParamsObject(taskPoint), out taskPoint);
         List<CharacterTaskPoint> taskStatesPoints = taskPathfinder.FindPath(transform.position, taskPoint, taskLayer);
         if (taskStatesPoints.Count > 0)
         {
-            activeTask = new CharacterTask(taskStatesPoints, this, toolsManager, skillsManager, animator, rotator);
-            StartCoroutine(activeTask.ExecuteNextState());
-            tasksHistory.Add(new TaskStartData(taskLayer, taskPoint));
-            if (executeDelegate != null)
-                onEndTask += () => executeDelegate.Invoke();
+            CharacterTask task = new CharacterTask(taskStatesPoints, this, toolsManager, skillsManager, animator, rotator, actionsHandlers);
+            IEnumerator taskCoroutine = task.Execute();
+            activeTasks.Add(task, taskCoroutine);
+
+            yield return taskCoroutine;
+
+            activeTasks.Remove(task);
         }
         else
         {
             Debug.Log("Task with no states");
         }
-
     }
 
-    public void OnEndTask()
+    public IEnumerator CancelPrevTasks()
     {
-        onEndTask?.Invoke();
-        onEndTask = null;
-        if (nextTasks.Count > 0)
+        foreach(KeyValuePair<CharacterTask, IEnumerator> task in activeTasks)
         {
-            TaskStartData nextTask = nextTasks[0];
-            nextTasks.RemoveAt(0);
-            ExecuteTask(nextTask);            
-        }        
+            StopCoroutine(task.Value);
+            yield return task.Key.Cancel();
+        }
+        activeTasks.Clear();
+    }
+
+    public IEnumerator ExecuteState(CharacterActionState state, Vector2 endPosition, Vector2 actionDirection)
+    {
+        CharacterAction actionData = new CharacterAction(this, skillsManager, state, transform.position, endPosition, actionDirection);
+
+        CharacterActionHandler actionHandler = actionsHandlers.FirstOrDefault(handler => handler.HandledState == state);
+
+        CharacterActionState activeState = ScriptableObject.Instantiate(state);
+        activeState.InitInstance(animator, toolsManager, rotator, actionData, actionHandler);
+
+        yield return activeState.Execute();
     }
 
     public override string ToString() => initialData.name;
 
     public void OnDrawGizmos()
     {
-        if (activeTask != null)
+        if (activeTasks != null)
         {
-            foreach (CharacterTaskPoint point in activeTask.taskPoints)
+            foreach(KeyValuePair<CharacterTask, IEnumerator> task in activeTasks)
             {
-                Gizmos.color = point.stateData.gizmosColor;
-                Gizmos.DrawSphere(point.CellPosition, 0.1f);
-                Gizmos.DrawLine(point.CellPosition, point.NextCellToCharacterPosition);
+                foreach (CharacterTaskPoint point in task.Key.taskPoints)
+                {
+                    Gizmos.color = point.stateData.gizmosColor;
+                    Gizmos.DrawSphere(point.CellPosition, 0.1f);
+                    Gizmos.DrawLine(point.CellPosition, point.NextCellToCharacterPosition);
+                }
             }
         }
-
     }
 }

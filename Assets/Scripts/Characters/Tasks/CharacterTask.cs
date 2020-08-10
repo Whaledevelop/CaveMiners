@@ -2,6 +2,7 @@
 using System;
 using UnityEngine;
 using System.Collections;
+using System.Linq;
 
 public class CharacterTask
 {
@@ -12,17 +13,15 @@ public class CharacterTask
     private Rotator rotator;
     private CharacterSkillsManager skillsManager;
     private CharacterTasksManager taskManager;
+    private CharacterActionHandler[] actionsHandlers;
 
-    private int currentTaskPointIndex = -1;
+    private int currentTaskPointIndex = 0;
     private CharacterTaskPoint CurrentTaskPoint => (currentTaskPointIndex < taskPoints.Count && currentTaskPointIndex >= 0 ) ? taskPoints[currentTaskPointIndex] : null;
     private CharacterActionState CurrentStateData => CurrentTaskPoint != null ? CurrentTaskPoint.stateData : null;
-
     private CharacterActionState activeState;
 
-    private bool isExecuted;
-
     public CharacterTask(List<CharacterTaskPoint> taskPoints, CharacterTasksManager taskManager, CharacterToolsManager toolsManager, 
-        CharacterSkillsManager skillsManager, Animator animator, Rotator rotator)
+        CharacterSkillsManager skillsManager, Animator animator, Rotator rotator, CharacterActionHandler[] actionsHandlers)
     {
         this.taskPoints = taskPoints;
         this.toolsManager = toolsManager;
@@ -30,48 +29,32 @@ public class CharacterTask
         this.taskManager = taskManager;
         this.animator = animator;
         this.rotator = rotator;
+        this.actionsHandlers = actionsHandlers;
     }
 
-
-    public IEnumerator ExecuteNextState()
+    public IEnumerator Execute()
     {
-        if (!isExecuted)
+        while (currentTaskPointIndex < taskPoints.Count)
         {
-            CharacterState prevStateData = CurrentStateData;
+            yield return ExecuteState(CurrentStateData, CurrentTaskPoint.CellPosition, -CurrentTaskPoint.AxisToNextCell);
             currentTaskPointIndex++;
-            bool isCurrentStateTheSame = prevStateData != null && prevStateData == CurrentStateData;
-
-            //Debug.Log("ExecuteNextState " + currentTaskPointIndex + ", " + taskPoints.Count + ", " + CurrentStateData);
-            if (activeState != null)
-            {
-                yield return activeState.End();
-            }
-            if (currentTaskPointIndex < taskPoints.Count)
-            {
-                CharacterActionData actionData = new CharacterActionData(taskManager, skillsManager, CurrentStateData, taskManager.transform.position,
-                    CurrentTaskPoint.CellPosition, -CurrentTaskPoint.AxisToNextCell, ExecuteNextState);
-
-                activeState = ScriptableObject.Instantiate(CurrentStateData);
-                activeState.InitInstance(animator, toolsManager, rotator, actionData);
-
-                yield return activeState.Start();
-            }
-            else
-            {
-                End();
-                yield break;
-            }
         }
+    }
+
+    public IEnumerator ExecuteState(CharacterActionState state, Vector2 endPosition, Vector2 actionDirection)
+    {
+        CharacterAction actionData = new CharacterAction(taskManager, skillsManager, state, taskManager.transform.position, endPosition, actionDirection);
+
+        CharacterActionHandler actionHandler = actionsHandlers.FirstOrDefault(handler => handler.HandledState == state);
+
+        activeState = ScriptableObject.Instantiate(state);
+        activeState.InitInstance(animator, toolsManager, rotator, actionData, actionHandler);
+
+        yield return activeState.Execute();
     }
 
     public IEnumerator Cancel() 
     {
-        yield return activeState.End();
-    }
-
-    public void End()
-    {
-        isExecuted = true;
-        taskManager.OnEndTask();
+        yield return activeState.Cancel();
     }
 }
