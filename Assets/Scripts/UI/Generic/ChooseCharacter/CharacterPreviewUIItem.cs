@@ -2,31 +2,30 @@
 using System.Collections;
 using UnityEngine.Experimental.U2D.Animation;
 
-public class CharacterPreviewUIItem : UIItem<string>
+public class CharacterPreviewUIItem : UIItem<CharacterInitialData>
 {
-    [SerializeField] private GameObject characterPrefab;
+    [SerializeField] private CharacterManager characterPrefab;
 
     [SerializeField] private Camera previewCamera;
 
+    [HideInInspector] public RenderTexture PreviewRenderTexture;
+    [HideInInspector] public CharacterInitialData characterData;
+
     private Animator animator;
     private CharacterToolsManager toolsManager;
-    private SpriteResolver spriteResolver;
     private SpriteRenderer spriteRenderer;
 
     private CharacterState previewState;
-
-    [HideInInspector] public RenderTexture PreviewRenderTexture;
+    private CharacterManager character;
 
     public Vector3 SpriteSize => spriteRenderer.size;
 
-    [HideInInspector] public string SpriteName;
 
     public void Awake()
     {
-        GameObject character = Instantiate(characterPrefab, transform);
+        character = Instantiate(characterPrefab, transform);
         animator = character.GetComponent<Animator>();
-        toolsManager = character.GetComponent<CharacterToolsManager>();
-        spriteResolver = character.GetComponentInChildren<SpriteResolver>();
+        toolsManager = character.GetComponentInChildren<CharacterToolsManager>();
         spriteRenderer = character.GetComponentInChildren<SpriteRenderer>();
 
     }
@@ -38,26 +37,28 @@ public class CharacterPreviewUIItem : UIItem<string>
         previewCamera.targetTexture = PreviewRenderTexture;
     }
 
-    public override void Init(string setupData)
+    public override void Init(CharacterInitialData setupData)
     {
-        SpriteName = setupData;
-        spriteResolver.SetCategoryAndLabel(setupData, spriteResolver.GetLabel());
+        characterData = setupData;
+        character.Init(setupData);
     }
 
     public void StartPreviewState(CharacterState newState)
     {
         StopPreviewState();
 
-        previewState = newState;
-        
-        previewState.UpdateView(StateStage.Start, animator, toolsManager);
+        previewState = Instantiate(newState);
+
+        previewState.InitInstance(animator, toolsManager);
+
+        previewState.UpdateView(StateStage.Start);
     }
 
     public void StopPreviewState()
     {
         if (previewState != null)
-        {            
-            previewState.UpdateView(StateStage.End, animator, toolsManager);
+        {
+            previewState.UpdateView(StateStage.End);
             previewState = null;
         }
     }

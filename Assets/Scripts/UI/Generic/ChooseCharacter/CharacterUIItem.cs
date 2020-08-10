@@ -27,16 +27,16 @@ public class CharacterUIItem : UIItem<CharacterInitialData>
         character = setupData;
         nameText.text = setupData.name;
 
-        StartCoroutine(InitPreview(character.spriteName));
+        StartCoroutine(InitPreview(setupData));
         InitSkillsStrings(character.initialSkillsData);
     }
 
-    private IEnumerator InitPreview(string spriteName)
+    private IEnumerator InitPreview(CharacterInitialData characterData)
     {
-        characterPreview = previewUIItemSet.Items.Find(item => item.SpriteName == spriteName);
+        characterPreview = previewUIItemSet.Items.Find(item => item.characterData == characterData);
         if (characterPreview == null)
         {
-            characterPreview = previewUIItemSet.InstantiateItem(spriteName);
+            characterPreview = previewUIItemSet.InstantiateItem(characterData);
         }
 
         if (characterPreview.PreviewRenderTexture == null)

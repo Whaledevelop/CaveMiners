@@ -1995,11 +1995,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 460169523}
     m_Modifications:
-    - target: {fileID: 953592547, guid: 033090e830de5d646985a46dc89a470f, type: 3}
-      propertyPath: actionEvent
-      value: 
-      objectReference: {fileID: 11400000, guid: 5d961dd6bcef704479a4bf7b31f8307c,
-        type: 2}
     - target: {fileID: 2192015190459939265, guid: 033090e830de5d646985a46dc89a470f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2962,15 +2957,6 @@ Tilemap:
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
       m_AllTileFlags: 1073741825
-  - first: {x: -2, y: 1, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 7
-      m_TileSpriteIndex: 7
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      m_AllTileFlags: 1073741825
   - first: {x: -1, y: 1, z: 0}
     second:
       serializedVersion: 2
@@ -3491,7 +3477,7 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 141
+  - m_RefCount: 140
     m_Data: {fileID: 11400000, guid: 5a27139c42680684d8d027e3a20358ae, type: 2}
   - m_RefCount: 6
     m_Data: {fileID: 11400000, guid: 6bac90291eecf0f419ba0124ec9af154, type: 2}
@@ -3510,13 +3496,13 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 141
+  - m_RefCount: 140
     m_Data: {fileID: 466580629177883253, guid: 71326d7f2d2b2f541a4b0d934ff4cf43, type: 3}
   - m_RefCount: 6
     m_Data: {fileID: 1134739058553468145, guid: 71326d7f2d2b2f541a4b0d934ff4cf43,
       type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 147
+  - m_RefCount: 146
     m_Data:
       e00: 1
       e01: 0
@@ -3553,7 +3539,7 @@ Tilemap:
       e32: 9.47e-43
       e33: 0
   m_TileColorArray:
-  - m_RefCount: 147
+  - m_RefCount: 146
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -3907,7 +3893,7 @@ MonoBehaviour:
   isGameEndable: 1
   gameOverEvent: {fileID: 11400000, guid: 0a0abac8d7b79d44e9f467aae1a4b614, type: 2}
   chosenCharacters: {fileID: 11400000, guid: f4de4dfe51799c942bccc04a17dd7eb6, type: 2}
-  characterPrefab: {fileID: 2192015190459939271, guid: 033090e830de5d646985a46dc89a470f,
+  characterPrefab: {fileID: 8026773938966227834, guid: 033090e830de5d646985a46dc89a470f,
     type: 3}
   charactersParent: {fileID: 460169523}
 --- !u!4 &1777220459

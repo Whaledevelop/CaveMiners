@@ -11,7 +11,7 @@ public class MainActor : MonoBehaviour
 
     [SerializeField] private CharacterInitialDataSet chosenCharacters;
 
-    [SerializeField] private GameObject characterPrefab;
+    [SerializeField] private CharacterManager characterPrefab;
 
     [SerializeField] private Transform charactersParent;
 
@@ -19,10 +19,10 @@ public class MainActor : MonoBehaviour
     {
         for(int i = 0; i < chosenCharacters.Items.Count; i++)
         {
-            GameObject characterObject = Instantiate(characterPrefab, charactersParent);
+            CharacterManager characterObject = Instantiate(characterPrefab, charactersParent);
             characterObject.transform.position = new Vector2(characterObject.transform.position.x + i * 0.1f, characterObject.transform.position.y);
-            SpriteResolver spriteResolver = characterObject.GetComponentInChildren<SpriteResolver>();
-            spriteResolver.SetCategoryAndLabel(chosenCharacters.Items[i].spriteName, spriteResolver.GetLabel());
+
+            characterObject.Init(chosenCharacters.Items[i]);            
         }
     }
 

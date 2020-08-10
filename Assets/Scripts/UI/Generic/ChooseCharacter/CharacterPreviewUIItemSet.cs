@@ -8,7 +8,7 @@ public class CharacterPreviewUIItemSet : RuntimeSet<CharacterPreviewUIItem>
 
     private GameObject previewsParent;
 
-    public CharacterPreviewUIItem InstantiateItem(string spriteName)
+    public CharacterPreviewUIItem InstantiateItem(CharacterInitialData characterData)
     {
         if (previewsParent == null)
         {
@@ -16,7 +16,7 @@ public class CharacterPreviewUIItemSet : RuntimeSet<CharacterPreviewUIItem>
             previewsParent.transform.position = new Vector3(0, 0, -10);
         }
         CharacterPreviewUIItem characterPreview = Instantiate(characterPreviewPrefab, previewsParent.transform);
-        characterPreview.Init(spriteName);
+        characterPreview.Init(characterData);
 
         Vector3 positionInGrid = characterPreview.transform.position;
         positionInGrid.x = characterPreview.SpriteSize.x * Items.Count;

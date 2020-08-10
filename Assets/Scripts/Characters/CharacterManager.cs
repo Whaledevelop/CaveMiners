@@ -1,18 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.U2D.Animation;
 
 public class CharacterManager : MonoBehaviour
 {
     [SerializeField] private Highlighter highlighter;
     [SerializeField] private CharacterTasksManager tasksManager;
     [SerializeField] private CharacterManagersSet set;
+    [SerializeField] private SpriteResolver spriteResolver;
 
     [HideInInspector] public CharacterInitialData characterData;
 
     public void Init(CharacterInitialData characterInitialData)
     {
         characterData = characterInitialData;
+        spriteResolver.SetCategoryAndLabel(characterData.spriteName, spriteResolver.GetLabel());
     }
 
     public void OnEnable()

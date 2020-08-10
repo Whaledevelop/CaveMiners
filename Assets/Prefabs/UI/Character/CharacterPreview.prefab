@@ -150,6 +150,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7a5828850ea72340917dc92832e0a78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterPrefab: {fileID: 2192015190459939271, guid: 033090e830de5d646985a46dc89a470f,
+  characterPrefab: {fileID: 8026773938966227834, guid: 033090e830de5d646985a46dc89a470f,
     type: 3}
   previewCamera: {fileID: 6462825752214018218}
+  PreviewRenderTexture: {fileID: 0}
+  characterData: {fileID: 0}

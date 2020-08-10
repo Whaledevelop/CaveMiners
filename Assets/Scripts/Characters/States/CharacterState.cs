@@ -28,17 +28,17 @@ public class CharacterState : ScriptableObject
 
     public virtual IEnumerator Start()
     {
-        UpdateView(StateStage.Start, animator, toolsManager);
+        UpdateView(StateStage.Start);
         yield break;
     }
 
     public virtual IEnumerator End()
     {
-        UpdateView(StateStage.End, animator, toolsManager);
+        UpdateView(StateStage.End);
         yield break;
     }
 
-    public void UpdateView(StateStage stateStage, Animator animator, CharacterToolsManager toolsManager)
+    public void UpdateView(StateStage stateStage)
     {
         switch (stateStage)
         {
