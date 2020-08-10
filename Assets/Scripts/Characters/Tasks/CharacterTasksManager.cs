@@ -15,16 +15,15 @@ public struct TaskStartData
         this.executeDelegate = executeDelegate;
     }
 }
-public delegate void NoParamsDelegate();
+
 public class CharacterTasksManager : MonoBehaviour
 {
 
     [SerializeField] private CellPositionRequest cellCenterRequest;
-    [SerializeField] private CharacterTasksManagersSet set;
     [SerializeField] private CharacterInitialData initialData;
     [SerializeField] private TaskPathfinder taskPathfinder;
     [SerializeField] private Highlighter characterHighlighter;
-    [SerializeField] private CharacterStateData idleState;
+    [SerializeField] private CharacterState idleState;
 
     [SerializeField] private CharacterToolsManager toolsManager;
     [SerializeField] private CharacterSkillsManager skillsManager;
@@ -38,16 +37,6 @@ public class CharacterTasksManager : MonoBehaviour
 
     
     public Action onEndTask;
-
-    public void Start()
-    {
-        set.Add(this);
-    }
-
-    public void OnDestroy()
-    {
-        set.Remove(this);
-    }
 
     public void ExecuteTask(TaskStartData taskStartData)
     {
@@ -83,16 +72,6 @@ public class CharacterTasksManager : MonoBehaviour
             nextTasks.RemoveAt(0);
             ExecuteTask(nextTask);            
         }        
-    }
-
-    public void OnBecomeNotActive() 
-    {
-        characterHighlighter.SwapHighlightMode();
-    }
-     
-    public void OnBecomeActive() 
-    {
-        characterHighlighter.SwapHighlightMode();
     }
 
     public override string ToString() => initialData.name;

@@ -13,7 +13,7 @@ public class CharacterPreviewUIItem : UIItem<string>
     private SpriteResolver spriteResolver;
     private SpriteRenderer spriteRenderer;
 
-    private CharacterStateData previewState;
+    private CharacterState previewState;
 
     [HideInInspector] public RenderTexture PreviewRenderTexture;
 
@@ -44,20 +44,20 @@ public class CharacterPreviewUIItem : UIItem<string>
         spriteResolver.SetCategoryAndLabel(setupData, spriteResolver.GetLabel());
     }
 
-    public void StartPreviewState(CharacterStateData newState)
+    public void StartPreviewState(CharacterState newState)
     {
         StopPreviewState();
 
         previewState = newState;
         
-        previewState.UpdateView(CharacterStateData.StateStage.Start, animator, toolsManager);
+        previewState.UpdateView(StateStage.Start, animator, toolsManager);
     }
 
     public void StopPreviewState()
     {
         if (previewState != null)
         {            
-            previewState.UpdateView(CharacterStateData.StateStage.End, animator, toolsManager);
+            previewState.UpdateView(StateStage.End, animator, toolsManager);
             previewState = null;
         }
     }

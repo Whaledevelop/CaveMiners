@@ -11,7 +11,7 @@ public class CharacterCardUIItem : CharacterUIItem, IPointerEnterHandler, IPoint
 
     [SerializeField] private Color chooseColor;    
 
-    [SerializeField] private CharacterStateData greetState;
+    [SerializeField] private CharacterState greetState;
 
     [SerializeField] private CharacterDataGameEvent openCharacterInfoEvent;
 

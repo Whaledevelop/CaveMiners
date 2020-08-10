@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharacterTaskPoint
 {
-    public CharacterStateData stateData;
+    public CharacterActionState stateData;
     public Vector2 prevCellPosition;
     public Vector2 axisFromPrevCell;
 
@@ -21,7 +21,7 @@ public class CharacterTaskPoint
 
     public Vector2 AxisToNextCell => NextCellToCharacterPosition - CellPosition;
 
-    public CharacterTaskPoint(CharacterStateData stateData, Vector2 prevCellPosition, Vector2 axisFromPrevCell)
+    public CharacterTaskPoint(CharacterActionState stateData, Vector2 prevCellPosition, Vector2 axisFromPrevCell)
     {
         this.stateData = stateData;
         this.prevCellPosition = prevCellPosition;

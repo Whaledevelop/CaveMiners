@@ -4,36 +4,33 @@ using System.Collections;
 using System;
 
 [CreateAssetMenu(fileName = "DigCharacterState", menuName = "States/DigCharacterState")]
-public class DigCharacterState : IterativeStateData
+public class DigCharacterState : CharacterIterativeActionState
 {
-    [SerializeField] private CharacterStateData moveToPointState;
+    [SerializeField] private CharacterActionState moveToPointState;
 
     [NonSerialized] private bool isMovedToPoint;
 
-    public override IEnumerator End(bool isNextStateTheSame, CharacterActionData actionData, Animator animator, CharacterToolsManager toolsManager, Rotator rotator)
-    {
-        yield return base.End(isNextStateTheSame, actionData, animator, toolsManager, rotator);
+    [NonSerialized] private CharacterActionState instantiatedMoveToPointState;
 
-        CharacterActionData moveToDiggedPointAction = new CharacterActionData(actionData.taskManager, actionData.skillsManager, moveToPointState, 
+    public override IEnumerator End()
+    {
+        isMovedToPoint = false;
+        yield return base.End();
+
+        CharacterActionData moveToDiggedPointAction = new CharacterActionData(actionData.taskManager, actionData.skillsManager, moveToPointState,
             actionData.taskManager.transform.position, actionData.endPosition, actionData.actionDirection, null);
 
-        moveToDiggedPointAction.OnExecuteDelegate = () =>
-        {
-            OnMoveToPoint(moveToDiggedPointAction, animator, toolsManager, rotator);
-            return default;
-        };
-        yield return moveToPointState.Execute(false, moveToDiggedPointAction, animator, toolsManager, rotator);
+        moveToDiggedPointAction.OnExecuteDelegate = OnMoveToPointEnumerator;
+
+        instantiatedMoveToPointState = Instantiate(moveToPointState);
+        instantiatedMoveToPointState.InitInstance(animator, toolsManager, rotator, moveToDiggedPointAction);
+        yield return instantiatedMoveToPointState.Start();
         yield return new WaitUntil(() => isMovedToPoint);
     }
-    
-    public void OnMoveToPoint(CharacterActionData actionData, Animator animator, CharacterToolsManager toolsManager, Rotator rotator)
-    {      
-        actionData.taskManager.StartCoroutine(OnMoveToPointEnumerator(actionData, animator, toolsManager, rotator));
-    }
 
-    public IEnumerator OnMoveToPointEnumerator(CharacterActionData actionData, Animator animator, CharacterToolsManager toolsManager, Rotator rotator)
+    public IEnumerator OnMoveToPointEnumerator()
     {
-        yield return moveToPointState.End(false, actionData, animator, toolsManager, rotator);
+        yield return instantiatedMoveToPointState.End();
         isMovedToPoint = true;
     }
 }

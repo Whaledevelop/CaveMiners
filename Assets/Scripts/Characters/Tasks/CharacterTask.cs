@@ -15,9 +15,9 @@ public class CharacterTask
 
     private int currentTaskPointIndex = -1;
     private CharacterTaskPoint CurrentTaskPoint => (currentTaskPointIndex < taskPoints.Count && currentTaskPointIndex >= 0 ) ? taskPoints[currentTaskPointIndex] : null;
-    private CharacterStateData CurrentStateData => CurrentTaskPoint != null ? CurrentTaskPoint.stateData : null;
+    private CharacterActionState CurrentStateData => CurrentTaskPoint != null ? CurrentTaskPoint.stateData : null;
 
-    private CharacterState activeState;
+    private CharacterActionState activeState;
 
     private bool isExecuted;
 
@@ -37,21 +37,24 @@ public class CharacterTask
     {
         if (!isExecuted)
         {
-            CharacterStateData prevStateData = CurrentStateData;
+            CharacterState prevStateData = CurrentStateData;
             currentTaskPointIndex++;
             bool isCurrentStateTheSame = prevStateData != null && prevStateData == CurrentStateData;
 
             //Debug.Log("ExecuteNextState " + currentTaskPointIndex + ", " + taskPoints.Count + ", " + CurrentStateData);
             if (activeState != null)
             {
-                yield return activeState.End(isCurrentStateTheSame);
+                yield return activeState.End();
             }
             if (currentTaskPointIndex < taskPoints.Count)
             {
                 CharacterActionData actionData = new CharacterActionData(taskManager, skillsManager, CurrentStateData, taskManager.transform.position,
                     CurrentTaskPoint.CellPosition, -CurrentTaskPoint.AxisToNextCell, ExecuteNextState);
-                activeState = new CharacterState(actionData, animator, toolsManager, rotator);
-                yield return activeState.Execute(isCurrentStateTheSame);
+
+                activeState = ScriptableObject.Instantiate(CurrentStateData);
+                activeState.InitInstance(animator, toolsManager, rotator, actionData);
+
+                yield return activeState.Start();
             }
             else
             {

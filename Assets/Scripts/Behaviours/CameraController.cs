@@ -11,7 +11,7 @@ public class CameraController : MonoBehaviour
         FollowCharacter
     }
 
-    [SerializeField] private CharacterTasksManagersSet charactersSet;
+    [SerializeField] private CharacterManagersSet charactersSet;
 
     [SerializeField] private Range zoomRange;
 

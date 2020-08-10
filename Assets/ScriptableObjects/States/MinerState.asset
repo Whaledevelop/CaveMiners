@@ -10,25 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d655de2da699942429c77c93c8ac9c4c, type: 3}
-  m_Name: MinerStateData
+  m_Name: MinerState
   m_EditorClassIdentifier: 
   stateName: "\u0414\u043E\u0431\u044B\u0447\u0430"
+  toolCode: 3
+  animatorStartTrigger: StartMining
+  animatorEndTrigger: StopMining
   skillDescription: "\u041D\u0430\u0441\u043A\u043E\u043B\u044C\u043A\u043E \u0431\u044B\u0441\u0442\u0440\u043E
     \u0434\u043E\u0431\u044B\u0432\u0430\u0435\u0442 \u0440\u0435\u0441\u0443\u0440\u0441\u044B"
-  toolCode: 3
   actionLayerMask:
     serializedVersion: 2
     m_Bits: 4096
   actionPriority: 3
   gizmosColor: {r: 0.8595777, g: 0.8679245, b: 0.12691349, a: 1}
   rotationMode: 2
-  isViewUpdatableIfSame: 1
-  animatorTriggerStart: StartMining
-  animatorTriggerEnd: StopMining
   startEvent: {fileID: 11400000, guid: b86a7511c0c6b37438783760bd5d508f, type: 2}
   endEvent: {fileID: 11400000, guid: 3afe5e381e6136546baffc7a5d176ee6, type: 2}
   iterationEvent: {fileID: 11400000, guid: 882c0584ad7eddc4781284b663e30e7b, type: 2}
-  iterationsInterval: 1
+  iterationsRange: 1
   executionCondition: 2
   maxIterationsCount: 5
   basePositionRequest: {fileID: 11400000, guid: b138cfb8a836fca4bac1843b8a031df2,

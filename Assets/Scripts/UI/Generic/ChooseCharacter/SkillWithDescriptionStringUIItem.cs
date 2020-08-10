@@ -8,6 +8,6 @@ public class SkillWithDescriptionStringUIItem : SkillStringUIItem
     public override void Init(CharacterStateSkillData setupData)
     {
         base.Init(setupData);
-        descriptionString.text = setupData.state.skillDescription;
+        //descriptionString.text = setupData.state.skillDescription;
     }
 }

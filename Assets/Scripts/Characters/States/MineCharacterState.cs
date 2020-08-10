@@ -5,7 +5,7 @@ using System;
 using UnityEngine.Tilemaps;
 
 [CreateAssetMenu(fileName = "MineCharacterState", menuName = "States/MineCharacterState")]
-public class MineCharacterState : IterativeStateData
+public class MineCharacterState : CharacterIterativeActionState
 {
     [SerializeField] private CellPositionRequest basePositionRequest;
 
@@ -15,12 +15,12 @@ public class MineCharacterState : IterativeStateData
 
     [SerializeField] private ToolCode nextTaskDefaultTool;
 
-    public override IEnumerator End(bool isNextStateTheSame, CharacterActionData actionData, Animator animator, CharacterToolsManager toolsManager, Rotator rotator)
+    public override IEnumerator End()
     {
-        yield return base.End(isNextStateTheSame, actionData, animator, toolsManager, rotator);
+        yield return base.End();
 
         TaskStartData mineTask = actionData.taskManager.tasksHistory[actionData.taskManager.tasksHistory.Count - 1];
-        ToolCode prevToolCode = toolsManager.defaultTool;             
+        ToolCode prevToolCode = toolsManager.defaultTool;
 
         toolsManager.defaultTool = nextTaskDefaultTool;
 
@@ -30,9 +30,9 @@ public class MineCharacterState : IterativeStateData
         {
             toolsManager.defaultTool = prevToolCode;
             if (actionData.endExecutionCondition == EndExecutionCondition.IterationsCount)
-            {                
+            {
                 actionData.taskManager.ExecuteTask(mineTask);
-            }          
+            }
 
         }));
     }

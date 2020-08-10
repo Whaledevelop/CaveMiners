@@ -1,7 +1,7 @@
 ﻿[System.Serializable]
 public class CharacterStateSkillData
 {
-    public CharacterStateData state;
+    public CharacterState state;
     public float value;
     public float learnability;
 }

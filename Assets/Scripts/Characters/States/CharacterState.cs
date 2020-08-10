@@ -1,84 +1,71 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
-public class CharacterState
+public enum StateStage
 {
-    public CharacterActionData actionData;
-    private CharacterToolsManager toolsManager;
-    private Animator animator;
-    private Rotator rotator;
+    None, Start, Execution, End
+}
 
-    public CharacterStateData stateData => actionData.stateData;
-    public string Name => stateData.stateName;
+[CreateAssetMenu(fileName = "CharacterState", menuName = "States/CharacterState")]
+public class CharacterState : ScriptableObject
+{
+    // Общие данные
+    public string stateName;
+    public ToolCode toolCode;
+    public string animatorStartTrigger;
+    public string animatorEndTrigger;
 
-    public bool isExecuting;
+    // Данные экземпляра
+    [NonSerialized] protected Animator animator;
+    [NonSerialized] protected CharacterToolsManager toolsManager;
 
-    private bool isPrevStateTheSame;
-
-    private int iterationsCounter;
-
-    public CharacterState(CharacterActionData actionData, Animator animator, CharacterToolsManager toolsManager, Rotator rotator)
+    public virtual void InitInstance(Animator animator, CharacterToolsManager toolsManager)
     {
-        this.actionData = actionData;
-        this.toolsManager = toolsManager;
         this.animator = animator;
-        this.rotator = rotator;
+        this.toolsManager = toolsManager;
     }
 
-    public IEnumerator Execute(bool isPrevStateTheSame = false)
+    public virtual IEnumerator Start()
     {
-        this.isPrevStateTheSame = isPrevStateTheSame;
-        isExecuting = true;
-        yield return stateData.Execute(isPrevStateTheSame, actionData, animator, toolsManager, rotator);
-        if (stateData is IterativeStateData)
-        {
-            yield return StartIterations();
-        }
-        isExecuting = false;
+        UpdateView(StateStage.Start, animator, toolsManager);
+        yield break;
     }
 
-    private IEnumerator StartIterations()
+    public virtual IEnumerator End()
     {
-        IterativeStateData iterativeState = stateData as IterativeStateData;
-        if (iterativeState.iterationEvent != null)
+        UpdateView(StateStage.End, animator, toolsManager);
+        yield break;
+    }
+
+    public void UpdateView(StateStage stateStage, Animator animator, CharacterToolsManager toolsManager)
+    {
+        switch (stateStage)
         {
-            while (DefineIfIterationsEnd(iterativeState))
-            {
-                yield return Iterate(actionData);
-            }
-            if (iterativeState.executionCondition == EndExecutionCondition.IterationsCount && iterationsCounter > iterativeState.maxIterationsCount)
-            {
-                
-                actionData.OnExecute(EndExecutionCondition.IterationsCount);
-            }
-        }
-        else
-        {
-            yield break;
+            case StateStage.Start:
+                SetTrigger(animator, animatorStartTrigger);
+                toolsManager.ApplyTool(toolCode);
+                break;
+            case StateStage.End:
+                SetTrigger(animator, animatorEndTrigger);
+                toolsManager.HideTool(toolCode);
+                break;
         }
     }
 
-    private bool DefineIfIterationsEnd(IterativeStateData iterativeState)
+    private void SetTrigger(Animator animator, string trigger)
     {
-        bool isTilTheExecution = iterativeState.executionCondition == EndExecutionCondition.Executed;
-        bool isWhileIterationsCount = iterativeState.executionCondition == EndExecutionCondition.IterationsCount &&
-            iterationsCounter <= iterativeState.maxIterationsCount;
-        return isTilTheExecution || isWhileIterationsCount;
-    }
-
-    public virtual IEnumerator Iterate(CharacterActionData actionData)
-    {
-        IterativeStateData iterativeState = stateData as IterativeStateData;
-        yield return new WaitForSeconds(iterativeState.iterationsRange);
-        iterativeState.iterationEvent.Raise(actionData);
-        if (iterativeState.executionCondition == EndExecutionCondition.IterationsCount)
-            iterationsCounter++;
-    }
-
-    public IEnumerator End(bool isNextStateTheSame = false)
-    {
-        actionData.taskManager.StopCoroutine(Execute(isPrevStateTheSame));
-
-        yield return stateData.End(isNextStateTheSame, actionData, animator, toolsManager, rotator);
+        // Иногда возникает ситуация, когда произходит вызов другой анимации, когда еще происходит вызов
+        // предыдущей, тогда триггер остается включенным, что приводит к тому, что следующая попытка вызвать ту же 
+        // анимацию не сработает. Поэтому снимаем все триггеры вручную
+        foreach (AnimatorControllerParameter parameter in animator.parameters)
+        {
+            if (parameter.type == AnimatorControllerParameterType.Trigger)
+                animator.ResetTrigger(parameter.name);
+        }
+        if (!string.IsNullOrEmpty(trigger))
+        {
+            animator.SetTrigger(trigger);
+        }
     }
 }

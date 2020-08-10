@@ -8,7 +8,9 @@ public enum RotationMode
 }
 
 public class Rotator : MonoBehaviour
-{    
+{
+    [SerializeField] private Transform rotatingTransform;
+
     public void Rotate(Vector2 direction, RotationMode rotationMode)
     {
         switch (rotationMode)
@@ -17,9 +19,9 @@ public class Rotator : MonoBehaviour
 
                 RotateLeftRight(direction.x);
 
-                if (transform.eulerAngles.z != 0)
+                if (rotatingTransform.eulerAngles.z != 0)
                 {
-                    transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0);
+                    rotatingTransform.eulerAngles = new Vector3(rotatingTransform.eulerAngles.x, rotatingTransform.eulerAngles.y, 0);
                 }
                 break;
             case RotationMode.LeftRightDown:
@@ -28,7 +30,8 @@ public class Rotator : MonoBehaviour
 
                 if (direction.y != 0)
                 {
-                    transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.localScale.x * direction.y * 90);
+                    float z = rotatingTransform.localScale.x * direction.y * 90;
+                    rotatingTransform.eulerAngles = new Vector3(rotatingTransform.eulerAngles.x, rotatingTransform.eulerAngles.y, z);
                 }
                 break;
             default: break;
@@ -39,7 +42,7 @@ public class Rotator : MonoBehaviour
     {
         if (xDirection != 0)
         {
-            transform.localScale = new Vector2(xDirection, transform.localScale.y);
+            rotatingTransform.localScale = new Vector2(xDirection, rotatingTransform.localScale.y);
         }
 
     }

@@ -8,7 +8,7 @@ public class FromEndToStartByPriorityTaskPathfinder : TaskPathfinder
 {
     [SerializeField] private CellLayoutRequest cellLayoutRequest;
     [SerializeField] private Request checkIfCharacterOnCellRequest;
-    [SerializeField] private List<CharacterStateData> cellActionsStates = new List<CharacterStateData>();
+    [SerializeField] private List<CharacterActionState> cellActionsStates = new List<CharacterActionState>();
     [Header("Максимальная глубина поиска")]
     [SerializeField] private int pathFindMaxDepth;
 
@@ -18,7 +18,7 @@ public class FromEndToStartByPriorityTaskPathfinder : TaskPathfinder
     public override List<CharacterTaskPoint> FindPath(Vector2 startPosition, Vector2 taskPoint, int taskLayer)
     {
         // Начинаем с конца, чтобы двигаться от меньшего приоритета (земли) к большему (тоннели)
-        CharacterStateData taskEndPointState = cellActionsStates.Find(state => Utils.MaskToLayer(state.actionLayerMask) == taskLayer);
+        CharacterActionState taskEndPointState = cellActionsStates.Find(state => Utils.MaskToLayer(state.actionLayerMask) == taskLayer);
 
         if (taskEndPointState != null)
         {
@@ -132,7 +132,7 @@ public class FromEndToStartByPriorityTaskPathfinder : TaskPathfinder
                 }
                 else if (cellLayoutRequest.MakeRequest(new ParamsObject(actionPosition), out LayerMask cellLayerMask))
                 {
-                    CharacterStateData cellState = cellActionsStates.Find(state => Utils.MaskToLayer(state.actionLayerMask) == cellLayerMask);
+                    CharacterActionState cellState = cellActionsStates.Find(state => Utils.MaskToLayer(state.actionLayerMask) == cellLayerMask);
                     if (cellState != null)
                     {
                         if (pathsByPriority.ContainsKey(cellState.actionPriority))

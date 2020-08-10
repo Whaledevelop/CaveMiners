@@ -587,11 +587,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78085ec7e48e6a34687d090624b0d401, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charactersSet: {fileID: 11400000, guid: f5bb27efcc81d904fbe42451a3bb30f5, type: 2}
+  charactersSet: {fileID: 11400000, guid: 36e7d0feff916814f84f006a787bf3f5, type: 2}
   zoomRange:
     from: 1
     to: 5
-  cameraZOffset: -10
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -777,14 +776,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4a36788b11abaa47a73c637be9ff235, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  variable: {fileID: 11400000, guid: a95d1ccb3128b8247b785afc10148dce, type: 2}
-  actionResponse:
-    m_PersistentCalls:
-      m_Calls:
-      - {m_Target: {fileID: 539940332}, m_TargetAssemblyTypeName: , m_MethodName: OnChangeMoney, m_Mode: 0, m_Arguments: {m_ObjectArgument: {fileID: 0},
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, m_IntArgument: 0,
-          m_FloatArgument: 0, m_StringArgument: , m_BoolArgument: 0}, m_CallState: 2}
-    m_CallsDirty: 1
 --- !u!114 &539940330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1820,6 +1811,7 @@ GameObject:
   - component: {fileID: 1266000084}
   - component: {fileID: 1266000083}
   - component: {fileID: 1266000086}
+  - component: {fileID: 1266000085}
   m_Layer: 0
   m_Name: PlayerInput
   m_TagString: Untagged
@@ -1859,8 +1851,8 @@ MonoBehaviour:
     m_ActionName: Player/Look[/Mouse/delta]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: f5bb27efcc81d904fbe42451a3bb30f5, type: 2}
-        m_TargetAssemblyTypeName: CharacterTasksManagersSet, Assembly-CSharp
+      - m_Target: {fileID: 1266000085}
+        m_TargetAssemblyTypeName: MapInputController, Assembly-CSharp
         m_MethodName: OnClickOnMap
         m_Mode: 0
         m_Arguments:
@@ -1952,6 +1944,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1266000085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1266000082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0aaf0e02b79a6844938ff2acc83f1ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterLayer:
+    serializedVersion: 2
+    m_Bits: 2048
+  charactersSet: {fileID: 11400000, guid: 36e7d0feff916814f84f006a787bf3f5, type: 2}
 --- !u!114 &1266000086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1987,6 +1995,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 460169523}
     m_Modifications:
+    - target: {fileID: 953592547, guid: 033090e830de5d646985a46dc89a470f, type: 3}
+      propertyPath: actionEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 5d961dd6bcef704479a4bf7b31f8307c,
+        type: 2}
     - target: {fileID: 2192015190459939265, guid: 033090e830de5d646985a46dc89a470f,
         type: 3}
       propertyPath: m_LocalPosition.x

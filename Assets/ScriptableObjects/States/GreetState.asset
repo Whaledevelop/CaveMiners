@@ -10,18 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f00f0a3bcfb08b94a93f6ffa374faa0b, type: 3}
-  m_Name: GreetStateData
+  m_Name: GreetState
   m_EditorClassIdentifier: 
   stateName: Greet
   toolCode: 0
-  actionLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  actionPriority: 10
-  gizmosColor: {r: 1, g: 0, b: 0.8795767, a: 1}
-  rotationMode: 0
-  isViewUpdatableIfSame: 0
-  animatorTriggerStart: StartGreeting
-  animatorTriggerEnd: StopGreeting
-  startEvent: {fileID: 0}
-  endEvent: {fileID: 0}
+  animatorStartTrigger: StartGreeting
+  animatorEndTrigger: StopGreeting

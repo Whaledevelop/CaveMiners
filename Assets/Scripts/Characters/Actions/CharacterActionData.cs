@@ -15,7 +15,7 @@ public struct CharacterActionData
 {
     public CharacterTasksManager taskManager;
     public CharacterSkillsManager skillsManager;
-    public CharacterStateData stateData;
+    public CharacterState stateData;
     public Vector2 startPosition;
     public Vector2 endPosition;
     public Vector2 actionDirection;
@@ -25,7 +25,7 @@ public struct CharacterActionData
 
     public EndExecutionCondition endExecutionCondition;
 
-    public CharacterActionData(CharacterTasksManager taskManager, CharacterSkillsManager skillsManager, CharacterStateData stateData, Vector2 startPosition, Vector2 endPosition, Vector2 actionDirection, NoParamsEnumeratorDelegate OnExecuteDelegate = null)
+    public CharacterActionData(CharacterTasksManager taskManager, CharacterSkillsManager skillsManager, CharacterState stateData, Vector2 startPosition, Vector2 endPosition, Vector2 actionDirection, NoParamsEnumeratorDelegate OnExecuteDelegate = null)
     {
         this.taskManager = taskManager;
         this.skillsManager = skillsManager;

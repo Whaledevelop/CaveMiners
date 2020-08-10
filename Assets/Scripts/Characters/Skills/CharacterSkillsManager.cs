@@ -12,12 +12,12 @@ public class CharacterSkillsManager : MonoBehaviour
         skillsData = initialData.initialSkillsData; 
     }
 
-    public float GetStateSkill(CharacterStateData state)
+    public float GetStateSkill(CharacterState state)
     {
         return skillsData.Find(skill => skill.state == state).value;
     }
 
-    public void UpdateSkill(CharacterStateData state)
+    public void UpdateSkill(CharacterState state)
     {
         for(int i = 0; i < skillsData.Count; i++)
         {

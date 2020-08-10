@@ -25,7 +25,7 @@ MonoBehaviour:
   salary: 1
   spriteName: CaveMiner4
   initialSkillsData:
-  - state: {fileID: 11400000, guid: 5667e594b0489084f9f4dba82e840c76, type: 2}
+  - state: {fileID: 11400000, guid: 0e8c8e751fcc50b4da9b5e37f615b1b9, type: 2}
     value: 1
     learnability: 0
   - state: {fileID: 11400000, guid: da1f466d71b61af47a4ea46023313f53, type: 2}
