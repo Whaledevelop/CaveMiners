@@ -18,14 +18,18 @@ public class LevelGenerator : MonoBehaviour
 
     public void Generate()
     {
-        for(int x = xRange.from - 1; x < xRange.to + 1; x++)
+        for (int x = xRange.from - 1; x < xRange.to + 1; x++)
         { 
             for (int y = yRange.from - 1; y < yRange.to + 1; y++)
             {
-                foreach(GenerateRule generateRule in generateRules)
+
+                foreach (GenerateRule generateRule in generateRules)
                 {
                     if (generateRule.HandlePosition(x, y, xRange, yRange))
-                        break;
+                    {
+                        if (generateRule.isSingleOnCell)
+                            break;
+                    }
                 }
                     
             }

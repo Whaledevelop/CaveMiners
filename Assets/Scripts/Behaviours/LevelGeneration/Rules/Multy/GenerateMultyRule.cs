@@ -11,11 +11,16 @@ public class GenerateMultyRule : GenerateRule
 
     public override bool HandlePosition(int x, int y, RangeInt xRange, RangeInt yRange)
     {
+        bool isPositionTaken = false;
         foreach(GenerateRule generateRule in generateRules)
         {
-            if (generateRule.HandlePosition(x, y, xRange, yRange))
-                return true;
+            if(generateRule.HandlePosition(x, y, xRange, yRange))
+            {
+                isPositionTaken = true;
+                if (generateRule.isSingleOnCell)
+                    break;
+            }
         }
-        return false;
+        return isPositionTaken;
     }
 }

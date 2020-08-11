@@ -16,3 +16,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: caeaaeeac2a41f546a633a098079c065, type: 2}
   - {fileID: 11400000, guid: 09ef6cd1d58357744aba08db9b9967f7, type: 2}
   - {fileID: 11400000, guid: 5ad6a28bbe464fb4796ee65d778a6fc4, type: 2}
+  isSingleOnCell: 1

@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a85f6c065a62be1449eacc35d00d10dc, type: 3}
-  m_Name: GenerateResourcesRule
+  m_Name: GenerateStonesRule
   m_EditorClassIdentifier: 
-  tilemapsSet: {fileID: 11400000, guid: 17b16551dbf753d47bbccdd293325cc7, type: 2}
-  tilemapCode: {fileID: 11400000, guid: e6c12890c179d804b969d4259b33efb0, type: 2}
-  tile: {fileID: 11400000, guid: 20eba6dab8d117748922ddbd15012ab2, type: 2}
   isSingleOnCell: 1
-  instancesCount: 30
+  tilemapsSet: {fileID: 11400000, guid: 17b16551dbf753d47bbccdd293325cc7, type: 2}
+  tilemapCode: {fileID: 11400000, guid: 0d11d16a26ec3b44a8334d68d9f86d5f, type: 2}
+  tile: {fileID: 11400000, guid: a377ac0f12784314aa021336bf74595b, type: 2}
+  instancesCount: 15
   instanceDirection: {x: 0, y: 0}
   isInstanceRect: 0
   xArea:
