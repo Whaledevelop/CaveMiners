@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.Tilemaps;
 
-
-public abstract class GenerateSingleRule : GenerateRule
+[CreateAssetMenu(fileName = "GenerateEverywhereRule", menuName = "LevelGeneratorRules/GenerateEverywhereRule")]
+public class GenerateSingleRule : GenerateRule
 {
     [SerializeField] private GenerativeTilemapsSet tilemapsSet;
     [SerializeField] private GenerativeTilemapCode tilemapCode;
@@ -24,5 +24,5 @@ public abstract class GenerateSingleRule : GenerateRule
             return false;
     }
 
-    protected abstract bool CheckPosition(int x, int y, RangeInt levelXRange, RangeInt levelYRange);
+    protected virtual bool CheckPosition(int x, int y, RangeInt levelXRange, RangeInt levelYRange) => true;
 }

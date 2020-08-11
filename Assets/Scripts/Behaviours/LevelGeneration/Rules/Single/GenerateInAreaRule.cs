@@ -24,7 +24,6 @@ public class GenerateInAreaRule : GenerateSingleRule
         {
             for (int i = 0; i < instancesCount; i++)
             {
-
                 int randomX = (int)Mathf.Round(levelXRange.Interval * xArea.Random);
                 int randomY = (int)Mathf.Round(levelYRange.Interval * yArea.Random);
                 tilesGroups.Add(new TilesGroup(TilesGroup.Orientation.LowerLeft, new Vector2Int(randomX, randomY), instanceDirection, isInstanceRect));
