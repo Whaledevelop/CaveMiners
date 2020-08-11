@@ -16,4 +16,15 @@ public struct Range
     public float to;
 
     public float Average => (to + from) / 2;
+    public float Interval => to - from;
+}
+
+[Serializable]
+public struct RangeInt
+{
+    public int from;
+    public int to;
+
+    public int Average => (to + from) / 2;
+    public int Interval => to - from;
 }

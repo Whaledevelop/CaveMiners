@@ -147,11 +147,15 @@ public class FromEndToStartByPriorityTaskPathfinder : TaskPathfinder
                 }
             }
         }
-        List<CharacterTaskPoint> morePrioritePaths = pathsByPriority.Aggregate((biggest, next) => next.Key > biggest.Key ? next : biggest).Value;
-        if (morePrioritePaths.Count > 0)
-            return (false, morePrioritePaths[0].Priority, morePrioritePaths);
-        else
-            return (false, 0, new List<CharacterTaskPoint>());
+
+        if (pathsByPriority.Count > 0)
+        {
+            List<CharacterTaskPoint> morePrioritePaths = pathsByPriority.Aggregate((biggest, next) => next.Key > biggest.Key ? next : biggest).Value;
+            if (morePrioritePaths.Count > 0)
+                return (false, morePrioritePaths[0].Priority, morePrioritePaths);                
+        }       
+        return (false, 0, new List<CharacterTaskPoint>());
+
     }
 }
 

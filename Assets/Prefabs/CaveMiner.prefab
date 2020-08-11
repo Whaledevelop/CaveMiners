@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1763629009}
   - component: {fileID: 1763629010}
+  - component: {fileID: 1763629011}
   m_Layer: 11
   m_Name: MineHandler
   m_TagString: Untagged
@@ -47,6 +48,34 @@ MonoBehaviour:
   iterationEvent: {fileID: 11400000, guid: c946e9b599750fe43b8e6ffedf73c66a, type: 2}
   iterationsInterval: 1
   maxIterations: 5
+--- !u!114 &1763629011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1763629008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 133b6133de831664ba8140c53519fd5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionEvent: {fileID: 11400000, guid: 84376e576174b284e92c352b10639cfd, type: 2}
+  actionResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1763629010}
+        m_TargetAssemblyTypeName: MineActionHandler, Assembly-CSharp
+        m_MethodName: OnTileWorkedOut
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2192015189806234756
 GameObject:
   m_ObjectHideFlags: 0
@@ -328,6 +357,8 @@ GameObject:
   - component: {fileID: 2192015190459939293}
   - component: {fileID: 8196734391870924247}
   - component: {fileID: 8026773938966227834}
+  - component: {fileID: 2801829418821360807}
+  - component: {fileID: 5925199692159538479}
   m_Layer: 11
   m_Name: CaveMiner
   m_TagString: Character
@@ -436,6 +467,34 @@ MonoBehaviour:
   set: {fileID: 11400000, guid: 36e7d0feff916814f84f006a787bf3f5, type: 2}
   spriteResolver: {fileID: 2192015189806234752}
   characterData: {fileID: 0}
+--- !u!114 &2801829418821360807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2192015190459939271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da930d7e0a47ac1409cacdefe8d4c414, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerTag: NextLevel
+  triggerEvent: {fileID: 11400000, guid: 8fc97a53d1975424897f71b55b592a68, type: 2}
+--- !u!114 &5925199692159538479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2192015190459939271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da930d7e0a47ac1409cacdefe8d4c414, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerTag: Base
+  triggerEvent: {fileID: 11400000, guid: 96616c8a7e2389f4d86c0df0df79979e, type: 2}
 --- !u!1 &2192015190573973387
 GameObject:
   m_ObjectHideFlags: 0
@@ -882,7 +941,6 @@ GameObject:
   - component: {fileID: 8338456295914534188}
   - component: {fileID: 7080110055010395522}
   - component: {fileID: 8931294875683903809}
-  - component: {fileID: 2655819710503434263}
   m_Layer: 11
   m_Name: Behaviours
   m_TagString: Untagged
@@ -931,20 +989,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotatingTransform: {fileID: 2192015190459939265}
---- !u!114 &2655819710503434263
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7710661145881918077}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da930d7e0a47ac1409cacdefe8d4c414, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  triggerTag: NextLevel
-  triggerEvent: {fileID: 11400000, guid: 8fc97a53d1975424897f71b55b592a68, type: 2}
 --- !u!1 &9175402498440144095
 GameObject:
   m_ObjectHideFlags: 0

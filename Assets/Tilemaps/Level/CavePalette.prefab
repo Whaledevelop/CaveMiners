@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3670189682911184648}
   - component: {fileID: 1827295555097634146}
   - component: {fileID: 8505874063564158827}
-  m_Layer: 31
+  m_Layer: 0
   m_Name: Layer1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4796,12 +4796,12 @@ Tilemap:
   - first: {x: -9, y: 14, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 523
-      m_TileSpriteIndex: 4294967295
+      m_TileIndex: 684
+      m_TileSpriteIndex: 211
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
-      m_AllTileFlags: 1073741827
+      m_AllTileFlags: 1073741826
   m_AnimatedTiles: {}
   m_TileAssetArray:
   - m_RefCount: 0
@@ -5850,7 +5850,7 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: fc4e0f5592d8f334bb872239546985ff, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 09f542a08a16f144e9875cb389eff3d7, type: 2}
-  - m_RefCount: 2
+  - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 264ecb22cf340334e831f276789495ff, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 7c2633040dfb67f49a3073c9469f3ed6, type: 2}
@@ -6172,8 +6172,8 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: de5ad1244084560449f39e770a637ecd, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 218cf6cd5b78d9d4ea117b7737c6f2ab, type: 2}
   - m_RefCount: 1
@@ -6652,7 +6652,7 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: -8407631924199060683, guid: 71326d7f2d2b2f541a4b0d934ff4cf43,
       type: 3}
-  - m_RefCount: 1
+  - m_RefCount: 2
     m_Data: {fileID: -7909599442545597891, guid: 6f0f4c8911468c7428fb4096f3f389d1,
       type: 3}
   - m_RefCount: 1
@@ -8566,7 +8566,7 @@ TilemapRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4603318437394220101}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 0
@@ -8574,6 +8574,7 @@ TilemapRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -8650,7 +8651,7 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
---- !u!114 &3081094620990616118
+--- !u!114 &7670224292380545986
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

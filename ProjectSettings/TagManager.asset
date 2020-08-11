@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Character
   - NextLevel
+  - Base
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - Walkable
   - Character
   - Resources
-  - NextLevel
+  - 
   - 
   - 
   - 

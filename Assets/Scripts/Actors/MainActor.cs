@@ -33,4 +33,9 @@ public class MainActor : MonoBehaviour
             gameOverEvent.Raise();
         }            
     }
+
+    public void OnBase()
+    {
+        Debug.Log("base");
+    }
 }
