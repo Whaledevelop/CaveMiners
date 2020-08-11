@@ -9,10 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38748dab655e75549b6e40b9edd5a67c, type: 3}
-  m_Name: GenerateBordersRule
+  m_Script: {fileID: 11500000, guid: 66df6cb629f0d0141ab2101bcdb16053, type: 3}
+  m_Name: GenerateIBaseBackgroundRule
   m_EditorClassIdentifier: 
   tilemapsSet: {fileID: 11400000, guid: 17b16551dbf753d47bbccdd293325cc7, type: 2}
   tilemapCode: {fileID: 11400000, guid: 0d11d16a26ec3b44a8334d68d9f86d5f, type: 2}
   tile: {fileID: 11400000, guid: 6bac90291eecf0f419ba0124ec9af154, type: 2}
-  isSingleOnCell: 1
+  isSingleOnCell: 0
+  orientation: 1
+  startPositionLocal: {x: 0, y: 1}
+  direction: {x: 1, y: -1}
+  isRect: 0

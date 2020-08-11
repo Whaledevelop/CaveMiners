@@ -27,4 +27,30 @@ public struct RangeInt
 
     public int Average => (to + from) / 2;
     public int Interval => to - from;
+
+    public RangeInt(int from, int to)
+    {
+        if (to > from)
+        {
+            this.from = from;
+            this.to = to;
+        }
+        else
+        {
+            this.from = to;
+            this.to = from;
+        }
+    }
+
+    public bool IsInRange(int value, bool fromInclusevly = true, bool toInclusevly = true)
+    {
+        bool isFromIn = fromInclusevly ? value >= from : value > from;
+        bool isToIn = toInclusevly ? value <= to : value < to;
+        return isFromIn && isToIn;
+    }
+
+    public override string ToString()
+    {
+        return "from " + from + " to " + to;
+    }
 }
