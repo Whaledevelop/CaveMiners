@@ -16,7 +16,8 @@ MonoBehaviour:
   tilemapCode: {fileID: 11400000, guid: 0d11d16a26ec3b44a8334d68d9f86d5f, type: 2}
   tile: {fileID: 11400000, guid: 6bac90291eecf0f419ba0124ec9af154, type: 2}
   isSingleOnCell: 0
-  orientation: 1
-  startPositionLocal: {x: 0, y: 1}
-  direction: {x: 1, y: -1}
-  isRect: 0
+  tilesGroup:
+    orientation: 1
+    startPositionLocal: {x: 0, y: 0}
+    direction: {x: 1, y: -1}
+    isRect: 0

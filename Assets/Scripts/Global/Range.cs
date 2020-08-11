@@ -17,6 +17,8 @@ public struct Range
 
     public float Average => (to + from) / 2;
     public float Interval => to - from;
+
+    public float Random => UnityEngine.Random.Range(from, to);
 }
 
 [Serializable]

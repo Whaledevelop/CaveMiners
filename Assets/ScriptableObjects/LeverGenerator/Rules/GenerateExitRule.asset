@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a85f6c065a62be1449eacc35d00d10dc, type: 3}
+  m_Name: GenerateExitRule
+  m_EditorClassIdentifier: 
+  tilemapsSet: {fileID: 11400000, guid: 17b16551dbf753d47bbccdd293325cc7, type: 2}
+  tilemapCode: {fileID: 11400000, guid: 3bd6c9206cb95784abb0a7103e2c8e1a, type: 2}
+  tile: {fileID: 11400000, guid: b9dd4284928cb2242b153294db0782c1, type: 2}
+  isSingleOnCell: 1
+  instancesCount: 1
+  instanceDirection: {x: -1, y: 0}
+  isInstanceRect: 1
+  xArea:
+    from: 0.8236913
+    to: 1
+  yArea:
+    from: 0
+    to: 1
