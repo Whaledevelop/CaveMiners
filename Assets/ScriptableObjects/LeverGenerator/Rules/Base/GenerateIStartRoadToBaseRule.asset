@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66df6cb629f0d0141ab2101bcdb16053, type: 3}
   m_Name: GenerateIStartRoadToBaseRule
   m_EditorClassIdentifier: 
+  isSingleOnCell: 1
   tilemapsSet: {fileID: 11400000, guid: 17b16551dbf753d47bbccdd293325cc7, type: 2}
   tilemapCode: {fileID: 11400000, guid: 7f1eac98db1cdc14d81d090f0297c8e9, type: 2}
   tile: {fileID: 11400000, guid: 218cf6cd5b78d9d4ea117b7737c6f2ab, type: 2}
-  isSingleOnCell: 0
   tilesGroup:
     orientation: 1
     startPositionLocal: {x: 1, y: -1}

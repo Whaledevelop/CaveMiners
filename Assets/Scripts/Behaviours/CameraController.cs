@@ -24,20 +24,20 @@ public class CameraController : MonoBehaviour
     private float zoomToCharacter;
     private float ZoomToCharacter => zoomToCharacter != default ? zoomToCharacter : zoomRange.Average;
 
-    public void Start()
-    {
-        controlledCamera = GetComponent<Camera>();
-        mapObservationPosition = transform.position;
-        mapObservationZoom = controlledCamera.orthographicSize;
-        cameraZOffset = transform.position.z;
-    }
-
     public void Update()
     {
         if (cameraMode == CameraMode.FollowCharacter)
         {
             SetFollowCharacterPosition();
         }
+    }
+
+    public void Setup()
+    {
+        controlledCamera = GetComponent<Camera>();
+        mapObservationPosition = transform.position;
+        mapObservationZoom = controlledCamera.orthographicSize;
+        cameraZOffset = transform.position.z;
     }
 
     public void OnSwitchCameraMode()

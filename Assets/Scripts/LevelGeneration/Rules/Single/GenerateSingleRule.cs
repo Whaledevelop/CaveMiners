@@ -10,9 +10,9 @@ public class GenerateSingleRule : GenerateRule
 
     private GenerativeTilemap generativeTilemap;
 
-    public override bool HandlePosition(int x, int y, RangeInt levelXRange, RangeInt levelYRange)
+    public override bool HandlePosition(int x, int y)
     {
-        if (CheckPosition(x, y, levelXRange, levelYRange))
+        if (CheckPosition(x, y))
         {
             if (generativeTilemap == null)
                 generativeTilemap = tilemapsSet.FindByCode(tilemapCode);
@@ -23,5 +23,5 @@ public class GenerateSingleRule : GenerateRule
             return false;
     }
 
-    protected virtual bool CheckPosition(int x, int y, RangeInt levelXRange, RangeInt levelYRange) => true;
+    protected virtual bool CheckPosition(int x, int y) => true;
 }

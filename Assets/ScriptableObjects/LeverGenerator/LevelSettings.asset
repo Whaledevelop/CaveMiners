@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b97808b7ac01b28498fbc13eddc5d21c, type: 3}
+  m_Name: LevelSettings
+  m_EditorClassIdentifier: 
+  tilesCount:
+  - generateRule: {fileID: 11400000, guid: 9f26d07b3d0ef214da323753dfb826fd, type: 2}
+    count: 5
+  - generateRule: {fileID: 11400000, guid: 1e02b965674400543a5f118b25ed7b58, type: 2}
+    count: 5
+  xLevelSizeRange:
+    from: -10
+    to: 10
+  yLevelSizeRange:
+    from: -10
+    to: 10
+  chosenCharacters: {fileID: 11400000, guid: 36e7d0feff916814f84f006a787bf3f5, type: 2}
+  placeForCharactersGenerateRule: {fileID: 11400000, guid: 5ad6a28bbe464fb4796ee65d778a6fc4,
+    type: 2}

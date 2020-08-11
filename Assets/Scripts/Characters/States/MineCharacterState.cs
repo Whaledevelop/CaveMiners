@@ -3,11 +3,13 @@ using UnityEditor;
 using System.Collections;
 using System;
 using UnityEngine.Tilemaps;
+using System.Collections.Generic;
+using System.Linq;
 
 [CreateAssetMenu(fileName = "MineCharacterState", menuName = "States/MineCharacterState")]
 public class MineCharacterState : CharacterActionState
 {
-    [SerializeField] private CellPositionRequest basePositionRequest;
+    [SerializeField] private CellsPositionsRequest basePositionRequest;
 
     [SerializeField] private CellLayoutRequest cellLayoutRequest;
 
@@ -25,14 +27,21 @@ public class MineCharacterState : CharacterActionState
 
         toolsManager.defaultTool = nextTaskDefaultTool;
 
-        basePositionRequest.MakeRequest(new ParamsObject(baseTile), out Vector2 basePosition);
+        basePositionRequest.MakeRequest(new ParamsObject(baseTile), out List<Vector2> basePositions);
 
-        yield return actionData.taskManager.ExecuteTaskEnumerator(Utils.MaskToLayer(baseLayer), basePosition);
+        Vector2 nearestBase = DefineNearestTo(actionData.taskManager.transform.position, basePositions); // В планах сделать несколько баз
+
+        yield return actionData.taskManager.ExecuteTaskEnumerator(Utils.MaskToLayer(baseLayer), nearestBase);
 
         toolsManager.defaultTool = prevToolCode;
 
         cellLayoutRequest.MakeRequest(new ParamsObject(actionData.endPosition), out LayerMask newTaskLayer);
 
         actionData.taskManager.ExecuteTask(newTaskLayer, actionData.endPosition);
+    }
+
+    private Vector2 DefineNearestTo(Vector2 position, List<Vector2> amongPositions)
+    {
+        return amongPositions.Aggregate((nearest, next) => Vector2.Distance(next, position) < Vector2.Distance(nearest, position) ? next : nearest);
     }
 }

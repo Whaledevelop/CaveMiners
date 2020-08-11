@@ -1,11 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
-using UnityEngine.Tilemaps;
-
-[CreateAssetMenu(fileName = "CellPositionRequest", menuName = "Requests/CellPositionRequest")]
-public class CellPositionRequest : Request<Vector2> { }
+﻿using UnityEngine;
 
 public class CellCenterRequestResolver : RequestResolver<Vector2>
 {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.U2D.Animation;
 using UnityEngine.Rendering;
+using UnityEngine.Tilemaps;
 
 public class MainActor : MonoBehaviour
 {
@@ -15,15 +16,36 @@ public class MainActor : MonoBehaviour
 
     [SerializeField] private Transform charactersParent;
 
+    [SerializeField] private LevelGenerator levelGenerator;
+
+    [SerializeField] private CameraController cameraController;
+
+    [SerializeField] private CellsPositionsRequest charactersInitPositionsRequest;
+
+    [SerializeField] private CellPositionRequest cellCenterRequest;
+
+    [SerializeField] private TileBase charactersInitTile;
+
     public void Start()
     {
-        for(int i = 0; i < chosenCharacters.Items.Count; i++)
-        {
-            CharacterManager characterObject = Instantiate(characterPrefab, charactersParent);
-            characterObject.transform.position = new Vector2(characterObject.transform.position.x + i * 0.1f, characterObject.transform.position.y);
+        levelGenerator.Generate();
 
-            characterObject.Init(chosenCharacters.Items[i]);            
+        if (charactersInitPositionsRequest.MakeRequest(new ParamsObject(charactersInitTile), out List<Vector2> positionForChracters))
+        {
+            for (int i = 0; i < chosenCharacters.Items.Count; i++)
+            {
+                CharacterManager characterObject = Instantiate(characterPrefab, charactersParent);
+
+                Vector2 position = i < positionForChracters.Count ? positionForChracters[i] : positionForChracters[0];
+
+                cellCenterRequest.MakeRequest(new ParamsObject(position), out Vector2 cellCenter);
+
+                characterObject.transform.position = cellCenter;
+
+                characterObject.Init(chosenCharacters.Items[i]);
+            }
         }
+        cameraController.Setup();
     }
 
     public void OnChangeMoney(float money)
@@ -36,6 +58,6 @@ public class MainActor : MonoBehaviour
 
     public void OnBase()
     {
-        Debug.Log("base");
+        //Debug.Log("base");
     }
 }

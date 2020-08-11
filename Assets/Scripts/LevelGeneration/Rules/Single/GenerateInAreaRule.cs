@@ -7,7 +7,7 @@ using UnityEngine;
 public class GenerateInAreaRule : GenerateSingleRule
 {
     [Header("Сколько экземпляров")]
-    [SerializeField] private int instancesCount = 1;
+    [SerializeField] private int defaultInstanceCount = 1;
 
     [Header("Размер одного экземпляра")]
     [SerializeField] private Vector2Int instanceDirection;
@@ -18,20 +18,32 @@ public class GenerateInAreaRule : GenerateSingleRule
 
     [NonSerialized] private List<TilesGroup> tilesGroups = new List<TilesGroup>();
 
-    protected override bool CheckPosition(int x, int y, RangeInt levelXRange, RangeInt levelYRange)
+    [NonSerialized] private int instancesCount;
+
+    public override void Init(LevelSettings levelSettings)
     {
-        if (tilesGroups.Count == 0)
+        base.Init(levelSettings);
+        LevelSettings.GeneratedTilesCount countObj = levelSettings.tilesCount.Find(tileCount => tileCount.generateRule == this);
+        if (countObj != null)
+            instancesCount = countObj.count;
+        else
+            instancesCount = defaultInstanceCount;
+
+        for (int i = 0; i < instancesCount; i++)
         {
-            for (int i = 0; i < instancesCount; i++)
-            {
-                int randomX = (int)Mathf.Round(levelXRange.Interval * xArea.Random);
-                int randomY = (int)Mathf.Round(levelYRange.Interval * yArea.Random);
-                tilesGroups.Add(new TilesGroup(TilesGroup.Orientation.LowerLeft, new Vector2Int(randomX, randomY), instanceDirection, isInstanceRect));
-            }
+            int randomX = (int)Mathf.Round(levelXRange.Interval * xArea.Random);
+            int randomY = (int)Mathf.Round(levelYRange.Interval * yArea.Random);
+            TilesGroup tilesGroup = new TilesGroup(TilesGroup.Orientation.LowerLeft, new Vector2Int(randomX, randomY), instanceDirection, isInstanceRect);
+            tilesGroup.Init(levelXRange, levelYRange);
+            tilesGroups.Add(tilesGroup);
         }
+    }
+
+    protected override bool CheckPosition(int x, int y)
+    {
         foreach(TilesGroup tilesGroup in tilesGroups)
         {
-            if (tilesGroup.CheckIfGroupPosition(x, y, levelXRange, levelYRange))
+            if (tilesGroup.CheckIfGroupPosition(x, y))
                 return true;
         }
         return false;

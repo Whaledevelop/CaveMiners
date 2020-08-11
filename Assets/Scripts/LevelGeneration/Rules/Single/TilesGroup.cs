@@ -1,9 +1,8 @@
 ﻿using System;
 using UnityEngine;
 
-
 [Serializable]
-public struct TilesGroup
+public class TilesGroup
 {
     public enum Orientation { Middle, MiddleLeft, MiddleRight, LowerLeft }
 
@@ -11,6 +10,11 @@ public struct TilesGroup
     [SerializeField] private Vector2Int startPositionLocal;
     [SerializeField] private Vector2Int direction;
     [SerializeField] private bool isRect;
+
+    [NonSerialized] private Vector2Int localZero;
+    [NonSerialized] private Vector2Int startPositionGlobal;
+    [NonSerialized] private RangeInt formXRange;
+    [NonSerialized] private RangeInt formYRange;
 
     // Можно создавать через едитор, можно в коде
     public TilesGroup(Orientation orientation, Vector2Int startPositionLocal, Vector2Int direction, bool isRect)
@@ -21,23 +25,39 @@ public struct TilesGroup
         this.isRect = isRect;
     }
 
-    public bool CheckIfGroupPosition(int x, int y, RangeInt levelXRange, RangeInt levelYRange)
+    public void ApplyDirectionToCount(int count)
     {
-        Vector2Int localZero = DefineLocaZero(levelXRange, levelYRange);
-        Vector2Int startPosition = localZero + startPositionLocal;
+        if (isRect)
+        {
+            // TODO : освоить под квадратные 
+        }
+        else
+        {
+            // По x вытягиваем
+            direction.x = count - direction.y - 1;
+        }
+    }
 
-        RangeInt formXRange = new RangeInt(startPosition.x, startPosition.x + direction.x);
+    public void Init(RangeInt levelXRange, RangeInt levelYRange)
+    {
+        localZero = DefineLocaZero(levelXRange, levelYRange);
+        startPositionGlobal = localZero + startPositionLocal;
+        formXRange = new RangeInt(startPositionGlobal.x, startPositionGlobal.x + direction.x);
+        formYRange = new RangeInt(startPositionGlobal.y, startPositionGlobal.y + direction.y);
+    }
 
+    public bool CheckIfGroupPosition(int x, int y)
+    {
         if (formXRange.IsInRange(x))
         {
-            if (!isRect && x != startPosition.x)
+            if (!isRect && x != startPositionGlobal.x)
             {
                 // Отрисовываем только боковые тайлы, без центра
-                return y == startPosition.y;
+                return y == startPositionGlobal.y;
             }
             else
             {
-                RangeInt formYRange = new RangeInt(startPosition.y, startPosition.y + direction.y);
+                
                 return formYRange.IsInRange(y);
             }
         }
@@ -57,17 +77,5 @@ public struct TilesGroup
                 return new Vector2Int(levelXRange.Average, levelYRange.Average);
 
         }
-    }
-}
-
-
-[CreateAssetMenu(fileName = "GenerateInPositionRule", menuName = "LevelGeneratorRules/GenerateInPositionRule")]
-public class GenerateInPositionRule : GenerateSingleRule
-{
-    public TilesGroup tilesGroup;
-
-    protected override bool CheckPosition(int x, int y, RangeInt levelXRange, RangeInt levelYRange)
-    {
-        return tilesGroup.CheckIfGroupPosition(x, y, levelXRange, levelYRange);
     }
 }
