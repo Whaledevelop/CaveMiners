@@ -6,11 +6,9 @@ using System.Collections.Generic;
 
 public class LevelGenerator : MonoBehaviour
 {
-    [SerializeField] private LevelSettings levelSettings;
-
     [SerializeField] private List<GenerateRule> generateRules = new List<GenerateRule>();
 
-    public void Generate()
+    public void Generate(LevelSettings levelSettings)
     {
         foreach (GenerateRule generateRule in generateRules)
         {

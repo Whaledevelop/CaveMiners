@@ -19,7 +19,7 @@ public class CharacterAction
     public Vector2 endPosition;
     public Vector2 actionDirection;
 
-    //public Vector3Int endCellPosition;
+    public Vector3Int endCellPosition;
 
     public float stateSkill => skillsManager.GetStateSkill(stateData);
 
@@ -32,15 +32,4 @@ public class CharacterAction
         this.endPosition = endPosition;
         this.actionDirection = actionDirection;
     }
-
-    //public CharacterAction(CharacterAction characterAction)
-    //{
-    //    this.taskManager = characterAction.taskManager;
-    //    this.skillsManager = characterAction.skillsManager;
-    //    this.stateData = characterAction.stateData;
-    //    this.startPosition = characterAction.startPosition;
-    //    this.endPosition = characterAction.endPosition;
-    //    this.actionDirection = characterAction.actionDirection;
-    //    this.endCellPosition = characterAction.endCellPosition;
-    //}
 }

@@ -27,7 +27,7 @@ MonoBehaviour:
   basePositionRequest: {fileID: 11400000, guid: b138cfb8a836fca4bac1843b8a031df2,
     type: 2}
   cellLayoutRequest: {fileID: 11400000, guid: d0347d6928156784499583da8cc86807, type: 2}
-  baseTile: {fileID: 11400000, guid: 23bd632132609744dac88d161985ca37, type: 2}
+  baseTile: {fileID: 11400000, guid: de5ad1244084560449f39e770a637ecd, type: 2}
   baseLayer:
     serializedVersion: 2
     m_Bits: 1024

@@ -21,7 +21,7 @@ public class TilePositionsRequestResolver : RequestResolver<List<Vector2>>
             {
                 for (int y = tilemap.cellBounds.yMin; y < tilemap.cellBounds.yMax; y++)
                 {
-                    Vector3Int localPlace = (new Vector3Int(x, y, (int)tilemap.transform.position.y));
+                    Vector3Int localPlace = (new Vector3Int(x, y, (int)tilemap.transform.position.z));
                     
                     if (tilemap.GetTile(localPlace) == neededTile)
                     {

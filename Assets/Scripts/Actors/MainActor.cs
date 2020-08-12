@@ -26,9 +26,15 @@ public class MainActor : MonoBehaviour
 
     [SerializeField] private TileBase charactersInitTile;
 
+    [SerializeField] private FogOfWar fogOfWar;
+
+    [SerializeField] private LevelSettings levelSettings;
+
     public void Start()
     {
-        levelGenerator.Generate();
+        levelGenerator.Generate(levelSettings);
+
+        fogOfWar.Init(levelSettings);
 
         if (charactersInitPositionsRequest.MakeRequest(new ParamsObject(charactersInitTile), out List<Vector2> positionForChracters))
         {
@@ -43,6 +49,8 @@ public class MainActor : MonoBehaviour
                 characterObject.transform.position = cellCenter;
 
                 characterObject.Init(chosenCharacters.Items[i]);
+
+                fogOfWar.UpdateFogOfWar(cellCenter, 1);
             }
         }
         cameraController.Setup();

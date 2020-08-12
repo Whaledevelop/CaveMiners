@@ -8,6 +8,8 @@ public class MoveHandler : CharacterActionHandler
 
     [SerializeField] private float defaultSpeed;
 
+    [SerializeField] private CharacterActionGameEvent endMovementEvent;
+
     [HideInInspector] public float speed;
 
     private Vector2 moveEndPoint;
@@ -31,6 +33,7 @@ public class MoveHandler : CharacterActionHandler
         isMoving = true;
         yield return new WaitUntil(() => Vector2.Distance(rb.position, moveEndPoint) < 0.1);
         isMoving = false;
+        endMovementEvent.Raise(actionData);
     }
 
     public override IEnumerator Cancel()

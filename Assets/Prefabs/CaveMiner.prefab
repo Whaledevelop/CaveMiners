@@ -149,7 +149,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1714148097
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e8cb6581fc437aa498f1b270bfa62eb1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -190,8 +190,8 @@ MonoBehaviour:
   - {fileID: 2192015189815932129}
   - {fileID: 2192015190684278187}
   m_Bounds:
-    m_Center: {x: 0.031543285, y: 0.031648844, z: 0}
-    m_Extent: {x: 0.37657243, y: 0.31656522, z: 0}
+    m_Center: {x: 0.031543195, y: 0.031648874, z: 0}
+    m_Extent: {x: 0.37657234, y: 0.31656522, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!114 &2192015189806234752
@@ -821,6 +821,7 @@ MonoBehaviour:
   moveState: {fileID: 11400000, guid: 0e8c8e751fcc50b4da9b5e37f615b1b9, type: 2}
   rb: {fileID: 2192015190459939293}
   defaultSpeed: 1
+  endMovementEvent: {fileID: 11400000, guid: a7acdddad809a3045a12c94d18e0a509, type: 2}
   speed: 1
 --- !u!1 &6137467430484047418
 GameObject:

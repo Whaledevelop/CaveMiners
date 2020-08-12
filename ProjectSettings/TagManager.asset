@@ -16,8 +16,8 @@ TagManager:
   - UI
   - 
   - 
+  - NoActionLayer
   - DiggableGround
-  - Undiggable
   - Walkable
   - Character
   - Resources
@@ -49,6 +49,9 @@ TagManager:
     locked: 0
   - name: LevelObjects
     uniqueID: 4225729355
+    locked: 0
+  - name: FogOfWar
+    uniqueID: 912184633
     locked: 0
   - name: Characters and Tools
     uniqueID: 1714148097
