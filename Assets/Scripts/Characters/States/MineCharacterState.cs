@@ -29,19 +29,18 @@ public class MineCharacterState : CharacterActionState
 
         basePositionRequest.MakeRequest(new ParamsObject(baseTile), out List<Vector2> basePositions);
 
-        Vector2 nearestBase = DefineNearestTo(actionData.taskManager.transform.position, basePositions); // В планах сделать несколько баз
+        // Определяем правый нижний участок базы
+        Vector2 baseGates = basePositions.Aggregate(basePositions[0], (picked, next) =>
+        {
+            return next.x > picked.x || next.y < picked.y ? next : picked;
+        });
 
-        yield return actionData.taskManager.ExecuteTaskEnumerator(Utils.MaskToLayer(baseLayer), nearestBase);
+        yield return actionData.taskManager.ExecuteTaskEnumerator(Utils.MaskToLayer(baseLayer), baseGates);
 
         toolsManager.defaultTool = prevToolCode;
 
         cellLayoutRequest.MakeRequest(new ParamsObject(actionData.endPosition), out LayerMask newTaskLayer);
 
         actionData.taskManager.ExecuteTask(newTaskLayer, actionData.endPosition);
-    }
-
-    private Vector2 DefineNearestTo(Vector2 position, List<Vector2> amongPositions)
-    {
-        return amongPositions.Aggregate((nearest, next) => Vector2.Distance(next, position) < Vector2.Distance(nearest, position) ? next : nearest);
     }
 }

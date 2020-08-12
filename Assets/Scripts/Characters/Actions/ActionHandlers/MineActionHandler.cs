@@ -34,9 +34,12 @@ public class MineActionHandler : CharacterActionHandler
 
     public void OnTileWorkedOut(CharacterAction tileWorkedOutActionData)
     {
-        if (tileWorkedOutActionData.stateData == HandledState && tileWorkedOutActionData.endPosition == actionData.endPosition)
+        if (actionData != null)
         {
-            EndIterations();
+            if (tileWorkedOutActionData.stateData == HandledState && tileWorkedOutActionData.endPosition == actionData.endPosition)
+            {
+                EndIterations();
+            }
         }
     }
 

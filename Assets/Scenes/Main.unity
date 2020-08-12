@@ -294,12 +294,6 @@ MonoBehaviour:
   tilemapData: {fileID: 11400000, guid: ce1aa85ce65f05f4db0cb7cbd3618d5d, type: 2}
   set: {fileID: 11400000, guid: 17b16551dbf753d47bbccdd293325cc7, type: 2}
   tilemap: {fileID: 43159385}
---- !u!4 &110038608 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2192015190459939265, guid: 033090e830de5d646985a46dc89a470f,
-    type: 3}
-  m_PrefabInstance: {fileID: 1982219302}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &320095013
 GameObject:
   m_ObjectHideFlags: 0
@@ -409,8 +403,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -8.5, y: -0.5, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 110038608}
+  m_Children: []
   m_Father: {fileID: 523958209}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1674,44 +1667,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilesActions:
-  - actionState: {fileID: 11400000, guid: da1f466d71b61af47a4ea46023313f53, type: 2}
-    initialTilemap: {fileID: 1374587403}
-    destroyedTilemap: {fileID: 845816199}
-    tilesSet:
-    - HP: 20
-      tile: {fileID: 11400000, guid: 5a27139c42680684d8d027e3a20358ae, type: 2}
-    - HP: 10
-      tile: {fileID: 11400000, guid: 7cf8893d3fd5018459bb2d1fd4da8289, type: 2}
-    - HP: 0
-      tile: {fileID: 11400000, guid: 218cf6cd5b78d9d4ea117b7737c6f2ab, type: 2}
-    initialHP: 20
-    actionData:
-      taskManager: {fileID: 0}
-      skillsManager: {fileID: 0}
-      stateData: {fileID: 0}
-      startPosition: {x: 0, y: 0}
-      endPosition: {x: 0, y: 0}
-      actionDirection: {x: 0, y: 0}
-      endCellPosition: {x: 0, y: 0, z: 0}
-  - actionState: {fileID: 11400000, guid: fb1fad21a769c9348bd18dde42fc5d03, type: 2}
-    initialTilemap: {fileID: 824963039}
-    destroyedTilemap: {fileID: 845816199}
-    tilesSet:
-    - HP: 50
-      tile: {fileID: 11400000, guid: 20eba6dab8d117748922ddbd15012ab2, type: 2}
-    - HP: 25
-      tile: {fileID: 11400000, guid: fc2a335c77745ca4bbfc6d414555c215, type: 2}
-    - HP: 0
-      tile: {fileID: 11400000, guid: 218cf6cd5b78d9d4ea117b7737c6f2ab, type: 2}
-    initialHP: 50
-    actionData:
-      taskManager: {fileID: 0}
-      skillsManager: {fileID: 0}
-      stateData: {fileID: 0}
-      startPosition: {x: 0, y: 0}
-      endPosition: {x: 0, y: 0}
-      actionDirection: {x: 0, y: 0}
-      endCellPosition: {x: 0, y: 0, z: 0}
+  - {fileID: 11400000, guid: 4b8d92329b5889147ac0fdd219cd15b9, type: 2}
+  - {fileID: 11400000, guid: ca190fa7abe5d734f8850973f2f26726, type: 2}
   grid: {fileID: 523958208}
   tileWorkedOutEvent: {fileID: 11400000, guid: 84376e576174b284e92c352b10639cfd, type: 2}
 --- !u!114 &989809583
@@ -2920,7 +2877,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   request: {fileID: 11400000, guid: b138cfb8a836fca4bac1843b8a031df2, type: 2}
   tilemaps:
-  - {fileID: 1916156597}
+  - {fileID: 552629759}
   grid: {fileID: 523958208}
 --- !u!114 &1958750738
 MonoBehaviour:
@@ -2938,75 +2895,6 @@ MonoBehaviour:
   tilemaps:
   - {fileID: 845816199}
   grid: {fileID: 523958208}
---- !u!1001 &1982219302
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 460169523}
-    m_Modifications:
-    - target: {fileID: 2192015190459939265, guid: 033090e830de5d646985a46dc89a470f,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2192015190459939265, guid: 033090e830de5d646985a46dc89a470f,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2192015190459939265, guid: 033090e830de5d646985a46dc89a470f,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2192015190459939265, guid: 033090e830de5d646985a46dc89a470f,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2192015190459939265, guid: 033090e830de5d646985a46dc89a470f,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2192015190459939265, guid: 033090e830de5d646985a46dc89a470f,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2192015190459939265, guid: 033090e830de5d646985a46dc89a470f,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2192015190459939265, guid: 033090e830de5d646985a46dc89a470f,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2192015190459939265, guid: 033090e830de5d646985a46dc89a470f,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2192015190459939265, guid: 033090e830de5d646985a46dc89a470f,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2192015190459939265, guid: 033090e830de5d646985a46dc89a470f,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2192015190459939271, guid: 033090e830de5d646985a46dc89a470f,
-        type: 3}
-      propertyPath: m_Name
-      value: CaveMiner
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 033090e830de5d646985a46dc89a470f, type: 3}
 --- !u!1 &2084509139
 GameObject:
   m_ObjectHideFlags: 0

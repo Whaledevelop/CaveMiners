@@ -25,14 +25,20 @@ public class DigActionHandler : CharacterActionHandler
             yield return new WaitForSeconds(iterationsInterval);
             iterationEvent.Raise(actionData);
         }
+        this.actionData = null;
     }
 
     public void OnTileWorkedOut(CharacterAction tileWorkedOutActionData)
     {
-        if (tileWorkedOutActionData.stateData == HandledState && tileWorkedOutActionData.endPosition == actionData.endPosition)
+        if (actionData != null)
         {
-            isDigging = false;
-        }        
+            bool currentState = tileWorkedOutActionData.stateData == HandledState;
+            bool currentTile = tileWorkedOutActionData.endPosition == actionData.endPosition;
+            if (currentState && currentTile)
+            {
+                isDigging = false;                
+            }
+        }       
     }
 
     public override IEnumerator Cancel()

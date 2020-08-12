@@ -4,26 +4,34 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-[Serializable]
-public class TileAction
+[CreateAssetMenu(fileName = "TileAction", menuName = "ScriptableObjects/TileAction")]
+public class TileAction : ScriptableObject
 {
-    public CharacterActionState actionState;
-    public Tilemap initialTilemap;
-    public Tilemap destroyedTilemap;
-    public List<TileDependOnHP> tilesSet;
-    public float initialHP;
+    // Данные из эдитора
+    [SerializeField] private CharacterActionState actionState;
+    [SerializeField] private GenerativeTilemapsSet tilemapsSet;
+    [SerializeField] private GenerativeTilemapCode initialTilemapCode;
+    [SerializeField] private GenerativeTilemapCode destroyedTilemapCode;
+    [SerializeField] private List<TileDependOnHP> tilesSet;
+    [SerializeField] private float initialHP;
 
-    public Action<CharacterAction> OnWorkedOut;
-
+    // Данные экземпляра
+    [NonSerialized] public CharacterAction actionData;
+    public Action<TileAction> OnWorkedOut;
     private TileBase currentTile;
-    private float HP;
+    private float HP;  
+    private Vector3Int cellPosition;
+    private GenerativeTilemap initialTilemap;
+    private GenerativeTilemap destroyedTilemap;
 
-    [HideInInspector] public CharacterAction actionData;
-    [HideInInspector] public Vector3Int CellPosition => actionData.endCellPosition;
+    public CharacterActionState State => actionState;
 
-    public void Init(CharacterAction actionData)
+    public void Init(CharacterAction actionData, Vector3Int cellPosition)
     {
         this.actionData = actionData;
+        this.cellPosition = cellPosition;
+        initialTilemap = tilemapsSet.FindByCode(initialTilemapCode);
+        destroyedTilemap = tilemapsSet.FindByCode(destroyedTilemapCode);
         HP = initialHP;
     }
 
@@ -31,18 +39,24 @@ public class TileAction
     {
         HP -= damage;
 
+        //Debug.Log("Damage : " + damage + ", " + HP);
         TileDependOnHP neededTile = tilesSet.LastOrDefault(tileData => tileData.HP >= HP);
         if (neededTile != null && neededTile.tile != currentTile)
         {
             currentTile = neededTile.tile;
-            initialTilemap.SetTile(CellPosition, currentTile);
+            initialTilemap.SetTile(cellPosition, currentTile);
         }
 
         if (HP <= 0)
         {
-            initialTilemap.SetTile(CellPosition, null);
-            destroyedTilemap.SetTile(CellPosition, currentTile);
-            OnWorkedOut?.Invoke(actionData);
+            initialTilemap.SetTile(cellPosition, null);
+            destroyedTilemap.SetTile(cellPosition, currentTile);
+            OnWorkedOut?.Invoke(this);
         }
+    }
+
+    public override string ToString()
+    {
+        return actionState + " - " + cellPosition + " - " + HP;
     }
 }

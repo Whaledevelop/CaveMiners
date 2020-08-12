@@ -5,28 +5,28 @@ using System.Linq;
 
 public class TilesActionsHandler : MonoBehaviour
 {
-    [SerializeField] private TileAction[] tilesActions;
+    [SerializeField] private List<TileAction> tilesActions;
     [SerializeField] private Grid grid;
     [SerializeField] private CharacterActionGameEvent tileWorkedOutEvent;
 
     private List<TileAction> activeTiles = new List<TileAction>();
 
     public void OnTileAction(CharacterAction actionData)
-    {
-        Vector3Int cellPosition = grid.WorldToCell(Vector3Int.FloorToInt(actionData.endPosition));
-        actionData.endCellPosition = cellPosition;
-
-        TileAction activeTile = activeTiles.Find(tile => tile.CellPosition == cellPosition);
+    {        
+        TileAction activeTile = activeTiles.Find(tile =>
+        {
+            return tile.actionData.endPosition == actionData.endPosition;
+        });
 
         if (activeTile == null)
         {
-            activeTile = tilesActions.FirstOrDefault(tile => tile.actionState == actionData.stateData);
-
-            if (activeTile != null)
+            TileAction newActiveTile = tilesActions.Find(tile => tile.State == actionData.stateData);       
+            if (newActiveTile != null)
             {
-                activeTile.Init(actionData);
-                activeTile.OnWorkedOut += tileWorkedOutEvent.Raise;
-                activeTiles.Add(activeTile);
+                TileAction instantiatedTile = Instantiate(newActiveTile);
+                instantiatedTile.Init(actionData, grid.WorldToCell(Vector3Int.FloorToInt(actionData.endPosition)));
+                instantiatedTile.OnWorkedOut += OnTileWorkedOut;
+                activeTiles.Add(instantiatedTile);
             }
         }
 
@@ -34,5 +34,12 @@ public class TilesActionsHandler : MonoBehaviour
         {
             activeTile.Damage(actionData.stateSkill);
         }
+    }
+
+    public void OnTileWorkedOut(TileAction tileAction)
+    {
+        activeTiles.Remove(tileAction);
+        tileWorkedOutEvent.Raise(tileAction.actionData);
+
     }
 }

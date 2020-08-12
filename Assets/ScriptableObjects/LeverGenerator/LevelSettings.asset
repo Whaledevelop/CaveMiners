@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilesCount:
   - generateRule: {fileID: 11400000, guid: 9f26d07b3d0ef214da323753dfb826fd, type: 2}
-    count: 5
+    count: 15
   - generateRule: {fileID: 11400000, guid: 1e02b965674400543a5f118b25ed7b58, type: 2}
-    count: 5
+    count: 15
+  - generateRule: {fileID: 11400000, guid: 5ad6a28bbe464fb4796ee65d778a6fc4, type: 2}
+    count: 0
   xLevelSizeRange:
     from: -10
     to: 10

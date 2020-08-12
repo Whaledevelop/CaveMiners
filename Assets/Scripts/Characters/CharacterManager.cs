@@ -42,4 +42,9 @@ public class CharacterManager : MonoBehaviour
     {
         highlighter.SwapHighlightMode();
     }
+
+    public override string ToString()
+    {
+        return spriteResolver.GetCategory();
+    }
 }
