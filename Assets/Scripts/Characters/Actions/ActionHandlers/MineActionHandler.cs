@@ -27,6 +27,7 @@ public class MineActionHandler : CharacterActionHandler
         {
             yield return new WaitForSeconds(iterationsInterval);
             iterationEvent.Raise(actionData);
+            actionData.LearnSkill();
             iterationCount++;
         }
         EndIterations();

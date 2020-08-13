@@ -1,30 +1,31 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
+
 
 public class CharacterSkillsManager : MonoBehaviour
 {
-    [SerializeField] private CharacterInitialData initialData;
+    private List<CharacterActiveSkill> activeSkills = new List<CharacterActiveSkill>();
+    private List<CharacterSkill> passiveSkills = new List<CharacterSkill>();
 
-    private List<CharacterStateSkillData> skillsData = new List<CharacterStateSkillData>();
-
-    private void Start()
+    public void Init(CharacterInitialData initialData)
     {
-        skillsData = initialData.initialSkillsData; 
-    }
-
-    public float GetStateSkill(CharacterState state)
-    {
-        return skillsData.Find(skill => skill.state == state).value;
-    }
-
-    public void UpdateSkill(CharacterState state)
-    {
-        for(int i = 0; i < skillsData.Count; i++)
+        foreach(CharacterSkill skill in initialData.passiveSkills)
         {
-            if (skillsData[i].state == state)
-            {
-                skillsData[i].value += skillsData[i].learnability;
-            }
+            passiveSkills.Add(skill);
         }
+        foreach (CharacterActiveSkill skill in initialData.activeSkills)
+        {
+            activeSkills.Add(skill);
+        }
+    }
+
+    public CharacterSkill GetSkill(CharacterSkill.Code code)
+    {
+        CharacterSkill skill = activeSkills.Find(s => s.code == code);
+        if (skill == null)
+            return passiveSkills.Find(s => s.code == code);
+        else
+            return skill;
     }
 }

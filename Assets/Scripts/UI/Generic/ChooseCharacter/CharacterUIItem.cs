@@ -28,7 +28,7 @@ public class CharacterUIItem : UIItem<CharacterInitialData>
         nameText.text = setupData.name;
 
         StartCoroutine(InitPreview(setupData));
-        InitSkillsStrings(character.initialSkillsData);
+        InitSkillsStrings(character.activeSkills);
     }
 
     private IEnumerator InitPreview(CharacterInitialData characterData)
@@ -50,14 +50,14 @@ public class CharacterUIItem : UIItem<CharacterInitialData>
 
     }
 
-    protected void InitSkillsStrings(List<CharacterStateSkillData> skillsData)
+    protected void InitSkillsStrings(List<CharacterActiveSkill> skillsData)
     {
-        foreach (CharacterStateSkillData skillData in skillsData)
+        foreach (CharacterActiveSkill skillData in skillsData)
         {
             SkillStringUIItem skillString = Instantiate(skillsStringsPrefab, infoPanel);
             skillString.Init(skillData);
-            skillString.onPointerEnter += (CharacterStateSkillData skillState) => characterPreview.StartPreviewState(skillState.state);
-            skillString.onPointerExit += (CharacterStateSkillData _) => characterPreview.StopPreviewState();
+            skillString.onPointerEnter += (CharacterActiveSkill skillState) => characterPreview.StartPreviewState(skillState.state);
+            skillString.onPointerExit += (CharacterActiveSkill _) => characterPreview.StopPreviewState();
             skillsStrings.Add(skillString);
         }
     }

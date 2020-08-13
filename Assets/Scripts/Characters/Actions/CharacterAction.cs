@@ -13,7 +13,7 @@ public class CharacterAction
 {
     public CharacterTasksManager taskManager;
     public CharacterSkillsManager skillsManager;
-    public CharacterState stateData;
+    public CharacterActionState stateData;
 
     public Vector2 startPosition;
     public Vector2 endPosition;
@@ -21,9 +21,22 @@ public class CharacterAction
 
     public Vector3Int endCellPosition;
 
-    public float stateSkill => skillsManager.GetStateSkill(stateData);
+    private CharacterSkill actionSkill;
 
-    public CharacterAction(CharacterTasksManager taskManager, CharacterSkillsManager skillsManager, CharacterState stateData, Vector2 startPosition, Vector2 endPosition, Vector2 actionDirection)
+    public CharacterSkill ActionSkill
+    { 
+        get
+        {
+            if (actionSkill == null)
+                actionSkill = skillsManager.GetSkill(stateData.skillCode);
+
+            return actionSkill;
+        }
+
+    }
+    public float SkillValue => ActionSkill.Value;
+
+    public CharacterAction(CharacterTasksManager taskManager, CharacterSkillsManager skillsManager, CharacterActionState stateData, Vector2 startPosition, Vector2 endPosition, Vector2 actionDirection)
     {
         this.taskManager = taskManager;
         this.skillsManager = skillsManager;
@@ -31,5 +44,10 @@ public class CharacterAction
         this.startPosition = startPosition;
         this.endPosition = endPosition;
         this.actionDirection = actionDirection;
+    }
+
+    public void LearnSkill()
+    {
+        ActionSkill.LearnSkill();
     }
 }

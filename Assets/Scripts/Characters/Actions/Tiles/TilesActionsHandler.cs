@@ -32,7 +32,7 @@ public class TilesActionsHandler : MonoBehaviour
 
         if (activeTile != null)
         {
-            activeTile.Damage(actionData.stateSkill);
+            activeTile.Damage(actionData.SkillValue);
         }
     }
 

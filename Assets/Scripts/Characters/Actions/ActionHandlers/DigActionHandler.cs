@@ -24,6 +24,7 @@ public class DigActionHandler : CharacterActionHandler
         {
             yield return new WaitForSeconds(iterationsInterval);
             iterationEvent.Raise(actionData);
+            actionData.LearnSkill();
         }
         this.actionData = null;
     }

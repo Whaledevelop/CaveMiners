@@ -3,21 +3,21 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class SkillStringUIItem : UIItem<CharacterStateSkillData>, IPointerEnterHandler, IPointerExitHandler
+public class SkillStringUIItem : UIItem<CharacterActiveSkill>, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private Text skillName;
     [SerializeField] private Text skillValue;
 
-    public Action<CharacterStateSkillData> onPointerEnter;
-    public Action<CharacterStateSkillData> onPointerExit;
+    public Action<CharacterActiveSkill> onPointerEnter;
+    public Action<CharacterActiveSkill> onPointerExit;
 
-    private CharacterStateSkillData skillData;
+    private CharacterActiveSkill skillData;
 
-    public override void Init(CharacterStateSkillData setupData)
+    public override void Init(CharacterActiveSkill setupData)
     {
         skillData = setupData;
         skillName.text = setupData.state.stateName;
-        skillValue.text = setupData.value.ToString();
+        skillValue.text = setupData.Value.ToString();
     }
 
     public void OnPointerEnter(PointerEventData eventData)

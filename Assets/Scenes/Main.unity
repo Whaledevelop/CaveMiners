@@ -2124,6 +2124,7 @@ MonoBehaviour:
   fogOfWarTilemap: {fileID: 337125808}
   fogOfWarTile: {fileID: 11400000, guid: 25c65bdbcdb26db4392611d6f86a5f26, type: 2}
   grid: {fileID: 523958208}
+  observeFogOfWarSkillCode: 4
 --- !u!114 &1119052305
 MonoBehaviour:
   m_ObjectHideFlags: 0

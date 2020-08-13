@@ -29,7 +29,7 @@ public class MoveHandler : CharacterActionHandler
     public override IEnumerator Execute(CharacterAction actionData)
     {
         moveEndPoint = actionData.endPosition;
-        speed = defaultSpeed * actionData.stateSkill;
+        speed = defaultSpeed * actionData.SkillValue;
         isMoving = true;
         yield return new WaitUntil(() => Vector2.Distance(rb.position, moveEndPoint) < 0.1);
         isMoving = false;

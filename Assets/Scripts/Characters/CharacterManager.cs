@@ -7,6 +7,7 @@ public class CharacterManager : MonoBehaviour
 {
     [SerializeField] private Highlighter highlighter;
     [SerializeField] private CharacterTasksManager tasksManager;
+    [SerializeField] private CharacterSkillsManager skillsManager;
     [SerializeField] private CharacterManagersSet set;
     [SerializeField] private SpriteResolver spriteResolver;
 
@@ -16,6 +17,7 @@ public class CharacterManager : MonoBehaviour
     {
         characterData = characterInitialData;
         spriteResolver.SetCategoryAndLabel(characterData.spriteName, spriteResolver.GetLabel());
+        skillsManager.Init(characterInitialData);
     }
 
     public void OnEnable()

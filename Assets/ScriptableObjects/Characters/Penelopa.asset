@@ -24,13 +24,20 @@ MonoBehaviour:
     \u043F\u0440\u0430\u0432\u043E. "
   salary: 1
   spriteName: CaveMiner3
-  initialSkillsData:
-  - state: {fileID: 11400000, guid: 0e8c8e751fcc50b4da9b5e37f615b1b9, type: 2}
-    value: 1
+  activeSkills:
+  - code: 1
+    initialValue: 1
     learnability: 0
-  - state: {fileID: 11400000, guid: da1f466d71b61af47a4ea46023313f53, type: 2}
-    value: 1
+    state: {fileID: 11400000, guid: da1f466d71b61af47a4ea46023313f53, type: 2}
+  - code: 2
+    initialValue: 1
     learnability: 0
-  - state: {fileID: 11400000, guid: fb1fad21a769c9348bd18dde42fc5d03, type: 2}
-    value: 1
+    state: {fileID: 11400000, guid: fb1fad21a769c9348bd18dde42fc5d03, type: 2}
+  - code: 3
+    initialValue: 1
+    learnability: 0
+    state: {fileID: 11400000, guid: 0e8c8e751fcc50b4da9b5e37f615b1b9, type: 2}
+  passiveSkills:
+  - code: 4
+    initialValue: 1
     learnability: 0

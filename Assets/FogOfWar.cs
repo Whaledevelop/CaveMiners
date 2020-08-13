@@ -8,7 +8,7 @@ public class FogOfWar : MonoBehaviour
     [SerializeField] private Tilemap fogOfWarTilemap;
     [SerializeField] private TileBase fogOfWarTile;
     [SerializeField] private Grid grid;
-    //[SerializeField] private CharacterState observeFogOfWarState;
+    [SerializeField] private CharacterSkill.Code observeFogOfWarSkillCode;
 
     public void Init(LevelSettings levelSettings)
     {
@@ -23,8 +23,8 @@ public class FogOfWar : MonoBehaviour
 
     public void OnActionReducingFogOfWar(CharacterAction action)
     {
-        //float skill = action.skillsManager.GetStateSkill(observeFogOfWarState);
-        UpdateFogOfWar(action.endPosition, 1);
+        int skillValue = action.skillsManager.GetSkill(observeFogOfWarSkillCode).Value;
+        UpdateFogOfWar(action.endPosition, skillValue);
     }
 
     public void UpdateFogOfWar(Vector2 reducerPosition, int reduceCellsRadius)

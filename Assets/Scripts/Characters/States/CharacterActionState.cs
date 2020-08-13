@@ -5,6 +5,7 @@ using System;
 [CreateAssetMenu(fileName = "CharacterActionState", menuName = "States/CharacterActionState")]
 public class CharacterActionState : CharacterState
 {
+    public CharacterSkill.Code skillCode;
     public string skillDescription;
     public LayerMask actionLayerMask;
     public int actionPriority;

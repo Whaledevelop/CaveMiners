@@ -15,5 +15,6 @@ public class CharacterInitialData : ScriptableObject
 
     public string spriteName;
 
-    public List<CharacterStateSkillData> initialSkillsData;
+    public List<CharacterActiveSkill> activeSkills = new List<CharacterActiveSkill>();
+    public List<CharacterSkill> passiveSkills= new List<CharacterSkill>();
 }
