@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterSalaryManager : MonoBehaviour
+public class CharacterSalaryManager : CharacterManager
 {
-    [SerializeField] private CharacterInitialData initialData;
-
     [SerializeField] private int salaryInverval;
 
     [SerializeField] private FloatVariable moneyVariable;
@@ -17,6 +15,6 @@ public class CharacterSalaryManager : MonoBehaviour
 
     private void PaySalary()
     {
-        moneyVariable.Value -= initialData.salary;
+        moneyVariable.Value -= characterData.salary;
     }
 }

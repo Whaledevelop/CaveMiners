@@ -11,16 +11,11 @@ public struct StateCharacterActionHandler
     public CharacterActionHandler actionHandler;
 }
 
-public class CharacterTasksManager : MonoBehaviour
+public class CharacterTasksManager : CharacterManager
 {
     [SerializeField] private CellPositionRequest cellCenterRequest;
-    [SerializeField] private CharacterInitialData initialData;
     [SerializeField] private TaskPathfinder taskPathfinder;
-    [SerializeField] private Highlighter characterHighlighter;
     [SerializeField] private CharacterState idleState;
-
-    [SerializeField] private CharacterToolsManager toolsManager;
-    [SerializeField] private CharacterSkillsManager skillsManager;
     [SerializeField] private Rotator rotator;
     [SerializeField] private Animator animator;
 
@@ -46,7 +41,7 @@ public class CharacterTasksManager : MonoBehaviour
         List<CharacterTaskPoint> taskStatesPoints = taskPathfinder.FindPath(transform.position, taskPoint, taskLayer);
         if (taskStatesPoints.Count > 0)
         {
-            CharacterTask task = new CharacterTask(taskStatesPoints, this, toolsManager, skillsManager, animator, rotator, actionsHandlers);
+            CharacterTask task = new CharacterTask(taskStatesPoints, character, animator, rotator, actionsHandlers);
             IEnumerator taskCoroutine = task.Execute();
             activeTasks.Add(task, taskCoroutine);
 
@@ -72,17 +67,17 @@ public class CharacterTasksManager : MonoBehaviour
 
     public IEnumerator ExecuteState(CharacterActionState state, Vector2 endPosition, Vector2 actionDirection)
     {
-        CharacterAction actionData = new CharacterAction(this, skillsManager, state, transform.position, endPosition, actionDirection);
+        CharacterAction actionData = new CharacterAction(this, character.GetManager<CharacterSkillsManager>(), state, transform.position, endPosition, actionDirection);
 
         CharacterActionHandler actionHandler = actionsHandlers.FirstOrDefault(handler => handler.HandledState == state);
 
         CharacterActionState activeState = ScriptableObject.Instantiate(state);
-        activeState.InitInstance(animator, toolsManager, rotator, actionData, actionHandler);
+        activeState.InitInstance(animator, character.GetManager<CharacterToolsManager>(), rotator, actionData, actionHandler);
 
         yield return activeState.Execute();
     }
 
-    public override string ToString() => initialData.name;
+    public override string ToString() => character.ToString();
 
     public void OnDrawGizmos()
     {

@@ -2,14 +2,15 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[CreateAssetMenu(fileName = "CharacterManagersSet", menuName = "Sets/CharacterManagersSet")]
-public class CharacterManagersSet : RuntimeSet<CharacterManager>
+[CreateAssetMenu(fileName = "CharactersSet", menuName = "Sets/CharactersSet")]
+public class CharactersSet : RuntimeSet<Character>
 {
     [SerializeField] private LayerMask characterLayer;
     [SerializeField] private LayerMask noActionLayer;
-    [NonSerialized] private CharacterManager activeCharacter;
 
-    public CharacterManager ActiveCharacter => activeCharacter;
+    [NonSerialized] private Character activeCharacter;
+
+    public Character ActiveCharacter => activeCharacter;
 
     public void OnClickOnMap(InputAction.CallbackContext context)
     {
@@ -20,7 +21,7 @@ public class CharacterManagersSet : RuntimeSet<CharacterManager>
             RaycastHit2D characterHit = Physics2D.Raycast(clickPosition, Vector2.zero, 1, characterLayer);
             if (characterHit)
             {
-                SetActiveCharacter(characterHit.collider.gameObject.GetComponent<CharacterManager>());
+                SetActiveCharacter(characterHit.collider.gameObject.GetComponent<Character>());
             }
             else
             {
@@ -55,7 +56,7 @@ public class CharacterManagersSet : RuntimeSet<CharacterManager>
         }
     }
 
-    public void SetActiveCharacter(CharacterManager newActiveCharacter)
+    public void SetActiveCharacter(Character newActiveCharacter)
     {
         if (activeCharacter != newActiveCharacter)
         {

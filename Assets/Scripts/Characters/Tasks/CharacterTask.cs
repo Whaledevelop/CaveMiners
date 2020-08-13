@@ -20,13 +20,12 @@ public class CharacterTask
     private CharacterActionState CurrentStateData => CurrentTaskPoint != null ? CurrentTaskPoint.stateData : null;
     private CharacterActionState activeState;
 
-    public CharacterTask(List<CharacterTaskPoint> taskPoints, CharacterTasksManager taskManager, CharacterToolsManager toolsManager, 
-        CharacterSkillsManager skillsManager, Animator animator, Rotator rotator, CharacterActionHandler[] actionsHandlers)
+    public CharacterTask(List<CharacterTaskPoint> taskPoints, Character character, Animator animator, Rotator rotator, CharacterActionHandler[] actionsHandlers)
     {
         this.taskPoints = taskPoints;
-        this.toolsManager = toolsManager;
-        this.skillsManager = skillsManager;
-        this.taskManager = taskManager;
+        toolsManager = character.GetManager<CharacterToolsManager>();
+        skillsManager = character.GetManager<CharacterSkillsManager>();
+        taskManager = character.GetManager<CharacterTasksManager>();
         this.animator = animator;
         this.rotator = rotator;
         this.actionsHandlers = actionsHandlers;

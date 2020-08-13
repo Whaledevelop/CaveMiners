@@ -4,7 +4,7 @@ using UnityEngine.Experimental.U2D.Animation;
 
 public class CharacterPreviewUIItem : UIItem<CharacterInitialData>
 {
-    [SerializeField] private CharacterManager characterPrefab;
+    [SerializeField] private Character characterPrefab;
 
     [SerializeField] private Camera previewCamera;
 
@@ -16,7 +16,7 @@ public class CharacterPreviewUIItem : UIItem<CharacterInitialData>
     private SpriteRenderer spriteRenderer;
 
     private CharacterState previewState;
-    private CharacterManager character;
+    private Character character;
 
     public Vector3 SpriteSize => spriteRenderer.size;
 

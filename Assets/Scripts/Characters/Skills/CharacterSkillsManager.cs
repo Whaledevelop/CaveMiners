@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class CharacterSkillsManager : MonoBehaviour
+public class CharacterSkillsManager : CharacterManager
 {
     private List<CharacterActiveSkill> activeSkills = new List<CharacterActiveSkill>();
     private List<CharacterSkill> passiveSkills = new List<CharacterSkill>();
 
-    public void Init(CharacterInitialData initialData)
+    public override void Init(Character character)
     {
-        foreach(CharacterSkill skill in initialData.passiveSkills)
+        base.Init(character);
+        foreach(CharacterSkill skill in characterData.passiveSkills)
         {
             passiveSkills.Add(skill);
         }
-        foreach (CharacterActiveSkill skill in initialData.activeSkills)
+        foreach (CharacterActiveSkill skill in characterData.activeSkills)
         {
             activeSkills.Add(skill);
         }

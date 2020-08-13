@@ -1,30 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
-using UnityEngine;
+﻿using System.Collections.Generic;
 using UnityEngine.Experimental.U2D.Animation;
 
 
-
-[System.Serializable]
-public class ToolEquipData : PrefabInstantiateData
-{
-    public ToolCode toolCode;
-    public bool isToUseSpriteSwitch = false;
-    public string spriteResolveLabel;
-}
-
-
 public enum ToolCode
-{ 
-    None,
-    Default,
-    Bag,
-    Pick,
-    Shovel
+{
+    None, Default, Bag, Pick, Shovel
 }
 
-public class CharacterToolsManager : MonoBehaviour
+public class CharacterToolsManager : CharacterManager
 {
     public ToolCode defaultTool;
     public SpriteResolver spriteResolver;

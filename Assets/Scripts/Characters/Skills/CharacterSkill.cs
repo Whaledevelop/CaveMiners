@@ -19,7 +19,7 @@ public class CharacterSkill
     [NonSerialized] private int value;
     public int Value
     {
-        get => value == 0 ? initialValue : value;  // Чтобы не делать инициализацию
+        get => value == 0 ? initialValue : value;  // Чтобы не делать инициализацию, 0 - это первый вызов
         private set
         {
             this.value = value;
@@ -31,7 +31,7 @@ public class CharacterSkill
         currentLevelExp += learnability;
         if (currentLevelExp >= 1)
         {
-            Debug.Log("level up " + code + " from " + Value + " to " + (Value + 1));
+            //Debug.Log("level up " + code + " from " + Value + " to " + (Value + 1));
             Value++;
             currentLevelExp = 0;            
         }

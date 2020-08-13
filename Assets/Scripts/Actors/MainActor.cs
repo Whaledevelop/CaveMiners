@@ -12,7 +12,7 @@ public class MainActor : MonoBehaviour
 
     [SerializeField] private CharacterInitialDataSet chosenCharacters;
 
-    [SerializeField] private CharacterManager characterPrefab;
+    [SerializeField] private Character characterPrefab;
 
     [SerializeField] private Transform charactersParent;
 
@@ -40,7 +40,7 @@ public class MainActor : MonoBehaviour
         {
             for (int i = 0; i < chosenCharacters.Items.Count; i++)
             {
-                CharacterManager characterObject = Instantiate(characterPrefab, charactersParent);
+                Character characterObject = Instantiate(characterPrefab, charactersParent);
 
                 Vector2 position = i < positionForChracters.Count ? positionForChracters[i] : positionForChracters[0];
 
