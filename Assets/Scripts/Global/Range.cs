@@ -19,6 +19,8 @@ public struct Range
     public float Interval => to - from;
 
     public float Random => UnityEngine.Random.Range(from, to);
+
+    public bool IsInRange(float value) => value >= from && value <= to;
 }
 
 [Serializable]
@@ -44,13 +46,8 @@ public struct RangeInt
         }
     }
 
-    public bool IsInRange(int value, bool fromInclusevly = true, bool toInclusevly = true)
-    {
-        bool isFromIn = fromInclusevly ? value >= from : value > from;
-        bool isToIn = toInclusevly ? value <= to : value < to;
-        return isFromIn && isToIn;
-    }
-
+    public bool IsInRange(int value) => value >= from && value <= to;
+    public bool IsInRange(float value) => value >= from && value <= to;
     public override string ToString()
     {
         return "from " + from + " to " + to;

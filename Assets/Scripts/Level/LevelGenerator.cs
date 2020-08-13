@@ -33,7 +33,7 @@ public class LevelGenerator : MonoBehaviour
         GenerateLevelTiles(levelSettings);
         fogOfWar.Init(levelSettings);
         GenerateCharacters();
-        cameraController.Init();
+        cameraController.Init(levelSettings);
     }
 
     private void GenerateLevelTiles(LevelSettings levelSettings)

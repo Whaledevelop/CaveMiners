@@ -2,7 +2,7 @@
     "name": "CharactersInputActions",
     "maps": [
         {
-            "name": "Characters",
+            "name": "GamePlay",
             "id": "835e212b-be08-49aa-85ee-3d41ee208986",
             "actions": [
                 {
@@ -14,7 +14,15 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Look",
+                    "name": "Execute",
+                    "type": "Button",
+                    "id": "7b56bad4-8603-4fb3-86ab-26ca47e9dbbd",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "ChangeLook",
                     "type": "Value",
                     "id": "e3ad4de7-d542-4fb0-ab59-c31c8357af30",
                     "expectedControlType": "Vector2",
@@ -36,6 +44,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Scroll",
+                    "type": "Value",
+                    "id": "99f73e8f-e5df-41d1-a748-b223a2fc2787",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -46,7 +62,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Look",
+                    "action": "ChangeLook",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -57,7 +73,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse;Touch",
-                    "action": "Look",
+                    "action": "ChangeLook",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -68,7 +84,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Joystick",
-                    "action": "Look",
+                    "action": "ChangeLook",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -184,17 +200,6 @@
                 },
                 {
                     "name": "",
-                    "id": "7b3e5cee-a54d-4310-ab22-317fa5227ff4",
-                    "path": "<XRController>/{Primary2DAxis}",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "XR",
-                    "action": "ManualMove",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "af427978-7eb4-4d77-b357-f83b59197393",
                     "path": "<Joystick>/stick",
                     "interactions": "",
@@ -250,23 +255,45 @@
                 },
                 {
                     "name": "",
-                    "id": "ee3d0cd2-254e-47a7-a8cb-bc94d9658c54",
-                    "path": "<Joystick>/trigger",
+                    "id": "de7b17df-be80-49fa-aa3e-43ffdd12d965",
+                    "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Joystick",
-                    "action": "Choose",
+                    "groups": ";Gamepad",
+                    "action": "Execute",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "8255d333-5683-4943-a58a-ccb207ff1dce",
-                    "path": "<XRController>/{PrimaryAction}",
+                    "id": "a2af24ae-5a59-4ae0-9df8-4a6152ad9e27",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "XR",
-                    "action": "Choose",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Execute",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e6f053dd-ecc8-46a1-bc1e-fbdb5fe58faa",
+                    "path": "<Touchscreen>/primaryTouch/press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Touch",
+                    "action": "Execute",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5c329411-8364-4a72-8bcc-ac49276b2be6",
+                    "path": "<Mouse>/scroll",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Scroll",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
