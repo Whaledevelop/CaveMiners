@@ -8,6 +8,10 @@ public class DigCharacterState : CharacterActionState
 {
     [SerializeField] private CharacterActionState moveState;
 
+    public CharacterActionGameEvent iterationEvent;
+
+    public float iterationsInterval = 1;
+
     public override IEnumerator OnEnd()
     {
         yield return base.OnEnd();

@@ -1,20 +1,24 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterSalaryManager : CharacterManager
 {
     [SerializeField] private int salaryInverval;
 
-    [SerializeField] private FloatVariable moneyVariable;
+    [SerializeField] private IntVariable moneyVariable;
 
-    public void Start()
+    public override void Init(Character character)
     {
-        InvokeRepeating("PaySalary", 0, salaryInverval);
+        base.Init(character);
+        StartCoroutine(PaySalaryEnumerator());
     }
 
-    private void PaySalary()
+    public IEnumerator PaySalaryEnumerator()
     {
-        moneyVariable.Value -= characterData.salary;
+        while (true)
+        {
+            yield return new WaitForSeconds(salaryInverval);
+            moneyVariable.Value -= characterData.salary;
+        }        
     }
 }

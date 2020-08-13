@@ -25,6 +25,7 @@ MonoBehaviour:
   yLevelSizeRange:
     from: -10
     to: 10
+  startMoney: 100
   chosenCharacters: {fileID: 11400000, guid: 36e7d0feff916814f84f006a787bf3f5, type: 2}
   placeForCharactersGenerateRule: {fileID: 11400000, guid: 5ad6a28bbe464fb4796ee65d778a6fc4,
     type: 2}

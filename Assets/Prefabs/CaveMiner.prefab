@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1763629009}
   - component: {fileID: 1763629010}
   - component: {fileID: 1763629011}
+  - component: {fileID: 5059068151329198748}
   m_Layer: 11
   m_Name: MineHandler
   m_TagString: Untagged
@@ -68,6 +69,34 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: MineActionHandler, Assembly-CSharp
         m_MethodName: OnTileWorkedOut
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &5059068151329198748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1763629008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6569e1bfe03d1c4b9d99f4943fa106a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 0a0abac8d7b79d44e9f467aae1a4b614, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5059068151329198748}
+        m_TargetAssemblyTypeName: UnityEngine.MonoBehaviour, UnityEngine
+        m_MethodName: StopAllCoroutines
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -898,6 +927,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8829526808723418550}
   - component: {fileID: 5658632003600125108}
+  - component: {fileID: 7685977796358182879}
   m_Layer: 11
   m_Name: MoveHandler
   m_TagString: Untagged
@@ -936,6 +966,34 @@ MonoBehaviour:
   defaultSpeed: 1
   endMovementEvent: {fileID: 11400000, guid: a7acdddad809a3045a12c94d18e0a509, type: 2}
   speed: 1
+--- !u!114 &7685977796358182879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4963194172609818376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6569e1bfe03d1c4b9d99f4943fa106a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 0a0abac8d7b79d44e9f467aae1a4b614, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5658632003600125108}
+        m_TargetAssemblyTypeName: UnityEngine.MonoBehaviour, UnityEngine
+        m_MethodName: StopAllCoroutines
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5459614643686969182
 GameObject:
   m_ObjectHideFlags: 0
@@ -1014,6 +1072,7 @@ GameObject:
   - component: {fileID: 4938435118687404956}
   - component: {fileID: 3853779093335931268}
   - component: {fileID: 1181868283}
+  - component: {fileID: 5653994436566330917}
   m_Layer: 11
   m_Name: DigHandler
   m_TagString: Untagged
@@ -1070,6 +1129,34 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: DigActionHandler, Assembly-CSharp
         m_MethodName: OnTileWorkedOut
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &5653994436566330917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6541354100170114623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6569e1bfe03d1c4b9d99f4943fa106a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 0a0abac8d7b79d44e9f467aae1a4b614, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3853779093335931268}
+        m_TargetAssemblyTypeName: UnityEngine.MonoBehaviour, UnityEngine
+        m_MethodName: StopAllCoroutines
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1147,6 +1234,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2577620701016768923}
   - component: {fileID: 9018178298921143632}
+  - component: {fileID: 1321094291511996017}
   m_Layer: 11
   m_Name: TasksManager
   m_TagString: Untagged
@@ -1190,6 +1278,34 @@ MonoBehaviour:
   - {fileID: 5658632003600125108}
   - {fileID: 3853779093335931268}
   - {fileID: 1763629010}
+--- !u!114 &1321094291511996017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8479605002985200918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6569e1bfe03d1c4b9d99f4943fa106a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 0a0abac8d7b79d44e9f467aae1a4b614, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 9018178298921143632}
+        m_TargetAssemblyTypeName: UnityEngine.MonoBehaviour, UnityEngine
+        m_MethodName: StopAllCoroutines
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &9175402498440144095
 GameObject:
   m_ObjectHideFlags: 0
@@ -1200,6 +1316,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8712684263222177325}
   - component: {fileID: 6446417902187516193}
+  - component: {fileID: 8304126530298398052}
   m_Layer: 11
   m_Name: SalaryManager
   m_TagString: Untagged
@@ -1234,5 +1351,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   character: {fileID: 0}
-  salaryInverval: 1
-  moneyVariable: {fileID: 11400000, guid: a95d1ccb3128b8247b785afc10148dce, type: 2}
+  salaryInverval: 10
+  moneyVariable: {fileID: 11400000, guid: a85e03280b9508549a393d2fbebb8d1e, type: 2}
+--- !u!114 &8304126530298398052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9175402498440144095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6569e1bfe03d1c4b9d99f4943fa106a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 0a0abac8d7b79d44e9f467aae1a4b614, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6446417902187516193}
+        m_TargetAssemblyTypeName: UnityEngine.MonoBehaviour, UnityEngine
+        m_MethodName: StopAllCoroutines
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

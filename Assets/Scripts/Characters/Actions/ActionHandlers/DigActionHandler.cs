@@ -6,10 +6,6 @@ public class DigActionHandler : CharacterActionHandler
 {
     [SerializeField] private DigCharacterState digState;
 
-    [SerializeField] private CharacterActionGameEvent iterationEvent;
-
-    [SerializeField] private float iterationsInterval = 1;
-
     private bool isDigging;
 
     private CharacterAction actionData;
@@ -22,8 +18,8 @@ public class DigActionHandler : CharacterActionHandler
         this.actionData = actionData;
         while (isDigging)
         {
-            yield return new WaitForSeconds(iterationsInterval);
-            iterationEvent.Raise(actionData);
+            yield return new WaitForSeconds(digState.iterationsInterval);
+            digState.iterationEvent.Raise(actionData);
             actionData.LearnSkill();
         }
         this.actionData = null;

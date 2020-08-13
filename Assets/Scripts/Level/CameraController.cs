@@ -32,7 +32,7 @@ public class CameraController : MonoBehaviour
         }
     }
 
-    public void Setup()
+    public void Init()
     {
         controlledCamera = GetComponent<Camera>();
         mapObservationPosition = transform.position;

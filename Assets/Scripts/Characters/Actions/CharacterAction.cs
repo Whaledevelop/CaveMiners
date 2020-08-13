@@ -34,7 +34,7 @@ public class CharacterAction
         }
 
     }
-    public float SkillValue => ActionSkill.Value;
+    public int SkillValue => ActionSkill.Value;
 
     public CharacterAction(CharacterTasksManager taskManager, CharacterSkillsManager skillsManager, CharacterActionState stateData, Vector2 startPosition, Vector2 endPosition, Vector2 actionDirection)
     {

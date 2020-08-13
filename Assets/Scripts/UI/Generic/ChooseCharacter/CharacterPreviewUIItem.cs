@@ -37,10 +37,10 @@ public class CharacterPreviewUIItem : UIItem<CharacterInitialData>
         previewCamera.targetTexture = PreviewRenderTexture;
     }
 
-    public override void Init(CharacterInitialData setupData)
+    public override void Init(CharacterInitialData characterData)
     {
-        characterData = setupData;
-        character.Init(setupData);
+        this.characterData = characterData;
+        character.InitView(characterData.spriteName); // менеджеры нам не нужны, инициализируем только внешний вид
     }
 
     public void StartPreviewState(CharacterState newState)

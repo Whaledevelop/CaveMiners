@@ -23,14 +23,12 @@ public class FogOfWar : MonoBehaviour
 
     public void OnActionReducingFogOfWar(CharacterAction action)
     {
-        int skillValue = action.skillsManager.GetSkill(observeFogOfWarSkillCode).Value;
-        UpdateFogOfWar(action.endPosition, skillValue);
+        UpdateFogOfWar(action.endPosition, action.skillsManager);
     }
 
-    public void UpdateFogOfWar(Vector2 reducerPosition, int reduceCellsRadius)
+    public void UpdateFogOfWar(Vector2 reducerPosition, CharacterSkillsManager skillsManager)
     {
-        Vector3Int reducerCellPosition = grid.WorldToCell(reducerPosition);
-        UpdateFogOfWar(reducerCellPosition, reduceCellsRadius);
+        UpdateFogOfWar(grid.WorldToCell(reducerPosition), skillsManager.GetSkill(observeFogOfWarSkillCode).Value);
     }
 
     public void UpdateFogOfWar(Vector3Int reducerPosition, int reduceCellsRadius)

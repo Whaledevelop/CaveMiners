@@ -16,11 +16,16 @@ public class Character : MonoBehaviour
     public void Init(CharacterInitialData characterInitialData)
     {
         characterData = characterInitialData;
-        spriteResolver.SetCategoryAndLabel(characterData.spriteName, spriteResolver.GetLabel());
-        foreach(CharacterManager characterManager in managers)
+        InitView(characterData.spriteName);
+        foreach (CharacterManager characterManager in managers)
         {
             characterManager.Init(this);
         }
+    }
+
+    public void InitView(string spriteName)
+    {
+        spriteResolver.SetCategoryAndLabel(spriteName, spriteResolver.GetLabel());
     }
 
     public T GetManager<T>() where T : CharacterManager

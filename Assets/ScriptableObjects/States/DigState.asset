@@ -26,3 +26,5 @@ MonoBehaviour:
   gizmosColor: {r: 0.5660378, g: 0.21290682, b: 0.18422927, a: 1}
   rotationMode: 2
   moveState: {fileID: 11400000, guid: 0e8c8e751fcc50b4da9b5e37f615b1b9, type: 2}
+  iterationEvent: {fileID: 11400000, guid: c946e9b599750fe43b8e6ffedf73c66a, type: 2}
+  iterationsInterval: 1

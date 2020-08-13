@@ -19,24 +19,38 @@ public class MineCharacterState : CharacterActionState
 
     [SerializeField] private ToolCode nextTaskDefaultTool;
 
+    [SerializeField] private IntVariable moneyVariable;
+
+    public CharacterActionGameEvent iterationEvent;
+
+    public float iterationsInterval = 1;
+
+    public int maxIterations;
+
     public override IEnumerator OnEnd()
     {
         yield return base.OnEnd();
 
         ToolCode prevToolCode = toolsManager.defaultTool;
 
+        // Даем мешок с добычей
         toolsManager.defaultTool = nextTaskDefaultTool;
 
+        // Определяем правый нижний участок базы - куда будем нести добычу
         basePositionRequest.MakeRequest(new ParamsObject(baseTile), out List<Vector2> basePositions);
-
-        // Определяем правый нижний участок базы
+        
         Vector2 baseGates = basePositions.Aggregate(basePositions[0], (picked, next) =>
         {
             return next.x > picked.x || next.y < picked.y ? next : picked;
         });
 
+        // Ждем пока доставит добычу на базу
         yield return actionData.taskManager.ExecuteTaskEnumerator(Utils.MaskToLayer(baseLayer), baseGates);
 
+        // Добавляем деньги
+        moneyVariable.Plus(maxIterations * actionData.SkillValue);
+
+        // Убираем мешок, возвращаем предыдущий иструмент
         toolsManager.defaultTool = prevToolCode;
 
         cellLayoutRequest.MakeRequest(new ParamsObject(actionData.endPosition), out LayerMask newTaskLayer);

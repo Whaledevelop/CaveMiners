@@ -25,6 +25,8 @@ public class LevelSettings : ScriptableObject
 
     public RangeInt yLevelSizeRange;
 
+    public int startMoney;
+
     [SerializeField] private CharactersSet chosenCharacters;
 
     [SerializeField] private GenerateRule placeForCharactersGenerateRule;

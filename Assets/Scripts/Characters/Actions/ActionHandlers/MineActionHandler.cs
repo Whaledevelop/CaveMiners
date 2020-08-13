@@ -5,12 +5,6 @@ public class MineActionHandler : CharacterActionHandler
 {
     [SerializeField] private MineCharacterState mineState;
 
-    [SerializeField] private CharacterActionGameEvent iterationEvent;
-
-    [SerializeField] private float iterationsInterval = 1;
-
-    [SerializeField] private int maxIterations;
-
     private bool isMining;
 
     private int iterationCount;
@@ -23,10 +17,10 @@ public class MineActionHandler : CharacterActionHandler
     {
         isMining = true;
         this.actionData = actionData;
-        while (isMining && iterationCount < maxIterations)
+        while (isMining && iterationCount < mineState.maxIterations)
         {
-            yield return new WaitForSeconds(iterationsInterval);
-            iterationEvent.Raise(actionData);
+            yield return new WaitForSeconds(mineState.iterationsInterval);
+            mineState.iterationEvent.Raise(actionData);
             actionData.LearnSkill();
             iterationCount++;
         }
