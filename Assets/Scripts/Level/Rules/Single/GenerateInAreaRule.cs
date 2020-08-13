@@ -13,6 +13,9 @@ public class GenerateInAreaRule : GenerateSingleRule
     [SerializeField] private Vector2Int instanceDirection;
     [SerializeField] private bool isInstanceRect;
 
+    [Header("Может ли превышать разрешенную область (если размер больше)")]
+    [SerializeField] private bool isExpandable;
+
     [HideInInspector] public Range xArea;
     [HideInInspector] public Range yArea;
 
@@ -22,10 +25,11 @@ public class GenerateInAreaRule : GenerateSingleRule
 
     public override void Init(LevelSettings levelSettings)
     {
+        tilesGroups.Clear();
         base.Init(levelSettings);
-        LevelSettings.GeneratedTilesCount countObj = levelSettings.tilesCount.Find(tileCount => tileCount.generateRule == this);
+        GeneratedTilesCount countObj = levelSettings.tilesCount.Find(tileCount => tileCount.generateRule == this);
         if (countObj != null)
-            instancesCount = countObj.count;
+            instancesCount = countObj.Count;
         else
             instancesCount = defaultInstanceCount;
 
@@ -48,11 +52,6 @@ public class GenerateInAreaRule : GenerateSingleRule
         }
         return false;
 
-    }
-
-    public void OnDisable()
-    {
-        tilesGroups.Clear();
     }
 }
 

@@ -26,13 +26,21 @@ public class LevelGenerator : MonoBehaviour
 
     [SerializeField] private CameraController cameraController;
 
+    [SerializeField] private GenerateRule placeForCharactersGenerateRule;
+
     #endregion
 
     public void GenerateLevel(LevelSettings levelSettings)
     {
+        // Дополняем стартовые настройки стартовыми позициями персонажей
+        levelSettings.SetTilesCount(placeForCharactersGenerateRule, chosenCharacters.Items.Count);
+        // Генерируем тайлы уровня
         GenerateLevelTiles(levelSettings);
+        // Поверх уровня создаем туман войны
         fogOfWar.Init(levelSettings);
+        // Создаем персонажей, там же рассеиваем стартовый туман войны, на основе нахождения персонажей
         GenerateCharacters();
+        // Инициализируем камеру
         cameraController.Init(levelSettings);
     }
 
@@ -42,9 +50,9 @@ public class LevelGenerator : MonoBehaviour
         {
             generateRule.Init(levelSettings);
         }
-        for (int x = levelSettings.xLevelSizeRange.from - 1; x < levelSettings.xLevelSizeRange.to + 1; x++)
+        for (int x = levelSettings.XLevelSizeRange.from - 1; x < levelSettings.XLevelSizeRange.to + 1; x++)
         {
-            for (int y = levelSettings.yLevelSizeRange.from - 1; y < levelSettings.yLevelSizeRange.to + 1; y++)
+            for (int y = levelSettings.YLevelSizeRange.from - 1; y < levelSettings.YLevelSizeRange.to + 1; y++)
             {
                 foreach (GenerateRule generateRule in generateRules)
                 {

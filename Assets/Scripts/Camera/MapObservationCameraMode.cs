@@ -21,8 +21,8 @@ public class MapObservationCameraMode : CameraMode, IHandleLookInput, IHandleCho
     {
         cameraTransform = cameraController.transform;
         cameraController.controlledCamera.orthographicSize = defaultZoom;
-        xMovementRange = cameraController.levelSettings.xLevelSizeRange;
-        yMovementRange = cameraController.levelSettings.yLevelSizeRange;
+        xMovementRange = cameraController.levelSettings.XLevelSizeRange;
+        yMovementRange = cameraController.levelSettings.YLevelSizeRange;
         yield break;
     }
 

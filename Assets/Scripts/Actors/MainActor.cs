@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.U2D.Animation;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 
 public class MainActor : MonoBehaviour
@@ -15,12 +16,11 @@ public class MainActor : MonoBehaviour
 
     [SerializeField] private LevelSettings levelSettings;
 
-    [SerializeField] private IntVariable money;
+    public int LevelCount => levelSettings.UpdateLevel;
 
     public void Start()
     {
         levelGenerator.GenerateLevel(levelSettings);
-        money.Value = levelSettings.startMoney;
     }
 
     public void OnChangeMoney(int money)
@@ -34,5 +34,12 @@ public class MainActor : MonoBehaviour
     public void OnBase()
     {
         //Debug.Log("base");
+    }
+    
+    public void OnLevelPassed()
+    {
+        levelSettings.Upgrade();
+        // Обновляем сцену, при этом заново загружается уровень
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

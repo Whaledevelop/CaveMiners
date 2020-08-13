@@ -12,9 +12,9 @@ public class FogOfWar : MonoBehaviour
 
     public void Init(LevelSettings levelSettings)
     {
-        for(int x = levelSettings.xLevelSizeRange.from * 2; x < levelSettings.xLevelSizeRange.to * 2; x++)
+        for(int x = levelSettings.XLevelSizeRange.from * 5; x < levelSettings.XLevelSizeRange.to * 5; x++)
         {
-            for (int y = levelSettings.yLevelSizeRange.from * 2; y < levelSettings.yLevelSizeRange.to * 2; y++)
+            for (int y = levelSettings.YLevelSizeRange.from * 5; y < levelSettings.YLevelSizeRange.to * 5; y++)
             {
                 fogOfWarTilemap.SetTile(new Vector3Int(x, y, (int)fogOfWarTilemap.transform.position.z), fogOfWarTile);
             }

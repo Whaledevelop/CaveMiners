@@ -9,8 +9,8 @@ public abstract class GenerateRule : ScriptableObject
 
     public virtual void Init(LevelSettings levelSettings)
     {
-        levelXRange = levelSettings.xLevelSizeRange;
-        levelYRange = levelSettings.yLevelSizeRange;
+        levelXRange = levelSettings.XLevelSizeRange;
+        levelYRange = levelSettings.YLevelSizeRange;
     }
 
     public abstract bool HandlePosition(int x, int y);

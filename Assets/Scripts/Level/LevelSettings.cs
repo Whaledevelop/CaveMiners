@@ -6,35 +6,61 @@ using System;
 [CreateAssetMenu(fileName = "LevelSettings", menuName = "ScriptableObjects/LevelSettings")]
 public class LevelSettings : ScriptableObject
 {
-    [Serializable]
-    public class GeneratedTilesCount
-    {
-        public GenerateRule generateRule;
-        public int count;
+    public List<GeneratedTilesCount> tilesCount = new List<GeneratedTilesCount>();
 
-        public GeneratedTilesCount(GenerateRule generateRule, int count)
+    #region Размеры уровня
+
+    [SerializeField] private RangeInt initXLevelSizeRange;
+    [SerializeField] private RangeInt xLevelSizeUpgrade;
+    [SerializeField] private RangeInt initYLevelSizeRange;
+    [SerializeField] private RangeInt yLevelSizeUpgrade;
+
+    private RangeInt xLevelSizeRange;
+    
+    public RangeInt XLevelSizeRange
+    {
+        get
         {
-            this.generateRule = generateRule;
-            this.count = count;
+            if (xLevelSizeRange.IsDefault)
+                xLevelSizeRange = initXLevelSizeRange;
+            return xLevelSizeRange;
         }
     }
 
-    public List<GeneratedTilesCount> tilesCount = new List<GeneratedTilesCount>();
+    private RangeInt yLevelSizeRange;
 
-    public RangeInt xLevelSizeRange;
-
-    public RangeInt yLevelSizeRange;
-
-    public int startMoney;
-
-    [SerializeField] private CharactersSet chosenCharacters;
-
-    [SerializeField] private GenerateRule placeForCharactersGenerateRule;
-
-    public void OnEnable()
+    public RangeInt YLevelSizeRange
     {
-        GeneratedTilesCount tileCount = tilesCount.Find(tile => tile.generateRule == placeForCharactersGenerateRule);
+        get
+        {
+            if (yLevelSizeRange.IsDefault)
+                yLevelSizeRange = initYLevelSizeRange;
+            return yLevelSizeRange;
+        }
+    }
+
+    #endregion
+
+    [HideInInspector] public int UpdateLevel = 1;
+
+    public void Upgrade()
+    {
+        foreach(GeneratedTilesCount tileCount in tilesCount)
+        {
+            tileCount.Upgrade();
+        }
+        xLevelSizeRange = new RangeInt(xLevelSizeRange.from + xLevelSizeUpgrade.from, xLevelSizeRange.to + xLevelSizeUpgrade.to);
+        yLevelSizeRange = new RangeInt(yLevelSizeRange.from + yLevelSizeUpgrade.from, yLevelSizeRange.to + yLevelSizeUpgrade.to);
+
+        UpdateLevel++;
+    }
+
+    public void SetTilesCount(GenerateRule rule, int initialCount)
+    {
+        GeneratedTilesCount tileCount = tilesCount.Find(tile => tile.generateRule == rule);
         if (tileCount == null)
-            tilesCount.Add(new GeneratedTilesCount(placeForCharactersGenerateRule, chosenCharacters.Items.Count));
+            tilesCount.Add(new GeneratedTilesCount(rule, initialCount));
+        else
+            tileCount.initialCount = initialCount;
     }
 }

@@ -48,6 +48,9 @@ public struct RangeInt
 
     public bool IsInRange(int value) => value >= from && value <= to;
     public bool IsInRange(float value) => value >= from && value <= to;
+
+    public bool IsDefault => from == 0 && to == 0;
+
     public override string ToString()
     {
         return "from " + from + " to " + to;

@@ -24,7 +24,7 @@ MonoBehaviour:
   spriteName: CaveMiner2
   activeSkills:
   - code: 1
-    initialValue: 1
+    initialValue: 10
     learnability: 0.5
     state: {fileID: 11400000, guid: da1f466d71b61af47a4ea46023313f53, type: 2}
   - code: 2

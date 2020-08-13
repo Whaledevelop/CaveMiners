@@ -14,18 +14,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilesCount:
   - generateRule: {fileID: 11400000, guid: 9f26d07b3d0ef214da323753dfb826fd, type: 2}
-    count: 15
+    initialCount: 5
+    levelUpPlus: 3
   - generateRule: {fileID: 11400000, guid: 1e02b965674400543a5f118b25ed7b58, type: 2}
-    count: 15
+    initialCount: 5
+    levelUpPlus: 5
   - generateRule: {fileID: 11400000, guid: 5ad6a28bbe464fb4796ee65d778a6fc4, type: 2}
-    count: 0
-  xLevelSizeRange:
-    from: -10
-    to: 10
-  yLevelSizeRange:
-    from: -10
-    to: 10
-  startMoney: 100
-  chosenCharacters: {fileID: 11400000, guid: 36e7d0feff916814f84f006a787bf3f5, type: 2}
-  placeForCharactersGenerateRule: {fileID: 11400000, guid: 5ad6a28bbe464fb4796ee65d778a6fc4,
-    type: 2}
+    initialCount: 0
+    levelUpPlus: 0
+  initXLevelSizeRange:
+    from: -5
+    to: 5
+  xLevelSizeUpgrade:
+    from: -2
+    to: 2
+  initYLevelSizeRange:
+    from: -5
+    to: 5
+  yLevelSizeUpgrade:
+    from: -2
+    to: 2
+  UpdateLevel: 1

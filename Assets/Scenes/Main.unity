@@ -354,6 +354,17 @@ MonoBehaviour:
   charactersInitTile: {fileID: 11400000, guid: 218cf6cd5b78d9d4ea117b7737c6f2ab, type: 2}
   fogOfWar: {fileID: 1119052304}
   cameraController: {fileID: 519420030}
+  placeForCharactersGenerateRule: {fileID: 11400000, guid: 5ad6a28bbe464fb4796ee65d778a6fc4,
+    type: 2}
+  levelTilemaps:
+  - {fileID: 337125808}
+  - {fileID: 1374587403}
+  - {fileID: 845816199}
+  - {fileID: 824963039}
+  - {fileID: 552629759}
+  - {fileID: 1075901505}
+  - {fileID: 1916156597}
+  - {fileID: 43159385}
 --- !u!1 &337125805
 GameObject:
   m_ObjectHideFlags: 0
@@ -366,6 +377,7 @@ GameObject:
   - component: {fileID: 337125808}
   - component: {fileID: 337125807}
   - component: {fileID: 337125809}
+  - component: {fileID: 337125810}
   m_Layer: 8
   m_Name: Tilemap_FogOfWar
   m_TagString: Untagged
@@ -521,6 +533,21 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+--- !u!114 &337125810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 337125805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac82ea32707238549bc4519e2e257e9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tilemapData: {fileID: 0}
+  set: {fileID: 11400000, guid: 17b16551dbf753d47bbccdd293325cc7, type: 2}
+  tilemap: {fileID: 337125808}
 --- !u!1 &338267710
 GameObject:
   m_ObjectHideFlags: 0
@@ -626,9 +653,12 @@ MonoBehaviour:
   zoomRange:
     from: 1
     to: 7
+  scrollSpeed: 5
   cameraModes:
   - {fileID: 11400000, guid: 17ab6f17daf4ced4891c8adf8b29a866, type: 2}
   - {fileID: 11400000, guid: 80ca750a421190d4a8f59c09134aa356, type: 2}
+  controlledCamera: {fileID: 0}
+  levelSettings: {fileID: 0}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -2142,7 +2172,6 @@ MonoBehaviour:
   fogOfWarTile: {fileID: 11400000, guid: 25c65bdbcdb26db4392611d6f86a5f26, type: 2}
   grid: {fileID: 523958208}
   observeFogOfWarSkillCode: 4
-  offsetFromLevel: 5
 --- !u!114 &1119052305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2647,6 +2676,7 @@ GameObject:
   - component: {fileID: 1777220458}
   - component: {fileID: 1777220460}
   - component: {fileID: 1777220461}
+  - component: {fileID: 1777220462}
   m_Layer: 0
   m_Name: MainActor
   m_TagString: Untagged
@@ -2733,6 +2763,34 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: MainActor, Assembly-CSharp
         m_MethodName: OnChangeMoney
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1777220462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1777220457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6569e1bfe03d1c4b9d99f4943fa106a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 8fc97a53d1975424897f71b55b592a68, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1777220458}
+        m_TargetAssemblyTypeName: MainActor, Assembly-CSharp
+        m_MethodName: OnLevelPassed
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
