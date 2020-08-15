@@ -1,0 +1,1204 @@
+fileFormatVersion: 2
+guid: 6f0f4c8911468c7428fb4096f3f389d1
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2924289026811641038
+    second: dwarven home_0
+  - first:
+      213: 8681775086259341808
+    second: dwarven home_1
+  - first:
+      213: 9102220419050977893
+    second: dwarven home_2
+  - first:
+      213: -7909599442545597891
+    second: dwarven home_3
+  - first:
+      213: -8449945352180254813
+    second: dwarven home_4
+  - first:
+      213: -3744781101464941984
+    second: dwarven home_5
+  - first:
+      213: 1539399638376863689
+    second: dwarven home_6
+  - first:
+      213: 2255917427535975451
+    second: dwarven home_7
+  - first:
+      213: 7603805830531514720
+    second: dwarven home_8
+  - first:
+      213: -8680567147368551169
+    second: dwarven home_9
+  - first:
+      213: -5424535067207155409
+    second: dwarven home_10
+  - first:
+      213: 2324832257040440290
+    second: dwarven home_11
+  - first:
+      213: -7975522903358524305
+    second: dwarven home_12
+  - first:
+      213: -4721710941488797708
+    second: dwarven home_13
+  - first:
+      213: 2729697810592204905
+    second: dwarven home_14
+  - first:
+      213: -650361574873656997
+    second: dwarven home_15
+  - first:
+      213: 8129478691025632270
+    second: dwarven home_16
+  - first:
+      213: -7016043920583807399
+    second: dwarven home_17
+  - first:
+      213: -5722901565179845596
+    second: dwarven home_18
+  - first:
+      213: 8569518800106427475
+    second: dwarven home_19
+  - first:
+      213: -15642193546888512
+    second: dwarven home_20
+  - first:
+      213: 1077840396612386569
+    second: dwarven home_21
+  - first:
+      213: 6893749611590685791
+    second: dwarven home_22
+  - first:
+      213: 6273388705614398347
+    second: dwarven home_23
+  - first:
+      213: 6094916598987366868
+    second: dwarven home_24
+  - first:
+      213: 213932541928434781
+    second: dwarven home_25
+  - first:
+      213: 7379539644459691897
+    second: dwarven home_26
+  - first:
+      213: -5865802341015417299
+    second: dwarven home_27
+  - first:
+      213: 1015300271823156517
+    second: dwarven home_28
+  - first:
+      213: 3636796252273308880
+    second: dwarven home_29
+  - first:
+      213: -6382368422173187950
+    second: dwarven home_30
+  - first:
+      213: -8794986193026453079
+    second: dwarven home_31
+  - first:
+      213: -803188164481644812
+    second: dwarven home_32
+  - first:
+      213: -8902016348743728116
+    second: dwarven home_33
+  - first:
+      213: 7015971910373491346
+    second: dwarven home_34
+  - first:
+      213: -4647404360531793885
+    second: dwarven home_35
+  - first:
+      213: 7698425062551349560
+    second: dwarven home_36
+  - first:
+      213: 7610140592391168882
+    second: dwarven home_37
+  - first:
+      213: -6642642427346324481
+    second: dwarven home_38
+  - first:
+      213: 5661431355310459253
+    second: dwarven home_39
+  - first:
+      213: -1135364097730369303
+    second: dwarven home_40
+  - first:
+      213: 5138993370420676393
+    second: dwarven home_41
+  - first:
+      213: 7980496968363206632
+    second: dwarven home_42
+  - first:
+      213: 6381042485779073036
+    second: dwarven home_43
+  - first:
+      213: 7468529514590670314
+    second: dwarven home_44
+  - first:
+      213: 6725769854318338582
+    second: dwarven home_45
+  - first:
+      213: 8096809713449601615
+    second: dwarven home_46
+  - first:
+      213: 5875974703230015452
+    second: dwarven home_47
+  - first:
+      213: 951096221739168194
+    second: dwarven home_48
+  - first:
+      213: -903876400676960934
+    second: dwarven home_49
+  - first:
+      213: 5945647032862273816
+    second: dwarven home_50
+  - first:
+      213: 7998651337243472333
+    second: dwarven home_51
+  - first:
+      213: -8792200017896559429
+    second: dwarven home_52
+  - first:
+      213: 364414744824445764
+    second: dwarven home_53
+  - first:
+      213: -442067775414089871
+    second: dwarven home_54
+  - first:
+      213: 118469338544394633
+    second: dwarven home_55
+  - first:
+      213: -4260192069697898547
+    second: dwarven home_56
+  - first:
+      213: 3316378826839274764
+    second: dwarven home_57
+  - first:
+      213: 8861792230066472823
+    second: dwarven home_58
+  - first:
+      213: -2028125106436761525
+    second: dwarven home_59
+  - first:
+      213: 405912617843608097
+    second: dwarven home_60
+  - first:
+      213: 3639791605520274064
+    second: dwarven home_61
+  - first:
+      213: 4918167044239623862
+    second: dwarven home_62
+  - first:
+      213: -5786327708672366893
+    second: dwarven home_63
+  - first:
+      213: -5416304450215764206
+    second: dwarven home_64
+  - first:
+      213: 4367889569420592185
+    second: dwarven home_65
+  - first:
+      213: -4908573451502507939
+    second: dwarven home_66
+  - first:
+      213: 5224817949630076144
+    second: dwarven home_67
+  - first:
+      213: -3153804019551886644
+    second: dwarven home_68
+  - first:
+      213: -6013994669798424674
+    second: dwarven home_69
+  - first:
+      213: 8868182029769793300
+    second: dwarven home_70
+  - first:
+      213: -7692520075094190874
+    second: dwarven home_71
+  - first:
+      213: 3157355455137111071
+    second: dwarven home_72
+  - first:
+      213: 733316657586023909
+    second: dwarven home_73
+  - first:
+      213: 3184923472124233062
+    second: dwarven home_74
+  - first:
+      213: 8037298199056382303
+    second: dwarven home_75
+  - first:
+      213: -8734466367183355797
+    second: dwarven home_76
+  - first:
+      213: 2571414529884515351
+    second: dwarven home_77
+  - first:
+      213: -5595408416035962626
+    second: dwarven home_78
+  - first:
+      213: 8043976047366108815
+    second: dwarven home_79
+  - first:
+      213: 5496604411044189700
+    second: dwarven home_80
+  - first:
+      213: 9188452891649397237
+    second: dwarven home_81
+  - first:
+      213: 283904184683964104
+    second: dwarven home_82
+  - first:
+      213: -3968580655476389560
+    second: dwarven home_83
+  - first:
+      213: -7803864688319048814
+    second: dwarven home_84
+  - first:
+      213: -3408114100268798457
+    second: dwarven home_85
+  - first:
+      213: -8369006752430517483
+    second: dwarven home_86
+  - first:
+      213: 5654673759570506307
+    second: dwarven home_87
+  - first:
+      213: 6203740956795373640
+    second: dwarven home_88
+  - first:
+      213: -7713685455924423260
+    second: dwarven home_89
+  - first:
+      213: 7322839851638881145
+    second: dwarven home_90
+  - first:
+      213: 7042338057541284985
+    second: dwarven home_91
+  - first:
+      213: -5646789098187371320
+    second: dwarven home_92
+  - first:
+      213: -2476027264135210812
+    second: dwarven home_93
+  - first:
+      213: 6497646483983839831
+    second: dwarven home_94
+  - first:
+      213: 6806546610508564436
+    second: dwarven home_95
+  - first:
+      213: -5139714449352750292
+    second: dwarven home_96
+  - first:
+      213: 6744900229210492953
+    second: dwarven home_97
+  - first:
+      213: -2655764838837917715
+    second: dwarven home_98
+  - first:
+      213: 4075580203699043844
+    second: dwarven home_99
+  - first:
+      213: 2759545447247219706
+    second: dwarven home_100
+  - first:
+      213: 1696668996347026902
+    second: dwarven home_101
+  - first:
+      213: -8747074325477820067
+    second: dwarven home_102
+  - first:
+      213: 8034232459482015985
+    second: dwarven home_103
+  - first:
+      213: 3553122669958896557
+    second: dwarven home_104
+  - first:
+      213: 7602842161778005264
+    second: dwarven home_105
+  - first:
+      213: -4801857605702744850
+    second: dwarven home_106
+  - first:
+      213: -7508128050178800739
+    second: dwarven home_107
+  - first:
+      213: -7194494850078862438
+    second: dwarven home_108
+  - first:
+      213: 5870855399322100182
+    second: dwarven home_109
+  - first:
+      213: -875545967637555892
+    second: dwarven home_110
+  - first:
+      213: -7955341939939837455
+    second: dwarven home_111
+  - first:
+      213: -986974924078791840
+    second: dwarven home_112
+  - first:
+      213: 4220205572905816700
+    second: dwarven home_113
+  - first:
+      213: 6070655377767864074
+    second: dwarven home_114
+  - first:
+      213: 753448502201757621
+    second: dwarven home_115
+  - first:
+      213: -4771074509361495716
+    second: dwarven home_116
+  - first:
+      213: 1674357117401879250
+    second: dwarven home_117
+  - first:
+      213: -7713233211589972105
+    second: dwarven home_118
+  - first:
+      213: -1549033950241883457
+    second: dwarven home_119
+  - first:
+      213: 8929709486194235524
+    second: dwarven home_120
+  - first:
+      213: -5970912621174753458
+    second: dwarven home_121
+  - first:
+      213: 4204648414410807746
+    second: dwarven home_122
+  - first:
+      213: 2412668040996734777
+    second: dwarven home_123
+  - first:
+      213: 2089786832882764643
+    second: dwarven home_124
+  - first:
+      213: 8827857797334295144
+    second: dwarven home_125
+  - first:
+      213: 2122930960723441545
+    second: dwarven home_126
+  - first:
+      213: -8578087428948444248
+    second: dwarven home_127
+  - first:
+      213: 7402940192972979970
+    second: dwarven home_128
+  - first:
+      213: 3517404942319714804
+    second: dwarven home_129
+  - first:
+      213: -105080996369149959
+    second: dwarven home_130
+  - first:
+      213: 3899480812664491847
+    second: dwarven home_131
+  - first:
+      213: 8001888388243614657
+    second: dwarven home_132
+  - first:
+      213: 386566854185462784
+    second: dwarven home_133
+  - first:
+      213: 4937471875239728190
+    second: dwarven home_134
+  - first:
+      213: -4683380806997100436
+    second: dwarven home_135
+  - first:
+      213: -6237015324488271843
+    second: dwarven home_136
+  - first:
+      213: -8199356818048515617
+    second: dwarven home_137
+  - first:
+      213: 7579411022632673632
+    second: dwarven home_138
+  - first:
+      213: -4851614866476975495
+    second: dwarven home_139
+  - first:
+      213: 8550053978390781633
+    second: dwarven home_140
+  - first:
+      213: -4640764692729306856
+    second: dwarven home_141
+  - first:
+      213: 40832927121476997
+    second: dwarven home_142
+  - first:
+      213: -2786048025009990902
+    second: dwarven home_143
+  - first:
+      213: 3942771792631992561
+    second: dwarven home_144
+  - first:
+      213: -6861087614444000775
+    second: dwarven home_145
+  - first:
+      213: -9104569872250620541
+    second: dwarven home_146
+  - first:
+      213: -7817395397200879546
+    second: dwarven home_147
+  - first:
+      213: -5931441364374604154
+    second: dwarven home_148
+  - first:
+      213: -4448642845082332481
+    second: dwarven home_149
+  - first:
+      213: -6783734923300028899
+    second: dwarven home_150
+  - first:
+      213: -418512301044350425
+    second: dwarven home_151
+  - first:
+      213: 3403141997034119393
+    second: dwarven home_152
+  - first:
+      213: -7300676008551641934
+    second: dwarven home_153
+  - first:
+      213: -2763051710417938739
+    second: dwarven home_154
+  - first:
+      213: 5633936519132595989
+    second: dwarven home_155
+  - first:
+      213: 4954895959931144807
+    second: dwarven home_156
+  - first:
+      213: -3916856623947457857
+    second: dwarven home_157
+  - first:
+      213: -1276244546366296401
+    second: dwarven home_158
+  - first:
+      213: -6939968247877161194
+    second: dwarven home_159
+  - first:
+      213: 294322890345400108
+    second: dwarven home_160
+  - first:
+      213: -4202048787342455358
+    second: dwarven home_161
+  - first:
+      213: -2929713416908217437
+    second: dwarven home_162
+  - first:
+      213: -6404888319983790144
+    second: dwarven home_163
+  - first:
+      213: -3124349393914770455
+    second: dwarven home_164
+  - first:
+      213: 5272192797267435467
+    second: dwarven home_165
+  - first:
+      213: 4911061194886914994
+    second: dwarven home_166
+  - first:
+      213: -5785063403927955443
+    second: dwarven home_0
+  - first:
+      213: 2392667397418997046
+    second: dwarven home_1
+  - first:
+      213: 493650576940794373
+    second: dwarven home_2
+  - first:
+      213: -4769469750653926091
+    second: dwarven home_3
+  - first:
+      213: 6673176335085474735
+    second: dwarven home_4
+  - first:
+      213: -4844205390391882920
+    second: dwarven home_5
+  - first:
+      213: 1753670907225952895
+    second: dwarven home_6
+  - first:
+      213: 3196878489438166705
+    second: dwarven home_7
+  - first:
+      213: -2987614843373652465
+    second: dwarven home_8
+  - first:
+      213: -6644740955971307235
+    second: dwarven home_9
+  - first:
+      213: -4264421885276586558
+    second: dwarven home_10
+  - first:
+      213: 7587041926910158626
+    second: dwarven home_11
+  - first:
+      213: 1465781720323245047
+    second: dwarven home_12
+  - first:
+      213: -7788120308252046668
+    second: dwarven home_13
+  - first:
+      213: -724333408485930682
+    second: dwarven home_14
+  - first:
+      213: -5768143365822968725
+    second: dwarven home_15
+  - first:
+      213: 596117413879771036
+    second: dwarven home_16
+  - first:
+      213: 1704448512687251666
+    second: dwarven home_17
+  - first:
+      213: 4421173899240051612
+    second: dwarven home_18
+  - first:
+      213: -7746458369735119192
+    second: dwarven home_19
+  - first:
+      213: -6438906507591456132
+    second: dwarven home_20
+  - first:
+      213: 2347502365231500071
+    second: dwarven home_21
+  - first:
+      213: 612056321586656432
+    second: dwarven home_22
+  - first:
+      213: 3676996668658318961
+    second: dwarven home_23
+  - first:
+      213: -2240319534282302534
+    second: dwarven home_24
+  - first:
+      213: 3159651130977791996
+    second: dwarven home_25
+  - first:
+      213: -7327066657856449314
+    second: dwarven home_26
+  - first:
+      213: -8457120224503594449
+    second: dwarven home_27
+  - first:
+      213: 834903126161145966
+    second: dwarven home_28
+  - first:
+      213: -4798207256476953571
+    second: dwarven home_29
+  - first:
+      213: -8831206486616061035
+    second: dwarven home_30
+  - first:
+      213: 8006797865002107067
+    second: dwarven home_31
+  - first:
+      213: 3524437933011813486
+    second: dwarven home_32
+  - first:
+      213: 8998377194152644848
+    second: dwarven home_33
+  - first:
+      213: 7291188785249671943
+    second: dwarven home_34
+  - first:
+      213: 8946193395489550640
+    second: dwarven home_35
+  - first:
+      213: -4313501538239214004
+    second: dwarven home_36
+  - first:
+      213: 200218969258618661
+    second: dwarven home_37
+  - first:
+      213: 3546127709487475553
+    second: dwarven home_38
+  - first:
+      213: 2295240748572441285
+    second: dwarven home_39
+  - first:
+      213: 6233070148786916839
+    second: dwarven home_40
+  - first:
+      213: 2485529547942475879
+    second: dwarven home_41
+  - first:
+      213: -6830607353473373260
+    second: dwarven home_42
+  - first:
+      213: -6197754035152389968
+    second: dwarven home_43
+  - first:
+      213: 8061904468856838393
+    second: dwarven home_44
+  - first:
+      213: -2176260227111418124
+    second: dwarven home_45
+  - first:
+      213: -991252986640544068
+    second: dwarven home_46
+  - first:
+      213: -8881945603608590407
+    second: dwarven home_47
+  - first:
+      213: -8511784848270971027
+    second: dwarven home_48
+  - first:
+      213: -6830020824909496133
+    second: dwarven home_49
+  - first:
+      213: 6337405224491467563
+    second: dwarven home_50
+  - first:
+      213: 1585797867322683742
+    second: dwarven home_51
+  - first:
+      213: 2703141405260254423
+    second: dwarven home_52
+  - first:
+      213: -3571701487381989244
+    second: dwarven home_53
+  - first:
+      213: -2573309357118847330
+    second: dwarven home_54
+  - first:
+      213: -2119842704450984853
+    second: dwarven home_55
+  - first:
+      213: 53282692149623969
+    second: dwarven home_56
+  - first:
+      213: -1590518252470987661
+    second: dwarven home_57
+  - first:
+      213: -2221241840239942116
+    second: dwarven home_58
+  - first:
+      213: -8647023981752455083
+    second: dwarven home_59
+  - first:
+      213: -3905109153185868616
+    second: dwarven home_60
+  - first:
+      213: 2887007645893890289
+    second: dwarven home_61
+  - first:
+      213: -2490135600845500760
+    second: dwarven home_62
+  - first:
+      213: -8872636985895047243
+    second: dwarven home_63
+  - first:
+      213: -1754470431330332910
+    second: dwarven home_64
+  - first:
+      213: 4990599256384386006
+    second: dwarven home_65
+  - first:
+      213: 1773103386090036159
+    second: dwarven home_66
+  - first:
+      213: -6989265543762386956
+    second: dwarven home_67
+  - first:
+      213: 902658231205337600
+    second: dwarven home_68
+  - first:
+      213: -6532628543104265853
+    second: dwarven home_69
+  - first:
+      213: 5834975168829954677
+    second: dwarven home_70
+  - first:
+      213: 5269559712441344594
+    second: dwarven home_71
+  - first:
+      213: 1085881030007904837
+    second: dwarven home_72
+  - first:
+      213: 1006373641685415199
+    second: dwarven home_73
+  - first:
+      213: 8086617260485240528
+    second: dwarven home_74
+  - first:
+      213: -225752495216168414
+    second: dwarven home_75
+  - first:
+      213: 5119018415945724417
+    second: dwarven home_76
+  - first:
+      213: -374087821143794921
+    second: dwarven home_77
+  - first:
+      213: 358220392871802919
+    second: dwarven home_78
+  - first:
+      213: -4705099400593735122
+    second: dwarven home_79
+  - first:
+      213: -3706888350457844508
+    second: dwarven home_80
+  - first:
+      213: 4233878272085465591
+    second: dwarven home_81
+  - first:
+      213: 998486511570150894
+    second: dwarven home_82
+  - first:
+      213: -6556987788914898407
+    second: dwarven home_83
+  - first:
+      213: -6368478767192869116
+    second: dwarven home_84
+  - first:
+      213: -9014286013081425262
+    second: dwarven home_85
+  - first:
+      213: -6941757120696626986
+    second: dwarven home_86
+  - first:
+      213: -867655823016111188
+    second: dwarven home_87
+  - first:
+      213: 4908390225747341272
+    second: dwarven home_88
+  - first:
+      213: -2463103107216663244
+    second: dwarven home_89
+  - first:
+      213: 1287553663187269323
+    second: dwarven home_90
+  - first:
+      213: 776165604547351770
+    second: dwarven home_91
+  - first:
+      213: -9020161671647878619
+    second: dwarven home_92
+  - first:
+      213: -7523900727732090256
+    second: dwarven home_93
+  - first:
+      213: 7754872529478160577
+    second: dwarven home_94
+  - first:
+      213: -8592260370915927384
+    second: dwarven home_95
+  - first:
+      213: 2191177039308581767
+    second: dwarven home_96
+  - first:
+      213: 3200174245201590013
+    second: dwarven home_97
+  - first:
+      213: -1499748398429903798
+    second: dwarven home_98
+  - first:
+      213: 1194975515843681032
+    second: dwarven home_99
+  - first:
+      213: 7315172855645602159
+    second: dwarven home_100
+  - first:
+      213: 7239526218123217383
+    second: dwarven home_101
+  - first:
+      213: 5917968747616098939
+    second: dwarven home_102
+  - first:
+      213: 5919432176079474391
+    second: dwarven home_103
+  - first:
+      213: -7014346096116955690
+    second: dwarven home_104
+  - first:
+      213: 3582325953468022856
+    second: dwarven home_105
+  - first:
+      213: -766879065415376769
+    second: dwarven home_106
+  - first:
+      213: -6044114790580306535
+    second: dwarven home_107
+  - first:
+      213: 3208698615853214675
+    second: dwarven home_108
+  - first:
+      213: 1308743572762066528
+    second: dwarven home_109
+  - first:
+      213: -329593261512002387
+    second: dwarven home_110
+  - first:
+      213: -95564357510472929
+    second: dwarven home_111
+  - first:
+      213: -6573783585562182793
+    second: dwarven home_112
+  - first:
+      213: 4201191562558207713
+    second: dwarven home_113
+  - first:
+      213: 4659863783726491056
+    second: dwarven home_114
+  - first:
+      213: 7282280400179599400
+    second: dwarven home_115
+  - first:
+      213: -778056051874028136
+    second: dwarven home_116
+  - first:
+      213: -1903900403732626647
+    second: dwarven home_117
+  - first:
+      213: 919674010608825026
+    second: dwarven home_118
+  - first:
+      213: 1815436587324853470
+    second: dwarven home_119
+  - first:
+      213: 4923956158976515783
+    second: dwarven home_120
+  - first:
+      213: 5164103173927036563
+    second: dwarven home_121
+  - first:
+      213: 3422458703152917830
+    second: dwarven home_122
+  - first:
+      213: -2614820552669811997
+    second: dwarven home_123
+  - first:
+      213: 5628722654743189519
+    second: dwarven home_124
+  - first:
+      213: -7127006900049396194
+    second: dwarven home_125
+  - first:
+      213: -2377259889396886036
+    second: dwarven home_126
+  - first:
+      213: -6765886220180599685
+    second: dwarven home_127
+  - first:
+      213: 6094133374661948428
+    second: dwarven home_128
+  - first:
+      213: -8033221833850776648
+    second: dwarven home_129
+  - first:
+      213: 7251141263852391432
+    second: dwarven home_130
+  - first:
+      213: 2613209489974792444
+    second: dwarven home_131
+  - first:
+      213: -6232819047352781825
+    second: dwarven home_132
+  - first:
+      213: -1624485998628557177
+    second: dwarven home_133
+  - first:
+      213: -4712459298053790243
+    second: dwarven home_134
+  - first:
+      213: -2599811779696472289
+    second: dwarven home_135
+  - first:
+      213: 6204674691845686567
+    second: dwarven home_136
+  - first:
+      213: 1072322125929232266
+    second: dwarven home_137
+  - first:
+      213: -434158725389449068
+    second: dwarven home_138
+  - first:
+      213: -3438925403605466447
+    second: dwarven home_139
+  - first:
+      213: -8366445223854901044
+    second: dwarven home_140
+  - first:
+      213: 3856486056156641210
+    second: dwarven home_141
+  - first:
+      213: 5399456229229486511
+    second: dwarven home_142
+  - first:
+      213: 2962311841750889064
+    second: dwarven home_143
+  - first:
+      213: -2191417285628429129
+    second: dwarven home_144
+  - first:
+      213: 193556796164854706
+    second: dwarven home_145
+  - first:
+      213: -3055527081805422129
+    second: dwarven home_146
+  - first:
+      213: -2686213616478592719
+    second: dwarven home_147
+  - first:
+      213: 5038136539196560540
+    second: dwarven home_148
+  - first:
+      213: 7466364388733984401
+    second: dwarven home_149
+  - first:
+      213: -8559465786306629834
+    second: dwarven home_150
+  - first:
+      213: 3883389519480494705
+    second: dwarven home_151
+  - first:
+      213: 8888338949342353946
+    second: dwarven home_152
+  - first:
+      213: -1672353021991059311
+    second: dwarven home_153
+  - first:
+      213: 1751558636282093296
+    second: dwarven home_154
+  - first:
+      213: -6156008691996749923
+    second: dwarven home_155
+  - first:
+      213: 7701406237499632533
+    second: dwarven home_156
+  - first:
+      213: -3056497984492225249
+    second: dwarven home_157
+  - first:
+      213: -5368500882424793055
+    second: dwarven home_158
+  - first:
+      213: -339336177225341760
+    second: dwarven home_159
+  - first:
+      213: -6638742062584519493
+    second: dwarven home_160
+  - first:
+      213: 7767294759382683283
+    second: dwarven home_161
+  - first:
+      213: 6338988884624173847
+    second: dwarven home_162
+  - first:
+      213: 4701409070285473883
+    second: dwarven home_163
+  - first:
+      213: 1321291408109541083
+    second: dwarven home_164
+  - first:
+      213: 8878565592106276537
+    second: dwarven home_165
+  - first:
+      213: 7884455349981407915
+    second: dwarven home_166
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 128
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: dwarven home_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 150
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0813c51c7357bfa0800000000000000
+      internalID: -5785063403927955443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dwarven home_1
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 150
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63551d03256743120800000000000000
+      internalID: 2392667397418997046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dwarven home_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50209b1959cc9d600800000000000000
+      internalID: 493650576940794373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dwarven home_3
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 0
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5354d4118807fcdb0800000000000000
+      internalID: -4769469750653926091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

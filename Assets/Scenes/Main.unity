@@ -356,15 +356,6 @@ MonoBehaviour:
   cameraController: {fileID: 519420030}
   placeForCharactersGenerateRule: {fileID: 11400000, guid: 5ad6a28bbe464fb4796ee65d778a6fc4,
     type: 2}
-  levelTilemaps:
-  - {fileID: 337125808}
-  - {fileID: 1374587403}
-  - {fileID: 845816199}
-  - {fileID: 824963039}
-  - {fileID: 552629759}
-  - {fileID: 1075901505}
-  - {fileID: 1916156597}
-  - {fileID: 43159385}
 --- !u!1 &337125805
 GameObject:
   m_ObjectHideFlags: 0
@@ -883,7 +874,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: a5d34423d87c6ca469bc41d069984087, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
@@ -2700,7 +2691,6 @@ MonoBehaviour:
   gameOverEvent: {fileID: 11400000, guid: 0a0abac8d7b79d44e9f467aae1a4b614, type: 2}
   levelGenerator: {fileID: 320095015}
   levelSettings: {fileID: 11400000, guid: e4c2f819f45311145a8c51d0a5b41d38, type: 2}
-  money: {fileID: 11400000, guid: a85e03280b9508549a393d2fbebb8d1e, type: 2}
 --- !u!4 &1777220459
 Transform:
   m_ObjectHideFlags: 0
@@ -3421,7 +3411,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: a5d34423d87c6ca469bc41d069984087, type: 3}
     m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 0

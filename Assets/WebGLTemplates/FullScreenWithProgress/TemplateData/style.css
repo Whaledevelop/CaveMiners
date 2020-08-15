@@ -1,0 +1,82 @@
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+body {
+  margin: 0;
+  background: #78422b;
+}
+
+canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+canvas + * {
+  z-index: 2;
+}
+
+#gameName {
+  color: #ffffff;
+  font-family: sans-serif;
+  font-weight: bold;
+  margin-bottom: 100px;
+  width: 80vw;
+  text-align: center;
+  font-size: 32px;
+  text-align: center;
+}
+
+.progress {
+    margin: 1.5em;
+    border: 1px solid white;
+    width: 50vw;
+    display: none;
+}
+.progress .full {
+    margin: 2px;
+    background: white;
+    height: 1em;
+    transform-origin: top left;
+}
+
+#loader {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.spinner,
+.spinner:after {
+  border-radius: 50%;
+  width: 5em;
+  height: 5em;
+}
+.spinner {
+  margin: 10px;
+  font-size: 10px;
+  position: relative;
+  text-indent: -9999em;
+  border-top: 1.1em solid #78422b;
+  border-right: 1.1em solid #78422b;
+  border-bottom: 1.1em solid #78422b;
+  border-left: 1.1em solid #ffffff;
+  transform: translateZ(0);
+  animation: spinner-spin 1.1s infinite linear;
+}
+@keyframes spinner-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

@@ -22,18 +22,3 @@ public class Highlighter  : MonoBehaviour
         sprite.material = highlightMode ? highlightMaterial : defaultMaterial;
     }
 }
-
-[CustomEditor(typeof(Highlighter)), CanEditMultipleObjects] 
-[ExecuteInEditMode]
-public class HighlighterEditor : Editor
-{
-    public override void OnInspectorGUI()
-    {
-        base.OnInspectorGUI();
-
-        if (GUILayout.Button("SwapHighlightMode"))
-        {
-            (target as Highlighter).SwapHighlightMode();
-        }
-    }
-}

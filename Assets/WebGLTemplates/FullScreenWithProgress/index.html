@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>{{{ PRODUCT_NAME }}}</title>
+    <link rel="stylesheet" href="TemplateData/style.css"/>
+  </head>
+  <body>
+    <canvas id="unity-canvas"></canvas> 
+    <div id="loader">
+      <div id = "gameName">{{{ PRODUCT_NAME }}} {{{ PRODUCT_VERSION }}}</div>
+      <div class="spinner"></div>
+      <div class="progress">
+          <div class="full"></div>
+      </div>
+    </div>    
+    <script>
+      var script = document.createElement("script");
+      script.src = "Build/{{{ LOADER_FILENAME }}}";
+      script.onload = () => {
+        var canvas = document.querySelector("#unity-canvas");
+        var config = {
+          dataUrl: "Build/{{{ DATA_FILENAME }}}",
+          frameworkUrl: "Build/{{{ FRAMEWORK_FILENAME }}}",
+          codeUrl: "Build/{{{ CODE_FILENAME }}}",
+      #if MEMORY_FILENAME
+          memoryUrl: "Build/{{{ MEMORY_FILENAME }}}",
+      #endif
+      #if SYMBOLS_FILENAME
+          symbolsUrl: "Build/{{{ SYMBOLS_FILENAME }}}",
+      #endif
+          streamingAssetsUrl: "StreamingAssets",
+          companyName: "{{{ COMPANY_NAME }}}",
+          productName: "{{{ PRODUCT_NAME }}}",
+          productVersion: "{{{ PRODUCT_VERSION }}}"
+        };
+        var progressBar = document.querySelector("#loader .progress");
+        var fullProgressBar = progressBar.querySelector(".full")
+        var loader = document.querySelector("#loader");
+        var startProgress = false;
+        var onProgress = progress => {
+          if (!startProgress) {
+            progressBar.style.display = "block";
+            loader.querySelector(".spinner").style.display = "none";
+            startProgress = true;
+          } 
+          fullProgressBar.style.transform = `scaleX(${progress})`;
+        };
+        var onSuccess = unityInstance => {
+          loader.style.display = "none";
+        };
+        var onError = message => {
+          alert(message);
+        };
+
+        createUnityInstance(canvas, config, onProgress).then(onSuccess).catch(onError);
+      };
+      document.body.appendChild(script);
+    </script>
+  </body>
+</html>
