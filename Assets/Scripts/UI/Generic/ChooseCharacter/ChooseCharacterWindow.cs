@@ -11,8 +11,6 @@ public class ChooseCharacterWindow : MonoBehaviour
 
     [SerializeField] private RectTransform charactersParent;    
 
-    [SerializeField] private Transform characterPreviewParent;
-
     [SerializeField] private int maxActiveCharacters;
 
     [SerializeField] private GameEvent onAllCharactersChosen;

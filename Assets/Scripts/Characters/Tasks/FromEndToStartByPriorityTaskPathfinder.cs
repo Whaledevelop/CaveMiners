@@ -24,7 +24,7 @@ public class FromEndToStartByPriorityTaskPathfinder : TaskPathfinder
         {
             finalPath = new CharacterTaskPoint(taskEndPointState, taskPoint, Vector2.zero);
 
-            // FindPathTreeToCharacter внутри обновляет finalPath, добавляя все возможно пути, а возвращает eдинственный путь до персонажа
+            // FindPathTreeToCharacter внутри обновляет finalPath, добавляя все возможные пути, а возвращает eдинственный путь до персонажа
             List<CharacterTaskPoint> lastPointsToCharacter = FindPathToCharacter(finalPath.nestLevel, startPosition, ref finalPath);
 
             if (lastPointsToCharacter != null && lastPointsToCharacter.Count > 0)

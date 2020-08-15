@@ -6,7 +6,39 @@ using System;
 [CreateAssetMenu(fileName = "LevelSettings", menuName = "ScriptableObjects/LevelSettings")]
 public class LevelSettings : ScriptableObject
 {
-    public List<GeneratedTilesCount> tilesCount = new List<GeneratedTilesCount>();
+    [Serializable]
+    public class GeneratedTilesCount
+    {
+        public GenerateRule generateRule;
+        public int initialCount;
+        public int levelUpPlus;
+
+        private int count;
+        public int Count
+        {
+            get
+            {
+                if (count == 0)
+                    count = initialCount;
+                return count;
+            }
+        }
+
+        public GeneratedTilesCount(GenerateRule generateRule, int initialCount)
+        {
+            this.generateRule = generateRule;
+            this.initialCount = count;
+        }
+
+        public void Upgrade()
+        {
+            count += levelUpPlus;
+        }
+    }
+
+    [SerializeField] private List<GeneratedTilesCount> tilesCount = new List<GeneratedTilesCount>();
+
+    public int startMoney;
 
     #region Размеры уровня
 
@@ -51,7 +83,6 @@ public class LevelSettings : ScriptableObject
         }
         xLevelSizeRange = new RangeInt(xLevelSizeRange.from + xLevelSizeUpgrade.from, xLevelSizeRange.to + xLevelSizeUpgrade.to);
         yLevelSizeRange = new RangeInt(yLevelSizeRange.from + yLevelSizeUpgrade.from, yLevelSizeRange.to + yLevelSizeUpgrade.to);
-
         UpdateLevel++;
     }
 
@@ -62,5 +93,11 @@ public class LevelSettings : ScriptableObject
             tilesCount.Add(new GeneratedTilesCount(rule, initialCount));
         else
             tileCount.initialCount = initialCount;
+    }
+
+    public int GetTilesCount(GenerateRule generateTileRule)
+    {
+        GeneratedTilesCount countObj = tilesCount.Find(tileCount => tileCount.generateRule == generateTileRule);
+        return countObj != null ? countObj.Count : 0;
     }
 }

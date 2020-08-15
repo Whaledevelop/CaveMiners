@@ -14,8 +14,11 @@ public class GridCanvas : MonoBehaviour
     [SerializeField] private RangeWithStep cellsXRange;
     [SerializeField] private RangeWithStep cellsYRange;
 
+#if UNITY_EDITOR
     public void Start()
     {
+
+
         for(float x = cellsXRange.from; x <= cellsXRange.to; x += cellsXRange.step)
         {
             for (float y = cellsYRange.from; y <= cellsYRange.to; y += cellsYRange.step)
@@ -26,5 +29,7 @@ public class GridCanvas : MonoBehaviour
                 cellText.text = "(" + x + "," + y + ")";
             }
         }
+
     }
+#endif
 }

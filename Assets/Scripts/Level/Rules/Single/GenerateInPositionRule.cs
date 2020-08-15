@@ -9,9 +9,9 @@ public class GenerateInPositionRule : GenerateSingleRule
     {
         base.Init(levelSettings);
         tilesGroup.Init(levelXRange, levelYRange);
-        GeneratedTilesCount countObj = levelSettings.tilesCount.Find(tileCount => tileCount.generateRule == this);
-        if (countObj != null)
-            tilesGroup.ApplyDirectionToCount(countObj.Count);        
+        int tilesCount = levelSettings.GetTilesCount(this);
+        if (tilesCount != 0)
+            tilesGroup.ApplyDirectionToCount(tilesCount);                   
     }
 
     protected override bool CheckPosition(int x, int y)

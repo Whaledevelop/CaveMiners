@@ -22,6 +22,7 @@ MonoBehaviour:
   - generateRule: {fileID: 11400000, guid: 5ad6a28bbe464fb4796ee65d778a6fc4, type: 2}
     initialCount: 0
     levelUpPlus: 0
+  startMoney: 100
   initXLevelSizeRange:
     from: -5
     to: 5

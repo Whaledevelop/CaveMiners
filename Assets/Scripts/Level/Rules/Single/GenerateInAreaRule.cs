@@ -27,11 +27,8 @@ public class GenerateInAreaRule : GenerateSingleRule
     {
         tilesGroups.Clear();
         base.Init(levelSettings);
-        GeneratedTilesCount countObj = levelSettings.tilesCount.Find(tileCount => tileCount.generateRule == this);
-        if (countObj != null)
-            instancesCount = countObj.Count;
-        else
-            instancesCount = defaultInstanceCount;
+        int tilesCount = levelSettings.GetTilesCount(this);
+        instancesCount = tilesCount == 0 ? defaultInstanceCount : tilesCount;
 
         for (int i = 0; i < instancesCount; i++)
         {

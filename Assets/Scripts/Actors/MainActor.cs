@@ -16,11 +16,19 @@ public class MainActor : MonoBehaviour
 
     [SerializeField] private LevelSettings levelSettings;
 
+    //[SerializeField] private GameEvent updateLevelEvent;
+
+    [SerializeField] private IntVariable moneyVariable;
+
     public int LevelCount => levelSettings.UpdateLevel;
 
     public void Start()
     {
         levelGenerator.GenerateLevel(levelSettings);
+        if (LevelCount == 1)
+        {
+            moneyVariable.Value = levelSettings.startMoney;
+        }
     }
 
     public void OnChangeMoney(int money)
