@@ -1,46 +1,42 @@
 ﻿using System.Collections;
 using UnityEngine;
 
+/// <summary>
+/// Обработчик движения персонажа
+/// </summary>
 public class MoveHandler : CharacterActionHandler
 {
     [SerializeField] private CharacterActionState moveState;
     [SerializeField] private Rigidbody2D rb;
-
     [SerializeField] private float defaultSpeed;
-
     [SerializeField] private CharacterActionGameEvent endMovementEvent;
 
-    [HideInInspector] public float speed;
-
-    private Vector2 moveEndPoint;
     private bool isMoving;
 
     public override CharacterActionState HandledState => moveState;
 
-    public void FixedUpdate()
+    public override IEnumerator Execute(CharacterAction actionData)
     {
-        if (isMoving)
+        isMoving = true;
+        // Начинаем движение. Скорость зависит от базовой скорости и таланта персонажа
+        yield return Move(actionData.endPosition, defaultSpeed * actionData.SkillValue);
+        isMoving = false;
+        endMovementEvent.Raise(actionData);
+    }
+
+    public IEnumerator Move(Vector2 moveEndPoint, float speed)
+    {
+        while(isMoving && Vector2.Distance(rb.position, moveEndPoint) > 0.1)
         {
             Vector2 movement = Vector2.MoveTowards(rb.position, moveEndPoint, speed * Time.fixedDeltaTime);
             rb.MovePosition(movement);
-        }
-    }
-
-    public override IEnumerator Execute(CharacterAction actionData)
-    {
-        moveEndPoint = actionData.endPosition;
-        speed = defaultSpeed * actionData.SkillValue;
-        isMoving = true;
-        yield return new WaitUntil(() => Vector2.Distance(rb.position, moveEndPoint) < 0.1);
-        isMoving = false;
-        endMovementEvent.Raise(actionData);
+            yield return new WaitForFixedUpdate();
+        }          
     }
 
     public override IEnumerator Cancel()
     {
         isMoving = false;
-        moveEndPoint = default;
-        speed = defaultSpeed;
         yield break;
     }
 }

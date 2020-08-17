@@ -2,6 +2,9 @@
 using System.Collections;
 using UnityEngine;
 
+/// <summary>
+/// Обработчик копания
+/// </summary>
 public class DigActionHandler : CharacterActionHandler
 {
     [SerializeField] private DigCharacterState digState;
@@ -12,6 +15,10 @@ public class DigActionHandler : CharacterActionHandler
 
     public override CharacterActionState HandledState => digState;
 
+    /// <summary>
+    /// Выполнение сводится к вызову раз в определенный интервал события, которое обрабатывается скриптами тайлов (урон),
+    /// до тех пор, пока не вызовется событие окончания действия, которое обработается в OnTileWorkedOut
+    /// </summary>
     public override IEnumerator Execute(CharacterAction actionData)
     {
         isDigging = true;
@@ -25,6 +32,9 @@ public class DigActionHandler : CharacterActionHandler
         this.actionData = null;
     }
 
+    /// <summary>
+    /// Обработчик не сам решает, когда ему закончить выполнение, он ждет события
+    /// </summary>
     public void OnTileWorkedOut(CharacterAction tileWorkedOutActionData)
     {
         if (actionData != null)
@@ -38,6 +48,9 @@ public class DigActionHandler : CharacterActionHandler
         }       
     }
 
+    /// <summary>
+    /// Прервать выполнения, не дождавшись раскопки
+    /// </summary>
     public override IEnumerator Cancel()
     {
         isDigging = false;

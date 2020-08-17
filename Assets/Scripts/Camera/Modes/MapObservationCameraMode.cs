@@ -4,6 +4,9 @@ using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using System;
 
+/// <summary>
+/// Режим камеры, в котором можно передвигать камеру в пределах уровня зажав левую кнопку мыши
+/// </summary>
 [CreateAssetMenu(fileName = "MapObservationCameraMode", menuName = "CameraModes/MapObservationCameraMode")]
 public class MapObservationCameraMode : CameraMode, IHandleLookInput, IHandleChooseInput
 {

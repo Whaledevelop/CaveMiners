@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEngine.InputSystem;
 
+/// <summary>
+/// Режим камеры, в котором камера висит над активным персонажем
+/// </summary>
 [CreateAssetMenu(fileName = "FollowCharacterCameraMode", menuName = "CameraModes/FollowCharacterCameraMode")]
 public class FollowCharacterCameraMode : CameraMode
 {

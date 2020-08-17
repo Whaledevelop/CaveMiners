@@ -1,27 +1,28 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public enum EndExecutionCondition
-{
-    None,
-    Executed,
-    IterationsCount
-}
-
+/// <summary>
+/// Действие персонажа - по сути реализация определенного состояния (CharacterActionState) на определенной клетке (endPosition)
+/// </summary>
 [System.Serializable]
 public class CharacterAction
 {
+    #region Ссылки для выполнения действия
+
     public CharacterTasksManager taskManager;
     public CharacterSkillsManager skillsManager;
-    public CharacterActionState stateData;
 
-    public Vector2 startPosition;
-    public Vector2 endPosition;
-    public Vector2 actionDirection;
+    #endregion
 
-    public Vector3Int endCellPosition;
+    public CharacterActionState stateData; // Реализуемое состояние
 
-    private CharacterSkill actionSkill;
+    public Vector2 startPosition;          // Позиция, от которой выполняется действия
+    public Vector2 endPosition;            // Позиция, к которой выполняется действие
+    public Vector2 actionDirection;        // Направленность действия
+
+    public Vector3Int endCellPosition;     // Интовое значение окончательной позиция, переведенная из World в Cell
+
+    private CharacterSkill actionSkill;    // Умение персонажа в реализации данного действия
 
     public CharacterSkill ActionSkill
     { 
@@ -46,6 +47,9 @@ public class CharacterAction
         this.actionDirection = actionDirection;
     }
 
+    /// <summary>
+    /// Обновление скилла при выполнении действия
+    /// </summary>
     public void LearnSkill()
     {
         ActionSkill.LearnSkill();

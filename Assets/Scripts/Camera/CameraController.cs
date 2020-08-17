@@ -3,12 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/// <summary>
+/// Скрипт, регулирующий поведение основной камеры при помощи режимов камеры
+/// </summary>
 [RequireComponent(typeof(Camera))]
 public class CameraController : MonoBehaviour
 {
+    #region Zoom
+
     [SerializeField] private Range zoomRange;
     [Range(1, 10)]
     [SerializeField] private int scrollSpeed = 5;
+
+    #endregion
+
     [SerializeField] private CameraMode[] cameraModes;
 
     [HideInInspector] public Camera controlledCamera;
@@ -16,7 +24,6 @@ public class CameraController : MonoBehaviour
 
     private CameraMode activeCameraMode;
     private int activeCameraModeIndex;
-    private Range xCameraMoveRange;
 
     private IEnumerator activeCameraEnumerator;
     public void Init(LevelSettings levelSettings)
@@ -26,6 +33,7 @@ public class CameraController : MonoBehaviour
         SetCameraMode(cameraModes[0]);
     }
 
+    // Метод для UnityEvent, когда при нажатии на клавишу меняется режим камеры
     public void SetNextCameraMode(InputAction.CallbackContext callbackContext)
     {
         if (callbackContext.performed)
@@ -37,6 +45,10 @@ public class CameraController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// При изменении режима камеры контроль переходит к режиму, и он регулирует поведение
+    /// </summary>
+    /// <param name="cameraMode"></param>
     public void SetCameraMode(CameraMode cameraMode)
     {
         if (activeCameraMode != cameraMode)
@@ -49,6 +61,7 @@ public class CameraController : MonoBehaviour
         }
     }
 
+    // Скролл пока одинаковый для всех режимов камеры, но можно в дальнейшем перенести это поведение в моды
     public void OnScrollInput(InputAction.CallbackContext callbackContext)
     {
         if (callbackContext.performed)
@@ -57,8 +70,10 @@ public class CameraController : MonoBehaviour
             float newZoom = controlledCamera.orthographicSize + -scrollInput.y / 10 * scrollSpeed;
             if (zoomRange.IsInRange(newZoom))
                 controlledCamera.orthographicSize = newZoom;
-        }           
+        }
     }
+
+    #region Camera modes input
 
     public void OnChooseInput(InputAction.CallbackContext callbackContext)
     {
@@ -77,4 +92,6 @@ public class CameraController : MonoBehaviour
         if (activeCameraMode is IHandleExecuteInput)
             (activeCameraMode as IHandleExecuteInput).OnExecuteInput(callbackContext);
     }
+
+    #endregion
 }

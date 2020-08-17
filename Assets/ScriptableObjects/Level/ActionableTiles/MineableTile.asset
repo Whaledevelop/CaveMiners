@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f03064fb599d20c448caae5d7e2f025e, type: 3}
-  m_Name: MineTileAction
+  m_Name: MineableTile
   m_EditorClassIdentifier: 
   actionState: {fileID: 11400000, guid: fb1fad21a769c9348bd18dde42fc5d03, type: 2}
   tilemapsSet: {fileID: 11400000, guid: 17b16551dbf753d47bbccdd293325cc7, type: 2}

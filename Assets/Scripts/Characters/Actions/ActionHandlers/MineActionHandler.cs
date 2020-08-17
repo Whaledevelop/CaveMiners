@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// Обработчик добычи
+/// </summary>
 public class MineActionHandler : CharacterActionHandler
 {
     [SerializeField] private MineCharacterState mineState;
@@ -13,6 +16,12 @@ public class MineActionHandler : CharacterActionHandler
 
     public override CharacterActionState HandledState => mineState;
 
+
+    /// <summary>
+    /// Выполнение сводится к вызову раз в определенный интервал события, которое обрабатывается скриптами тайлов (урон),
+    /// до тех пор, пока не вызовется событие окончания действия, которое обработается в OnTileWorkedOut или пока не
+    /// событие не вызовется определенное количество раз
+    /// </summary>
     public override IEnumerator Execute(CharacterAction actionData)
     {
         isMining = true;
@@ -27,6 +36,9 @@ public class MineActionHandler : CharacterActionHandler
         EndIterations();
     }
 
+    /// <summary>
+    /// Клетка разработана - нужно прервать выполнение
+    /// </summary>
     public void OnTileWorkedOut(CharacterAction tileWorkedOutActionData)
     {
         if (actionData != null)
@@ -38,6 +50,9 @@ public class MineActionHandler : CharacterActionHandler
         }
     }
 
+    /// <summary>
+    /// Прервать выполнения, не дождавшись конца добычи
+    /// </summary>
     public override IEnumerator Cancel()
     {
         EndIterations();
