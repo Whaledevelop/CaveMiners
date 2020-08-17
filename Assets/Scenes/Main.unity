@@ -2692,6 +2692,9 @@ MonoBehaviour:
   levelGenerator: {fileID: 320095015}
   levelSettings: {fileID: 11400000, guid: e4c2f819f45311145a8c51d0a5b41d38, type: 2}
   moneyVariable: {fileID: 11400000, guid: a85e03280b9508549a393d2fbebb8d1e, type: 2}
+  gridCanvas: {fileID: 666357021}
+  startMainData: {fileID: 11400000, guid: b4be018dfdcd27f40a090895904ab639, type: 2}
+  chosenCharacters: {fileID: 11400000, guid: f4de4dfe51799c942bccc04a17dd7eb6, type: 2}
 --- !u!4 &1777220459
 Transform:
   m_ObjectHideFlags: 0

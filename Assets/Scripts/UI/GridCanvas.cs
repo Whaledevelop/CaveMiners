@@ -14,12 +14,10 @@ public class GridCanvas : MonoBehaviour
     [SerializeField] private RangeWithStep cellsXRange;
     [SerializeField] private RangeWithStep cellsYRange;
 
-    /*
-#if UNITY_EDITOR
-    public void Start()
+    private List<Text> cellTexts = new List<Text>();
+
+    public void ShowCanvas()
     {
-
-
         for(float x = cellsXRange.from; x <= cellsXRange.to; x += cellsXRange.step)
         {
             for (float y = cellsYRange.from; y <= cellsYRange.to; y += cellsYRange.step)
@@ -28,10 +26,17 @@ public class GridCanvas : MonoBehaviour
 
                 cellText.transform.position = new Vector2(x, y);
                 cellText.text = "(" + x + "," + y + ")";
+
+                cellTexts.Add(cellText);
             }
         }
-
     }
-#endif
-    */
+
+    public void HideCanvas()
+    {
+        foreach(Text cellText in cellTexts)
+        {
+            Destroy(cellText.gameObject);
+        }
+    }
 }

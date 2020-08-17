@@ -1,10 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
-using UnityEngine.Experimental.U2D.Animation;
-using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
-using UnityEngine.Tilemaps;
+
 
 public class MainActor : MonoBehaviour
 {
@@ -16,14 +15,28 @@ public class MainActor : MonoBehaviour
 
     [SerializeField] private LevelSettings levelSettings;
 
-    //[SerializeField] private GameEvent updateLevelEvent;
-
     [SerializeField] private IntVariable moneyVariable;
+
+    #region Для теста в эдиторе
+
+    [SerializeField] private GridCanvas gridCanvas;
+    [SerializeField] private StartMainData startMainData;
+    [SerializeField] private CharacterInitialDataSet chosenCharacters;
+
+    #endregion
 
     public int LevelCount => levelSettings.UpdateLevel;
 
     public void Start()
     {
+#if UNITY_EDITOR
+        if (startMainData.isGridCanvasTurnedOn)
+            gridCanvas.ShowCanvas();
+
+        if (chosenCharacters.Items.Count == 0 && startMainData.chosenCharacters.Length > 0)
+            chosenCharacters.Items = startMainData.chosenCharacters.ToList();
+#endif
+
         levelGenerator.GenerateLevel(levelSettings);
         if (LevelCount == 1)
         {
