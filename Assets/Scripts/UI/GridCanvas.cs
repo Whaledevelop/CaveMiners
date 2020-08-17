@@ -14,6 +14,7 @@ public class GridCanvas : MonoBehaviour
     [SerializeField] private RangeWithStep cellsXRange;
     [SerializeField] private RangeWithStep cellsYRange;
 
+    /*
 #if UNITY_EDITOR
     public void Start()
     {
@@ -32,4 +33,5 @@ public class GridCanvas : MonoBehaviour
 
     }
 #endif
+    */
 }

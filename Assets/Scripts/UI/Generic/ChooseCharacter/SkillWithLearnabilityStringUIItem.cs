@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class SkillWithDescriptionStringUIItem : SkillStringUIItem
+public class SkillWithLearnabilityStringUIItem : SkillStringUIItem
 {
     [SerializeField] private Text descriptionString;
 
     public override void Init(CharacterActiveSkill setupData)
     {
         base.Init(setupData);
-        //descriptionString.text = setupData.state.skillDescription;
+        descriptionString.text = setupData.learnability.ToString();
     }
 }
