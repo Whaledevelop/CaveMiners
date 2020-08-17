@@ -31,7 +31,6 @@ public class CharacterSkill
         currentLevelExp += learnability;
         if (currentLevelExp >= 1)
         {
-            //Debug.Log("level up " + code + " from " + Value + " to " + (Value + 1));
             Value++;
             currentLevelExp = 0;            
         }
