@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// Скрипт, вызывающий определенный триггер при попадании объекта в него
+/// </summary>
 public class TriggerEventCaller : MonoBehaviour
 {
     public string triggerTag;

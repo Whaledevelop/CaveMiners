@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/// <summary>
+/// Скрипт, инициализирующий всё необходимое в Menu сцене
+/// </summary>
 public class MenuActor : MonoBehaviour
 {
     [SerializeField] private GameEvent startPickingEvent;

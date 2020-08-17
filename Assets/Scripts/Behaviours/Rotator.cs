@@ -7,6 +7,9 @@ public enum RotationMode
     LeftRightDown
 }
 
+/// <summary>
+/// Скрипт поворачивающий объекты на сцене (может быть использован не только для персонажей)
+/// </summary>
 public class Rotator : MonoBehaviour
 {
     [SerializeField] private Transform rotatingTransform;

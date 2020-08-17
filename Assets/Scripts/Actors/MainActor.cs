@@ -4,16 +4,19 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
+/// <summary>
+/// Скрипт, инициализирующий всё необходимое в Main сцене. Он же обрабатывает основные события вызываемые
+/// при прохождении
+/// </summary>
 public class MainActor : MonoBehaviour
 {
-    [SerializeField] private bool isGameEndable = true;
-
     [SerializeField] private GameEvent gameOverEvent;
 
     [SerializeField] private LevelGenerator levelGenerator;
 
-    [SerializeField] private LevelSettings levelSettings;
+    // Базовые настройки уровня. Сейчас - это обновляемые настройки, т.е. которые меняются от уровня к уровню,
+    // но также можно  будет сделать указание конкретных настройки для конкретного уровня. 
+    [SerializeField] private LevelSettings levelSettings;  
 
     [SerializeField] private IntVariable moneyVariable;
 
@@ -24,7 +27,6 @@ public class MainActor : MonoBehaviour
     [SerializeField] private CharacterInitialDataSet chosenCharacters;
 
     #endregion
-
     public int LevelCount => levelSettings.UpdateLevel;
 
     public void Start()
@@ -46,7 +48,8 @@ public class MainActor : MonoBehaviour
 
     public void OnChangeMoney(int money)
     {
-        if (money <= 0 && isGameEndable)
+        // Игра заканчивается, когда кончаются деньги
+        if (money <= 0)
         {
             gameOverEvent.Raise();
         }            
@@ -54,11 +57,11 @@ public class MainActor : MonoBehaviour
 
     public void OnBase()
     {
-        //Debug.Log("base");
     }
     
     public void OnLevelPassed()
     {
+        // Обновляем настройки для следующего уровняЫ
         levelSettings.Upgrade();
         // Обновляем сцену, при этом заново загружается уровень
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);

@@ -6,6 +6,9 @@ using System;
 [CreateAssetMenu(fileName = "LevelSettings", menuName = "ScriptableObjects/LevelSettings")]
 public class LevelSettings : ScriptableObject
 {
+    /// <summary>
+    /// Количество для определенного правила создания тайлов. Обновляемое от уровня к уровню
+    /// </summary>
     [Serializable]
     public class GeneratedTilesCount
     {
@@ -75,6 +78,9 @@ public class LevelSettings : ScriptableObject
 
     [HideInInspector] public int UpdateLevel = 1;
 
+    /// <summary>
+    /// При обновлении настроек меняем количество генерируемых тайлов и размеры уровня
+    /// </summary>
     public void Upgrade()
     {
         foreach(GeneratedTilesCount tileCount in tilesCount)
@@ -86,6 +92,9 @@ public class LevelSettings : ScriptableObject
         UpdateLevel++;
     }
 
+    /// <summary>
+    /// Устанавливаем нужное количество тайлов (если на момент инициализации неизвестно, сколько будет)
+    /// </summary>
     public void SetTilesCount(GenerateRule rule, int initialCount)
     {
         GeneratedTilesCount tileCount = tilesCount.Find(tile => tile.generateRule == rule);

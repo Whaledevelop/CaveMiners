@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
-using System.Collections;
-using UnityEditor;
 
+/// <summary>
+/// Скрипт, выделяющий каким-то образом спрайт. Сейчас он меняет материал спрайта
+/// </summary>
 public class Highlighter  : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer sprite;
