@@ -43,11 +43,6 @@ public class Character : MonoBehaviour
         set.Remove(this);
     }
 
-    public void ExecuteTask(int layer, Vector2 position)
-    {
-        GetManager<CharacterTasksManager>().ExecuteTask(layer, position);
-    }
-
     public void OnBecomeNotActive()
     {
         highlighter.SwapHighlightMode();

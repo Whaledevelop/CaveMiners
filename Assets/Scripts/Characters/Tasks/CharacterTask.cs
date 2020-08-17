@@ -4,52 +4,35 @@ using UnityEngine;
 using System.Collections;
 using System.Linq;
 
+/// <summary>
+/// Таск - это сумма промежуточных точек, т.е. задача - это сумма подзадача, где подзадача - это выполнение определенного состояния
+/// на определенной точке
+/// </summary>
 public class CharacterTask
 {
-    public List<CharacterTaskPoint> taskPoints = new List<CharacterTaskPoint>();
-
-    private CharacterToolsManager toolsManager;
-    private Animator animator;
-    private Rotator rotator;
-    private CharacterSkillsManager skillsManager;
-    private CharacterTasksManager taskManager;
-    private CharacterActionHandler[] actionsHandlers;
-
+    public List<PathPoint> taskPoints = new List<PathPoint>();
+    private CharacterTaskManager taskManager;
     private int currentTaskPointIndex = 0;
-    private CharacterTaskPoint CurrentTaskPoint => (currentTaskPointIndex < taskPoints.Count && currentTaskPointIndex >= 0 ) ? taskPoints[currentTaskPointIndex] : null;
-    private CharacterActionState CurrentStateData => CurrentTaskPoint != null ? CurrentTaskPoint.stateData : null;
     private CharacterActionState activeState;
 
-    public CharacterTask(List<CharacterTaskPoint> taskPoints, Character character, Animator animator, Rotator rotator, CharacterActionHandler[] actionsHandlers)
+    public CharacterTask(List<PathPoint> taskPoints, CharacterTaskManager taskManager)
     {
         this.taskPoints = taskPoints;
-        toolsManager = character.GetManager<CharacterToolsManager>();
-        skillsManager = character.GetManager<CharacterSkillsManager>();
-        taskManager = character.GetManager<CharacterTasksManager>();
-        this.animator = animator;
-        this.rotator = rotator;
-        this.actionsHandlers = actionsHandlers;
+        this.taskManager = taskManager;
     }
 
+    /// <summary>
+    /// Выполнение всех промежуточных состояний
+    /// </summary>
     public IEnumerator Execute()
     {
         while (currentTaskPointIndex < taskPoints.Count)
         {
-            yield return ExecuteState(CurrentStateData, CurrentTaskPoint.CellPosition, -CurrentTaskPoint.AxisToNextCell);
+            PathPoint taskPoint = taskPoints[currentTaskPointIndex];
+            activeState = taskManager.ActivateState(taskPoint.state, taskPoint.CellPosition, -taskPoint.AxisToNextCell);
+            yield return activeState.Execute();
             currentTaskPointIndex++;
         }
-    }
-
-    public IEnumerator ExecuteState(CharacterActionState state, Vector2 endPosition, Vector2 actionDirection)
-    {
-        CharacterAction actionData = new CharacterAction(taskManager, skillsManager, state, taskManager.transform.position, endPosition, actionDirection);
-
-        CharacterActionHandler actionHandler = actionsHandlers.FirstOrDefault(handler => handler.HandledState == state);
-
-        activeState = ScriptableObject.Instantiate(state);
-        activeState.InitInstance(animator, toolsManager, rotator, actionData, actionHandler);
-
-        yield return activeState.Execute();
     }
 
     public IEnumerator Cancel() 

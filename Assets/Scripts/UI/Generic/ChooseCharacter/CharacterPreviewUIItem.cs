@@ -51,14 +51,14 @@ public class CharacterPreviewUIItem : UIItem<CharacterInitialData>
 
         previewState.InitInstance(animator, toolsManager);
 
-        previewState.UpdateView(StateStage.Start);
+        previewState.UpdateView(CharacterState.Period.Start);
     }
 
     public void StopPreviewState()
     {
         if (previewState != null)
         {
-            previewState.UpdateView(StateStage.End);
+            previewState.UpdateView(CharacterState.Period.End);
             previewState = null;
         }
     }

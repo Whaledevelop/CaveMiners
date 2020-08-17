@@ -46,9 +46,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mineState: {fileID: 11400000, guid: fb1fad21a769c9348bd18dde42fc5d03, type: 2}
-  iterationEvent: {fileID: 11400000, guid: c946e9b599750fe43b8e6ffedf73c66a, type: 2}
-  iterationsInterval: 1
-  maxIterations: 5
 --- !u!114 &1763629011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -964,8 +961,8 @@ MonoBehaviour:
   moveState: {fileID: 11400000, guid: 0e8c8e751fcc50b4da9b5e37f615b1b9, type: 2}
   rb: {fileID: 2192015190459939293}
   defaultSpeed: 1
+  skillWeight: 0.5
   endMovementEvent: {fileID: 11400000, guid: a7acdddad809a3045a12c94d18e0a509, type: 2}
-  speed: 1
 --- !u!114 &7685977796358182879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1107,8 +1104,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   digState: {fileID: 11400000, guid: da1f466d71b61af47a4ea46023313f53, type: 2}
-  iterationEvent: {fileID: 11400000, guid: c946e9b599750fe43b8e6ffedf73c66a, type: 2}
-  iterationsInterval: 1
 --- !u!114 &1181868283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1236,7 +1231,7 @@ GameObject:
   - component: {fileID: 9018178298921143632}
   - component: {fileID: 1321094291511996017}
   m_Layer: 11
-  m_Name: TasksManager
+  m_Name: TaskManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1270,10 +1265,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   character: {fileID: 0}
   cellCenterRequest: {fileID: 11400000, guid: 03dc6e1a6c17e98478746032c7be2c09, type: 2}
-  taskPathfinder: {fileID: 11400000, guid: 4143bb7889e7aeb4a9d55cd598f2c6c6, type: 2}
+  taskPathfinder: {fileID: 11400000, guid: 78d008361e9126540aa420517887b31a, type: 2}
   idleState: {fileID: 11400000, guid: 35ea0df5732a1e747a76bb80919aa569, type: 2}
   rotator: {fileID: 8931294875683903809}
   animator: {fileID: 2192015190459939264}
+  skillsManager: {fileID: 8069946906250794713}
+  toolsManager: {fileID: 5824765217179505625}
   actionsHandlers:
   - {fileID: 5658632003600125108}
   - {fileID: 3853779093335931268}

@@ -2,14 +2,23 @@
 using System.Collections;
 using System;
 
+/// <summary>
+/// CharacterActionState - это состояние выполнения какого действия на карте
+/// </summary>
 [CreateAssetMenu(fileName = "CharacterActionState", menuName = "States/CharacterActionState")]
 public class CharacterActionState : CharacterState
 {
+    [Header("Талант выполнения данного состояния")]
     public CharacterSkill.Code skillCode;
-    public string skillDescription;
+    [Header("Слой, соответствующий состоянию")]
+    [Tooltip("Используется для определения состояния по слою объекта, на который был клик")]
     public LayerMask actionLayerMask;
-    public int actionPriority;
+    [Header("Приоритет состояния")]
+    [Tooltip("При поиске пути будет выбрана клетка, на которое действие имеет бОльший приоритет")]
+    public int priority;
+    [Header("Цвет гизмо (для эдитора)")]
     public Color gizmosColor;
+    [Header("Режим поворотов при выполнении состояния")]
     public RotationMode rotationMode;
 
     // Данные экземпляра

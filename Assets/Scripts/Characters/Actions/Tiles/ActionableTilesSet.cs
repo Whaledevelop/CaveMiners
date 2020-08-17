@@ -30,7 +30,7 @@ public class ActionableTilesSet : MonoBehaviour
         // Если такового нет, значит действие новое - инициализируем тайл
         if (activeTile == null)
         {
-            ActionableTile newActiveTile = tilesActions.Find(tile => tile.State == actionData.stateData);       
+            ActionableTile newActiveTile = tilesActions.Find(tile => tile.State == actionData.state);       
             if (newActiveTile != null)
             {
                 ActionableTile instantiatedTile = Instantiate(newActiveTile);

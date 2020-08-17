@@ -17,10 +17,9 @@ MonoBehaviour:
   animatorStartTrigger: StartWalking
   animatorEndTrigger: StopWalking
   skillCode: 3
-  skillDescription: "\u041A\u0430\u043A  \u0431\u044B\u0441\u0442\u0440\u043E \u0445\u043E\u0434\u0438\u0442"
   actionLayerMask:
     serializedVersion: 2
     m_Bits: 1024
-  actionPriority: 8
+  priority: 7
   gizmosColor: {r: 0.07922523, g: 0.8962264, b: 0.063412234, a: 1}
   rotationMode: 1

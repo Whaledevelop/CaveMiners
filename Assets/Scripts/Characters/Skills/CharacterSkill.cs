@@ -26,6 +26,9 @@ public class CharacterSkill
         }
     }
 
+    /// <summary>
+    /// Скил - это интовое значение, обновление идет при достижении целого числа (как в RPG играх)
+    /// </summary>
     public void LearnSkill()
     {
         currentLevelExp += learnability;

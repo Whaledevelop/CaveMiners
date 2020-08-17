@@ -44,8 +44,9 @@ public class MineCharacterState : CharacterActionState
             return next.x > picked.x || next.y < picked.y ? next : picked;
         });
 
+        CharacterTask returnToBaseTask = actionData.taskManager.ActivateTask(Utils.MaskToLayer(baseLayer), baseGates);
         // Ждем пока доставит добычу на базу
-        yield return actionData.taskManager.ExecuteTaskEnumerator(Utils.MaskToLayer(baseLayer), baseGates);
+        yield return returnToBaseTask.Execute();
 
         // Добавляем деньги
         moneyVariable.Plus(maxIterations * actionData.SkillValue);
@@ -55,6 +56,8 @@ public class MineCharacterState : CharacterActionState
 
         cellLayoutRequest.MakeRequest(new ParamsObject(actionData.endPosition), out LayerMask newTaskLayer);
 
+        // После возвращения на базу выполняем новое задание с той же точкой (если ресурсы еще не разработаны - 
+        // доразработает, если уже - то дойдет)
         actionData.taskManager.ExecuteTask(newTaskLayer, actionData.endPosition);
     }
 }

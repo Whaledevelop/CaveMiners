@@ -41,7 +41,7 @@ public class CharactersSet : RuntimeSet<Character>
                 {
                     if (activeCharacter != null)
                     {
-                        activeCharacter.ExecuteTask(anyColliderHit.collider.gameObject.layer, clickPosition);
+                        activeCharacter.GetManager<CharacterTaskManager>().ExecuteTask(anyColliderHit.collider.gameObject.layer, clickPosition);
                     }
                 }
             }

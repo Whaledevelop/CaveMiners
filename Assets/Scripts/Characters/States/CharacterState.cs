@@ -2,14 +2,15 @@
 using System.Collections;
 using UnityEngine;
 
-public enum StateStage
-{
-    None, Start, Execution, End
-}
+
 
 [CreateAssetMenu(fileName = "CharacterState", menuName = "States/CharacterState")]
 public class CharacterState : ScriptableObject
 {
+    public enum Period
+    {
+        None, Start, Execution, End
+    }
     // Общие данные
     public string stateName;
     public ToolCode toolCode;
@@ -37,31 +38,31 @@ public class CharacterState : ScriptableObject
 
     public virtual IEnumerator OnStart()
     {
-        UpdateView(StateStage.Start);
+        UpdateView(Period.Start);
         yield break;
     }
 
     public virtual IEnumerator Cancel()
     {
-        UpdateView(StateStage.End);
+        UpdateView(Period.End);
         yield break;
     }
 
     public virtual IEnumerator OnEnd()
     {
-        UpdateView(StateStage.End);
+        UpdateView(Period.End);
         yield break;
     }
 
-    public void UpdateView(StateStage stateStage)
+    public void UpdateView(Period period)
     {
-        switch (stateStage)
+        switch (period)
         {
-            case StateStage.Start:
+            case Period.Start:
                 SetTrigger(animator, animatorStartTrigger);
                 toolsManager.ApplyTool(toolCode);
                 break;
-            case StateStage.End:
+            case Period.End:
                 SetTrigger(animator, animatorEndTrigger);
                 toolsManager.HideTool(toolCode);
                 break;

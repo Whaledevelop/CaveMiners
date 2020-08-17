@@ -43,7 +43,7 @@ public class MineActionHandler : CharacterActionHandler
     {
         if (actionData != null)
         {
-            if (tileWorkedOutActionData.stateData == HandledState && tileWorkedOutActionData.endPosition == actionData.endPosition)
+            if (tileWorkedOutActionData.state == HandledState && tileWorkedOutActionData.endPosition == actionData.endPosition)
             {
                 EndIterations();
             }

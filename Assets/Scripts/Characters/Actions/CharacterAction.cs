@@ -9,12 +9,12 @@ public class CharacterAction
 {
     #region Ссылки для выполнения действия
 
-    public CharacterTasksManager taskManager;
+    public CharacterTaskManager taskManager;
     public CharacterSkillsManager skillsManager;
 
     #endregion
 
-    public CharacterActionState stateData; // Реализуемое состояние
+    public CharacterActionState state; // Реализуемое состояние
 
     public Vector2 startPosition;          // Позиция, от которой выполняется действия
     public Vector2 endPosition;            // Позиция, к которой выполняется действие
@@ -29,7 +29,7 @@ public class CharacterAction
         get
         {
             if (actionSkill == null)
-                actionSkill = skillsManager.GetSkill(stateData.skillCode);
+                actionSkill = skillsManager.GetSkill(state.skillCode);
 
             return actionSkill;
         }
@@ -37,11 +37,11 @@ public class CharacterAction
     }
     public int SkillValue => ActionSkill.Value;
 
-    public CharacterAction(CharacterTasksManager taskManager, CharacterSkillsManager skillsManager, CharacterActionState stateData, Vector2 startPosition, Vector2 endPosition, Vector2 actionDirection)
+    public CharacterAction(CharacterTaskManager taskManager, CharacterSkillsManager skillsManager, CharacterActionState state, Vector2 startPosition, Vector2 endPosition, Vector2 actionDirection)
     {
         this.taskManager = taskManager;
         this.skillsManager = skillsManager;
-        this.stateData = stateData;
+        this.state = state;
         this.startPosition = startPosition;
         this.endPosition = endPosition;
         this.actionDirection = actionDirection;

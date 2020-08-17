@@ -15,7 +15,8 @@ public class DigCharacterState : CharacterActionState
     public override IEnumerator OnEnd()
     {
         yield return base.OnEnd();
-
-        yield return actionData.taskManager.ExecuteState(moveState, actionData.endPosition, actionData.actionDirection);
+        // После выполнения копания выполняем переход к раскопанной клетке
+        CharacterActionState activatedState = actionData.taskManager.ActivateState(moveState, actionData.endPosition, actionData.actionDirection);
+        yield return activatedState.Execute();
     }
 }

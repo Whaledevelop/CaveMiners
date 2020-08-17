@@ -17,12 +17,10 @@ MonoBehaviour:
   animatorStartTrigger: StartMining
   animatorEndTrigger: StopMining
   skillCode: 2
-  skillDescription: "\u041D\u0430\u0441\u043A\u043E\u043B\u044C\u043A\u043E \u0431\u044B\u0441\u0442\u0440\u043E
-    \u0434\u043E\u0431\u044B\u0432\u0430\u0435\u0442 \u0440\u0435\u0441\u0443\u0440\u0441\u044B"
   actionLayerMask:
     serializedVersion: 2
     m_Bits: 4096
-  actionPriority: 3
+  priority: 3
   gizmosColor: {r: 0.8595777, g: 0.8679245, b: 0.12691349, a: 1}
   rotationMode: 2
   basePositionRequest: {fileID: 11400000, guid: b138cfb8a836fca4bac1843b8a031df2,

@@ -9,6 +9,10 @@ public class MoveHandler : CharacterActionHandler
     [SerializeField] private CharacterActionState moveState;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private float defaultSpeed;
+    [Header("Насколько влияет скилл на увеличение скорости")]
+    [Tooltip("0 - не влияет, 1 - скорость равно стандартной на скилл")]
+    [Range(0, 1)]
+    [SerializeField] private float skillWeight = 0.5f;
     [SerializeField] private CharacterActionGameEvent endMovementEvent;
 
     private bool isMoving;
@@ -18,8 +22,9 @@ public class MoveHandler : CharacterActionHandler
     public override IEnumerator Execute(CharacterAction actionData)
     {
         isMoving = true;
+        float speed = defaultSpeed + defaultSpeed * (actionData.SkillValue - 1) * skillWeight;
         // Начинаем движение. Скорость зависит от базовой скорости и таланта персонажа
-        yield return Move(actionData.endPosition, defaultSpeed * actionData.SkillValue);
+        yield return Move(actionData.endPosition, speed);
         isMoving = false;
         endMovementEvent.Raise(actionData);
     }

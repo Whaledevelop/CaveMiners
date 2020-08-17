@@ -39,7 +39,7 @@ public class DigActionHandler : CharacterActionHandler
     {
         if (actionData != null)
         {
-            bool currentState = tileWorkedOutActionData.stateData == HandledState;
+            bool currentState = tileWorkedOutActionData.state == HandledState;
             bool currentTile = tileWorkedOutActionData.endPosition == actionData.endPosition;
             if (currentState && currentTile)
             {
