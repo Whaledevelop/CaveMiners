@@ -1,14 +1,21 @@
 ﻿using System;
 using UnityEngine;
 
+/// <summary>
+/// Несколько тайлов находящихся вместе
+/// </summary>
 [Serializable]
 public class TilesGroup
 {
     public enum Orientation { Middle, MiddleLeft, MiddleRight, LowerLeft }
 
+    [Header("Ориентация на экране")]
     [SerializeField] private Orientation orientation;
+    [Header("Позиция относительно ориентации")]
     [SerializeField] private Vector2Int startPositionLocal;
+    [Header("Направленность группы (замена размеру)")]
     [SerializeField] private Vector2Int direction;
+    [Header("Если квадратный, то direction - это width, height, если нет, то линии по x, y")]
     [SerializeField] private bool isRect;
 
     [NonSerialized] private Vector2Int localZero;

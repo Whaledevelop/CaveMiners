@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
-
-
 public class CharacterDataGameEventListener : GameEventListener<CharacterInitialData>
 {
     [SerializeField] private CharacterDataGameEvent gameEvent;

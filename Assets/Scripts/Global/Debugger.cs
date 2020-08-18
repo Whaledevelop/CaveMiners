@@ -2,6 +2,9 @@
 using System.Linq;
 using UnityEngine;
 
+/// <summary>
+/// Кастомные методы для дебага
+/// </summary>
 public class Debugger
 {
     public static bool IsLogging = true;

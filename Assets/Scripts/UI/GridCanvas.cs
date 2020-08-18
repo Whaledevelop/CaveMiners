@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
+/// <summary>
+/// Скрипт для канваса поверх уровня. Нужен для теста
+/// </summary>
 public class GridCanvas : MonoBehaviour
 {
     [SerializeField] private Grid grid;

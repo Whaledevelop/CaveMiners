@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
-using UnityEngine.Experimental.U2D.Animation;
 
 public class CharacterPreviewUIItem : UIItem<CharacterInitialData>
 {

@@ -2,6 +2,12 @@
 using UnityEngine;
 
 
+/// <summary>
+/// Замена UnityEvent, которая удобнее тем, что это ScriptableObject и его можно вызывать не только из MonoBehaviour,
+/// связан более слабой связью - с слушателями не напрямую, а через GameEventListener. А версии с генерик параметром T
+/// позволяют любые параметры, в отличие от UnityEvent
+/// Вдохновлено https://www.youtube.com/watch?v=raQ3iHhE_Kk&list=PLB8F3398G-ZsPa0piiMEglkbLSyRggTf8
+/// </summary>
 [CreateAssetMenu(fileName = "GameEvent", menuName = "Events/GameEvent")]
 public class GameEvent : ScriptableObject
 {

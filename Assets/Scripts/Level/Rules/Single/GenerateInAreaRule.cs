@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
+/// <summary>
+/// Правило для генарции в рандомном месте в определенной области
+/// </summary>
 [CreateAssetMenu(fileName = "GenerateInAreaRule", menuName = "LevelGeneratorRules/GenerateInAreaRule")]
 public class GenerateInAreaRule : GenerateSingleRule
 {

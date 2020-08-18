@@ -1,8 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
 
+/// <summary>
+/// Окно выбора персонажей
+/// </summary>
 public class ChooseCharacterWindow : MonoBehaviour
 {
     [SerializeField] private CharacterInitialData[] charactersData;
@@ -38,6 +39,7 @@ public class ChooseCharacterWindow : MonoBehaviour
         {
             if (item.character == character)
             {
+                // Если персонаж, на которой кликнули уже был выбран, то мы убираем его из списка выбранных, снимаем выделение
                 if (chosenCharacters.Items.Exists(i => i == character))
                 {
                     item.ChangeChooseMode(false);
@@ -45,17 +47,19 @@ public class ChooseCharacterWindow : MonoBehaviour
                 }
                 else
                 {
+                    // Если не был выбран, то выбираем
                     item.ChangeChooseMode(true);
                     chosenCharacters.Add(item.character);
+                    // Если превышено максимальное количество выбранных персонажей, то снимаем выделение с персонажа, выбранного раньше всего
                     if (chosenCharacters.Items.Count > maxActiveCharacters)
                     {
                         CharacterInitialData oldestChosenCharacter = chosenCharacters.Items[0];
                         CharacterCardUIItem oldestChosenCharacterUI = instantiatedItems.Find(i => i.character == oldestChosenCharacter);
                         oldestChosenCharacterUI.ChangeChooseMode(false);
-                        chosenCharacters.Remove(oldestChosenCharacter);
-                        break;
+                        chosenCharacters.Remove(oldestChosenCharacter);                        
                     }
                 }
+                break;
             }
         }
     }

@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.Tilemaps;
 
+/// <summary>
+/// Скрипт для Tilemap, который позволяет обращаться к Tilemap из префабов из скриптаблей по коду
+/// </summary>
 public class GenerativeTilemap : MonoBehaviour
 {
     public GenerativeTilemapCode tilemapData;

@@ -1,5 +1,10 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Реквест - это моя попытка уйти от Singleton. Это что-то похожее на GameEvent, но он связывает реквест с одним "слушателем" - резолвером, исполнителем
+/// запроса. При этом реквест может вызываться из нескольких мест, а резолвер будет один. Резолвер - это MonoBehaviour, по сути, это как отдельный метод
+/// Singleton, одна какая-то задача, но только в отдельном классе и без собственно синглтона. Пока в тестовом режиме
+/// </summary>
 [CreateAssetMenu(fileName = "Request", menuName = "Requests/Request")]
 public class Request : ScriptableObject
 {

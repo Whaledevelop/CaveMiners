@@ -3,6 +3,9 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System;
 
+/// <summary>
+/// Карточка с данными персонажа для выбора
+/// </summary>
 public class CharacterCardUIItem : CharacterUIItem, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler
 {
     [SerializeField] private Image image;

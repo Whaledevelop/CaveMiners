@@ -8,7 +8,7 @@ using System.Collections.Generic;
 public class CharacterInitialData : ScriptableObject
 {
     public new string name;
-    [Multiline] public string description;
+    [TextArea(3, 10)] public string description;
 
     public int salary;
 

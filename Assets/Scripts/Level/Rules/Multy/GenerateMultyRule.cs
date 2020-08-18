@@ -3,7 +3,10 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-
+/// <summary>
+/// Правило, включающее в себя несколько других правил, для генерации более сложных, комплексных объектов. Пока это только база,
+/// но в дальнейшем так можно будет сделать пещеры, водопады и т.д.
+/// </summary>
 [CreateAssetMenu(fileName = "GenerateMultyRule", menuName = "LevelGeneratorRules/GenerateMultyRule")]
 public class GenerateMultyRule : GenerateRule
 {

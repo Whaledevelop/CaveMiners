@@ -2,6 +2,9 @@
 using System.Collections;
 using UnityEngine.Events;
 
+/// <summary>
+/// Слушатель GameEvent события
+/// </summary>
 public class GameEventListener : MonoBehaviour
 {
     public GameEvent Event;

@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Правило для генерации тайла в определенной точке
+/// </summary>
 [CreateAssetMenu(fileName = "GenerateInPositionRule", menuName = "LevelGeneratorRules/GenerateInPositionRule")]
 public class GenerateInPositionRule : GenerateSingleRule
 {
-    public TilesGroup tilesGroup;
+    [SerializeField] private TilesGroup tilesGroup;
 
     public override void Init(LevelSettings levelSettings)
     {

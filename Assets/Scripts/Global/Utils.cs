@@ -24,10 +24,6 @@ public class Utils
             default: case UIColor.Black: return Color.black;                
         }
     }
-    public static Color RandomColor()
-    {
-        return new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f));
-    }
 
     public static int MaskToLayer(LayerMask layerMask) => (int)Mathf.Log(layerMask.value, 2);
 }

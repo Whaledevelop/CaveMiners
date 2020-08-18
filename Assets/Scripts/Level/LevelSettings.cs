@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 
+/// <summary>
+/// Настройки уровня. Могут быть как конкретным для каждого уровня, так и обновляемыми от уровня к уровня - т.е. одни обновляемые настройки на все уровни
+/// </summary>
 [CreateAssetMenu(fileName = "LevelSettings", menuName = "ScriptableObjects/LevelSettings")]
 public class LevelSettings : ScriptableObject
 {

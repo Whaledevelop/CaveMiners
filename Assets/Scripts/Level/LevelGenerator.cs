@@ -4,6 +4,9 @@ using UnityEngine.Tilemaps;
 using System;
 using System.Collections.Generic;
 
+/// <summary>
+/// Генератор уровня на основании LevelSettings. Генерирует туман войны, тайлы уровня и персонажей
+/// </summary>
 public class LevelGenerator : MonoBehaviour
 {
     [SerializeField] private List<GenerateRule> generateRules = new List<GenerateRule>();

@@ -1,6 +1,9 @@
 ﻿
 using UnityEngine;
 
+/// <summary>
+/// Отдельное правило для генерации границ
+/// </summary>
 [CreateAssetMenu(fileName = "GenerateBordersRule", menuName = "LevelGeneratorRules/GenerateBordersRule")]
 public class GenerateBordersRule : GenerateSingleRule
 {

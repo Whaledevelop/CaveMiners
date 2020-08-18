@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.Tilemaps;
 
+/// <summary>
+/// Правило для генерации одного тайла
+/// </summary>
 [CreateAssetMenu(fileName = "GenerateEverywhereRule", menuName = "LevelGeneratorRules/GenerateEverywhereRule")]
 public class GenerateSingleRule : GenerateRule
 {

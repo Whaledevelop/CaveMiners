@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Правило для генерации объектов на сцене. 
+/// </summary>
 public abstract class GenerateRule : ScriptableObject
 {
     public bool isSingleOnCell;
