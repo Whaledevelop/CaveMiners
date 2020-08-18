@@ -37,6 +37,8 @@ public class MainActor : MonoBehaviour
 
         if (chosenCharacters.Items.Count == 0 && startMainData.chosenCharacters.Length > 0)
             chosenCharacters.Items = startMainData.chosenCharacters.ToList();
+
+        Debugger.IsLogging = startMainData.isDebugTurned;
 #endif
 
         levelGenerator.GenerateLevel(levelSettings);

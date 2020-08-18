@@ -64,30 +64,31 @@ public class PathPoint
     /// <summary>
     /// Добавление точек в другую точку, находящуюся в определенной позиции в пути
     /// </summary>
-    public void AddPointToPositionInPath(List<int> parentPositionInPath, List<PathPoint> paths)
+    public void AddPathsToPositionInPath(List<int> positionInPath, List<PathPoint> paths)
     {
         // Если это нужная точка (точка-родитель), то добавляем в неё нужные точки, при этом помечая их позицию в пути
-        if (positionInPath == parentPositionInPath) 
+        if (this.positionInPath == positionInPath) 
         {
             for (int i = 0; i < paths.Count; i++)
             {
-                paths[i].positionInPath = new List<int>(positionInPath) { i };
+                paths[i].positionInPath = new List<int>(this.positionInPath) { i };
                 paths[i].parentPoint = this;
             }
             nestedPoints.AddRange(paths);
         }
-        else if (positionInPath.Count < parentPositionInPath.Count) // Проверяем предка
+        // Если уровень вложенности меньше, то проверяем, является ли данная точка предком нужной
+        else if (this.positionInPath.Count < positionInPath.Count)
         {
-            for(int i = 0; i < positionInPath.Count; i++)
+            for (int i = 0; i < this.positionInPath.Count; i++)
             {
                 // Отсекаем другие ветки поиска пути
-                if (positionInPath[i] != parentPositionInPath[i])
+                if (this.positionInPath[i] != positionInPath[i])
                     return;
             }
             // Рекурсивно ищем по всему древу пути
             foreach (PathPoint availablePath in nestedPoints)
             {
-                availablePath.AddPointToPositionInPath(parentPositionInPath, paths);
+                availablePath.AddPathsToPositionInPath(positionInPath, paths);
             }
         }
     }
