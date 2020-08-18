@@ -764,7 +764,7 @@ Grid:
   m_GameObject: {fileID: 523958207}
   m_Enabled: 1
   m_CellSize: {x: 1, y: 1, z: 0}
-  m_CellGap: {x: 0, y: 0, z: 0}
+  m_CellGap: {x: -0.01, y: -0.01, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
 --- !u!4 &523958209
@@ -2687,7 +2687,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 987d37aa72104e843aad6d68eda0085f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isGameEndable: 1
   gameOverEvent: {fileID: 11400000, guid: 0a0abac8d7b79d44e9f467aae1a4b614, type: 2}
   levelGenerator: {fileID: 320095015}
   levelSettings: {fileID: 11400000, guid: e4c2f819f45311145a8c51d0a5b41d38, type: 2}

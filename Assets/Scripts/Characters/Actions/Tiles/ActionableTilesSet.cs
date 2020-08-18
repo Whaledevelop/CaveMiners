@@ -33,8 +33,9 @@ public class ActionableTilesSet : MonoBehaviour
             ActionableTile newActiveTile = tilesActions.Find(tile => tile.State == actionData.state);       
             if (newActiveTile != null)
             {
-                ActionableTile instantiatedTile = Instantiate(newActiveTile);
-                instantiatedTile.Init(actionData, grid.WorldToCell(Vector3Int.FloorToInt(actionData.endPosition)));
+                ActionableTile instantiatedTile = Instantiate(newActiveTile);                
+                Vector3Int tileIntPosition = grid.WorldToCell(actionData.endPosition);
+                instantiatedTile.Init(actionData, tileIntPosition);
                 instantiatedTile.OnWorkedOut += OnTileWorkedOut;
                 activeTiles.Add(instantiatedTile);
             }
