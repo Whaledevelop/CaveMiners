@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.U2D.Animation;
 
+/// <summary>
+/// Главный контроллер персонажа
+/// </summary>
 public class Character : MonoBehaviour
 {
     [SerializeField] private Highlighter highlighter;
     [SerializeField] private CharactersSet set;
     [SerializeField] private SpriteResolver spriteResolver;
-
+    [Header("Обработчики функционала персонажа")]
     [SerializeField] private List<CharacterManager> managers = new List<CharacterManager>();
 
     [HideInInspector] public CharacterInitialData characterData;

@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
-using System;
 using UnityEngine;
 using System.Collections;
-using System.Linq;
 
 /// <summary>
 /// Таск - это сумма промежуточных точек, т.е. задача - это сумма подзадача, где подзадача - это выполнение определенного состояния
@@ -29,7 +27,7 @@ public class CharacterTask
         while (currentTaskPointIndex < taskPoints.Count)
         {
             PathPoint taskPoint = taskPoints[currentTaskPointIndex];
-            Vector2 axisToCharacter = taskPoint.PointPosition - taskPoint.nextToCharacterPointPosition;
+            Vector2 axisToCharacter = taskPoint.PointPosition - taskPoint.closerToCharacterPointPosition;
             activeState = taskManager.ActivateState(taskPoint.state, taskPoint.PointPosition, axisToCharacter);
             yield return activeState.Execute();
             currentTaskPointIndex++;

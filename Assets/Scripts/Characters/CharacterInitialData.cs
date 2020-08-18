@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
-using UnityEditor;
 using System.Collections.Generic;
 
+/// <summary>
+/// Данные конкретного персонажа
+/// </summary>
 [CreateAssetMenu(fileName = "CharacterInitialData", menuName = "ScriptableObjects/CharacterInitialData")]
 public class CharacterInitialData : ScriptableObject
 {

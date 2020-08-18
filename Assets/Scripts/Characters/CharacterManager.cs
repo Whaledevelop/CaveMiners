@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// Обработчик определенного функционала персонажа
+/// </summary>
 public class CharacterManager : MonoBehaviour
 {
     [HideInInspector] public Character character;

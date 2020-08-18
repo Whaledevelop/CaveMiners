@@ -36,7 +36,7 @@ public class ActionableTile : ScriptableObject
     public Action<ActionableTile> OnWorkedOut;         // Событие, вызываемое при выполнении действия
     private TileBase currentTile;                      // Ссылка на тайл
     private float HP;                                  // Текущее здоровье
-    private Vector3Int PointPosition;                   // Позиция тайла
+    private Vector3Int cellPosition;                   // Позиция тайла
     private GenerativeTilemap initialTilemap;          // Тайлмап до действий с тайлом
     private GenerativeTilemap destroyedTilemap;        // Тайлмап после выполнения действия с тайлом"
 
@@ -46,11 +46,11 @@ public class ActionableTile : ScriptableObject
     /// Инициализация тайла происходит при начала взаимодействия персонажа с клеткой
     /// </summary>
     /// <param name="actionData">Данные действия</param>
-    /// <param name="PointPosition">Интовое значение, где выполняется действие</param>
-    public void Init(CharacterAction actionData, Vector3Int PointPosition)
+    /// <param name="cellPosition">Интовое значение, где выполняется действие</param>
+    public void Init(CharacterAction actionData, Vector3Int cellPosition)
     {
         this.actionData = actionData;
-        this.PointPosition = PointPosition;
+        this.cellPosition = cellPosition;
         initialTilemap = tilemapsSet.FindByCode(initialTilemapCode);
         destroyedTilemap = tilemapsSet.FindByCode(destroyedTilemapCode);
         HP = initialHP;
@@ -68,20 +68,20 @@ public class ActionableTile : ScriptableObject
         if (neededTile != null && neededTile.tile != currentTile)
         {
             currentTile = neededTile.tile;
-            initialTilemap.SetTile(PointPosition, currentTile);
+            initialTilemap.SetTile(cellPosition, currentTile);
         }
 
         // Если здоровье на нуле, то действие окончено - меняем тайлмап и вызываем событие
         if (HP <= 0)
         {
-            initialTilemap.SetTile(PointPosition, null);
-            destroyedTilemap.SetTile(PointPosition, currentTile);
+            initialTilemap.SetTile(cellPosition, null);
+            destroyedTilemap.SetTile(cellPosition, currentTile);
             OnWorkedOut?.Invoke(this);
         }
     }
 
     public override string ToString()
     {
-        return actionState + " - " + PointPosition + " - " + HP;
+        return actionState + " - " + cellPosition + " - " + HP;
     }
 }

@@ -31,10 +31,10 @@ public class MineCharacterState : CharacterActionState
     {
         yield return base.OnEnd();
 
-        ToolCode prevToolCode = toolsManager.defaultTool;
+        ToolCode prevToolCode = toolsManager.DefaultTool;
 
         // Даем мешок с добычей
-        toolsManager.defaultTool = nextTaskDefaultTool;
+        toolsManager.SetDefaultTool(nextTaskDefaultTool);
 
         // Определяем правый нижний участок базы - куда будем нести добычу
         basePositionRequest.MakeRequest(new ParamsObject(baseTile), out List<Vector2> basePositions);
@@ -52,7 +52,7 @@ public class MineCharacterState : CharacterActionState
         moneyVariable.Plus(maxIterations * actionData.SkillValue);
 
         // Убираем мешок, возвращаем предыдущий иструмент
-        toolsManager.defaultTool = prevToolCode;
+        toolsManager.SetDefaultTool(prevToolCode);
 
         cellLayoutRequest.MakeRequest(new ParamsObject(actionData.endPosition), out LayerMask newTaskLayer);
 

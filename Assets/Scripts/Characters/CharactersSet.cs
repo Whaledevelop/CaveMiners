@@ -2,10 +2,15 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/// <summary>
+/// Список всех персонажей
+/// </summary>
 [CreateAssetMenu(fileName = "CharactersSet", menuName = "Sets/CharactersSet")]
 public class CharactersSet : RuntimeSet<Character>
 {
+    [Header("Слой персонажа")]
     [SerializeField] private LayerMask characterLayer;
+    [Header("Слой, на котором не выполняются никакие действия")]
     [SerializeField] private LayerMask noActionLayer;
 
     [NonSerialized] private Character activeCharacter;
