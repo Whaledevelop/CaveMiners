@@ -106,37 +106,29 @@ public class FromEndToStartByPriorityTaskPathfinder : TaskPathfinder
                     if (!checkedPositions.Contains(actionPosition))
                     {
                         checkedPositions.Add(actionPosition);
-                        try
+                        // На клетке находится персонаж, значит мы нашли путь
+                        if (checkIfCharacterOnCellRequest.MakeRequest(actionPosition, characterPosition))
                         {
-                            // На клетке находится персонаж, значит мы нашли путь
-                            if (checkIfCharacterOnCellRequest.MakeRequest(actionPosition, characterPosition))
-                            {
-                                List<PathPoint> pointsToCharacter = new List<PathPoint>() { new PathPoint(pathPoint.state, pathPoint.PointPosition, axis) };
-                                allAvailablePaths.AddPointToPositionInPath(currentIterationPaths[i].positionInPath, pointsToCharacter);
+                            List<PathPoint> pointsToCharacter = new List<PathPoint>() { new PathPoint(pathPoint.state, pathPoint.PointPosition, axis) };
+                            allAvailablePaths.AddPointToPositionInPath(currentIterationPaths[i].positionInPath, pointsToCharacter);
 
-                                return pointsToCharacter;
-                            }
-                            else if (cellLayoutRequest.MakeRequest(new ParamsObject(actionPosition), out LayerMask cellLayerMask))
+                            return pointsToCharacter;
+                        }
+                        else if (cellLayoutRequest.MakeRequest(new ParamsObject(actionPosition), out LayerMask cellLayerMask))
+                        {
+                            CharacterActionState cellState = cellActionsStates.Find(state => Utils.MaskToLayer(state.actionLayerMask) == cellLayerMask);
+                            if (cellState != null)
                             {
-                                CharacterActionState cellState = cellActionsStates.Find(state => Utils.MaskToLayer(state.actionLayerMask) == cellLayerMask);
-                                if (cellState != null)
+                                if (currentIterationPathsByPriority.ContainsKey(cellState.priority))
                                 {
-                                    if (currentIterationPathsByPriority.ContainsKey(cellState.priority))
-                                    {
-                                        currentIterationPathsByPriority[cellState.priority].Add(new PathPoint(cellState, pathPoint.PointPosition, axis));
-                                    }
-                                    else
-                                    {
-                                        currentIterationPathsByPriority.Add(cellState.priority, new List<PathPoint>() { new PathPoint(cellState, pathPoint.PointPosition, axis) });
-                                    }
+                                    currentIterationPathsByPriority[cellState.priority].Add(new PathPoint(cellState, pathPoint.PointPosition, axis));
+                                }
+                                else
+                                {
+                                    currentIterationPathsByPriority.Add(cellState.priority, new List<PathPoint>() { new PathPoint(cellState, pathPoint.PointPosition, axis) });
                                 }
                             }
                         }
-                        catch(System.Exception e)
-                        {
-                            Debug.Log("Error finding paths : " + e.Message);
-                        }
-
                     }                  
                 }
             }
