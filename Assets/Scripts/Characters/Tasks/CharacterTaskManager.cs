@@ -31,16 +31,17 @@ public class CharacterTaskManager : CharacterManager
         if (activeTask != null)
             yield return activeTask.Cancel();
         activeTask = ActivateTask(taskLayer, taskPoint);
-        yield return activeTask.Execute();
+        if (activeTask != null)
+            yield return activeTask.Execute();
     }
 
     public CharacterTask ActivateTask(int taskLayer, Vector2 taskPoint)
     {
         cellCenterRequest.MakeRequest(new ParamsObject(taskPoint), out taskPoint);
-        List<PathPoint> taskStatesPoints = taskPathfinder.FindPath(transform.position, taskPoint, taskLayer);
-        if (taskStatesPoints.Count > 0)
+        List<PathPoint> taskPathPoints = taskPathfinder.FindPath(transform.position, taskPoint, taskLayer);
+        if (taskPathPoints.Count > 0)
         {
-            return new CharacterTask(taskStatesPoints, this);
+            return new CharacterTask(taskPathPoints, this);
         }
         else
         {
@@ -68,8 +69,8 @@ public class CharacterTaskManager : CharacterManager
             foreach (PathPoint point in activeTask.taskPoints)
             {
                 Gizmos.color = point.state.gizmosColor;
-                Gizmos.DrawSphere(point.CellPosition, 0.1f);
-                Gizmos.DrawLine(point.CellPosition, point.NextCellToCharacterPosition);
+                Gizmos.DrawLine(point.closerToCharacterPointPosition, point.PointPosition);
+                Gizmos.DrawSphere(point.PointPosition, 0.1f);
             }
         }
     }

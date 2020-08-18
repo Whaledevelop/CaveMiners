@@ -29,7 +29,8 @@ public class CharacterTask
         while (currentTaskPointIndex < taskPoints.Count)
         {
             PathPoint taskPoint = taskPoints[currentTaskPointIndex];
-            activeState = taskManager.ActivateState(taskPoint.state, taskPoint.CellPosition, -taskPoint.AxisToNextCell);
+            Vector2 axisToCharacter = taskPoint.PointPosition - taskPoint.nextToCharacterPointPosition;
+            activeState = taskManager.ActivateState(taskPoint.state, taskPoint.PointPosition, axisToCharacter);
             yield return activeState.Execute();
             currentTaskPointIndex++;
         }
