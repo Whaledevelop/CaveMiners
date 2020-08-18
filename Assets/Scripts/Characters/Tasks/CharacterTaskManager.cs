@@ -15,6 +15,9 @@ public class CharacterTaskManager : CharacterManager
     [Header("Обработчики действий на клетках")]
     [SerializeField] private CharacterActionHandler[] actionsHandlers;
 
+    [Header("Реквест для определения нахождения персонажа")]
+    [SerializeField] private Request checkIfCharacterOnCellRequest;
+
     [SerializeField] private Rotator rotator;
     [SerializeField] private Animator animator;
     [SerializeField] private CharacterSkillsManager skillsManager;
@@ -27,17 +30,22 @@ public class CharacterTaskManager : CharacterManager
     {
         if (taskCoroutine != null)
             StopCoroutine(taskCoroutine);
-
         taskCoroutine = ExecuteTaskEnumerator(taskLayer, taskPoint);
-        StartCoroutine(taskCoroutine);
+        StartCoroutine(taskCoroutine);        
     }
+
     private IEnumerator ExecuteTaskEnumerator(int taskLayer, Vector2 taskPoint)
     {
         if (activeTask != null)
             yield return activeTask.Cancel();
-        activeTask = ActivateTask(taskLayer, taskPoint);
-        if (activeTask != null)
-            yield return activeTask.Execute();
+        activeTask = null;
+        // Если клик по активному персонажу, то просто останавливаем выполнение
+        if (!checkIfCharacterOnCellRequest.MakeRequest(taskPoint, new Vector2(transform.position.x, transform.position.y)))
+        {
+            activeTask = ActivateTask(taskLayer, taskPoint);
+            if (activeTask != null)
+                yield return activeTask.Execute();
+        }
     }
 
     /// <summary>

@@ -146,7 +146,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   character: {fileID: 0}
-  defaultTool: 0
   spriteResolver: {fileID: 2192015189806234752}
   toolsEquipData:
   - prefab: {fileID: 3978536512088312465, guid: fed21b5492143484080f7e6519a25b75,
@@ -1266,15 +1265,16 @@ MonoBehaviour:
   character: {fileID: 0}
   cellCenterRequest: {fileID: 11400000, guid: 03dc6e1a6c17e98478746032c7be2c09, type: 2}
   taskPathfinder: {fileID: 11400000, guid: 78d008361e9126540aa420517887b31a, type: 2}
-  idleState: {fileID: 11400000, guid: 35ea0df5732a1e747a76bb80919aa569, type: 2}
-  rotator: {fileID: 8931294875683903809}
-  animator: {fileID: 2192015190459939264}
-  skillsManager: {fileID: 8069946906250794713}
-  toolsManager: {fileID: 5824765217179505625}
   actionsHandlers:
   - {fileID: 5658632003600125108}
   - {fileID: 3853779093335931268}
   - {fileID: 1763629010}
+  checkIfCharacterOnCellRequest: {fileID: 11400000, guid: 03a7818d7a2ec284cbc37f87190cce7f,
+    type: 2}
+  rotator: {fileID: 8931294875683903809}
+  animator: {fileID: 2192015190459939264}
+  skillsManager: {fileID: 8069946906250794713}
+  toolsManager: {fileID: 5824765217179505625}
 --- !u!114 &1321094291511996017
 MonoBehaviour:
   m_ObjectHideFlags: 0

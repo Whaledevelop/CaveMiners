@@ -19,6 +19,8 @@ public class FromEndToStartByPriorityTaskPathfinder : TaskPathfinder
     [Header("Максимальная глубина поиска")]
     [SerializeField] private int pathFindMaxDepth;
 
+    private List<Vector2> checkedPositions = new List<Vector2>();
+
     // Доступные оси
     private Vector2Int[] axises = new Vector2Int[4] { new Vector2Int(1, 0), new Vector2Int(-1, 0), new Vector2Int(0, 1), new Vector2Int(0, -1) };
 
@@ -32,6 +34,7 @@ public class FromEndToStartByPriorityTaskPathfinder : TaskPathfinder
             // Создаем точку, в которую при поиске будут помещаться все остальные точки поиска. Первый слой - конечная точка
             PathPoint allAvailablePaths = new PathPoint(taskEndPointState, taskPosition, Vector2.zero);
 
+            checkedPositions.Clear();
             // FindPathTreeToCharacter внутри обновляет allAvailablePaths, добавляя все возможные пути, а возвращает точки до персонажа
             List<PathPoint> lastPointsToCharacter = FindPointsToCharacter(allAvailablePaths.NestLevel, characterPosition, ref allAvailablePaths);
 
@@ -74,8 +77,10 @@ public class FromEndToStartByPriorityTaskPathfinder : TaskPathfinder
             List<PathPoint> currentIterationPaths = allAvailablePaths.GetPointsWithNestLevel(NestLevel);
             // Проверяем клетки следующей итерации
             List<PathPoint> pointsToCharacter = CheckPathToCharacterAmongPaths(currentIterationPaths, characterPosition, ref allAvailablePaths);
-
-            return (pointsToCharacter != null && pointsToCharacter.Count > 0) ? pointsToCharacter : FindPointsToCharacter(NestLevel + 1, characterPosition, ref allAvailablePaths);
+            if (pointsToCharacter != null && pointsToCharacter.Count > 0)
+                return pointsToCharacter;
+            else
+                return FindPointsToCharacter(NestLevel + 1, characterPosition, ref allAvailablePaths);
         }
         else
             return new List<PathPoint>() { };
@@ -90,24 +95,64 @@ public class FromEndToStartByPriorityTaskPathfinder : TaskPathfinder
         Dictionary<int, Dictionary<int, List<PathPoint>>> priorityPaths = new Dictionary<int, Dictionary<int, List<PathPoint>>>();
         for (int i = 0; i < currentIterationPaths.Count; i++)
         {
-            (bool isCharacter, int pathsPriority, List<PathPoint> nextPaths) checkResult = FindPathsAround(currentIterationPaths[i], characterPosition);
+            PathPoint pathPoint = currentIterationPaths[i];
+            Dictionary<int, List<PathPoint>> currentIterationPathsByPriority = new Dictionary<int, List<PathPoint>>();
 
-            // Если мы нашли персонажа, то дальше проверять нет смысла
-            if (checkResult.isCharacter)
+            foreach (Vector2Int axis in axises)
             {
-                allAvailablePaths.AddPointToPositionInPath(currentIterationPaths[i].positionInPath, checkResult.nextPaths);
-                return checkResult.nextPaths;
-            }
-            else
-            {
-                // Добавляем в словарь с путями по приоритетам результаты проверки
-                if (priorityPaths.ContainsKey(checkResult.pathsPriority))
+                if (axis != -pathPoint.axisFromParent)
                 {
-                    priorityPaths[checkResult.pathsPriority].Add(i, checkResult.nextPaths);
+                    Vector2 actionPosition = pathPoint.PointPosition + axis;
+                    if (!checkedPositions.Contains(actionPosition))
+                    {
+                        checkedPositions.Add(actionPosition);
+                        try
+                        {
+                            // На клетке находится персонаж, значит мы нашли путь
+                            if (checkIfCharacterOnCellRequest.MakeRequest(actionPosition, characterPosition))
+                            {
+                                List<PathPoint> pointsToCharacter = new List<PathPoint>() { new PathPoint(pathPoint.state, pathPoint.PointPosition, axis) };
+                                allAvailablePaths.AddPointToPositionInPath(currentIterationPaths[i].positionInPath, pointsToCharacter);
+
+                                return pointsToCharacter;
+                            }
+                            else if (cellLayoutRequest.MakeRequest(new ParamsObject(actionPosition), out LayerMask cellLayerMask))
+                            {
+                                CharacterActionState cellState = cellActionsStates.Find(state => Utils.MaskToLayer(state.actionLayerMask) == cellLayerMask);
+                                if (cellState != null)
+                                {
+                                    if (currentIterationPathsByPriority.ContainsKey(cellState.priority))
+                                    {
+                                        currentIterationPathsByPriority[cellState.priority].Add(new PathPoint(cellState, pathPoint.PointPosition, axis));
+                                    }
+                                    else
+                                    {
+                                        currentIterationPathsByPriority.Add(cellState.priority, new List<PathPoint>() { new PathPoint(cellState, pathPoint.PointPosition, axis) });
+                                    }
+                                }
+                            }
+                        }
+                        catch(System.Exception e)
+                        {
+                            Debug.Log("Error finding paths : " + e.Message);
+                        }
+
+                    }                  
+                }
+            }
+
+            if (currentIterationPathsByPriority.Count > 0)
+            {
+                List<PathPoint> morePrioritePaths = currentIterationPathsByPriority.Aggregate((biggest, next) => next.Key > biggest.Key ? next : biggest).Value;
+                int currentIterationPriority = morePrioritePaths[0].Priority;
+                // Добавляем в словарь с путями по приоритетам результаты проверки
+                if (priorityPaths.ContainsKey(currentIterationPriority))
+                {
+                    priorityPaths[currentIterationPriority].Add(i, morePrioritePaths);
                 }
                 else
                 {
-                    priorityPaths.Add(checkResult.pathsPriority, new Dictionary<int, List<PathPoint>>() { { i, checkResult.nextPaths } });
+                    priorityPaths.Add(currentIterationPriority, new Dictionary<int, List<PathPoint>>() { { i, morePrioritePaths } });
                 }
             }
         }
@@ -115,8 +160,6 @@ public class FromEndToStartByPriorityTaskPathfinder : TaskPathfinder
         {
             // Из priorityPaths забираем только один элемент с бОльшим приоритетом
             Dictionary<int, List<PathPoint>> higherPriorityPaths = priorityPaths.Aggregate((biggest, next) => next.Key > biggest.Key ? next : biggest).Value;
-
-
             for (int i = 0; i < currentIterationPaths.Count; i++)
             {
                 if (higherPriorityPaths.ContainsKey(i))
@@ -128,52 +171,6 @@ public class FromEndToStartByPriorityTaskPathfinder : TaskPathfinder
         }
 
         return null;
-    }
-
-    /// <summary>
-    /// Проверяет все точки, окружающую данную 
-    /// </summary>
-    private (bool, int, List<PathPoint>) FindPathsAround(PathPoint pathPoint, Vector2 characterPosition)
-    {
-        Dictionary<int, List<PathPoint>> pathsByPriority = new Dictionary<int, List<PathPoint>>();
-
-        foreach (Vector2Int axis in axises)
-        {
-            if (axis != -pathPoint.axisFromParent)
-            {
-                Vector2 actionPosition = pathPoint.PointPosition + axis;
-
-                // На клетке находится персонаж, значит мы нашли путь
-                if (checkIfCharacterOnCellRequest.MakeRequest(actionPosition, characterPosition))
-                {
-                    return (true, pathPoint.Priority, new List<PathPoint>() { new PathPoint(pathPoint.state, pathPoint.PointPosition, axis) });
-                }               
-                else if (cellLayoutRequest.MakeRequest(new ParamsObject(actionPosition), out LayerMask cellLayerMask))
-                {
-                    CharacterActionState cellState = cellActionsStates.Find(state => Utils.MaskToLayer(state.actionLayerMask) == cellLayerMask);
-                    if (cellState != null)
-                    {
-                        if (pathsByPriority.ContainsKey(cellState.priority))
-                        {
-                            pathsByPriority[cellState.priority].Add(new PathPoint(cellState, pathPoint.PointPosition, axis));
-                        }
-                        else
-                        {
-                            pathsByPriority.Add(cellState.priority, new List<PathPoint>() { new PathPoint(cellState, pathPoint.PointPosition, axis) });
-                        }
-                    }
-                }
-            }
-        }
-
-        if (pathsByPriority.Count > 0)
-        {
-            List<PathPoint> morePrioritePaths = pathsByPriority.Aggregate((biggest, next) => next.Key > biggest.Key ? next : biggest).Value;
-            if (morePrioritePaths.Count > 0)
-                return (false, morePrioritePaths[0].Priority, morePrioritePaths);                
-        }       
-        return (false, 0, new List<PathPoint>());
-
     }
 }
 
