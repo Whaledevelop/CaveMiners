@@ -6,6 +6,7 @@ using System.Collections.Generic;
 public class StartTestModeWindow : EditorWindow
 {
     private bool isGridCanvasTurnedOn;
+    private bool isDebugTurned;
     public CharacterInitialData[] characters;
 
     [UnityEditor.MenuItem("Window/StartTestMode")]
@@ -23,6 +24,9 @@ public class StartTestModeWindow : EditorWindow
 
         GUILayout.Space(10);
         isGridCanvasTurnedOn = EditorGUILayout.Toggle("Координаты клеток", isGridCanvasTurnedOn);
+
+        GUILayout.Space(10);
+        isDebugTurned = EditorGUILayout.Toggle("Включен ли Debugger", isDebugTurned);
 
         GUILayout.Space(10);
         GUILayout.Label("Выбранные персонажи");

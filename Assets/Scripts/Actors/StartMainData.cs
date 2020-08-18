@@ -10,4 +10,5 @@ public class StartMainData : ScriptableObject
 {
     public bool isGridCanvasTurnedOn;
     public CharacterInitialData[] chosenCharacters;
+    public bool isDebugTurned;
 }
