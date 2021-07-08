@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Experimental.U2D.Animation;
+
 
 
 public enum ToolCode
@@ -14,7 +14,7 @@ public enum ToolCode
 
 public class CharacterToolsManager : CharacterManager
 {
-    [SerializeField] private SpriteResolver spriteResolver;
+    [SerializeField] private UnityEngine.U2D.Animation.SpriteResolver spriteResolver;
     [SerializeField] private List<ToolEquipData> toolsEquipData = new List<ToolEquipData>();
 
     private ToolCode defaultTool;
