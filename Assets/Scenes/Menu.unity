@@ -834,7 +834,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -37.50004}
+  m_AnchoredPosition: {x: 0, y: -37.50003}
   m_SizeDelta: {x: -30, y: -105.00008}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1079951493
@@ -858,7 +858,8 @@ MonoBehaviour:
   characterItemPrefab: {fileID: 5876673800521570659, guid: d32e5c0484f3ad848878a1fdf2f76ef7,
     type: 3}
   charactersParent: {fileID: 649669949708776810}
-  maxActiveCharacters: 3
+  maxActiveCharacters: {fileID: 11400000, guid: 4937049c5cd3f424d95b27248b0fc1c2,
+    type: 2}
   onAllCharactersChosen: {fileID: 11400000, guid: 767d9e301a06df0418677c9b920e79e7,
     type: 2}
   onTryingToChooseLessCharacters: {fileID: 11400000, guid: d1853562eab8f8a47addacc602a274e4,

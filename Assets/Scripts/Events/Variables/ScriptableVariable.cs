@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 /// <summary>
 /// ScriptableVariable - это тот же GameEvent, на который подписываются слушатели, но у него есть
@@ -10,7 +11,7 @@ public class ScriptableVariable<T> : GameEvent<T>
 
     [SerializeField] private T defaultValue;
 
-    [SerializeField] private bool isMultisessional;
+    [SerializeField] private bool isConst;
 
     private T value;
 
@@ -19,14 +20,18 @@ public class ScriptableVariable<T> : GameEvent<T>
         get => value;
         set
         {
+            if (isConst)
+            {
+                Debugger.Log($"Trying to set const value for {name}");
+                return;
+            }
             this.value = value;
             Raise(value);
         }
     }
 
-    public virtual void OnDisable()
+    protected virtual void OnEnable()
     {
-        if (!isMultisessional)
-            value = defaultValue;
+        Value = defaultValue;
     }
 }

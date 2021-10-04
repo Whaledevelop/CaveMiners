@@ -12,7 +12,7 @@ public class ChooseCharacterWindow : MonoBehaviour
 
     [SerializeField] private RectTransform charactersParent;    
 
-    [SerializeField] private int maxActiveCharacters;
+    [SerializeField] private IntVariable maxActiveCharacters;
 
     [SerializeField] private GameEvent onAllCharactersChosen;
 
@@ -51,7 +51,7 @@ public class ChooseCharacterWindow : MonoBehaviour
                     item.ChangeChooseMode(true);
                     chosenCharacters.Add(item.character);
                     // Если превышено максимальное количество выбранных персонажей, то снимаем выделение с персонажа, выбранного раньше всего
-                    if (chosenCharacters.Items.Count > maxActiveCharacters)
+                    if (chosenCharacters.Items.Count > maxActiveCharacters.Value)
                     {
                         CharacterInitialData oldestChosenCharacter = chosenCharacters.Items[0];
                         CharacterCardUIItem oldestChosenCharacterUI = instantiatedItems.Find(i => i.character == oldestChosenCharacter);
@@ -66,9 +66,9 @@ public class ChooseCharacterWindow : MonoBehaviour
 
     public void OnConfirmChosenCharacters()
     {
-        if (chosenCharacters.Items.Count == maxActiveCharacters)
+        if (chosenCharacters.Items.Count == maxActiveCharacters.Value)
             onAllCharactersChosen.Raise();
-        else if (chosenCharacters.Items.Count < maxActiveCharacters)
+        else if (chosenCharacters.Items.Count < maxActiveCharacters.Value)
             onTryingToChooseLessCharacters.Raise();
     }
 

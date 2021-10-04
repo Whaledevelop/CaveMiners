@@ -9,10 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f00f0a3bcfb08b94a93f6ffa374faa0b, type: 3}
+  m_Script: {fileID: 11500000, guid: 957c4abe8a56be7488db382bf5e97f9c, type: 3}
   m_Name: GreetState
   m_EditorClassIdentifier: 
-  stateName: Greet
+  stateName: "\u041F\u0440\u0438\u0432\u0435\u0442\u0441\u0442\u0432\u0438\u0435"
   toolCode: 0
   animatorStartTrigger: StartGreeting
   animatorEndTrigger: StopGreeting
+  skillCode: 0
+  actionLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  priority: 0
+  gizmosColor: {r: 0.509434, g: 0.17184646, b: 0, a: 0}
+  rotationMode: 0
