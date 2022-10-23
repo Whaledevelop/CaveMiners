@@ -26,6 +26,7 @@ public class CameraController : MonoBehaviour
     private int activeCameraModeIndex;
 
     private IEnumerator activeCameraEnumerator;
+
     public void Init(LevelSettings levelSettings)
     {
         this.levelSettings = levelSettings;
@@ -34,22 +35,19 @@ public class CameraController : MonoBehaviour
     }
 
     // Метод для UnityEvent, когда при нажатии на клавишу меняется режим камеры
-    public void SetNextCameraMode(InputAction.CallbackContext callbackContext)
+    public void SetNextCameraMode()
     {
-        if (callbackContext.performed)
-        {
-            activeCameraModeIndex++;
-            if (activeCameraModeIndex >= cameraModes.Length)
-                activeCameraModeIndex = cameraModes.Length - activeCameraModeIndex;
-            SetCameraMode(cameraModes[activeCameraModeIndex]);
-        }
+        activeCameraModeIndex++;
+        if (activeCameraModeIndex >= cameraModes.Length)
+            activeCameraModeIndex = cameraModes.Length - activeCameraModeIndex;
+        SetCameraMode(cameraModes[activeCameraModeIndex]);
     }
 
     /// <summary>
     /// При изменении режима камеры контроль переходит к режиму, и он регулирует поведение
     /// </summary>
     /// <param name="cameraMode"></param>
-    public void SetCameraMode(CameraMode cameraMode)
+    private void SetCameraMode(CameraMode cameraMode)
     {
         if (activeCameraMode != cameraMode)
         {
@@ -62,35 +60,31 @@ public class CameraController : MonoBehaviour
     }
 
     // Скролл пока одинаковый для всех режимов камеры, но можно в дальнейшем перенести это поведение в моды
-    public void OnScrollInput(InputAction.CallbackContext callbackContext)
+    public void OnScrollInput(Vector2 scrollInput)
     {
-        if (callbackContext.performed)
+        float newZoom = controlledCamera.orthographicSize + -scrollInput.y / 10 * scrollSpeed;
+        if (zoomRange.IsInRange(newZoom))
         {
-            Vector2 scrollInput = callbackContext.ReadValue<Vector2>().normalized;
-            float newZoom = controlledCamera.orthographicSize + -scrollInput.y / 10 * scrollSpeed;
-            if (zoomRange.IsInRange(newZoom))
-                controlledCamera.orthographicSize = newZoom;
+            controlledCamera.orthographicSize = newZoom;
         }
     }
 
     #region Camera modes input
 
-    public void OnChooseInput(InputAction.CallbackContext callbackContext)
-    {
-        if (activeCameraMode is IHandleChooseInput)
-            (activeCameraMode as IHandleChooseInput).OnChooseInput(callbackContext);
-    }
-
-    public void OnLookInput(InputAction.CallbackContext callbackContext)
+    public void OnLookInput(Vector2 lookVector)
     {
         if (activeCameraMode is IHandleLookInput)
-            (activeCameraMode as IHandleLookInput).OnLookInput(callbackContext);
+        {
+            (activeCameraMode as IHandleLookInput).OnLookInput(lookVector);
+        }
     }
 
-    public void OnExecuteInput(InputAction.CallbackContext callbackContext)
+    public void OnExecuteInput(InputActionPhase inputActionPhase)
     {
         if (activeCameraMode is IHandleExecuteInput)
-            (activeCameraMode as IHandleExecuteInput).OnExecuteInput(callbackContext);
+        {
+            (activeCameraMode as IHandleExecuteInput).OnExecuteInput(inputActionPhase);
+        }
     }
 
     #endregion

@@ -1,22 +1,13 @@
 ﻿
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public interface IHandleLookInput
 {
-    void OnLookInput(InputAction.CallbackContext callbackContext);
-}
-
-public interface IHandleChooseInput
-{
-    void OnChooseInput(InputAction.CallbackContext callbackContext);
+    void OnLookInput(Vector2 lookInput);
 }
 
 public interface IHandleExecuteInput
 {
-    void OnExecuteInput(InputAction.CallbackContext callbackContext);
-}
-
-public interface IHandleScrollInput
-{
-    void OnScrollInput(InputAction.CallbackContext callbackContext);
+    void OnExecuteInput(InputActionPhase inputActionPhase);
 }
