@@ -71,6 +71,10 @@ public class CharacterState : ScriptableObject
 
     private void SetTrigger(Animator animator, string trigger)
     {
+        if (string.IsNullOrEmpty(trigger))
+        {
+            return;
+        }
         // Иногда возникает ситуация, когда произходит вызов другой анимации, когда еще происходит вызов
         // предыдущей, тогда триггер остается включенным, что приводит к тому, что следующая попытка вызвать ту же 
         // анимацию не сработает. Поэтому снимаем все триггеры вручную
@@ -79,10 +83,7 @@ public class CharacterState : ScriptableObject
             if (parameter.type == AnimatorControllerParameterType.Trigger)
                 animator.ResetTrigger(parameter.name);
         }
-        if (!string.IsNullOrEmpty(trigger))
-        {
-            animator.SetTrigger(trigger);
-        }
+        animator.SetTrigger(trigger);
     }
 
     public override string ToString()

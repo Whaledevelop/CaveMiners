@@ -45,7 +45,10 @@ public class CharacterCardUIItem : CharacterUIItem, IPointerEnterHandler, IPoint
         Color currentColor = image.color;
         currentColor.a = 1f;
         image.color = currentColor;
-        characterPreview.StartPreviewState(greetState);
+        if (greetState != null)
+        {
+            characterPreview.StartPreviewState(greetState);
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
